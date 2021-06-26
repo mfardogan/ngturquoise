@@ -1,0 +1,370 @@
+<div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row align-items-end">
+            <div class="col-sm mb-2 mb-sm-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-no-gutter">
+                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
+                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Account</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">API Keys</li>
+                    </ol>
+                </nav>
+
+                <h1 class="page-header-title">Seçenek Grupları</h1>
+            </div>
+
+
+            <div class="col-sm-auto">
+                <a routerLink="/choice" class="btn btn-success" data-toggle="modal" data-target="#createAKIKeyModal">
+                    <i class="tio-add mr-1"></i> Oluştur
+                </a>
+            </div>
+        </div>
+        <!-- End Row -->
+    </div>
+    <!-- End Page Header -->
+
+    <!-- Stats -->
+    <div class="row">
+        <div class="col-md-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <div class="card">
+                <div class="card-body text-center">
+                    <small class="text-cap">Projects</small>
+                    <span class="js-counter d-block display-3 text-dark mb-2" data-value="150">150</span>
+
+                    <div class="row">
+                        <div class="col text-right">
+                            <span class="d-block font-weight-bold text-success">
+                                <i class="tio-trending-up"></i> 12%
+                            </span>
+                            <span class="d-block">change</span>
+                        </div>
+
+                        <div class="col column-divider text-left">
+                            <span class="d-block font-weight-bold text-dark">5</span>
+                            <span class="d-block">last week</span>
+                        </div>
+                    </div>
+                    <!-- End Row -->
+                </div>
+            </div>
+            <!-- End Card -->
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <div class="card">
+                <div class="card-body text-center">
+                    <small class="text-cap"><span class="legend-indicator bg-success"></span> Successful
+                        conversions</small>
+                    <span class="js-counter d-block display-3 text-dark mb-2" data-value="25">25</span>
+
+                    <div class="row">
+                        <div class="col text-right">
+                            <span class="d-block font-weight-bold text-success">
+                                <i class="tio-trending-up"></i> 5.6%
+                            </span>
+                            <span class="d-block">change</span>
+                        </div>
+
+                        <div class="col column-divider text-left">
+                            <span class="d-block font-weight-bold text-dark">7</span>
+                            <span class="d-block">last week</span>
+                        </div>
+                    </div>
+                    <!-- End Row -->
+                </div>
+            </div>
+            <!-- End Card -->
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <div class="card">
+                <div class="card-body text-center">
+                    <small class="text-cap"><span class="legend-indicator bg-danger"></span> Failed conversions</small>
+                    <span class="js-counter d-block display-3 text-dark mb-2" data-value="4">4</span>
+
+                    <div class="row">
+                        <div class="col text-right">
+                            <span class="d-block font-weight-bold text-danger">
+                                <i class="tio-trending-down"></i> 2.3%
+                            </span>
+                            <span class="d-block">change</span>
+                        </div>
+
+                        <div class="col column-divider text-left">
+                            <span class="d-block font-weight-bold text-dark">1</span>
+                            <span class="d-block">last week</span>
+                        </div>
+                    </div>
+                    <!-- End Row -->
+                </div>
+            </div>
+            <!-- End Card -->
+        </div>
+    </div>
+    <!-- End Stats -->
+
+    <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+            <div class="row justify-content-between align-items-center flex-grow-1">
+                <div class="col-12 col-md">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-header-title">Seçenek grupları</h5>
+                    </div>
+                </div>
+
+                <div class="col-auto">
+                    <!-- Filter -->
+                    <form>
+                        <!-- Search -->
+                        <div class="input-group input-group-merge input-group-flush">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="tio-search"></i>
+                                </div>
+                            </div>
+                            <input id="datatableWithSearchInput" type="search" class="form-control" placeholder="Ara"
+                                aria-label="Ara">
+                        </div>
+                        <!-- End Search -->
+                    </form>
+                    <!-- End Filter -->
+                </div>
+            </div>
+        </div>
+        <!-- End Header -->
+
+        <!-- Table -->
+        <div class="table-responsive datatable-custom">
+            <div id="datatableWithSearch_wrapper" class="dataTables_wrapper no-footer">
+                <div class="dataTables_length" id="datatableWithSearch_length"><label>Show <select
+                            name="datatableWithSearch_length" aria-controls="datatableWithSearch" class="">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select> entries</label></div>
+                <div id="datatableWithSearch_filter" class="dataTables_filter"><label>Search:<input type="search"
+                            class="" placeholder="" aria-controls="datatableWithSearch"></label></div>
+                <table id="datatableWithSearch"
+                    class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer"
+                    data-hs-datatables-options="{
+                   &quot;order&quot;: [],
+                   &quot;search&quot;: &quot;#datatableWithSearchInput&quot;,
+                   &quot;isResponsive&quot;: false,
+                   &quot;isShowPaging&quot;: false,
+                   &quot;pagination&quot;: &quot;datatableWithSearchPagination&quot;
+                 }" role="grid" aria-describedby="datatableWithSearch_info">
+                    <thead class="thead-light">
+                        <tr role="row">
+                            <th class="" tabindex="0" rowspan="1" colspan="1"
+                                aria-label="Name: activate to sort column ascending" style="width: 10px;">#</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatableWithSearch" rowspan="1" colspan="1"
+                                aria-label="Name: activate to sort column ascending" style="width: 230.8px;">Seçenek
+                                grubu
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="datatableWithSearch" rowspan="1" colspan="1"
+                                aria-label="Country: activate to sort column ascending" style="width: 128.4px;">
+                                Seçenekler
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="datatableWithSearch" rowspan="1" colspan="1"
+                                aria-label="Status: activate to sort column ascending" style="width: 105.2px;">
+                                Anketler
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="datatableWithSearch" rowspan="1" colspan="1"
+                                aria-label="Status: activate to sort column ascending" style="width: 105.2px;">
+                                Default
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="datatableWithSearch" rowspan="1" colspan="1"
+                                aria-label="Status: activate to sort column ascending" style="width:  20.2px;">İşlemler
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr role="row" class="{{i%2 == 0 ? 'odd' : 'even'}}" *ngFor="let item of data;let i = index;">
+                            <td>{{i+1}}</td>
+                            <td>
+                                <a class="media align-items-center" [routerLink]="['/choice',item.id]">
+                                    <div class="avatar avatar-circle mr-3">
+                                        <img class="avatar-img" src="../assets/img/160x160/img10.jpg"
+                                            alt="Image Description">
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="d-block h5 text-hover-primary mb-0">{{item.name}}
+                                            <i *ngIf="item.default" class="tio-verified text-primary"
+                                                data-toggle="tooltip" data-placement="top" title=""
+                                                data-original-title="Top endorsed"></i>
+                                        </span>
+                                        <span class="d-block font-size-sm text-body">{{item.code}}</span>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="avatar-group avatar-group-xs avatar-circle">
+                                    <a class="avatar" href="user-profile.html" data-toggle="tooltip"
+                                        data-placement="top" title="" data-original-title="Amanda Harvey">
+                                        <img class="avatar-img" src="./assets/img/160x160/img10.jpg"
+                                            alt="Image Description">
+                                    </a>
+                                    <a class="avatar" href="user-profile.html" data-toggle="tooltip"
+                                        data-placement="top" title="" data-original-title="David Harrison">
+                                        <img class="avatar-img" src="./assets/img/160x160/img3.jpg"
+                                            alt="Image Description">
+                                    </a>
+                                    <a class="avatar avatar-soft-info" href="user-profile.html" data-toggle="tooltip"
+                                        data-placement="top" title="" data-original-title="Lisa Iston">
+                                        <span class="avatar-initials">L</span>
+                                    </a>
+                                    <a class="avatar avatar-light avatar-circle" href="user-profile.html"
+                                        data-toggle="tooltip" data-placement="top" title=""
+                                        data-original-title="Lewis Clarke, Chris Mathew and 3 more">
+                                        <span class="avatar-initials">+5</span>
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <ng-template #hassurvey>
+                                    <span class="legend-indicator bg-success"></span>{{item.surveyCount}} Anket(ler)
+
+                                </ng-template>
+                                <ng-template #nosurvey>
+                                    <span class="legend-indicator bg-danger"></span>Anketi yok
+                                </ng-template>
+
+                                <div *ngIf="item.surveyCount > 0 then hassurvey else nosurvey;">
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <label [ngStyle]="{cursor: item.default ? 'context-menu' : 'pointer'}"
+                                    class="toggle-switch toggle-switch-sm" for="{{'customSwitch'+i}}">
+                                    <input [ngStyle]="{cursor: item.default ? 'context-menu' : 'pointer'}"
+                                        (change)="markAsDefault(item.id);" [disabled]="item.default"
+                                        [checked]="item.default" type="checkbox"
+                                        class="js-toggle-switch toggle-switch-input" id="{{'customSwitch'+i}}">
+                                    <span [ngStyle]="{cursor: item.default ? 'context-menu' : 'pointer'}"
+                                        class="toggle-switch-label">
+                                        <span [ngStyle]="{cursor: item.default ? 'context-menu' : 'pointer'}"
+                                            class="toggle-switch-indicator"></span>
+                                    </span>
+                                </label>
+
+                            </td>
+                            <td>
+                                <!--
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-danger dropdown-toggle" type="button"
+                                        id="dropdownMenuButtonWithIcon" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        İşlemler
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonWithIcon" style="">
+                                        <a class="dropdown-item" href="#">
+                                            <i class="tio-home-outlined dropdown-item-icon"></i> Dashboard
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="tio-user-outlined dropdown-item-icon"></i> Profile
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="tio-tune dropdown-item-icon"></i> Settings
+                                        </a>
+                                    </div>
+                                </div>
+                            -->
+                                <a [routerLink]="['/choice',item.id]">
+                                    <button style="margin-left: 5px;" type="button"
+                                        class="btn btn-warning btn-icon btn-xs">
+                                        <i class="tio-add"></i>
+                                    </button>
+                                </a>
+
+                                <button (click)="remove(item.id);" style="margin-left: 5px;" type="button"
+                                    class="btn btn-danger btn-icon btn-xs">
+                                    <i class="tio-clear"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+                <div class="dataTables_info" id="datatableWithSearch_info" role="status" aria-live="polite">Showing 1 to
+                    10 of 24 entries</div>
+            </div>
+        </div>
+        <!-- End Table -->
+
+        <!-- Footer -->
+        <div class="card-footer">
+            <!-- Pagination -->
+            <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
+                <div class="col-sm mb-2 mb-sm-0">
+                    <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
+                        <span class="mr-2">Showing:</span>
+
+                        <!-- Select -->
+                        <select id="datatableEntries" class="js-select2-custom select2-hidden-accessible"
+                            data-hs-select2-options="{
+                            &quot;minimumResultsForSearch&quot;: &quot;Infinity&quot;,
+                            &quot;customClass&quot;: &quot;custom-select custom-select-sm custom-select-borderless&quot;,
+                            &quot;dropdownAutoWidth&quot;: true,
+                            &quot;width&quot;: true
+                          }" data-select2-id="datatableEntries" tabindex="-1" aria-hidden="true">
+                            <option value="10" data-select2-id="2">10</option>
+                            <option value="15" selected="" data-select2-id="3">15</option>
+                            <option value="20" data-select2-id="4">20</option>
+                        </select><span class="select2 select2-container select2-container--default" dir="ltr"
+                            data-select2-id="1"><span class="selection"><span
+                                    class="select2-selection custom-select custom-select-sm custom-select-borderless"
+                                    role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0"
+                                    aria-disabled="false" aria-labelledby="select2-datatableEntries-container"><span
+                                        class="select2-selection__rendered" id="select2-datatableEntries-container"
+                                        role="textbox" aria-readonly="true" title="15"><span>15</span></span><span
+                                        class="select2-selection__arrow" role="presentation"><b
+                                            role="presentation"></b></span></span></span><span class="dropdown-wrapper"
+                                aria-hidden="true"></span></span>
+                        <!-- End Select -->
+
+                        <span class="text-secondary mr-2">of</span>
+
+                        <!-- Pagination Quantity -->
+                        <span id="datatableWithPaginationInfoTotalQty">25</span>
+                    </div>
+                </div>
+
+                <div class="col-sm-auto">
+                    <div class="d-flex justify-content-center justify-content-sm-end">
+                        <!-- Pagination -->
+                        <nav id="datatablePagination" aria-label="Activity pagination">
+                            <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                                <ul id="datatable_pagination" class="pagination datatable-custom-pagination">
+                                    <li class="paginate_item page-item disabled"><a
+                                            class="paginate_button previous page-link" aria-controls="datatable"
+                                            data-dt-idx="0" tabindex="0" id="datatable_previous"><span
+                                                aria-hidden="true">Geri</span></a></li>
+                                    <li class="paginate_item page-item active"><a class="paginate_button page-link"
+                                            aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a></li>
+                                    <li class="paginate_item page-item"><a class="paginate_button page-link"
+                                            aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a></li>
+                                    <li class="paginate_item page-item"><a class="paginate_button next page-link"
+                                            aria-controls="datatable" data-dt-idx="3" tabindex="0"
+                                            id="datatable_next"><span aria-hidden="true">İleri</span></a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- End Pagination -->
+        </div>
+        <!-- End Footer -->
+    </div>
+</div>

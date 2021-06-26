@@ -28,9 +28,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/vendor/icon-set/style.css",
+              "src/assets/css/theme.min.css",
+              "src/assets/css/docs.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "src/assets/vendor/select2/dist/js/select2.full.min.js"
+            ]
           },
           "configurations": {
             "production": {

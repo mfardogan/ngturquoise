@@ -22,6 +22,10 @@ import DoctorHttp from './components/doctor/doctor-http';
 import { Error500Component } from './components/layout/error500/error500.component';
 import { Error404Component } from './components/layout/error404/error404.component';
 import { Error401Component } from './components/layout/error401/error401.component';
+import { AdminsComponent } from './components/admin/admins/admins.component';
+import { AdminProfileComponent } from './components/admin/admin-profile/admin-profile.component';
+import AdminHttp from './components/admin/admin-http';
+import SurveyHttp from './components/survey/survey-http';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,8 @@ import { Error401Component } from './components/layout/error401/error401.compone
     Error500Component,
     Error404Component,
     Error401Component,
+    AdminsComponent,
+    AdminProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +57,8 @@ import { Error401Component } from './components/layout/error401/error401.compone
     ChoiceGroupHttp,
     DoctorGroupHttp,
     DoctorHttp,
+    AdminHttp,
+    SurveyHttp,
     BackendConfigService
   ],
   bootstrap: [AppComponent]

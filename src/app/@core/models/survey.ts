@@ -1,8 +1,9 @@
 import Administrator from "./administrator";
 import ChoiceGroup from "./choice-group";
 import Concurrency from "./concurrency";
+import File from "./file";
 
-class Survey extends Concurrency{
+class Survey extends Concurrency {
     createdBy: number = 0;
     administrator!: Administrator;
     status: number = 0;
@@ -12,6 +13,7 @@ class Survey extends Concurrency{
     choiceGroupId: number = 0;
     choiceGroup!: ChoiceGroup;
     images: Array<File> = [];
+    smallImages: Array<File> = [];
 }
 
 export default Survey;

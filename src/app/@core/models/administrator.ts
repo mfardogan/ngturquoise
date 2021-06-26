@@ -15,6 +15,8 @@ class Administrator extends Concurrency {
     instagram!: string;
     about!: string;
     systemOwner: boolean = false;
+    gender: number = 0;
+    createdSurveys: number = 0;
     image!: File;
 }
 

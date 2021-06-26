@@ -1,0 +1,633 @@
+<div class="row justify-content-lg-center">
+    <div class="col-lg-10">
+        <!-- Profile Cover -->
+        <div class="profile-cover">
+            <div class="profile-cover-img-wrapper">
+                <img class="profile-cover-img" src="./assets/img/1920x400/img1.jpg" alt="Image Description">
+            </div>
+        </div>
+        <!-- End Profile Cover -->
+
+        <!-- Profile Header -->
+        <div class="text-center mb-5">
+            <!-- Avatar -->
+
+            <ng-template #hasimage>
+                <div class="avatar avatar-xxl avatar-circle avatar-border-lg profile-cover-avatar">
+                    <img class="avatar-img" src="{{data.image.fileName}}" alt="">
+                    <span class="avatar-status avatar-status-success"></span>
+                </div>
+            </ng-template>
+
+            <ng-template #noimage>
+                <div
+                    class="{{getAvatarClassNameByGender(data.gender)}} avatar-circle avatar-border-lg profile-cover-avatar">
+                    <span class="avatar-initials">{{data.name[0]}}</span>
+                </div>
+            </ng-template>
+
+            <div *ngIf="data.image != null then hasimage else noimage"></div>
+
+            <!-- End Avatar -->
+
+            <h1 class="page-header-title">{{data.title}} {{data.name}} {{data.surname}}<i
+                    class="tio-verified tio-lg text-primary" data-toggle="tooltip" data-placement="top" title=""
+                    data-original-title="Top endorsed"></i></h1>
+
+            <!-- List -->
+            <ul class="list-inline list-inline-m-1">
+                <li class="list-inline-item">
+                    <i class="tio-city mr-1"></i>
+                    <span>{{data.systemOwner ? 'Sistem sahibi' : 'Yönetici'}}</span>
+                </li>
+
+                <li class="list-inline-item">
+                    <i class="tio-date-range mr-1"></i>
+                    <span>Katılım: {{data.creationAt | date: 'dd.MM.yyyy hh:mm'}}</span>
+                </li>
+            </ul>
+            <!-- End List -->
+        </div>
+        <!-- End Profile Header -->
+
+        <div class="js-nav-scroller hs-nav-scroller-horizontal mb-5" data-hs-nav-scroller-options="{
+            &quot;type&quot;: &quot;horizontal&quot;,
+            &quot;delay&quot;: 20
+          }">
+
+            <span class="hs-nav-scroller-arrow-backward" style="display: none;">
+                <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                    <i class="tio-chevron-left"></i>
+                </a>
+            </span>
+
+            <span class="hs-nav-scroller-arrow-forward" style="display: none;">
+                <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                    <i class="tio-chevron-right"></i>
+                </a>
+            </span>
+
+            <ul class="nav nav-tabs align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link active disabled" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Teams</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Connections</a>
+                </li>
+
+                <li class="nav-item ml-auto">
+                    <a class="btn btn-sm btn-white mr-2" href="account-settings.html">
+                        <i class="tio-edit mr-1"></i> Edit profile
+                    </a>
+
+                    <a class="btn btn-icon btn-sm btn-white mr-2" href="#">
+                        <i class="tio-format-points mr-1"></i>
+                    </a>
+
+                    <!-- Unfold -->
+                    <div class="hs-unfold hs-nav-scroller-unfold">
+                        <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-white" href="javascript:;"
+                            data-hs-unfold-options="{
+                  &quot;target&quot;: &quot;#profileDropdown&quot;,
+                  &quot;type&quot;: &quot;css-animation&quot;
+                }" data-hs-unfold-target="#profileDropdown" data-hs-unfold-invoker="">
+                            <i class="tio-more-vertical"></i>
+                        </a>
+
+                        <div id="profileDropdown"
+                            class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1 hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
+                            data-hs-target-height="247.4" data-hs-unfold-content=""
+                            data-hs-unfold-content-animation-in="slideInUp"
+                            data-hs-unfold-content-animation-out="fadeOut" style="animation-duration: 300ms;">
+                            <span class="dropdown-header">Settings</span>
+
+                            <a class="dropdown-item" href="#">
+                                <i class="tio-share dropdown-item-icon"></i> Share profile
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="tio-blocked dropdown-item-icon"></i> Block page and profile
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="tio-info-outined dropdown-item-icon"></i> Suggest edits
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <span class="dropdown-header">Feedback</span>
+
+                            <a class="dropdown-item" href="#">
+                                <i class="tio-report-outlined dropdown-item-icon"></i> Report
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End Unfold -->
+                </li>
+            </ul>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <!-- Card -->
+                <div class="card card-body mb-3 mb-lg-5">
+                    <h5>Complete your profile</h5>
+
+                    <!-- Progress -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="progress flex-grow-1">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 82%"
+                                aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <span class="ml-4">82%</span>
+                    </div>
+                    <!-- End Progress -->
+                </div>
+                <!-- End Card -->
+
+                <!-- Sticky Block Start Point -->
+                <div id="accountSidebarNav"></div>
+
+                <!-- Card -->
+                <div class="js-sticky-block card mb-3 mb-lg-5 hs-kill-sticky" data-hs-sticky-block-options="{
+                 &quot;parentSelector&quot;: &quot;#accountSidebarNav&quot;,
+                 &quot;breakpoint&quot;: &quot;lg&quot;,
+                 &quot;startPoint&quot;: &quot;#accountSidebarNav&quot;,
+                 &quot;endPoint&quot;: &quot;#stickyBlockEndPoint&quot;,
+                 &quot;stickyOffsetTop&quot;: 20
+               }">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h5 class="card-header-title">Profil</h5>
+                        <a class="btn btn-xs btn-danger" href="account-settings.html">
+                            <i class="tio-edit"></i>
+                            Düzenle</a>
+                    </div>
+                    <!-- End Header -->
+
+                    <!-- Body -->
+                    <div class="card-body">
+                        <ul class="list-unstyled list-unstyled-py-3 text-dark mb-3">
+                            <li class="py-0">
+                                <small class="card-subtitle">Hakkında</small>
+                            </li>
+
+                            <li>
+                                <i class="tio-user-outlined nav-icon"></i>
+                                {{data.title != null ? data.title : ''}} {{data.name}} {{data.surname}}
+                            </li>
+
+                            <li class="pt-2 pb-0">
+                                <small class="card-subtitle">İrtibat</small>
+                            </li>
+
+                            <li>
+                                <i class="tio-online nav-icon"></i>
+                                {{data.email}}
+                            </li>
+                            <li>
+                                <i class="tio-android-phone-vs nav-icon"></i>
+                                +90 {{data.phone}}
+                            </li>
+
+                            <li class="pt-2 pb-0">
+                                <small class="card-subtitle">Anketler</small>
+                            </li>
+
+
+                            <li>
+                                <i class="tio-briefcase-outlined nav-icon"></i>
+                                {{data.createdSurveys}} anket oluşturdu
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Body -->
+                </div>
+                <!-- End Card -->
+            </div>
+
+            <div class="col-lg-8">
+                <!-- Card -->
+                <div class="card mb-3 mb-lg-5">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h5 class="card-header-title">Son Aktiviteleri</h5>
+
+                        <!-- Unfold -->
+                        <div class="hs-unfold">
+                            <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
+                                href="javascript:;" data-hs-unfold-options="{
+                     &quot;target&quot;: &quot;#contentActivityStreamDropdown&quot;,
+                     &quot;type&quot;: &quot;css-animation&quot;
+                   }" data-hs-unfold-target="#contentActivityStreamDropdown" data-hs-unfold-invoker="">
+                                <i class="tio-more-vertical"></i>
+                            </a>
+
+                            <div id="contentActivityStreamDropdown"
+                                class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1 hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated hs-unfold-reverse-y"
+                                data-hs-target-height="214.6" data-hs-unfold-content=""
+                                data-hs-unfold-content-animation-in="slideInUp"
+                                data-hs-unfold-content-animation-out="fadeOut" style="animation-duration: 300ms;">
+                                <span class="dropdown-header">Settings</span>
+
+                                <a class="dropdown-item" href="#">
+                                    <i class="tio-share dropdown-item-icon"></i> Share connections
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="tio-info-outined dropdown-item-icon"></i> Suggest edits
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+
+                                <span class="dropdown-header">Feedback</span>
+
+                                <a class="dropdown-item" href="#">
+                                    <i class="tio-chat-outlined dropdown-item-icon"></i> Report
+                                </a>
+                            </div>
+                        </div>
+                        <!-- End Unfold -->
+                    </div>
+                    <!-- End Header -->
+
+                    <div *ngIf="activity.length == 0" class="card-body card-body-height card-body-centered">
+                        <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/yelling.svg"
+                            alt="Image Description">
+                        <p class="card-text">No data to show</p>
+                        <a class="btn btn-sm btn-white" href="#">Start your Activity</a>
+                    </div>
+
+
+                    <!-- Body -->
+                    <div *ngIf="activity.length > 0" class="card-body card-body-height" style="height: 30rem;">
+                        <!-- Step -->
+                        <ul class="step step-icon-xs" *ngFor="let item of activity;let i = index;">
+
+
+                            <!-- Step Item -->
+                            <li *ngIf="!item.isCreation" class="step-item">
+                                <div class="step-content-wrapper">
+                                    <span class="step-icon step-icon-pseudo step-icon-soft-dark"></span>
+
+                                    <div class="step-content">
+                                        <h5 class="mb-1">
+                                            <a class="text-dark" href="#">
+                                                <span
+                                                    style="color: rgb(0, 140, 255); font-style: italic;">{{item.survey.title}}
+                                                </span> isimli anketin durumunu güncelledi
+                                            </a>
+                                        </h5>
+
+                                        <p class="font-size-sm mb-1">Anket
+
+                                            <span *ngIf="item.surveyStatus === 0"
+                                                class="badge badge-soft-primary badge-pill">
+                                                <span class="legend-indicator bg-primary"></span>"Süren"
+                                            </span>
+
+                                            <span *ngIf="item.surveyStatus === 1"
+                                                class="badge badge-soft-warning badge-pill">
+                                                <span class="legend-indicator bg-warning"></span>"Kontrolde"
+                                            </span>
+
+                                            <span *ngIf="item.surveyStatus === 2"
+                                                class="badge badge-soft-success badge-pill">
+                                                <span class="legend-indicator bg-success"></span>"Tamamlandı"
+                                            </span>
+                                            olarak işaretlendi
+                                        </p>
+
+                                        <small class="text-muted text-uppercase">
+                                            İşlem tarihi: {{item.creationAt | date: 'dd.MM.yyyy
+                                            hh:mm:ss'}}
+                                        </small>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- End Step Item -->
+
+                            <!-- Step Item -->
+                            <li *ngIf="item.isCreation" class="step-item">
+                                <div class="step-content-wrapper">
+                                    <span class="step-icon step-icon-pseudo step-icon-soft-dark"></span>
+
+                                    <div class="step-content">
+                                        <h5 class="mb-1">
+                                            <a class="text-dark" href="#"> <span
+                                                    style="color: rgb(0, 140, 255); font-style: italic;">{{item.survey.title}}</span>
+                                                isimli
+                                                <span style="color: rgb(179, 92, 35); font-style: italic;">
+                                                    {{item.survey.choiceGroup.name}}
+                                                </span>
+                                                seçenek grubundaki anketi
+                                                tanımladı</a>
+                                        </h5>
+
+                                        <p class="font-size-sm mb-1">Anket için
+                                            <span style="font-weight: bold;">
+                                                {{item.survey.smallImages.length}}
+                                            </span>
+                                            resim
+                                            yüklendi
+                                        </p>
+
+                                        <ul *ngIf="item.survey.smallImages.length > 0" class="list-group">
+                                            <!-- List Item -->
+                                            <li class="list-group-item list-group-item-light">
+                                                <div class="row gx-1">
+                                                    <div class="col"
+                                                        *ngFor="let img of item.survey.smallImages.slice(0,6)">
+                                                        <img class="img-fluid rounded ie-card-img"
+                                                            src="{{img.fileName}}" alt="Image Description">
+                                                    </div>
+
+                                                    <div *ngIf="item.survey.smallImages.length > 6"
+                                                        class="col-auto align-self-center">
+                                                        <div class="text-center">
+                                                            <a href="#">+{{item.survey.smallImages.length - 6}}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <!-- List Item -->
+                                        </ul>
+
+                                        <small class="text-muted text-uppercase">
+                                            İşlem tarihi: {{item.creationAt | date: 'dd/MM/yyyy hh:mm:ss'}}
+                                        </small>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- End Step Item -->
+
+
+
+
+
+
+
+                            <!-- Step Item -->
+                            <li id="collapseActivitySection" class="step-item collapse">
+                                <div class="step-content-wrapper">
+                                    <span class="step-icon step-icon-pseudo step-icon-soft-dark"></span>
+
+                                    <div class="step-content">
+                                        <h5 class="mb-1">
+                                            <a class="text-dark" href="#">Project status updated</a>
+                                        </h5>
+
+                                        <p class="font-size-sm mb-1">Updated <a class="text-uppercase" href="#"><i
+                                                    class="tio-folder-bookmarked"></i> Fr-3</a> as <span
+                                                class="badge badge-soft-secondary badge-pill"><span
+                                                    class="legend-indicator bg-secondary"></span>"To do"</span></p>
+
+                                        <small class="text-muted text-uppercase">Feb 10</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- End Step Item -->
+                        </ul>
+                        <!-- End Step -->
+                    </div>
+                    <!-- End Body -->
+
+                    <!-- Footer -->
+                    <div *ngIf="activity.length > 0" class="card-footer">
+                        <a class="btn btn-sm btn-ghost-secondary" data-toggle="collapse" href="#collapseActivitySection"
+                            role="button" aria-expanded="false" aria-controls="collapseActivitySection">
+                            <span class="btn-toggle-default">
+                                <i class="tio-chevron-down mr-1"></i> View more
+                            </span>
+                            <span class="btn-toggle-toggled">
+                                <i class="tio-chevron-up mr-1"></i> View less
+                            </span>
+                        </a>
+                    </div>
+                    <!-- End Footer -->
+                </div>
+                <!-- End Card -->
+
+
+                <!-- End Row -->
+
+                <!-- Card -->
+                <div class="card mb-3 mb-lg-5">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h5 class="card-header-title">Projects</h5>
+
+                        <!-- Unfold -->
+                        <div class="hs-unfold">
+                            <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
+                                href="javascript:;" data-hs-unfold-options="{
+                     &quot;target&quot;: &quot;#projectReportDropdown&quot;,
+                     &quot;type&quot;: &quot;css-animation&quot;
+                   }" data-hs-unfold-target="#projectReportDropdown" data-hs-unfold-invoker="">
+                                <i class="tio-more-vertical"></i>
+                            </a>
+
+                            <div id="projectReportDropdown"
+                                class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1 hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated hs-unfold-reverse-y"
+                                data-hs-target-height="214.6" data-hs-unfold-content=""
+                                data-hs-unfold-content-animation-in="slideInUp"
+                                data-hs-unfold-content-animation-out="fadeOut" style="animation-duration: 300ms;">
+                                <span class="dropdown-header">Settings</span>
+
+                                <a class="dropdown-item" href="#">
+                                    <i class="tio-share dropdown-item-icon"></i> Share connections
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="tio-info-outined dropdown-item-icon"></i> Suggest edits
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+
+                                <span class="dropdown-header">Feedback</span>
+
+                                <a class="dropdown-item" href="#">
+                                    <i class="tio-chat-outlined dropdown-item-icon"></i> Report
+                                </a>
+                            </div>
+                        </div>
+                        <!-- End Unfold -->
+                    </div>
+                    <!-- End Header -->
+
+                    <!-- Table -->
+                    <div class="table-responsive">
+                        <table
+                            class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Project</th>
+                                    <th style="width: 40%;">Progress</th>
+                                    <th class="table-column-right-aligned">Hours spent</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex">
+                                            <span class="avatar avatar-xs avatar-soft-dark avatar-circle">
+                                                <span class="avatar-initials">U</span>
+                                            </span>
+                                            <div class="ml-3">
+                                                <h5 class="mb-0">UI/UX</h5>
+                                                <small>Updated 2 hours ago</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="mr-3">0%</span>
+                                            <div class="progress table-progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 0%"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="table-column-right-aligned">4:25</td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="d-flex">
+                                            <img class="avatar avatar-xs" src="./assets/svg/brands/spec.svg"
+                                                alt="Image Description">
+                                            <div class="ml-3">
+                                                <h5 class="mb-0">Get a complete audit store</h5>
+                                                <small>Updated 1 day ago</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="mr-3">45%</span>
+                                            <div class="progress table-progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 45%"
+                                                    aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="table-column-right-aligned">18:42</td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="d-flex">
+                                            <img class="avatar avatar-xs" src="./assets/svg/brands/capsule.svg"
+                                                alt="Image Description">
+                                            <div class="ml-3">
+                                                <h5 class="mb-0">Build stronger customer relationships</h5>
+                                                <small>Updated 2 days ago</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="mr-3">59%</span>
+                                            <div class="progress table-progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 59%"
+                                                    aria-valuenow="59" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="table-column-right-aligned">9:01</td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="d-flex">
+                                            <img class="avatar avatar-xs" src="./assets/svg/brands/mailchimp.svg"
+                                                alt="Image Description">
+                                            <div class="ml-3">
+                                                <h5 class="mb-0">Update subscription method</h5>
+                                                <small>Updated 2 days ago</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="mr-3">57%</span>
+                                            <div class="progress table-progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 57%" aria-valuenow="57" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="table-column-right-aligned">0:37</td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="d-flex">
+                                            <img class="avatar avatar-xs" src="./assets/svg/brands/figma.svg"
+                                                alt="Image Description">
+                                            <div class="ml-3">
+                                                <h5 class="mb-0">Create a new theme</h5>
+                                                <small>Updated 1 week ago</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="mr-3">100%</span>
+                                            <div class="progress table-progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 100%" aria-valuenow="100" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="table-column-right-aligned">24:12</td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="d-flex">
+                                            <span class="avatar avatar-xs avatar-soft-info avatar-circle">
+                                                <span class="avatar-initials">I</span>
+                                            </span>
+                                            <div class="ml-3">
+                                                <h5 class="mb-0">Improve social banners</h5>
+                                                <small>Updated 1 week ago</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="mr-3">0%</span>
+                                            <div class="progress table-progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 0%"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="table-column-right-aligned">8:08</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- End Table -->
+
+                    <!-- Footer -->
+                    <a class="card-footer text-center" href="projects.html">
+                        View all projects <i class="tio-chevron-right"></i>
+                    </a>
+                    <!-- End Footer -->
+                </div>
+                <!-- End Card -->
+
+                <!-- Sticky Block End Point -->
+                <div id="stickyBlockEndPoint"></div>
+            </div>
+        </div>
+        <!-- End Row -->
+    </div>
+</div>

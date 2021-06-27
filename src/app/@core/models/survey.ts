@@ -10,6 +10,7 @@ class Survey extends Concurrency {
     title: string = '';
     body!: string;
     creationAt!: Date;
+    progressPercent: number = 0;
     choiceGroupId: number = 0;
     choiceGroup!: ChoiceGroup;
     images: Array<File> = [];

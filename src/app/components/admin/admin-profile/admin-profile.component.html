@@ -257,8 +257,7 @@
                     <div *ngIf="activity.length == 0" class="card-body card-body-height card-body-centered">
                         <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/yelling.svg"
                             alt="Image Description">
-                        <p class="card-text">No data to show</p>
-                        <a class="btn btn-sm btn-white" href="#">Start your Activity</a>
+                        <p class="card-text">Etkinlik yok...</p>
                     </div>
 
 
@@ -286,7 +285,7 @@
 
                                             <span *ngIf="item.surveyStatus === 0"
                                                 class="badge badge-soft-primary badge-pill">
-                                                <span class="legend-indicator bg-primary"></span>"Süren"
+                                                <span class="legend-indicator bg-primary"></span>"Devam Eden"
                                             </span>
 
                                             <span *ngIf="item.surveyStatus === 1"
@@ -313,7 +312,7 @@
                             <!-- Step Item -->
                             <li *ngIf="item.isCreation" class="step-item">
                                 <div class="step-content-wrapper">
-                                    <span class="step-icon step-icon-pseudo step-icon-soft-dark"></span>
+                                    <span class="step-icon step-icon-pseudo step-icon-soft-danger"></span>
 
                                     <div class="step-content">
                                         <h5 class="mb-1">
@@ -348,7 +347,7 @@
                                                     <div *ngIf="item.survey.smallImages.length > 6"
                                                         class="col-auto align-self-center">
                                                         <div class="text-center">
-                                                            <a href="#">+{{item.survey.smallImages.length - 6}}</a>
+                                                            +{{item.survey.smallImages.length - 6}} tane
                                                         </div>
                                                     </div>
                                                 </div>
@@ -397,13 +396,10 @@
 
                     <!-- Footer -->
                     <div *ngIf="activity.length > 0" class="card-footer">
-                        <a class="btn btn-sm btn-ghost-secondary" data-toggle="collapse" href="#collapseActivitySection"
+                        <a (click)="nextPageOfActivity()" class="btn btn-sm btn-ghost-primary" data-toggle="collapse"
                             role="button" aria-expanded="false" aria-controls="collapseActivitySection">
                             <span class="btn-toggle-default">
-                                <i class="tio-chevron-down mr-1"></i> View more
-                            </span>
-                            <span class="btn-toggle-toggled">
-                                <i class="tio-chevron-up mr-1"></i> View less
+                                <i class="tio-chevron-down mr-1"></i> Daha fazla
                             </span>
                         </a>
                     </div>
@@ -418,7 +414,7 @@
                 <div class="card mb-3 mb-lg-5">
                     <!-- Header -->
                     <div class="card-header">
-                        <h5 class="card-header-title">Projects</h5>
+                        <h5 class="card-header-title">Son Anketleri</h5>
 
                         <!-- Unfold -->
                         <div class="hs-unfold">
@@ -457,168 +453,82 @@
                     </div>
                     <!-- End Header -->
 
+                    <div *ngIf="surveys.length == 0" class="card-body card-body-height card-body-centered">
+                        <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/yelling.svg"
+                            alt="Image Description">
+                        <p class="card-text">Anket yok...</p>
+                        <a class="btn btn-sm btn-white" href="#">Anket oluştur</a>
+                    </div>
+
                     <!-- Table -->
-                    <div class="table-responsive">
+                    <div *ngIf="surveys.length > 0" class="table-responsive">
                         <table
                             class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Project</th>
-                                    <th style="width: 40%;">Progress</th>
-                                    <th class="table-column-right-aligned">Hours spent</th>
+                                    <th class="table-column-left-aligned">Anket</th>
+                                    <th class="table-column-left-aligned">Tarih</th>
+                                    <th class="table-column-left-aligned">Durum</th>
+                                    <th style="width: 20%;">Tamamlanma</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let item of surveys">
                                     <td>
                                         <div class="d-flex">
-                                            <span class="avatar avatar-xs avatar-soft-dark avatar-circle">
-                                                <span class="avatar-initials">U</span>
+                                            <span class="avatar avatar-mb avatar-soft-dark">
+                                                <span class="avatar-initials">{{item.title[0]}}</span>
                                             </span>
                                             <div class="ml-3">
-                                                <h5 class="mb-0">UI/UX</h5>
-                                                <small>Updated 2 hours ago</small>
+                                                <h5 class="mb-0">{{item.title}}</h5>
+                                                <small>{{item.choiceGroup.name}}</small>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
+                                        {{item.creationAt | date: 'dd.MM.yyyy hh:mm'}}
+                                    </td>
+                                    <td class="table-column-left-aligned">
+
+                                        <span *ngIf="item.status === 0" class="badge badge-soft-primary badge-pill">
+                                            <span class="legend-indicator bg-primary"></span> D
+                                        </span>
+
+                                        <span *ngIf="item.status === 1" class="badge badge-soft-warning badge-pill">
+                                            <span class="legend-indicator bg-warning"></span> K
+                                        </span>
+
+                                        <span *ngIf="item.status === 2" class="badge badge-soft-success badge-pill">
+                                            <span class="legend-indicator bg-success"></span> T
+                                        </span>
+
+                                    </td>
+                                    <td class="table-column-left-aligned">
+
                                         <div class="d-flex align-items-center">
-                                            <span class="mr-3">0%</span>
+
+                                            <span class="font-size-sm mr-2">{{item.progressPercent}}%</span>
                                             <div class="progress table-progress">
-                                                <div class="progress-bar" role="progressbar" style="width: 0%"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div [ngClass]="getProgressPercentClass(item.id)" role="progressbar"
+                                                    [style.width.%]="item.progressPercent" aria-valuenow="72"
+                                                    aria-valuemin="0" aria-valuemax="100">
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="table-column-right-aligned">4:25</td>
+
                                 </tr>
 
-                                <tr>
-                                    <td>
-                                        <div class="d-flex">
-                                            <img class="avatar avatar-xs" src="./assets/svg/brands/spec.svg"
-                                                alt="Image Description">
-                                            <div class="ml-3">
-                                                <h5 class="mb-0">Get a complete audit store</h5>
-                                                <small>Updated 1 day ago</small>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <span class="mr-3">45%</span>
-                                            <div class="progress table-progress">
-                                                <div class="progress-bar" role="progressbar" style="width: 45%"
-                                                    aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="table-column-right-aligned">18:42</td>
-                                </tr>
 
-                                <tr>
-                                    <td>
-                                        <div class="d-flex">
-                                            <img class="avatar avatar-xs" src="./assets/svg/brands/capsule.svg"
-                                                alt="Image Description">
-                                            <div class="ml-3">
-                                                <h5 class="mb-0">Build stronger customer relationships</h5>
-                                                <small>Updated 2 days ago</small>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <span class="mr-3">59%</span>
-                                            <div class="progress table-progress">
-                                                <div class="progress-bar" role="progressbar" style="width: 59%"
-                                                    aria-valuenow="59" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="table-column-right-aligned">9:01</td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="d-flex">
-                                            <img class="avatar avatar-xs" src="./assets/svg/brands/mailchimp.svg"
-                                                alt="Image Description">
-                                            <div class="ml-3">
-                                                <h5 class="mb-0">Update subscription method</h5>
-                                                <small>Updated 2 days ago</small>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <span class="mr-3">57%</span>
-                                            <div class="progress table-progress">
-                                                <div class="progress-bar bg-success" role="progressbar"
-                                                    style="width: 57%" aria-valuenow="57" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="table-column-right-aligned">0:37</td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="d-flex">
-                                            <img class="avatar avatar-xs" src="./assets/svg/brands/figma.svg"
-                                                alt="Image Description">
-                                            <div class="ml-3">
-                                                <h5 class="mb-0">Create a new theme</h5>
-                                                <small>Updated 1 week ago</small>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <span class="mr-3">100%</span>
-                                            <div class="progress table-progress">
-                                                <div class="progress-bar bg-success" role="progressbar"
-                                                    style="width: 100%" aria-valuenow="100" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="table-column-right-aligned">24:12</td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="d-flex">
-                                            <span class="avatar avatar-xs avatar-soft-info avatar-circle">
-                                                <span class="avatar-initials">I</span>
-                                            </span>
-                                            <div class="ml-3">
-                                                <h5 class="mb-0">Improve social banners</h5>
-                                                <small>Updated 1 week ago</small>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <span class="mr-3">0%</span>
-                                            <div class="progress table-progress">
-                                                <div class="progress-bar" role="progressbar" style="width: 0%"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="table-column-right-aligned">8:08</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
                     <!-- End Table -->
 
                     <!-- Footer -->
-                    <a class="card-footer text-center" href="projects.html">
-                        View all projects <i class="tio-chevron-right"></i>
+                    <a *ngIf="surveys.length > 0" class="card-footer text-center" href="projects.html">
+                        Tüm anketleri gör <i class="tio-chevron-right"></i>
                     </a>
                     <!-- End Footer -->
                 </div>

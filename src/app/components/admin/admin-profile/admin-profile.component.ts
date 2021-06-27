@@ -5,6 +5,8 @@ import Administrator from 'src/app/@core/models/administrator';
 import Pagination from 'src/app/@core/models/pagination';
 import SearchActivity from 'src/app/@core/models/search-activity';
 import SurveyActivity from 'src/app/@core/models/surve-activity';
+import Survey from 'src/app/@core/models/survey';
+import SurveyByCreator from 'src/app/@core/models/survey-by-creator';
 import { Dependency } from 'src/app/app.module';
 import SurveyHttp from '../../survey/survey-http';
 import AdminHttp from '../admin-http';
@@ -21,15 +23,16 @@ export class AdminProfileComponent implements OnInit {
   ) { }
 
   private id!: number;
+  private activiyPage: number = 0;
   private avatarClassNames: Array<string> = [
     'avatar avatar-xxl avatar-soft-dark avatar-circle',
     'avatar avatar-xxl avatar-soft-info avatar-circle',
     'avatar avatar-xxl avatar-soft-danger avatar-circle'
   ];
 
-  data: Administrator = new Administrator();
+  surveys: Array<Survey> = [];
   activity: Array<SurveyActivity> = [];
-  activityPageNumber: number = 1;
+  data: Administrator = new Administrator();
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -47,22 +50,35 @@ export class AdminProfileComponent implements OnInit {
           }
         }); //HttpInterceptor
 
-      this.getAdministratorActivities();
-
+      this.nextPageOfActivity();
+      this.nextPageOfProjectHistory();
     }
   }
 
-  getAdministratorActivities(): void {
+
+  nextPageOfProjectHistory(): void {
+    const searchByCreator = new SurveyByCreator();
+    searchByCreator.administratorId = this.id;
+    searchByCreator.pagination = new Pagination(1, 5);
+
+    Dependency.get(SurveyHttp)
+      .byCreator(searchByCreator)
+      .subscribe((surveys: Survey[]) => {
+        this.surveys = surveys;
+        console.log(surveys);
+      });
+  }
+
+  nextPageOfActivity(): void {
     const searchActivity = new SearchActivity();
     searchActivity.creator = this.id;
-    searchActivity.pagination = new Pagination(this.activityPageNumber, 10);
+    searchActivity.pagination = new Pagination(++this.activiyPage, 4);
 
     Dependency.get(SurveyHttp)
       .getActivity(searchActivity)
       .subscribe((activity: SurveyActivity[]) => {
-        this.activity = activity;
-        console.log(this.activity);
-      })
+        this.activity = this.activity.concat(activity);
+      });
   }
 
   getAvatarClassNameByGender(gender: number): string {
@@ -70,4 +86,16 @@ export class AdminProfileComponent implements OnInit {
     return this.avatarClassNames[to];
   }
 
+  getProgressPercentClass(id: number): string {
+    const survey: Survey = this.surveys.filter(e => e.id === id)[0];
+    const activity = survey.progressPercent;
+
+    if (activity >= 0 && activity <= 40) {
+      return 'progress-bar bg-danger';
+    }
+    if (activity > 40 && activity <= 70) {
+      return 'progress-bar bg-primary';
+    }
+    return 'progress-bar bg-success';
+  }
 }

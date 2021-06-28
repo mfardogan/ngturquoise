@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminProfileComponent } from './components/admin/admin-profile/admin-profile.component';
 import { AdminsComponent } from './components/admin/admins/admins.component';
+import { EditAdminProfileComponent } from './components/admin/edit-admin-profile/edit-admin-profile.component';
 import { ChoiceGroupItemComponent } from './components/choice/choice-group-item/choice-group-item.component';
 import { ChoiceGroupsComponent } from './components/choice/choice-groups/choice-groups.component';
 import { DoctorGroupItemComponent } from './components/doctor/doctor-group-item/doctor-group-item.component';
@@ -13,6 +14,10 @@ import { Error404Component } from './components/layout/error404/error404.compone
 import { Error500Component } from './components/layout/error500/error500.component';
 
 const routes: Routes = [
+  {
+    path: 'edit-admin',
+    component: EditAdminProfileComponent
+  },
   {
     path: 'admins',
     component: AdminsComponent

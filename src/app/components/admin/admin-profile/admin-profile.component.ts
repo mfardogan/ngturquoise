@@ -30,6 +30,7 @@ export class AdminProfileComponent implements OnInit {
     'avatar avatar-xxl avatar-soft-danger avatar-circle'
   ];
 
+  profile: boolean = true;
   surveys: Array<Survey> = [];
   activity: Array<SurveyActivity> = [];
   data: Administrator = new Administrator();
@@ -97,5 +98,13 @@ export class AdminProfileComponent implements OnInit {
       return 'progress-bar bg-primary';
     }
     return 'progress-bar bg-success';
+  }
+
+  showProfile() {
+    this.profile = true;
+  }
+
+  showSurveys() {
+    this.profile = false;
   }
 }

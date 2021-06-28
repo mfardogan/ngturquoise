@@ -14,6 +14,7 @@ class Survey extends Concurrency {
     choiceGroupId: number = 0;
     choiceGroup!: ChoiceGroup;
     images: Array<File> = [];
+    answerCount: number = 0;
     smallImages: Array<File> = [];
 }
 

@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,6 +26,7 @@ import { AdminsComponent } from './components/admin/admins/admins.component';
 import { AdminProfileComponent } from './components/admin/admin-profile/admin-profile.component';
 import AdminHttp from './components/admin/admin-http';
 import SurveyHttp from './components/survey/survey-http';
+import { EditAdminProfileComponent } from './components/admin/edit-admin-profile/edit-admin-profile.component';
 
 @NgModule({
   declarations: [
@@ -46,12 +47,14 @@ import SurveyHttp from './components/survey/survey-http';
     Error401Component,
     AdminsComponent,
     AdminProfileComponent,
+    EditAdminProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     ChoiceGroupHttp,
@@ -59,7 +62,7 @@ import SurveyHttp from './components/survey/survey-http';
     DoctorHttp,
     AdminHttp,
     SurveyHttp,
-    BackendConfigService
+    BackendConfigService,
   ],
   bootstrap: [AppComponent]
 })

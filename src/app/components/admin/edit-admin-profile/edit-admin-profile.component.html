@@ -90,7 +90,9 @@
                         </div>
                     </ng-template>
 
-                    <div *ngIf="data.image != null then hasimage else noimage"></div>
+                    <a routerLink="/admin/{{administrator}}">
+                        <div *ngIf="data.image != null then hasimage else noimage"></div>
+                    </a>
 
                     <h1 class="page-header-title">{{title}} {{name}} {{surname}}<i
                             class="tio-verified tio-lg text-primary" data-toggle="tooltip" data-placement="top" title=""

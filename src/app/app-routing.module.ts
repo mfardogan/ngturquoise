@@ -12,8 +12,23 @@ import { DoctorsComponent } from './components/doctor/doctors/doctors.component'
 import { Error401Component } from './components/layout/error401/error401.component';
 import { Error404Component } from './components/layout/error404/error404.component';
 import { Error500Component } from './components/layout/error500/error500.component';
+import { CreateSurveyComponent } from './components/survey/create-survey/create-survey.component';
+import { SurveyItemComponent } from './components/survey/survey-item/survey-item.component';
+import { SurveysComponent } from './components/survey/surveys/surveys.component';
 
 const routes: Routes = [
+  {
+    path: 'survey/:id',
+    component: SurveyItemComponent
+  },
+  {
+    path: 'surveys',
+    component: SurveysComponent
+  },
+  {
+    path: 'add-survey',
+    component: CreateSurveyComponent
+  },
   {
     path: 'edit-admin',
     component: EditAdminProfileComponent

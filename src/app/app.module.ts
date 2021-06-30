@@ -27,6 +27,10 @@ import { AdminProfileComponent } from './components/admin/admin-profile/admin-pr
 import AdminHttp from './components/admin/admin-http';
 import SurveyHttp from './components/survey/survey-http';
 import { EditAdminProfileComponent } from './components/admin/edit-admin-profile/edit-admin-profile.component';
+import { CreateSurveyComponent } from './components/survey/create-survey/create-survey.component';
+import { SurveysComponent } from './components/survey/surveys/surveys.component';
+import { SurveyItemComponent } from './components/survey/survey-item/survey-item.component';
+import { SurveyFileComponent } from './components/survey/survey-file/survey-file.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,10 @@ import { EditAdminProfileComponent } from './components/admin/edit-admin-profile
     AdminsComponent,
     AdminProfileComponent,
     EditAdminProfileComponent,
+    CreateSurveyComponent,
+    SurveysComponent,
+    SurveyItemComponent,
+    SurveyFileComponent,
   ],
   imports: [
     BrowserModule,

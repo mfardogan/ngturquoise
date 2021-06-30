@@ -16,6 +16,10 @@ class Survey extends Concurrency {
     images: Array<File> = [];
     answerCount: number = 0;
     smallImages: Array<File> = [];
+    startAt!: Date;
+    finishAt!: Date;
+    startNow: boolean = false;
+    automaticFinish: boolean = false;
 }
 
 export default Survey;

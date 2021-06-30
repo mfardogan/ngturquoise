@@ -1,0 +1,134 @@
+<div class="page-header">
+    <div class="media mb-3">
+        <!-- Avatar -->
+        <div class="avatar avatar-xl avatar-4by3 mr-2">
+            <img class="avatar-img" src="{{data.smallImages[0].fileName}}" alt="Image Description">
+        </div>
+        <!-- End Avatar -->
+
+        <div class="media-body">
+            <div class="row">
+                <div class="col-lg mb-3 mb-lg-0">
+                    <h1 class="page-header-title">{{data.title}}</h1>
+
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+
+                            <span *ngFor="let choice of data.choiceGroup.choices.slice(0,5)"
+                                style="border: 1px solid rgb(153, 153, 153); " [style.background-color]="choice.color"
+                                class="legend-indicator">
+                            </span>
+                            <span style="font-size: 11px; font-weight: bold;"
+                                *ngIf="data.choiceGroup.choices.length - 5 > 0">
+                                +{{data.choiceGroup.choices.length - 5}}
+                            </span>
+                            <span> |</span>
+
+                        </div>
+
+                        <div class="col-auto">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">{{data.creationAt | date: 'dd/MM/yy hh:MM:ss'}} |</div>
+                            </div>
+                        </div>
+
+                        <div class="col-auto">
+                            <a href="">
+                                <span class="media align-items-center">
+                                    <img *ngIf="data.administrator.image != null"
+                                        class="avatar avatar-xs avatar-circle mr-2"
+                                        src="{{data.administrator.image.fileName}}" alt="Avatar">
+
+                                    <div *ngIf="data.administrator.image == null"
+                                        class="avatar avatar-xs avatar-soft-info avatar-circle avatar-circle avatar-border-lg profile-cover-avatar">
+                                        <span class="avatar-initials">{{data.administrator.name[0]}}</span>
+                                    </div>
+                                    <span class="media-body">
+                                        {{data.administrator.title}}
+                                        {{data.administrator.name}}
+                                        {{data.administrator.surname}}
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-auto">
+                    <small class="text-cap mb-2">Team members:</small>
+
+                    <div class="d-flex">
+                        <!-- Avatar Group -->
+                        <div class="avatar-group avatar-circle mr-3">
+                            <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                title="" data-original-title="Amanda Harvey">
+                                <img class="avatar-img" src="./assets/img/160x160/img10.jpg" alt="Image Description">
+                            </a>
+                            <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                title="" data-original-title="Linda Bates">
+                                <img class="avatar-img" src="./assets/img/160x160/img9.jpg" alt="Image Description">
+                            </a>
+                            <a class="avatar avatar-soft-info" href="user-profile.html" data-toggle="tooltip"
+                                data-placement="top" title="" data-original-title="#digitalmarketing">
+                                <span class="avatar-initials">
+                                    <i class="tio-group-senior"></i>
+                                </span>
+                            </a>
+                            <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                title="" data-original-title="David Harrison">
+                                <img class="avatar-img" src="./assets/img/160x160/img3.jpg" alt="Image Description">
+                            </a>
+                            <a class="avatar avatar-soft-dark" href="user-profile.html" data-toggle="tooltip"
+                                data-placement="top" title="" data-original-title="Antony Taylor">
+                                <span class="avatar-initials">A</span>
+                            </a>
+
+                            <a class="avatar avatar-light avatar-circle" href="javascript:;" data-toggle="modal"
+                                data-target="#shareWithPeopleModal">
+                                <span class="avatar-initials">+2</span>
+                            </a>
+                        </div>
+                        <!-- End Avatar Group -->
+
+                        <a class="btn btn-icon btn-primary rounded-circle" href="javascript:;" data-toggle="modal"
+                            data-target="#shareWithPeopleModal">
+                            <i class="tio-share"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Media -->
+
+    <!-- Nav -->
+    <div class="js-nav-scroller hs-nav-scroller-horizontal">
+        <span class="hs-nav-scroller-arrow-prev" style="display: none;">
+            <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                <i class="tio-chevron-left"></i>
+            </a>
+        </span>
+
+        <ul class="nav nav-tabs page-header-tabs" id="projectsTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" href="project.html">Genel</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " routerLink="/survey/{{survey}}/files">Dosyalar <span
+                        class="badge badge-soft-dark rounded-circle ml-1">3</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="project-activity.html">Aktivite</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="project-teams.html">Takımlar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="project-settings.html">Ayarlar</a>
+            </li>
+        </ul>
+    </div>
+    <!-- End Nav -->
+</div>
+
+<survey-file [survey]="data"></survey-file>

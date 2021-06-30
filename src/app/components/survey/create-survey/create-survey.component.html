@@ -1,0 +1,350 @@
+<div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col-sm mb-2 mb-sm-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-no-gutter">
+                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="./ecommerce-products.html">Anket
+                                Yönetimi</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Anketler</li>
+                    </ol>
+                </nav>
+
+                <h1 class="page-header-title">Yeni Anket</h1>
+            </div>
+        </div>
+        <!-- End Row -->
+    </div>
+    <!-- End Page Header -->
+
+    <div class="row">
+        <div class="col-lg-8">
+
+            <!-- Card -->
+            <div class="card mb-3 mb-lg-5">
+                <!-- Header -->
+                <div class="card-header">
+                    <h4 class="card-header-title">Anket Resimleri</h4>
+                </div>
+                <!-- End Header -->
+
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="col-md-12">
+                        <!-- Logo -->
+                        <label class="custom-file-boxed custom-file-boxed-sm" for="logoUploader">
+                            <img id="logoImg" class="avatar avatar-xl avatar-4by3 avatar-centered h-100 mb-2"
+                                src="./assets/svg/illustrations/browse.svg" alt="Image Description">
+
+                            <span class="d-block">Ankete uygulamak için resimleri seçin.
+                            </span>
+
+                            <input (change)="onFileChange($event)" type="file" accept="image/*"
+                                class="js-file-attach custom-file-boxed-input" id="logoUploader" multiple>
+                            <br>
+                            <span style="margin-bottom: 5px;" class="btn btn-sm btn-primary">
+                                <i class="tio-visible-outlined"></i>
+                                Dizine Gözat</span>
+
+                            <div class="card-body">
+                                <label *ngIf="uploading.length > 0" class="input-label">
+                                    <span style="font-weight: bold; font-size: 14px;">{{uploading.length}}</span>
+                                    dosya(lar):
+                                </label>
+                                <!-- Gallery -->
+                                <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-2">
+                                    <div *ngFor="let item of uploading;let i=index;"
+                                        class="col-4 col-sm-3 col-md-2 mb-2 mb-lg-4">
+                                        <!-- Card -->
+                                        <div class="card card-sm">
+                                            <img style="max-height: 120px;" class="card-img-top" src="{{item}}" alt="">
+                                            <div class="card-body">
+                                                <div class="row text-center">
+                                                    <div class="col">
+                                                        <a class="js-fancybox-item text-body" href="javascript:;"
+                                                            data-toggle="tooltip" data-placement="top" title=""
+                                                            data-src="./assets/img/725x1080/img1.jpg"
+                                                            data-caption="Image #01" data-original-title="View">
+                                                            <i class="tio-visible-outlined"></i>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="col column-divider">
+                                                        <a (click)="removeFile(i)" class="text-danger"
+                                                            href="javascript:;" data-toggle="tooltip"
+                                                            data-placement="top" title="" data-original-title="Delete">
+                                                            <i class="tio-delete-outlined"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!-- End Row -->
+                                            </div>
+                                        </div>
+                                        <!-- End Card -->
+                                    </div>
+                                </div>
+                                <!-- End Gallery -->
+                            </div>
+                        </label>
+                        <!-- End Logo -->
+                    </div>
+                </div>
+                <!-- Body -->
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="card mb-3 mb-lg-5">
+                <!-- Header -->
+                <div class="card-header">
+                    <h4 class="card-header-title">Temel Bilgiler</h4>
+                </div>
+                <!-- End Header -->
+
+                <!-- Body -->
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label class="input-label" for="exampleFormControlTitleInput">Başlık
+                            <i class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top"
+                                title="" data-original-title="Products are the goods or services you sell."></i>
+
+                        </label>
+                        <input [(ngModel)]="data.title"
+                            style="font-size: 20px; color:rgb(53, 53, 53); border-radius: 0; border-bottom: 2px solid rgb(226, 226, 226);"
+                            type="text" id="exampleFormControlTitleInput" class="form-control form-control-title"
+                            placeholder="Başlık giriniz">
+                    </div>
+
+                    <!-- Form Group -->
+                    <div class="form-group">
+                        <label class="input-label" for="exampleFormControlTitleInput">Seçenek Grubu
+                            <i class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top"
+                                title="" data-original-title="Products are the goods or services you sell."></i>
+
+                        </label>
+                        <select [(ngModel)]="data.choiceGroupId"
+                            style=" color:rgb(53, 53, 53); border-radius: 0; border-left: 0; border-right: 0; border-top: 0; border-bottom: 2px solid rgb(226, 226, 226);"
+                            class="form-control" aria-label="Default select example">
+                            <option value="0" selected>Seçiniz</option>
+                            <option *ngFor="let item of choices" value="{{item.id}}">{{item.name}}</option>
+                        </select>
+                    </div>
+                    <!-- End Form Group -->
+
+                    <!-- Form Group -->
+                    <div class="form-group">
+                        <label for="productNameLabel" class="input-label">Açıklama
+                            <span class="input-label-secondary">(Opsiyonel)</span>
+                        </label>
+
+                        <textarea [(ngModel)]="data.body" style="height: 150px;" type="text" class="form-control"
+                            name="productName" id="productNameLabel"
+                            placeholder="Ankete ait detay veya açıklamalar"></textarea>
+                    </div>
+                    <!-- End Form Group -->
+                    <!-- End Row -->
+                </div>
+                <!-- Body -->
+            </div>
+            <!-- End Card -->
+
+
+
+        </div>
+
+        <div class="col-lg-4">
+            <!-- Card -->
+            <div class="card mb-3 mb-lg-5">
+                <!-- Header -->
+                <div class="card-header">
+                    <h4 class="card-header-title">Zamanlama</h4>
+                </div>
+                <!-- End Header -->
+
+                <!-- Body -->
+                <div class="card-body">
+                    <!-- Form Group -->
+                    <div class="form-group">
+                        <label for="productNameLabel" class="input-label">Başlama
+                            <span class="input-label-secondary">(Opsiyonel)</span>
+                        </label>
+
+                        <div class="input-group">
+                            <input [disabled]="!data.startNow" [(ngModel)]="data.startAt" type="date"
+                                class="form-control" name="startAt" id="finishAt" placeholder="gg/aa/yy">
+                        </div>
+                    </div>
+                    <!-- End Form Group -->
+
+                    <div class="form-group">
+                        <label for="productNameLabel" class="input-label">Sonlanma
+                            <span class="input-label-secondary">(Opsiyonel)</span>
+                        </label>
+
+                        <div class="input-group">
+                            <input [(ngModel)]="data.finishAt" [disabled]="!data.automaticFinish" type="date"
+                                class="form-control" name="startAt" id="finishAt" placeholder="gg/aa/yy">
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <!-- Toggle Switch -->
+                    <label class="row toggle-switch" for="availabilitySwitch2">
+                        <span class="col-8 col-sm-9 toggle-switch-content">
+                            <span class="text-dark">Zamanı gelince başlat</span>
+                        </span>
+                        <span class="col-4 col-sm-3">
+                            <input [(ngModel)]="data.startNow" checked type="checkbox" class="toggle-switch-input"
+                                id="availabilitySwitch2">
+                            <span class="toggle-switch-label ml-auto">
+                                <span class="toggle-switch-indicator"></span>
+                            </span>
+                        </span>
+                    </label>
+                    <!-- End Toggle Switch -->
+
+                    <!-- Toggle Switch -->
+                    <label class="row toggle-switch" for="availabilitySwitch1">
+                        <span class="col-8 col-sm-9 toggle-switch-content">
+                            <span class="text-dark">Zamanı gelince sonlandır</span>
+                        </span>
+                        <span class="col-4 col-sm-3">
+                            <input [(ngModel)]="data.automaticFinish" checked type="checkbox"
+                                class="toggle-switch-input" id="availabilitySwitch1">
+                            <span class="toggle-switch-label ml-auto">
+                                <span class="toggle-switch-indicator"></span>
+                            </span>
+                        </span>
+                    </label>
+                    <!-- End Toggle Switch -->
+                </div>
+                <!-- Body -->
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="card">
+                <!-- Header -->
+                <div class="card-header">
+                    <h4 class="card-header-title">Katılımcılar</h4>
+                </div>
+                <!-- End Header -->
+
+                <!-- Body -->
+                <div class="card-body text-center">
+
+                    <button class="btn btn-sm btn-primary btn-block" type="button" data-toggle="collapse"
+                        data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="tio-visible-outlined"></i>
+                        Katılımcı Belirle
+                    </button>
+                    <div style="margin-top: 10px;" class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <div>
+                                <!-- List Group -->
+                                <ul class="list-group list-group-flush">
+                                    <!-- Item -->
+                                    <li *ngFor="let item of groups;let i=index;"
+                                        class="list-group-item custom-checkbox-list-wrapper">
+                                        <div class="d-flex align-items-start flex-grow-1">
+                                            <div class="d-flex align-items-center mr-3">
+                                                <div class="custom-control custom-checkbox custom-checkbox-list">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        id="notificationCheck{{i}}">
+                                                    <label class="custom-control-label"
+                                                        for="notificationCheck{{i}}"></label>
+                                                    <span class="custom-checkbox-list-stretched-bg"></span>
+                                                </div>
+                                                <div class="avatar avatar-sm avatar-soft-dark avatar-circle">
+                                                    <span class="avatar-initials">{{item.groupName[0]}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 mr-2">
+                                                <span class="card-title h5">{{item.groupName}}</span>
+                                                <p class="card-text font-size-sm">{{item.code}}</p>
+                                                <blockquote class="blockquote blockquote-sm">
+                                                    {{item.description | slice:0:50}}...
+                                                </blockquote>
+                                            </div>
+                                            <small class="text-muted text-cap">x</small>
+                                        </div>
+                                        <a class="stretched-link" href="#"></a>
+                                    </li>
+                                    <!-- End Item -->
+                                </ul>
+                                <!-- End List Group -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End Body -->
+            </div>
+            <!-- End Card -->
+        </div>
+    </div>
+    <!-- End Row -->
+
+    <div class="position-fixed bottom-0 content-centered-x w-100 z-index-99 mb-3" style="max-width: 40rem;">
+        <!-- Card -->
+        <div class="card card-sm bg-dark border-dark mx-2">
+            <div class="card-body">
+                <div class="row justify-content-center justify-content-sm-between">
+                    <div class="col">
+                        <button type="button" class="btn btn-ghost-danger">Sil</button>
+                    </div>
+                    <div class="col-auto">
+                        <button (click)="discard()" type="button" class="btn btn-ghost-light mr-2">İptal</button>
+                        <button (click)="save()" type="button" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </div>
+                <!-- End Row -->
+            </div>
+        </div>
+        <!-- End Card -->
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Yeni anket</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <img class="img-fluid mb-3" src="./assets/svg/illustrations/create.svg" alt="Image Description"
+                        style="max-width: 15rem;">
+
+                    <div class="mb-4">
+                        <h2>Başarılı =)</h2>
+                        <p>Yeni anket sisteme kaydedildi.</p>
+                    </div>
+
+                    <div class="row justify-content-center gy-1 gx-2">
+                        <div class="col-auto">
+                            <a class="btn btn-white" routerLink="/surveys">
+                                <i class="tio-chevron-left ml-1"></i> Anketlere Git
+                            </a>
+                        </div>
+
+                        <div class="col-auto">
+                            <a (click)="closeSuccessDialog()" class="btn btn-success" href="javascript:;">
+                                <i class="tio-city mr-1"></i> Yeni Anket Oluştur
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

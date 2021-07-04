@@ -1,5 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,9 +12,6 @@ import { SideBarComponent } from './components/layout/side-bar/side-bar.componen
 import { NavBarComponent } from './components/layout/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { ContentComponent } from './components/layout/content/content.component';
-import { DoctorGroupsComponent } from './components/doctor/doctor-groups/doctor-groups.component';
-import { DoctorGroupItemComponent } from './components/doctor/doctor-group-item/doctor-group-item.component';
-import DoctorGroupHttp from './components/doctor/doctor-group-http';
 import { AlertBoxComponent } from './components/layout/alert-box/alert-box.component';
 import { DoctorsComponent } from './components/doctor/doctors/doctors.component';
 import { DoctorProfileComponent } from './components/doctor/doctor-profile/doctor-profile.component';
@@ -31,6 +28,14 @@ import { CreateSurveyComponent } from './components/survey/create-survey/create-
 import { SurveysComponent } from './components/survey/surveys/surveys.component';
 import { SurveyItemComponent } from './components/survey/survey-item/survey-item.component';
 import { SurveyFileComponent } from './components/survey/survey-file/survey-file.component';
+import { EditDoctorProfileComponent } from './components/doctor/edit-doctor-profile/edit-doctor-profile.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import AuthHttp from './components/auth-http';
+import { AuthInterceptor } from './components/auth.ineterceptor';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { SignInAdminComponent } from './components/sign-in-admin/sign-in-admin.component';
+import { SurveyActivityComponent } from './components/survey/survey-activity/survey-activity.component';
+import { SurveyGeneralComponent } from './components/survey/survey-general/survey-general.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +46,6 @@ import { SurveyFileComponent } from './components/survey/survey-file/survey-file
     NavBarComponent,
     FooterComponent,
     ContentComponent,
-    DoctorGroupsComponent,
-    DoctorGroupItemComponent,
     AlertBoxComponent,
     DoctorsComponent,
     DoctorProfileComponent,
@@ -56,6 +59,12 @@ import { SurveyFileComponent } from './components/survey/survey-file/survey-file
     SurveysComponent,
     SurveyItemComponent,
     SurveyFileComponent,
+    EditDoctorProfileComponent,
+    SignInComponent,
+    SignUpComponent,
+    SignInAdminComponent,
+    SurveyActivityComponent,
+    SurveyGeneralComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,11 +75,16 @@ import { SurveyFileComponent } from './components/survey/survey-file/survey-file
   ],
   providers: [
     ChoiceGroupHttp,
-    DoctorGroupHttp,
     DoctorHttp,
     AdminHttp,
     SurveyHttp,
+    AuthHttp,
     BackendConfigService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

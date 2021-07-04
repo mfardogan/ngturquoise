@@ -1,73 +1,75 @@
-;(function (factory) {
-	'use strict';
+; (function (factory) {
+  'use strict';
+  console.log("aside test!!");
+  if (typeof define === 'function' && define.amd) {
 
-	if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
 
-		define(['jquery'], factory);
+  } else if (typeof exports !== 'undefined') {
 
-	} else if (typeof exports !== 'undefined') {
+    module.exports = factory(require('jquery'));
 
-		module.exports = factory(require('jquery'));
+  } else {
 
-	} else {
+    factory(jQuery);
 
-		factory(jQuery);
-
-	}
+  }
 
 }(function ($) {
-	'use strict';
+  'use strict';
+  console.log("aside test2!!");
+  var HSSideNav = window.HSSideNav || {};
+  console.log("aside test3!!");
+  HSSideNav = (function () {
+    console.log("aside test5!!");
 
-	var HSSideNav = window.HSSideNav || {};
+    function HSSideNav(element, settings) {
+      console.log("aside test4!!");
 
-	HSSideNav = (function () {
+      var self = this,
+        dataSettings;
 
-		function HSSideNav(element, settings) {
-
-			var self = this,
-				dataSettings;
-
-			self.defaults = {
-				mainContainer: 'body',
+      self.defaults = {
+        mainContainer: 'body',
 
         compactClass: '.navbar-vertical-aside-compact-mode',
         compactMinClass: '.navbar-vertical-aside-compact-mini-mode',
-				minClass: '.navbar-vertical-aside-mini-mode',
-				closedClass: '.navbar-vertical-aside-closed-mode',
+        minClass: '.navbar-vertical-aside-mini-mode',
+        closedClass: '.navbar-vertical-aside-closed-mode',
 
-				transitionOnClassName: 'navbar-vertical-aside-transition-on',
+        transitionOnClassName: 'navbar-vertical-aside-transition-on',
 
-				mobileOverlayClass: '.navbar-vertical-aside-mobile-overlay',
-				toggleInvokerClass: '.js-navbar-vertical-aside-toggle-invoker',
+        mobileOverlayClass: '.navbar-vertical-aside-mobile-overlay',
+        toggleInvokerClass: '.js-navbar-vertical-aside-toggle-invoker',
 
-				subMenuClass: '.js-navbar-vertical-aside-submenu',
-				subMenuInvokerClass: '.js-navbar-vertical-aside-menu-link',
-				subMenuInvokerActiveClass: '.show',
-				hasSubMenuClass: '.navbar-vertical-aside-has-menu',
+        subMenuClass: '.js-navbar-vertical-aside-submenu',
+        subMenuInvokerClass: '.js-navbar-vertical-aside-menu-link',
+        subMenuInvokerActiveClass: '.show',
+        hasSubMenuClass: '.navbar-vertical-aside-has-menu',
 
-				subMenuAnimationSpeed: 200,
-				subMenuOpenEvent: 'hover',
+        subMenuAnimationSpeed: 200,
+        subMenuOpenEvent: 'hover',
 
-				showClassNames: {
-					xs: 'navbar-vertical-aside-show-xs',
-					sm: 'navbar-vertical-aside-show-sm',
-					md: 'navbar-vertical-aside-show-md',
-					lg: 'navbar-vertical-aside-show-lg',
-					xl: 'navbar-vertical-aside-show-xl'
-				},
+        showClassNames: {
+          xs: 'navbar-vertical-aside-show-xs',
+          sm: 'navbar-vertical-aside-show-sm',
+          md: 'navbar-vertical-aside-show-md',
+          lg: 'navbar-vertical-aside-show-lg',
+          xl: 'navbar-vertical-aside-show-xl'
+        },
 
-				onMini: function () {},
-				onFull: function () {}
-			};
-			self.$sidebar = $(element);
+        onMini: function () { },
+        onFull: function () { }
+      };
+      self.$sidebar = $(element);
 
-			dataSettings = $(element).data('hs-navbar-vertical-aside') || {};
+      dataSettings = $(element).data('hs-navbar-vertical-aside') || {};
 
-			self.options = $.extend({}, self.defaults, settings, dataSettings);
+      self.options = $.extend({}, self.defaults, settings, dataSettings);
 
-			self.items = $(element).find(self.options.hasSubMenuClass);
+      self.items = $(element).find(self.options.hasSubMenuClass);
 
-			self.topLevels = $(self.options.hasSubMenuClass).parent(':not(' + self.options.subMenuClass + ')').children(self.options.hasSubMenuClass);
+      self.topLevels = $(self.options.hasSubMenuClass).parent(':not(' + self.options.subMenuClass + ')').children(self.options.hasSubMenuClass);
 
       // Set opened elements
       $(self.$sidebar).find(self.options.subMenuClass).not(":hidden").css({
@@ -90,7 +92,7 @@
       self.setState(self)
 
       // Toggle sub menus
-      $(self.options.subMenuInvokerClass).click(function(e) {
+      $(self.options.subMenuInvokerClass).click(function (e) {
         if (!$(self.options.mainContainer).hasClass(self.className(self.options.minClass)) && !$(self.options.mainContainer).hasClass(self.className(self.options.compactClass)) && !$(self.options.mainContainer).hasClass(self.className(self.options.compactMinClass)) && self.options.subMenuOpenEvent === 'hover') {
           self.toggleSubMenu($(e.currentTarget).parent(), self, true)
         } else if (self.options.subMenuOpenEvent === 'click') {
@@ -99,13 +101,13 @@
       });
 
       if (self.options.subMenuOpenEvent === 'hover') {
-        self.topLevels.hover(function(e) {
+        self.topLevels.hover(function (e) {
           if ($(self.options.mainContainer).hasClass(self.className(self.options.minClass)) || $(self.options.mainContainer).hasClass(self.className(self.options.compactClass)) || $(self.options.mainContainer).hasClass(self.className(self.options.compactMinClass))) {
             self.toggleSubMenu($(e.currentTarget), self, true)
           }
         });
 
-        self.topLevels.find(self.options.hasSubMenuClass).click(function(e) {
+        self.topLevels.find(self.options.hasSubMenuClass).click(function (e) {
           e.stopPropagation()
 
           if ($(self.options.mainContainer).hasClass(self.className(self.options.minClass)) || $(self.options.mainContainer).hasClass(self.className(self.options.compactMinClass))) {
@@ -115,7 +117,7 @@
       }
 
       // Toggle sidebar
-      $(self.options.toggleInvokerClass).click(function() {
+      $(self.options.toggleInvokerClass).click(function () {
         self.toggleSidebar(self);
       });
 
@@ -146,11 +148,11 @@
 
       // Done init sidebar
       $(self.$sidebar).addClass('navbar-vertical-aside-initialized');
-		}
+    }
 
-		return HSSideNav;
+    return HSSideNav;
 
-	}());
+  }());
 
   HSSideNav.prototype.setState = function (self) {
     let isClosed = self.showResolutionChecking(self),
@@ -257,7 +259,7 @@
     }
   };
 
-  HSSideNav.prototype.toggleSubMenu = function(item, element) {
+  HSSideNav.prototype.toggleSubMenu = function (item, element) {
     var self = element,
       collapseOthers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true,
       menu = item.find(self.options.subMenuClass).first(),
@@ -286,7 +288,7 @@
 
       menu.slideToggle(self.options.subMenuAnimationSpeed)
 
-      if(mini) {
+      if (mini) {
         setTimeout(function () {
           if (parentMenu.outerHeight() + parentMenu.position().top > $(window).outerHeight()) {
             var distance = parentMenu.outerHeight() + parentMenu.position().top - $(window).outerHeight();
@@ -333,36 +335,37 @@
   }
 
   HSSideNav.prototype.className = function (className) {
-    return className.replace(/\./g,'')
+    return className.replace(/\./g, '')
   }
 
-	$.fn.hsSideNav = function () {
-		var self = this,
-			options = arguments[0],
-			args = Array.prototype.slice.call(arguments, 1),
-			selfLength = self.length,
-			i,
-			ret;
+  $.fn.hsSideNav = function () {
+    console.log("hsSideNav...");
+    var self = this,
+      options = arguments[0],
+      args = Array.prototype.slice.call(arguments, 1),
+      selfLength = self.length,
+      i,
+      ret;
 
-		for (i = 0; i < selfLength; i++) {
-			if (typeof options == 'object' || typeof options == 'undefined') {
+    for (i = 0; i < selfLength; i++) {
+      if (typeof options == 'object' || typeof options == 'undefined') {
 
-				self[i].HSSideNav = new HSSideNav(self[i], options);
+        self[i].HSSideNav = new HSSideNav(self[i], options);
 
-			} else {
+      } else {
 
-				ret = self[i].HSSideNav[options].apply(self[i].HSSideNav, args);
+        ret = self[i].HSSideNav[options].apply(self[i].HSSideNav, args);
 
-			}
+      }
 
-			if (typeof ret != 'undefined') {
+      if (typeof ret != 'undefined') {
 
-				return ret;
+        return ret;
 
-			}
-		}
+      }
+    }
 
-		return self;
-	};
+    return self;
+  };
 
 }));

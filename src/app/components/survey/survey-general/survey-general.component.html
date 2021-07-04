@@ -1,0 +1,511 @@
+<div class="card card-body mb-3 mb-lg-5">
+    <div class="row gx-lg-4">
+        <div class="col-sm-6 col-lg-3">
+            <div class="media">
+                <div class="media-body">
+                    <h6 class="card-subtitle">In-store Sales</h6>
+                    <span class="card-title h3">$7,820.75</span>
+
+                    <div class="d-flex align-items-center">
+                        <span class="d-block font-size-sm">5k orders</span>
+                        <span class="badge badge-soft-success ml-2">
+                            <i class="tio-trending-up"></i> 4.3%
+                        </span>
+                    </div>
+                </div>
+
+                <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
+                    <i class="tio-shop"></i>
+                </span>
+            </div>
+
+            <div class="d-lg-none">
+                <hr>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 column-divider-sm">
+            <div class="media">
+                <div class="media-body">
+                    <h6 class="card-subtitle">Website Sales</h6>
+                    <span class="card-title h3">$985,937.45</span>
+
+                    <div class="d-flex align-items-center">
+                        <span class="d-block font-size-sm">21k orders</span>
+                        <span class="badge badge-soft-success ml-2">
+                            <i class="tio-trending-up"></i> 12.5%
+                        </span>
+                    </div>
+                </div>
+
+                <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
+                    <i class="tio-website"></i>
+                </span>
+            </div>
+
+            <div class="d-lg-none">
+                <hr>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 column-divider-lg">
+            <div class="media">
+                <div class="media-body">
+                    <h6 class="card-subtitle">Discount</h6>
+                    <span class="card-title h3">$15,503.00</span>
+
+                    <div class="d-flex align-items-center">
+                        <span class="d-block font-size-sm">6k orders</span>
+                    </div>
+                </div>
+
+                <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
+                    <i class="tio-label-off"></i>
+                </span>
+            </div>
+
+            <div class="d-sm-none">
+                <hr>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 column-divider-sm">
+            <div class="media">
+                <div class="media-body">
+                    <h6 class="card-subtitle">Affiliate</h6>
+                    <span class="card-title h3">$3,982.53</span>
+
+                    <div class="d-flex align-items-center">
+                        <span class="d-block font-size-sm">150 orders</span>
+                        <span class="badge badge-soft-danger ml-2">
+                            <i class="tio-trending-down"></i> 4.4%
+                        </span>
+                    </div>
+                </div>
+
+                <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
+                    <i class="tio-users-switch"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-lg-8 mb-5 mb-lg-0">
+        <!-- Card -->
+        <div class="card card-lg mb-5">
+            <div class="card-body">
+                <div class="row justify-content-lg-between">
+                    <div class="col-sm order-2 order-sm-1 mb-3">
+                        <img class="avatar mb-2" src="{{survey.smallImages[0].fileName}}" alt="Logo">
+                        <h1 class="text-primary">{{survey.title}}</h1>
+                    </div>
+
+                    <div class="col-sm-auto order-1 order-sm-2 text-sm-right mb-3">
+                        <div class="mb-3">
+                            <h2>Anket</h2>
+                            <span class="d-block">ID: {{survey.id}}</span>
+
+                            <span *ngIf="survey.status == 0" class="badge badge-primary">Devam ediyor</span>
+                            <span *ngIf="survey.status == 1" class="badge badge-warning">Kontrol ediliyor</span>
+                            <span *ngIf="survey.status == 2" class="badge badge-success">Bitti</span>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Row -->
+
+                <!-- Bill To -->
+                <div class="row justify-content-md-between mb-3">
+                    <div class="col-md">
+                        <h4>{{survey.choiceGroup.name}} : </h4>
+
+                        <span *ngFor="let choice of survey.choiceGroup.choices"
+                            style="border: 1px solid rgb(153, 153, 153); width: 25px; height: 25px;"
+                            [style.background-color]="choice.color" class="legend-indicator legend-indicator-lg">
+                        </span>
+                    </div>
+
+                    <div class="col-md text-md-right">
+                        <dl class="row">
+                            <dt class="col-sm-4 col-md">Oluşturulma tarihi:</dt>
+                            <dd class="col-sm-8 col-md-auto">{{survey.creationAt | date: 'dd.MM.yy hh:mm:ss'}}</dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-sm-4 col-md">Başlama tarihi:</dt>
+                            <dd class="col-sm-8 col-md-auto">
+                                {{survey.creationAt | date: 'dd.MM.yy hh:mm:ss'}}
+                            </dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-sm-4 col-md">Sonlanma tarihi:</dt>
+                            <dd *ngIf="!survey.automaticFinish" class="col-sm-8 col-md-auto">Manuel</dd>
+                            <dd *ngIf="survey.automaticFinish" class="col-sm-8 col-md-auto">
+                                {{survey.finishAt | date: 'dd.MM.yy hh:mm:ss'}}
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <!-- End Bill To -->
+
+                <!-- Contacts -->
+                <div *ngIf="survey.body != undefined && survey.body != ''" class="mb-3">
+                    <h3>Açıklamalar: </h3>
+                    <p style="color: rgb(99, 99, 99); font-size: 12px;">{{survey.body}}</p>
+                </div>
+                <!-- End Contacts -->
+
+                <hr class="my-5">
+
+                <!-- Contacts -->
+                <div *ngIf="survey.images.length > 0" class="mb-3">
+                    <h3>{{survey.images.length}} Resimler: </h3>
+                </div>
+                <!-- End Contacts -->
+
+                <!-- Table -->
+                <div class="table-responsive">
+                    <table
+                        class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Resim</th>
+                                <th>SHA256</th>
+                                <th class="table-column-right-aligned">Boyut(byte)</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let item of survey.smallImages;let i=index">
+                                <th>
+
+                                    <img class="avatar mb-2" src="{{item.fileName}}" alt="Logo">
+                                </th>
+                                <td>{{survey.images[i].hash}}</td>
+                                <td>{{survey.images[i].size}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- End Table -->
+
+                <p class="font-size-sm mb-0">© 2021 Karadeniz Teknik Üniversitesi</p>
+            </div>
+        </div>
+        <!-- End Card -->
+
+        <!-- Footer -->
+        <div class="d-flex justify-content-end d-print-none">
+            <a onclick="window.print(); return false;" class="btn btn-white mr-2" href="#">
+                <i class="tio-print mr-1 "></i> Yazdır
+            </a>
+
+            <a class="btn btn-success" (click)="downloadStatistics()" href="javascript:;">
+                <i class="tio-download-to mr-1"></i> Sonuçları İndir
+            </a>
+        </div>
+        <!-- End Footer -->
+    </div>
+
+    <div class="col-lg-4">
+        <!-- Card -->
+        <div class="card d-print-none">
+            <!-- Header -->
+            <div class="card-header">
+                <h5 class="card-header-title">Aktivite Durumu</h5>
+
+                <!-- Unfold -->
+                <div class="hs-unfold">
+                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
+                        href="javascript:;" data-hs-unfold-options="{
+                 &quot;target&quot;: &quot;#reportsOverviewDropdown1&quot;,
+                 &quot;type&quot;: &quot;css-animation&quot;
+               }" data-hs-unfold-target="#reportsOverviewDropdown1" data-hs-unfold-invoker="">
+                        <i class="tio-more-vertical"></i>
+                    </a>
+
+                    <div id="reportsOverviewDropdown1"
+                        class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1 hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
+                        data-hs-target-height="247.4" data-hs-unfold-content=""
+                        data-hs-unfold-content-animation-in="slideInUp" data-hs-unfold-content-animation-out="fadeOut"
+                        style="animation-duration: 300ms;">
+                        <span class="dropdown-header">Settings</span>
+
+                        <a class="dropdown-item" href="#">
+                            <i class="tio-share dropdown-item-icon"></i> Share reports
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="tio-download-to dropdown-item-icon"></i> Download
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="tio-alt dropdown-item-icon"></i> Connect other apps
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <span class="dropdown-header">Feedback</span>
+
+                        <a class="dropdown-item" href="#">
+                            <i class="tio-chat-outlined dropdown-item-icon"></i> Report
+                        </a>
+                    </div>
+                </div>
+                <!-- End Unfold -->
+            </div>
+            <!-- End Header -->
+
+            <!-- Body -->
+            <div class="card-body">
+                <span class="h1 d-block mb-3">{{survey.answerCount}} <span class="h4 text-body"> katılım</span></span>
+
+                <!-- Progress -->
+                <div class="progress rounded-pill">
+                    <div class="progress-bar" role="progressbar" style="width: 76%" aria-valuenow="76" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 8%" aria-valuenow="8"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 2%" aria-valuenow="2"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <!-- End Progress -->
+            </div>
+            <!-- End Body -->
+
+            <hr class="my-0">
+
+            <!-- Body -->
+            <div class="card-body">
+                <!-- Nav -->
+                <ul class="nav nav-segment nav-fill nav-sm-down-break" id="invoicesStatusTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="paid-tab" data-toggle="tab" href="#paid" role="tab"
+                            aria-controls="paid" aria-selected="true">
+                            <span class="legend-indicator bg-primary"></span>Katılım (162)
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pending-tab" data-toggle="tab" href="#pending" role="tab"
+                            aria-controls="pending" aria-selected="true">
+                            <span class="legend-indicator bg-warning"></span>Kontrol (10)
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="declined-tab" data-toggle="tab" href="#declined" role="tab"
+                            aria-controls="declined" aria-selected="true">
+                            <span class="legend-indicator bg-danger"></span>İptal (3)
+                        </a>
+                    </li>
+                </ul>
+                <!-- End Nav -->
+            </div>
+            <!-- End Body -->
+
+            <hr class="my-0">
+
+            <!-- Body -->
+            <div class="card-body card-body-height">
+                <!-- Tab Content -->
+                <div class="tab-content" id="invoicesStatusTabContent">
+                    <div class="tab-pane fade show active" id="paid" role="tabpanel" aria-labelledby="paid-tab">
+                        <!-- List Group -->
+                        <ul class="list-group list-group-flush list-group-no-gutters">
+                            <!-- List Item -->
+                            <li class="list-group-item">
+                                <div class="mb-1">
+                                    <h5 class="mb-0">Update subscription method</h5>
+                                    <span class="font-size-sm">Rocket Science Group</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <span class="h4 text-primary">$530.00 USD</span>
+                                    <span class="font-size-sm">25 May, 2020</span>
+                                </div>
+                            </li>
+                            <!-- End List Item -->
+
+                            <!-- List Item -->
+                            <li class="list-group-item">
+                                <div class="mb-1">
+                                    <h5 class="mb-0">Develop Slack mobile app</h5>
+                                    <span class="font-size-sm">Slack Technologies</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <span class="h4 text-primary">$2500.00 USD</span>
+                                    <span class="font-size-sm">25 May, 2020</span>
+                                </div>
+                            </li>
+                            <!-- End List Item -->
+
+                            <!-- List Item -->
+                            <li class="list-group-item">
+                                <div class="mb-1">
+                                    <h5 class="mb-0">Create a new database for Webdev</h5>
+                                    <span class="font-size-sm">Google LLC</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <span class="h4 text-primary">$7000.00 USD</span>
+                                    <span class="font-size-sm">10 May, 2020</span>
+                                </div>
+                            </li>
+                            <!-- End List Item -->
+
+                            <!-- List Item -->
+                            <li class="list-group-item">
+                                <div class="mb-1">
+                                    <h5 class="mb-0">The Hub project</h5>
+                                    <span class="font-size-sm">HubSpot</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <span class="h4 text-primary">$55000.00 USD</span>
+                                    <span class="font-size-sm">12 June, 2020</span>
+                                </div>
+                            </li>
+                            <!-- End List Item -->
+
+                            <!-- List Item -->
+                            <li class="list-group-item">
+                                <div class="mb-1">
+                                    <h5 class="mb-0">Binance-chain</h5>
+                                    <span class="font-size-sm">FrontApp</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <span class="h4 text-primary">$400.00 USD</span>
+                                    <span class="font-size-sm">01 June, 2020</span>
+                                </div>
+                            </li>
+                            <!-- End List Item -->
+                        </ul>
+                        <!-- End List Group -->
+                    </div>
+
+                    <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                        <!-- List Group -->
+                        <ul class="list-group list-group-flush list-group-no-gutters">
+                            <!-- List Item -->
+                            <li class="list-group-item">
+                                <div class="mb-1">
+                                    <h5 class="mb-0">Marketing campaign for Slack</h5>
+                                    <span class="font-size-sm">Slack Technologies</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <span class="h4 text-primary">$2500.00 USD</span>
+                                    <span class="font-size-sm">15 May, 2020</span>
+                                </div>
+                            </li>
+                            <!-- End List Item -->
+
+                            <!-- List Item -->
+                            <li class="list-group-item">
+                                <div class="mb-1">
+                                    <h5 class="mb-0">Android app</h5>
+                                    <span class="font-size-sm">Htmlstream Ltd.</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <span class="h4 text-primary">$7000.00 USD</span>
+                                    <span class="font-size-sm">14 May, 2020</span>
+                                </div>
+                            </li>
+                            <!-- End List Item -->
+
+                            <!-- List Item -->
+                            <li class="list-group-item">
+                                <div class="mb-1">
+                                    <h5 class="mb-0">Building startup for brand</h5>
+                                    <span class="font-size-sm">Htmlstream Ltd.</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <span class="h4 text-primary">$530.00 USD</span>
+                                    <span class="font-size-sm">15 May, 2020</span>
+                                </div>
+                            </li>
+                            <!-- End List Item -->
+
+                            <!-- List Item -->
+                            <li class="list-group-item">
+                                <div class="mb-1">
+                                    <h5 class="mb-0">Massive dynamic project</h5>
+                                    <span class="font-size-sm">Microsoft Corporation</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <span class="h4 text-primary">$55000.00 USD</span>
+                                    <span class="font-size-sm">14 Apr, 2020</span>
+                                </div>
+                            </li>
+                            <!-- End List Item -->
+                        </ul>
+                        <!-- End List Group -->
+                    </div>
+
+                    <div class="tab-pane fade" id="declined" role="tabpanel" aria-labelledby="declined-tab">
+                        <!-- List Group -->
+                        <ul class="list-group list-group-flush list-group-no-gutters">
+                            <!-- List Item -->
+                            <li class="list-group-item">
+                                <div class="mb-1">
+                                    <h5 class="mb-0">Set up a datatable for Booking.com</h5>
+                                    <span class="font-size-sm">United States-based Booking Holdings</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <span class="h4 text-primary">$7000.00 USD</span>
+                                    <span class="font-size-sm">05 May, 2020</span>
+                                </div>
+                            </li>
+                            <!-- End List Item -->
+
+                            <!-- List Item -->
+                            <li class="list-group-item">
+                                <div class="mb-1">
+                                    <h5 class="mb-0">Redesigning the Spotify main page</h5>
+                                    <span class="font-size-sm">Spotify Technology S.A.</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <span class="h4 text-primary">$530.00 USD</span>
+                                    <span class="font-size-sm">04 May, 2020</span>
+                                </div>
+                            </li>
+                            <!-- End List Item -->
+
+                            <!-- List Item -->
+                            <li class="list-group-item">
+                                <div class="mb-1">
+                                    <h5 class="mb-0">Prosperops</h5>
+                                    <span class="font-size-sm">Prosperops</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <span class="h4 text-primary">$2500.00 USD</span>
+                                    <span class="font-size-sm">15 Apr, 2020</span>
+                                </div>
+                            </li>
+                            <!-- End List Item -->
+                        </ul>
+                        <!-- End List Group -->
+                    </div>
+                </div>
+                <!-- End Tab Content -->
+            </div>
+            <!-- End Body -->
+
+            <!-- Card Footer -->
+            <a class="card-footer text-center" href="#">
+                View all invoices <i class="tio-chevron-right"></i>
+            </a>
+            <!-- End Card Footer -->
+        </div>
+        <!-- End Card -->
+    </div>
+</div>

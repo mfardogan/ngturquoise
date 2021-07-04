@@ -31,4 +31,10 @@ export default class SurveyHttp extends BaseHttp<Survey> {
         const path: string = this.prefix + '/summary';
         return this.http.get<SurveySummary>(path);
     }
+
+    downloadStatistics(id: number): Observable<any> {
+        //
+        const path: string = this.prefix + '/download/' + id;
+        return this.http.get(path, { responseType: 'blob' });
+    }
 }

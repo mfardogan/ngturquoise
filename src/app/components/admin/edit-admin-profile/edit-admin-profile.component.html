@@ -50,11 +50,6 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#socialAccountsSection">
-                                    <i class="tio-instagram nav-icon"></i> Sosya Hesaplar
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="#deleteAccountSection">
                                     <i class="tio-delete-outlined nav-icon"></i> Hesap Silme
                                 </a>
@@ -90,7 +85,7 @@
                         </div>
                     </ng-template>
 
-                    <a routerLink="/admin/{{administrator}}">
+                    <a routerLink="/admin/{{data.id}}">
                         <div *ngIf="data.image != null then hasimage else noimage"></div>
                     </a>
 
@@ -293,6 +288,10 @@
                             </div>
 
                             <div class="d-flex justify-content-end">
+
+                                <a (click)="removeMyAvatar()" href="javascript:;" class="btn btn-danger mr-2">Resmi
+                                    Kaldır <i class="tio-open-in-new ml-1"></i></a>
+
                                 <button type="submit" class="btn btn-primary">
                                     <i class="tio-add"></i>
                                     Kaydet</button>
@@ -403,96 +402,6 @@
                             </div>
                         </form>
                         <!-- End Form -->
-                    </div>
-                    <!-- End Body -->
-                </div>
-                <!-- End Card -->
-
-                <!-- Card -->
-                <div id="socialAccountsSection" class="card mb-3 mb-lg-5">
-                    <div class="card-header">
-                        <h4 class="card-title">Sosyal Hesaplar</h4>
-                    </div>
-
-                    <!-- Body -->
-                    <div class="card-body">
-                        <form>
-                            <div class="list-group list-group-lg list-group-flush list-group-no-gutters">
-                                <!-- List Item -->
-                                <div class="list-group-item">
-
-                                    <div class="media">
-                                        <i class="tio-facebook list-group-icon mt-1"></i>
-
-                                        <div class="media-body">
-                                            <div class="row align-items-center">
-                                                <div class="col-sm mb-2 mb-sm-0">
-                                                    <h5 class="mb-0">Facebook</h5>
-                                                    <input [(ngModel)]="data.facebook" type="text"
-                                                        class="form-control form-control-flush" id="facebookSocial"
-                                                        name="facebookSocial" placeholder="Facebook profil adresiniz"
-                                                        aria-label="">
-                                                </div>
-
-                                                <div class="col-sm-auto">
-                                                    <a class="btn btn-sm btn-white" href="javascript:;">Gözat</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End List Item -->
-
-
-                                <!-- List Item -->
-                                <div class="list-group-item">
-                                    <div class="media">
-                                        <i class="tio-linkedin list-group-icon mt-1"></i>
-
-                                        <div class="media-body">
-                                            <div class="row align-items-center">
-                                                <div class="col-sm mb-2 mb-sm-0">
-                                                    <h5 class="mb-0">Linkedin</h5>
-                                                    <input [(ngModel)]="data.linkedin" type="text"
-                                                        class="form-control form-control-flush" id="linkedinSocial"
-                                                        name="linkedinSocial" placeholder="Linkedin profil adresiniz"
-                                                        aria-label="">
-                                                </div>
-
-                                                <div class="col-sm-auto">
-                                                    <a class="btn btn-sm btn-white" href="javascript:;">Gözat</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End List Item -->
-
-                                <!-- List Item -->
-                                <div class="list-group-item">
-                                    <div class="media">
-                                        <i class="tio-instagram list-group-icon mt-1"></i>
-
-                                        <div class="media-body">
-                                            <div class="row align-items-center">
-                                                <div class="col-sm mb-2 mb-sm-0">
-                                                    <h5 class="mb-0">Instagram</h5>
-                                                    <input [(ngModel)]="data.instagram" type="text"
-                                                        class="form-control form-control-flush" id="instagramSocial"
-                                                        name="instagramSocial" placeholder="Instagram profil adresiniz"
-                                                        aria-label="">
-                                                </div>
-
-                                                <div class="col-sm-auto">
-                                                    <a class="btn btn-sm btn-white" href="javascript:;">Gözat</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End List Item -->
-                            </div>
-                        </form>
                     </div>
                     <!-- End Body -->
                 </div>

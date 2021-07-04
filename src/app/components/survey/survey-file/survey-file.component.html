@@ -1,0 +1,62 @@
+<div class="row align-items-center mb-2">
+    <div class="col">
+        <h2 class="h4 mb-0">{{survey.images.length}} Dosya(lar)</h2>
+    </div>
+</div>
+
+
+<div style="margin-top: 2rem;" class="tab-content" id="connectionsTabContent">
+    <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
+        <!-- Folders -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+            <div *ngFor="let item of survey.smallImages;let i=index;" class="col mb-3 mb-lg-5">
+                <!-- Card -->
+                <div class="card card-sm card-hover-shadow card-header-borderless h-100 text-center">
+                    <div class="card-header">
+                        <small>{{survey.images[i].size}} BYTE</small>
+
+                        <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-danger card-unfold rounded-circle">
+                            <i class="tio-delete-outlined"></i>
+                        </a>
+
+                    </div>
+
+                    <div class="card-body">
+                        <a class="stretched-link" href="javascript:;" (click)="showBigImage(i)">
+                            <img class="avatar avatar-xl" src="{{item.fileName}}" alt="Image Description">
+                        </a>
+
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">SHA256: </h5>
+                        <p class="small">{{survey.images[i].hash}}</p>
+                    </div>
+                </div>
+                <!-- End Card -->
+            </div>
+        </div>
+        <!-- End Folders -->
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div style="background-color: transparent;" class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title h4" id="myExtraLargeModalLabel"></h5>
+                <button type="button" class="btn btn-xs btn-icon btn-primary" data-dismiss="modal" aria-label="Close">
+                    <i class="tio-clear tio-lg"></i>
+                </button>
+            </div>
+            <div class="modal-body justify-content-center">
+                <img style="border: 1px solid rgb(182, 182, 182); border-radius: 10px; max-width: 100%;"
+                    class="img-responsive" src="{{lastFileView}}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->

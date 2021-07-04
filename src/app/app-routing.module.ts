@@ -5,18 +5,32 @@ import { AdminsComponent } from './components/admin/admins/admins.component';
 import { EditAdminProfileComponent } from './components/admin/edit-admin-profile/edit-admin-profile.component';
 import { ChoiceGroupItemComponent } from './components/choice/choice-group-item/choice-group-item.component';
 import { ChoiceGroupsComponent } from './components/choice/choice-groups/choice-groups.component';
-import { DoctorGroupItemComponent } from './components/doctor/doctor-group-item/doctor-group-item.component';
-import { DoctorGroupsComponent } from './components/doctor/doctor-groups/doctor-groups.component';
 import { DoctorProfileComponent } from './components/doctor/doctor-profile/doctor-profile.component';
 import { DoctorsComponent } from './components/doctor/doctors/doctors.component';
+import { EditDoctorProfileComponent } from './components/doctor/edit-doctor-profile/edit-doctor-profile.component';
 import { Error401Component } from './components/layout/error401/error401.component';
 import { Error404Component } from './components/layout/error404/error404.component';
 import { Error500Component } from './components/layout/error500/error500.component';
+import { SignInAdminComponent } from './components/sign-in-admin/sign-in-admin.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { CreateSurveyComponent } from './components/survey/create-survey/create-survey.component';
 import { SurveyItemComponent } from './components/survey/survey-item/survey-item.component';
 import { SurveysComponent } from './components/survey/surveys/surveys.component';
 
 const routes: Routes = [
+  {
+    path: 'signin/admin',
+    component: SignInAdminComponent
+  },
+  {
+    path: 'signup',
+    component: SignUpComponent
+  },
+  {
+    path: 'signin',
+    component: SignInComponent
+  },
   {
     path: 'survey/:id',
     component: SurveyItemComponent
@@ -28,6 +42,10 @@ const routes: Routes = [
   {
     path: 'add-survey',
     component: CreateSurveyComponent
+  },
+  {
+    path: 'edit-doctor',
+    component: EditDoctorProfileComponent
   },
   {
     path: 'edit-admin',
@@ -61,15 +79,6 @@ const routes: Routes = [
   }, {
     path: 'choice/:id',
     component: ChoiceGroupItemComponent
-  }, {
-    path: 'groups',
-    component: DoctorGroupsComponent
-  }, {
-    path: 'group',
-    component: DoctorGroupItemComponent
-  }, {
-    path: 'group/:id',
-    component: DoctorGroupItemComponent
   }, {
     path: 'doctors',
     component: DoctorsComponent

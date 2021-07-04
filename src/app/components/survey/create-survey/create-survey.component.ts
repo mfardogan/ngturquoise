@@ -7,7 +7,6 @@ import Search from 'src/app/@core/models/search';
 import Pagination from 'src/app/@core/models/pagination';
 import ChoiceGroup from 'src/app/@core/models/choice-group';
 import ChoiceGroupHttp from '../../choice/choice-group-http';
-import DoctorGroupHttp from '../../doctor/doctor-group-http';
 import DoctorGroup from 'src/app/@core/models/doctor-group';
 
 @Component({
@@ -26,8 +25,6 @@ export class CreateSurveyComponent implements OnInit {
   files: any[] = [];
   uploading: string[] = [];
   choices: ChoiceGroup[] = [];
-  groups: DoctorGroup[] = [];
-
   data: Survey = new Survey();
 
   ngOnInit(): void {
@@ -43,14 +40,6 @@ export class CreateSurveyComponent implements OnInit {
         if (defaultChoiceGroup != null) {
           this.data.choiceGroupId = defaultChoiceGroup.id;
         }
-      });
-
-    const doctorGroupSearch = new Search<DoctorGroup>();
-    doctorGroupSearch.pagination = new Pagination(1, 999);
-    Dependency.get(DoctorGroupHttp)
-      .search(doctorGroupSearch)
-      .subscribe((groups: DoctorGroup[]) => {
-        this.groups = groups;
       });
   }
 

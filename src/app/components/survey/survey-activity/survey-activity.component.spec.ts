@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DoctorGroupItemComponent } from './doctor-group-item.component';
+import { SurveyActivityComponent } from './survey-activity.component';
 
-describe('DoctorGroupItemComponent', () => {
-  let component: DoctorGroupItemComponent;
-  let fixture: ComponentFixture<DoctorGroupItemComponent>;
+describe('SurveyActivityComponent', () => {
+  let component: SurveyActivityComponent;
+  let fixture: ComponentFixture<SurveyActivityComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DoctorGroupItemComponent ]
+      declarations: [ SurveyActivityComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DoctorGroupItemComponent);
+    fixture = TestBed.createComponent(SurveyActivityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

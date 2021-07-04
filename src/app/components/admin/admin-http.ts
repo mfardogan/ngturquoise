@@ -24,4 +24,14 @@ export default class AdminHttp extends BaseHttp<Administrator> {
         const path: string = this.prefix + '/modifyimage';
         return this.http.put(path, form);
     }
+
+    getmyinfo(): Observable<Administrator> {
+        const path: string = this.prefix + '/getmyinfo';
+        return this.http.get<Administrator>(path);
+    }
+
+    clearAvatar(): Observable<any> {
+        const path: string = this.prefix + '/clearavatar';
+        return this.http.put(path, null);
+    }
 }

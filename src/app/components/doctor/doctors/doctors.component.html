@@ -1182,17 +1182,17 @@
                             </div>
                         </th>
                         <th class="table-column-pl-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1"
-                            colspan="1" aria-label="Name: activate to sort column ascending" style="width: 222.2px;">
+                            colspan="1" aria-label="Name: activate to sort column ascending" style="width: 200.2px;">
                             Ad</th>
                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                            aria-label="Position: activate to sort column ascending" style="width: 137.2px;">Tip
+                            aria-label="Position: activate to sort column ascending" style="width: 127.2px;">Tip
                         </th>
                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                             aria-label="Country: activate to sort column ascending" style="width: 124.4px;">Email</th>
                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                            aria-label="Status: activate to sort column ascending" style="width: 100.4px;">Telefon</th>
+                            aria-label="Status: activate to sort column ascending" style="width: 90.4px;">Telefon</th>
                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                            aria-label="Portfolio: activate to sort column ascending" style="width: 136.4px;">Doğrulama
+                            aria-label="Portfolio: activate to sort column ascending" style="width: 120.4px;">Doğrulama
                         </th>
                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                             aria-label="Role: activate to sort column ascending" style="width: 74.8px;">Aktivite</th>
@@ -1276,12 +1276,20 @@
                             </div>
                         </td>
                         <td>
-                            <div id="editUserPopover">
-                                <a class="btn btn-xs btn-white" href="javascript:;" data-toggle="modal"
-                                    data-target="#editUserModal">
+                            <!-- Dropdown -->
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-white dropdown-toggle" type="button"
+                                    id="dropdownMenuButtonSm{{i}}" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
                                     <i class="tio-edit"></i> İşlem
-                                </a>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonSm">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
                             </div>
+                            <!-- End Dropdown -->
                         </td>
                     </tr>
 

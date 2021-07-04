@@ -1,12 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Administrator from 'src/app/@core/models/administrator';
 import Pagination from 'src/app/@core/models/pagination';
 import SearchActivity from 'src/app/@core/models/search-activity';
 import SurveyActivity from 'src/app/@core/models/surve-activity';
 import Survey from 'src/app/@core/models/survey';
 import SurveyByCreator from 'src/app/@core/models/survey-by-creator';
+import { TokenServiceService } from 'src/app/@core/services/token-service.service';
 import { Dependency } from 'src/app/app.module';
 import SurveyHttp from '../../survey/survey-http';
 import AdminHttp from '../admin-http';
@@ -19,6 +20,7 @@ import AdminHttp from '../admin-http';
 export class AdminProfileComponent implements OnInit {
 
   constructor(
+    private rout: Router,
     private router: ActivatedRoute
   ) { }
 
@@ -106,5 +108,15 @@ export class AdminProfileComponent implements OnInit {
 
   showSurveys() {
     this.profile = false;
+  }
+
+  canEdit(): boolean {
+    const tokenService: TokenServiceService = Dependency.get(TokenServiceService);
+    return tokenService.isAdmin() && this.data.id == tokenService.getAdminId();
+  }
+
+  logout() {
+    Dependency.get(TokenServiceService).clearToken();
+    this.rout.navigate(['/signin/admin']);
   }
 }

@@ -27,7 +27,7 @@ export class SurveysComponent implements OnInit {
     this.getSurveysBySearch();
   }
 
-  getSummary() {
+  getSummary(): void {
     Dependency.get(SurveyHttp)
       .getSummary()
       .subscribe((summary: SurveySummary) => {
@@ -35,12 +35,25 @@ export class SurveysComponent implements OnInit {
       });
   }
 
-  getSurveysBySearch() {
+  getSurveysBySearch(): void {
     Dependency.get(SurveyHttp)
       .search(this.search)
       .subscribe((data: Survey[]) => {
         this.data = data;
-        console.log(this.data);
       });
+  }
+
+  nextPage() {
+    this.search.pagination.page++;
+    this.getSurveysBySearch();
+  }
+
+  previousPage() {
+    if (this.search.pagination.page == 1) {
+      return;
+    }
+
+    this.search.pagination.page--;
+    this.getSurveysBySearch();
   }
 }

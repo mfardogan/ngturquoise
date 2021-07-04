@@ -16,6 +16,7 @@ export class SurveyItemComponent implements OnInit {
   ) { }
 
   survey: number = 0;
+  page: number = 1;
   data: Survey = new Survey();
 
   ngOnInit(): void {
@@ -27,5 +28,9 @@ export class SurveyItemComponent implements OnInit {
         .get(this.survey)
         .subscribe(e => this.data = e);
     }
+  }
+
+  changePage(tab: number) {
+    this.page = tab;
   }
 }

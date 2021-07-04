@@ -1,4 +1,4 @@
-<div class="content container-fluid">
+
     <!-- Page Header -->
     <div class="page-header">
         <div class="row align-items-end">
@@ -147,30 +147,30 @@
                                 <span class="dropdown-header">Options</span>
                                 <a id="export-copy" class="dropdown-item" href="javascript:;">
                                     <img class="avatar avatar-xss avatar-4by3 mr-2"
-                                        src="./assets/svg/illustrations/copy.svg" alt="Image Description">
+                                        src="./assets/svg/illustrations/copy.svg" >
                                     Copy
                                 </a>
                                 <a id="export-print" class="dropdown-item" href="javascript:;">
                                     <img class="avatar avatar-xss avatar-4by3 mr-2"
-                                        src="./assets/svg/illustrations/print.svg" alt="Image Description">
+                                        src="./assets/svg/illustrations/print.svg" >
                                     Print
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <span class="dropdown-header">Download options</span>
                                 <a id="export-excel" class="dropdown-item" href="javascript:;">
                                     <img class="avatar avatar-xss avatar-4by3 mr-2" src="./assets/svg/brands/excel.svg"
-                                        alt="Image Description">
+                                        >
                                     Excel
                                 </a>
                                 <a id="export-csv" class="dropdown-item" href="javascript:;">
                                     <img class="avatar avatar-xss avatar-4by3 mr-2"
                                         src="./assets/svg/components/placeholder-csv-format.svg"
-                                        alt="Image Description">
+                                       >
                                     .CSV
                                 </a>
                                 <a id="export-pdf" class="dropdown-item" href="javascript:;">
                                     <img class="avatar avatar-xss avatar-4by3 mr-2" src="./assets/svg/brands/pdf.svg"
-                                        alt="Image Description">
+                                        >
                                     PDF
                                 </a>
                             </div>
@@ -428,8 +428,7 @@
                                 style="width: 320.6px;">Anket</th>
                             <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Tasks"
                                 style="width: 52.4px;">Katılımlar</th>
-                            <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Members"
-                                style="width: 86px;">Gruplar</th>
+                           
                             <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Members"
                                 style="width: 86px;">Seçenek Grubu</th>
                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
@@ -510,7 +509,7 @@
                             <td class="table-column-pl-0">
                                 <a class="d-flex align-items-center" [routerLink]="['/survey',item.id]">
                                     <img *ngIf="item.smallImages.length > 0" class="avatar avatar"
-                                        src="{{item.smallImages[0].fileName}}" alt="Image Description">
+                                        src="{{item.smallImages[0].fileName}}" >
                                     <div *ngIf="item.smallImages.length == 0"
                                         class="avatar avatar avatar-danger  avatar">
                                         <span class="avatar-initials">{{item.title[0]}}</span>
@@ -530,35 +529,7 @@
                                         data-placement="top" title="" data-original-title="tasks completed today">+2</a>
                                 </div>
                             </td>
-                            <td>
-                                <!-- Avatar Group -->
-                                <div class="avatar-group avatar-group-xs avatar-circle">
-                                    <a class="avatar" href="user-profile.html" data-toggle="tooltip"
-                                        data-placement="top" title="" data-original-title="Ella Lauda">
-                                        <img class="avatar-img" src="./assets/img/160x160/img9.jpg"
-                                            alt="Image Description">
-                                    </a>
-                                    <a class="avatar" href="user-profile.html" data-toggle="tooltip"
-                                        data-placement="top" title="" data-original-title="David Harrison">
-                                        <img class="avatar-img" src="./assets/img/160x160/img3.jpg"
-                                            alt="Image Description">
-                                    </a>
-                                    <a class="avatar avatar-soft-dark" href="user-profile.html" data-toggle="tooltip"
-                                        data-placement="top" title="" data-original-title="Antony Taylor">
-                                        <span class="avatar-initials">A</span>
-                                    </a>
-                                    <a class="avatar avatar-soft-info" href="user-profile.html" data-toggle="tooltip"
-                                        data-placement="top" title="" data-original-title="Sara Iwens">
-                                        <span class="avatar-initials">S</span>
-                                    </a>
-                                    <a class="avatar" href="user-profile.html" data-toggle="tooltip"
-                                        data-placement="top" title="" data-original-title="Finch Hoot">
-                                        <img class="avatar-img" src="./assets/img/160x160/img5.jpg"
-                                            alt="Image Description">
-                                    </a>
-                                </div>
-                                <!-- End Avatar Group -->
-                            </td>
+                          
 
                             <td>
                                 <div class="ml-3">
@@ -568,7 +539,7 @@
                                     </span>
                                     <div *ngIf="item.choiceGroup.choices.length > 0">
                                         <span *ngFor="let choice of item.choiceGroup.choices.slice(0,5)"
-                                            style="border: 1px solid rgb(153, 153, 153); "
+                                            style="border: 1px solid rgb(153, 153, 153); width: 10px; height: 10px;"
                                             [style.background-color]="choice.color" class="legend-indicator">
                                         </span>
                                         <span style="font-size: 11px; font-weight: bold;"
@@ -689,17 +660,21 @@
                         <nav id="datatablePagination" aria-label="Activity pagination">
                             <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
                                 <ul id="datatable_pagination" class="pagination datatable-custom-pagination">
-                                    <li class="paginate_item page-item disabled"><a
-                                            class="paginate_button previous page-link" aria-controls="datatable"
-                                            data-dt-idx="0" tabindex="0" id="datatable_previous"><span
-                                                aria-hidden="true">Geri</span></a></li>
+                                    <li class="paginate_item page-item"
+                                        [attr.disabled]="search.pagination.page == 1 ? '' : null">
+                                        <a (click)="previousPage()" class="paginate_button previous page-link"
+                                            aria-controls="datatable" data-dt-idx="0" tabindex="0"
+                                            id="datatable_previous"><span aria-hidden="true">Geri</span>
+                                        </a>
+                                    </li>
                                     <li class="paginate_item page-item active"><a class="paginate_button page-link"
                                             aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a></li>
                                     <li class="paginate_item page-item"><a class="paginate_button page-link"
                                             aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a></li>
-                                    <li class="paginate_item page-item"><a class="paginate_button next page-link"
-                                            aria-controls="datatable" data-dt-idx="3" tabindex="0"
-                                            id="datatable_next"><span aria-hidden="true">İleri</span></a></li>
+                                    <li (click)="nextPage()" class="paginate_item page-item"><a
+                                            class="paginate_button next page-link" aria-controls="datatable"
+                                            data-dt-idx="3" tabindex="0" id="datatable_next"><span
+                                                aria-hidden="true">İleri</span></a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -711,4 +686,3 @@
         <!-- End Footer -->
     </div>
     <!-- End Card -->
-</div>

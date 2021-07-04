@@ -17,7 +17,6 @@ export class EditAdminProfileComponent implements OnInit {
   title: string = '';
   name: string = '';
   surname: string = '';
-  administrator: number = 2;
   data: Administrator = new Administrator();
   passwordScore: number = 0;
   password: ChangePassword = new ChangePassword();
@@ -36,13 +35,12 @@ export class EditAdminProfileComponent implements OnInit {
 
   ngOnInit(): void {
     Dependency.get(AdminHttp)
-      .get(this.administrator)
+      .getmyinfo()
       .subscribe((data: Administrator) => {
         this.data = data;
         this.title = data.title;
         this.name = data.name;
         this.surname = data.surname;
-        console.log(this.data);
       });
   }
 
@@ -105,10 +103,24 @@ export class EditAdminProfileComponent implements OnInit {
 
     service.changeAvatar(data)
       .subscribe(e => {
-        service.get(this.administrator)
+        service.getmyinfo()
           .subscribe((data: Administrator) => {
             this.data.image = data.image;
             this.selectedFile = '';
+          });
+      });
+  }
+
+  removeMyAvatar() {
+    const http: AdminHttp = Dependency.get(AdminHttp);
+    if (this.data.image == null) { return };
+
+    http.clearAvatar()
+      .subscribe(e => {
+        http
+          .getmyinfo()
+          .subscribe((data: Administrator) => {
+            this.data = data;
           });
       });
   }

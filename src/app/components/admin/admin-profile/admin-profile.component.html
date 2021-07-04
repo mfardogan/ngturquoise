@@ -69,9 +69,13 @@
                 </li>
 
 
-                <li class="nav-item ml-auto">
+                <li *ngIf="canEdit()" class="nav-item ml-auto">
                     <a class="btn btn-sm btn-white mr-2" routerLink="/edit-admin">
                         <i class="tio-edit"></i> Düzenle
+                    </a>
+
+                    <a class="btn btn-sm btn-danger mr-2" (click)="logout()" href="javascript:;">
+                        <i class="tio-info-outined"></i> Çıkış
                     </a>
                 </li>
             </ul>
@@ -203,7 +207,7 @@
                         <div *ngIf="activity.length == 0" class="card-body card-body-height card-body-centered">
                             <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/yelling.svg"
                                 alt="Image Description">
-                            <p class="card-text">Etkinlik yok...</p>
+                            <p class="card-text">Kullanıcının henüz etkinliği yok!</p>
                         </div>
 
 
@@ -357,130 +361,6 @@
 
                     <!-- End Row -->
 
-                    <!-- Card -->
-                    <div class="card mb-3 mb-lg-5">
-                        <!-- Header -->
-                        <div class="card-header">
-                            <h5 class="card-header-title">Son Anketleri</h5>
-
-                            <!-- Unfold -->
-                            <div class="hs-unfold">
-                                <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                                    href="javascript:;" data-hs-unfold-options="{
-                         &quot;target&quot;: &quot;#projectReportDropdown&quot;,
-                         &quot;type&quot;: &quot;css-animation&quot;
-                       }" data-hs-unfold-target="#projectReportDropdown" data-hs-unfold-invoker="">
-                                    <i class="tio-more-vertical"></i>
-                                </a>
-
-                                <div id="projectReportDropdown"
-                                    class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1 hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated hs-unfold-reverse-y"
-                                    data-hs-target-height="214.6" data-hs-unfold-content=""
-                                    data-hs-unfold-content-animation-in="slideInUp"
-                                    data-hs-unfold-content-animation-out="fadeOut" style="animation-duration: 300ms;">
-                                    <span class="dropdown-header">Settings</span>
-
-                                    <a class="dropdown-item" href="#">
-                                        <i class="tio-share dropdown-item-icon"></i> Share connections
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="tio-info-outined dropdown-item-icon"></i> Suggest edits
-                                    </a>
-
-                                    <div class="dropdown-divider"></div>
-
-                                    <span class="dropdown-header">Feedback</span>
-
-                                    <a class="dropdown-item" href="#">
-                                        <i class="tio-chat-outlined dropdown-item-icon"></i> Report
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Unfold -->
-                        </div>
-                        <!-- End Header -->
-
-                        <div *ngIf="surveys.length == 0" class="card-body card-body-height card-body-centered">
-                            <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/yelling.svg"
-                                alt="Image Description">
-                            <p class="card-text">Anket yok...</p>
-                            <a class="btn btn-sm btn-white" href="#">Anket oluştur</a>
-                        </div>
-
-                        <!-- Table -->
-                        <div *ngIf="surveys.length > 0" class="table-responsive">
-                            <table
-                                class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th class="table-column-left-aligned">Anket</th>
-                                        <th class="table-column-left-aligned">Tarih</th>
-                                        <th class="table-column-left-aligned">Durum</th>
-                                        <th style="width: 20%;">Tamamlanma</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr *ngFor="let item of surveys">
-                                        <td>
-                                            <div class="d-flex">
-                                                <span class="avatar avatar-mb avatar-soft-dark">
-                                                    <span class="avatar-initials">{{item.title[0]}}</span>
-                                                </span>
-                                                <div class="ml-3">
-                                                    <h5 class="mb-0">{{item.title}}</h5>
-                                                    <small>{{item.choiceGroup.name}}</small>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            {{item.creationAt | date: 'dd.MM.yyyy hh:mm'}}
-                                        </td>
-                                        <td class="table-column-left-aligned">
-
-                                            <span *ngIf="item.status === 0" class="badge badge-soft-primary badge-pill">
-                                                <span class="legend-indicator bg-primary"></span> D
-                                            </span>
-
-                                            <span *ngIf="item.status === 1" class="badge badge-soft-warning badge-pill">
-                                                <span class="legend-indicator bg-warning"></span> K
-                                            </span>
-
-                                            <span *ngIf="item.status === 2" class="badge badge-soft-success badge-pill">
-                                                <span class="legend-indicator bg-success"></span> T
-                                            </span>
-
-                                        </td>
-                                        <td class="table-column-left-aligned">
-
-                                            <div class="d-flex align-items-center">
-
-                                                <span class="font-size-sm mr-2">{{item.progressPercent}}%</span>
-                                                <div class="progress table-progress">
-                                                    <div [ngClass]="getProgressPercentClass(item.id)" role="progressbar"
-                                                        [style.width.%]="item.progressPercent" aria-valuenow="72"
-                                                        aria-valuemin="0" aria-valuemax="100">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- End Table -->
-
-                        <!-- Footer -->
-                        <a *ngIf="surveys.length > 0" class="card-footer text-center" href="projects.html">
-                            Tüm anketleri gör <i class="tio-chevron-right"></i>
-                        </a>
-                        <!-- End Footer -->
-                    </div>
-                    <!-- End Card -->
-
                     <!-- Sticky Block End Point -->
                     <div id="stickyBlockEndPoint"></div>
                 </div>
@@ -519,7 +399,7 @@
                     <div class="row row-cols-1 row-cols-md-2">
 
 
-                        <div *ngFor="let item of surveys" class="col mb-3 mb-lg-5">
+                        <div *ngFor="let item of surveys;let i=index" class="col mb-3 mb-lg-5">
                             <!-- Card -->
                             <div class="card card-hover-shadow text-center h-100">
                                 <!-- Progress -->
@@ -555,11 +435,12 @@
                                                     href="javascript:;" data-hs-unfold-options="{
                                      &quot;target&quot;: &quot;#projectsGridDropdown1&quot;,
                                      &quot;type&quot;: &quot;css-animation&quot;
-                                   }" data-hs-unfold-target="#projectsGridDropdown1" data-hs-unfold-invoker="">
+                                   }" [attr.data-hs-unfold-target]="'#projectsGridDropdown'+i"
+                                                    data-hs-unfold-invoker="">
                                                     <i class="tio-more-vertical"></i>
                                                 </a>
 
-                                                <div id="projectsGridDropdown1"
+                                                <div id="projectsGridDropdown{{i}}"
                                                     class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated hs-unfold-reverse-y"
                                                     data-hs-target-height="148.2" data-hs-unfold-content=""
                                                     data-hs-unfold-content-animation-in="slideInUp"
@@ -1533,7 +1414,7 @@
                 </div>
             </div>
 
-            <a class="btn btn-block btn-white" href="javascript:;">
+            <a *ngIf="data.createdSurveys" class="btn btn-block btn-white" href="javascript:;">
                 <i class="tio-refresh mr-1"></i> Daha fazla anket...
             </a>
         </ng-template>

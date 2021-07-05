@@ -22,7 +22,6 @@ import { SignInComponent } from './components/layout/noauth/sign-in/sign-in.comp
 import { SignUpComponent } from './components/layout/noauth/sign-up/sign-up.component';
 
 const routes: Routes = [
-
   {
     path: '',
     component: NoAuthLayoutComponent,
@@ -45,46 +44,24 @@ const routes: Routes = [
       { path: 'survey/:id', component: SurveyItemComponent },
       { path: 'surveys', component: SurveysComponent },
       { path: 'add-survey', component: CreateSurveyComponent },
-      {
-        path: 'edit-doctor',
-        component: EditDoctorProfileComponent
-      },
-      {
-        path: 'edit-admin',
-        component: EditAdminProfileComponent
-      },
-      {
-        path: 'admins',
-        component: AdminsComponent
-      }, {
-        path: 'admin/:id',
-        component: AdminProfileComponent
-      },
-
-      {
-        path: 'choices',
-        component: ChoiceGroupsComponent
-      }, {
-        path: 'choice',
-        component: ChoiceGroupItemComponent
-      }, {
-        path: 'choice/:id',
-        component: ChoiceGroupItemComponent
-      }, {
-        path: 'doctors',
-        component: DoctorsComponent
-      }, {
-        path: 'doctor/:id',
-        component: DoctorProfileComponent
-      }
-
+      { path: 'edit-doctor', component: EditDoctorProfileComponent },
+      { path: 'edit-admin', component: EditAdminProfileComponent },
+      { path: 'admins', component: AdminsComponent },
+      { path: 'admin/:id', component: AdminProfileComponent },
+      { path: 'choices', component: ChoiceGroupsComponent },
+      { path: 'choice', component: ChoiceGroupItemComponent },
+      { path: 'choice/:id', component: ChoiceGroupItemComponent },
+      { path: 'doctors', component: DoctorsComponent },
+      { path: 'doctor/:id', component: DoctorProfileComponent }
     ]
   },
   { path: '**', component: Error404Component }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    anchorScrolling: 'enabled'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

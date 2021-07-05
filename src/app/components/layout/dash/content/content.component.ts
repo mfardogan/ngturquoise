@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthGuardService } from 'src/app/@core/services/auth-guard.service';
 
 @Component({
   selector: 'app-content',

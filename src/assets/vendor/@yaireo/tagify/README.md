@@ -139,7 +139,6 @@ inputElm.addEventListener('change', onChange)
 
 function onChange(e){
   // outputs a String
-  console.log(e.target.value)
 }
 
 ```
@@ -496,7 +495,6 @@ export class AppComponent implements OnDestroy {
   public settings = { blacklist: ['fucking', 'shit']};
 
   onAdd(tagify) {
-    console.log('added a tag', tagify);
   }
 
   onRemove(tags) {

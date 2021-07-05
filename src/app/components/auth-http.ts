@@ -1,14 +1,15 @@
 import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import LoginViewModel from "../@core/models/login-view-model";
 import Token from "../@core/models/token";
 import { BackendConfigService } from "../@core/services/backend-config.service";
 import { Dependency } from "../app.module";
 
+@Injectable()
 export default class AuthHttp {
-    constructor() {
-        const config = Dependency.get(BackendConfigService);
-        this.prefix = config.getUrl();
+    constructor(private configuration: BackendConfigService) {
+        this.prefix = configuration.getUrl();
     }
 
     protected prefix: string = '';

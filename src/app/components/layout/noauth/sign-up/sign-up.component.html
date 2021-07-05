@@ -1,0 +1,132 @@
+<main id="content" role="main" class="main">
+    <div class="position-fixed top-0 right-0 left-0 bg-img-hero"
+        style="height: 32rem; background-image: url(./assets/svg/components/abstract-bg-1.svg);">
+        <!-- SVG Bottom Shape -->
+        <figure class="position-absolute right-0 bottom-0 left-0">
+            <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1921 273">
+                <polygon fill="#fff" points="0,273 1921,273 1921,0 "></polygon>
+            </svg>
+        </figure>
+        <!-- End SVG Bottom Shape -->
+        <!-- End SVG Shapes -->
+    </div>
+
+    <!-- Content -->
+    <div class="container py-5 py-sm-7">
+        <a class="d-flex justify-content-center mb-5" href="index.html">
+            <img class="z-index-2" src="./assets/svg/logos/logo.svg" alt="Image Description" style="width: 8rem;">
+        </a>
+
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-5">
+                <!-- Card -->
+                <div class="card card-lg mb-5">
+                    <div class="card-body">
+                        <!-- Form -->
+                        <form class="js-validate" novalidate="novalidate">
+                            <div class="text-center">
+                                <div class="mb-5">
+                                    <h1 class="display-4">Hesap Oluştur</h1>
+                                    <p>Zaten hesabınız var mıydı? <a style="font-weight: bold;"
+                                            routerLink="/signin">Giriş yapın</a></p>
+                                </div>
+
+
+                                <span class="divider text-muted mb-4">Formu Doldurun</span>
+                            </div>
+
+                            <label class="input-label" for="fullNameSrEmail">Ad Soyad</label>
+
+                            <!-- Form Group -->
+                            <div class="form-row">
+                                <div class="col-sm-6">
+                                    <div class="js-form-message form-group">
+                                        <input [(ngModel)]="data.name" type="text" class="form-control form-control-lg"
+                                            name="name" id="name" placeholder="Ad" aria-label="Mark" required=""
+                                            data-msg="Please enter your first name.">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="js-form-message form-group">
+                                        <input [(ngModel)]="data.surname" type="text" name="surname" id="surname"
+                                            class="form-control form-control-lg" placeholder="Soyad" aria-label="Soyad"
+                                            required="" data-msg="Please enter your last name.">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Form Group -->
+
+                            <!-- Form Group -->
+                            <div class="js-form-message form-group">
+                                <label class="input-label" for="signupSrEmail">Email</label>
+
+                                <input [(ngModel)]="data.email" type="email" class="form-control form-control-lg"
+                                    name="email" id="email" placeholder="birisi@adres.com"
+                                    aria-label="Markwilliams@example.com" required=""
+                                    data-msg="Please enter a valid email address.">
+                            </div>
+                            <!-- End Form Group -->
+
+                            <!-- Form Group -->
+                            <div class="js-form-message form-group">
+                                <label class="input-label" for="signupSrPassword">Şifre</label>
+
+                                <div class="input-group input-group-merge">
+                                    <input [(ngModel)]="data.password" type="password"
+                                        class="js-toggle-password form-control form-control-lg" name="password"
+                                        id="password" placeholder="6+ Karakter" aria-label="8+ characters required"
+                                        required="" data-msg="Your password is invalid. Please try again."
+                                        data-hs-toggle-password-options="{
+                             &quot;target&quot;: [&quot;.js-toggle-password-target-1&quot;, &quot;.js-toggle-password-target-2&quot;],
+                             &quot;defaultClass&quot;: &quot;tio-hidden-outlined&quot;,
+                             &quot;showClass&quot;: &quot;tio-visible-outlined&quot;,
+                             &quot;classChangeTarget&quot;: &quot;.js-toggle-passowrd-show-icon-1&quot;
+                           }">
+                                    <div class="js-toggle-password-target-1 input-group-append">
+                                        <a class="input-group-text" href="javascript:;">
+                                            <i class="js-toggle-passowrd-show-icon-1 tio-hidden-outlined"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Form Group -->
+
+                            <!-- Form Group -->
+                            <div class="js-form-message form-group">
+                                <label class="input-label" for="signupSrConfirmPassword">Şifre (Tekrar)</label>
+
+                                <div class="input-group input-group-merge">
+                                    <input [(ngModel)]="passwordConfirm" type="password"
+                                        class="js-toggle-password form-control form-control-lg" name="passwordConfirm"
+                                        id="passwordConfirm" placeholder="6+ karakter gerekli" aria-label="6+ Karakter"
+                                        required="" data-msg="Password does not match the confirm password."
+                                        data-hs-toggle-password-options="{
+                             &quot;target&quot;: [&quot;.js-toggle-password-target-1&quot;, &quot;.js-toggle-password-target-2&quot;],
+                             &quot;defaultClass&quot;: &quot;tio-hidden-outlined&quot;,
+                             &quot;showClass&quot;: &quot;tio-visible-outlined&quot;,
+                             &quot;classChangeTarget&quot;: &quot;.js-toggle-passowrd-show-icon-2&quot;
+                           }">
+                                    <div class="js-toggle-password-target-2 input-group-append">
+                                        <a class="input-group-text" href="javascript:;">
+                                            <i class="js-toggle-passowrd-show-icon-2 tio-hidden-outlined"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Form Group -->
+
+                            <button (click)="save()" type="button"
+                                class="btn btn-lg btn-block btn-primary mb-2">Kaydol</button>
+                        </form>
+                        <!-- End Form -->
+                    </div>
+                </div>
+                <!-- End Card -->
+
+
+            </div>
+        </div>
+    </div>
+    <!-- End Content -->
+</main>

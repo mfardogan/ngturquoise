@@ -1,688 +1,521 @@
+<!-- Page Header -->
+<div class="page-header">
+    <div class="row align-items-end">
+        <div class="col-sm mb-2 mb-sm-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-no-gutter">
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Anket Yönetimi</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Anketler</li>
+                </ol>
+            </nav>
 
-    <!-- Page Header -->
-    <div class="page-header">
-        <div class="row align-items-end">
+            <h1 class="page-header-title">Anketler</h1>
+        </div>
+
+        <div class="col-sm-auto">
+            <div id="newProjectPopover" data-toggle="popover" data-placement="left" title=""
+                data-content="Check out this New project modal example." data-html="true"
+                data-original-title="<div class='d-flex align-items-center'>New project <a href='#!' class='close close-light ml-auto'><i id='closeNewProjectPopover' class='tio-clear'></i></a></div>"
+                aria-describedby="popover711637">
+                <a class="btn btn-primary" routerLink="/add-survey" data-toggle="modal" data-target="#newProjectModal">
+                    <i class="tio-add mr-1"></i> Yeni Anket Oluştur
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End Page Header -->
+
+
+<!-- Card -->
+<div class="card mb-3 mb-lg-5">
+    <!-- Body -->
+    <div class="card-body">
+        <div class="media align-items-md-center">
+            <span class="display-3 text-dark mr-3">{{summary.totalSurveys}}</span>
+
+            <div class="media-body">
+                <div class="row mx-md-n3">
+                    <div class="col-md px-md-4">
+                        <span class="d-block">Toplam Anketler</span>
+                        <span class="badge badge-soft-danger badge-pill p-1">
+                            <i class="tio-trending-down"></i> -2 late in due
+                        </span>
+                    </div>
+
+                    <div class="col-md-9 col-lg-10 column-divider-md px-md-4">
+                        <!-- Legend Indicators -->
+                        <div class="row justify-content-start mb-2">
+                            <div class="col-auto">
+                                <span class="legend-indicator bg-primary"></span>
+                                Devam eden ({{summary.continuingSurveys}})
+                            </div>
+                            <div class="col-auto">
+                                <span class="legend-indicator bg-warning"></span>
+                                Kontrolde ({{summary.controllingSurveys}})
+                            </div>
+                            <div class="col-auto">
+                                <span class="legend-indicator bg-success"></span>
+                                Tamamlandı ({{summary.closedSurveys}})
+                            </div>
+                        </div>
+                        <!-- End Legend Indicators -->
+
+                        <!-- Progress -->
+                        <div class="progress rounded-pill" style="height: 15px; font-weight: bold;">
+                            <div class="progress-bar" role="progressbar"
+                                [style.width.%]="summary.continuingSurveysPercent" aria-valuenow="40" aria-valuemin="0"
+                                aria-valuemax="100">% {{summary.continuingSurveysPercent}}
+                            </div>
+                            <div class="progress-bar bg-warning" role="progressbar"
+                                [style.width.%]="summary.controllingSurveysPercent" aria-valuenow="30" aria-valuemin="0"
+                                aria-valuemax="100">% {{summary.controllingSurveysPercent}}
+                            </div>
+
+                            <div class="progress-bar bg-success" role="progressbar"
+                                [style.width.%]="summary.closedSurveysPercent" aria-valuenow="30" aria-valuemin="0"
+                                aria-valuemax="100"> % {{summary.closedSurveysPercent}}
+                            </div>
+                        </div>
+                        <!-- End Progress -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Body -->
+</div>
+<!-- End Card -->
+
+
+<div class="card">
+    <!-- Header -->
+    <div class="card-header">
+        <div class="row justify-content-between align-items-center flex-grow-1">
+            <div class="col-md mb-2 mb-md-0">
+                <h4 class="card-header-title">Anketler</h4>
+                <p class="card-text font-size-sm">Uygulama anketlerine dair detaylar</p>
+            </div>
+
+            <div class="col-auto">
+                <div class="d-flex align-items-center">
+
+
+                    <!-- Filter Collapse Trigger -->
+                    <a class="btn btn-white  collapsed" data-toggle="collapse" href="#filterSearchCollapse"
+                        role="button" aria-expanded="false" aria-controls="filterSearchCollapse">
+                        <i class="tio-filter-outlined mr-1"></i> Filtrele
+                    </a>
+                    <!-- End Filter Collapse Trigger -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header -->
+
+    <!-- Filter Search Collapse -->
+    <div class="collapse" id="filterSearchCollapse">
+        <div class="card-body">
+            <form>
+                <div class="row">
+
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            <div class="alert alert-soft-white mb-5 mb-lg-7" role="alert">
+                                <div class="media align-items-center">
+                                    <img class="avatar avatar-xl mr-3"
+                                        src="./assets/svg/illustrations/yelling-reverse.svg" alt="Image Description">
+
+                                    <div class="media-body">
+                                        <h3 class="alert-heading mb-1">Dikkat!</h3>
+                                        <p class="mb-0">Kayıtları filtrelemek için istediğiniz alanları doldurun ve
+                                            <span style="font-weight: bold;">"Uygula"</span>yın. Dilediğiniz zaman
+                                            <span style="font-weight: bold;">"Temizle"</span>yerek filtreleri
+                                            kaldırabilirsiniz.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-lg-4">
+                        <!-- Form Group -->
+                        <div class="form-group">
+                            <label for="teamsFilterLabel" class="input-label">Başlık</label>
+
+                            <div class="input-group input-group-merge">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="tio-heart"></i>
+                                    </div>
+                                </div>
+                                <input [(ngModel)]="filterClauses.title" class=" form-control form-control-sm"
+                                    name="title" id="title" placeholder="Anket başlığı" aria-label="Anket başlığı">
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <!-- Form Group -->
+                        <div class="form-group">
+                            <label for="tagsFilterLabel" class="input-label">Seçenek Grubu</label>
+
+                            <div class="input-group input-group-merge">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="tio-group-senior"></i>
+                                    </div>
+                                </div>
+                                <select [(ngModel)]="filterClauses.choiceGroupId"
+                                    class="form-control form-control-sm form-select form-select-sm"
+                                    aria-label=".form-select-sm example" name="choiceGroupId" id="choiceGroupId">
+                                    <option selected value="0">Tümü</option>
+                                    <option *ngFor="let item of choiceGroups" value="{{item.id}}">{{item.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <!-- Form Group -->
+                        <div class="form-group">
+                            <label for="ratingFilterLabel" class="input-label">Durum</label>
+
+                            <div class="input-group input-group-merge">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="tio-settings"></i>
+                                    </div>
+                                </div>
+                                <select [(ngModel)]="filterClauses.status"
+                                    class="form-control form-control-sm form-select form-select-sm"
+                                    aria-label=".form-select-sm example" name="status" id="status">
+                                    <option selected value="undefined">Tümü</option>
+                                    <option value="1">Devam eden</option>
+                                    <option value="2">Kontrolde</option>
+                                    <option value="3">Tamamlandı</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+                    </div>
+                </div>
+                <!-- End Row -->
+
+                <div class="d-flex justify-content-end">
+                    <button (click)="clearFilters()" type="button" class="btn btn-white mr-2">
+                        <i class="tio-clear"></i> Temizle</button>
+                    <button (click)="applyFilters()" type="button" class="btn btn-success">
+                        <i class="tio-filter"></i> Uygula</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End Filter Search Collapse -->
+
+    <!-- Table -->
+    <div class="table-responsive datatable-custom">
+        <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
+            <div class="dataTables_length" id="datatable_length"><label>Show <select name="datatable_length"
+                        aria-controls="datatable" class="">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select> entries</label></div>
+            <div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search" class=""
+                        placeholder="" aria-controls="datatable"></label></div>
+            <table id="datatable"
+                class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer"
+                data-hs-datatables-options="{
+                         &quot;columnDefs&quot;: [{
+                            &quot;targets&quot;: [0, 2, 3, 6, 7],
+                            &quot;orderable&quot;: false
+                          }],
+                         &quot;order&quot;: [],
+                         &quot;info&quot;: {
+                           &quot;totalQty&quot;: &quot;#datatableWithPaginationInfoTotalQty&quot;
+                         },
+                         &quot;search&quot;: &quot;#datatableSearch&quot;,
+                         &quot;entries&quot;: &quot;#datatableEntries&quot;,
+                         &quot;pageLength&quot;: 15,
+                         &quot;isResponsive&quot;: false,
+                         &quot;isShowPaging&quot;: false,
+                         &quot;pagination&quot;: &quot;datatablePagination&quot;
+                       }" role="grid" aria-describedby="datatable_info">
+                <thead class="thead-light">
+                    <tr role="row">
+                        <th class="table-column-pr-0 sorting_disabled" rowspan="1" colspan="1" aria-label="
+                        
+                          
+                          
+                        
+                      " style="width: 25.4px;">
+                            <div class="custom-control custom-checkbox">
+                                <input id="datatableCheckAll" type="checkbox" class="custom-control-input">
+                                <label class="custom-control-label" for="datatableCheckAll"></label>
+                            </div>
+                        </th>
+                        <th class="table-column-pl-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1"
+                            colspan="1" aria-label="Project: activate to sort column ascending" style="width: 320.6px;">
+                            Anket</th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Tasks" style="width: 52.4px;">
+                            Katılımlar</th>
+
+                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Members" style="width: 86px;">
+                            Seçenek Grubu</th>
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                            aria-label="Status: activate to sort column ascending" style="width: 91.6px;">Durum
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                            aria-label="Completion: activate to sort column ascending" style="width: 125.2px;">
+                            Tamamlanma</th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 37.2px;"><i
+                                class="tio-attachment-diagonal"></i></th>
+
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                            aria-label="Due date: activate to sort column ascending" style="width: 81.2px;">
+                            Başlangıç
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                            aria-label="Due date: activate to sort column ascending" style="width: 81.2px;">
+                            Sonlanma
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <tr *ngFor="let item of data;let i=index" role="row" class="odd">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck{{i}}">
+                                <label class="custom-control-label" for="usersDataCheck{{i}}"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" [routerLink]="['/survey',item.id]">
+                                <img *ngIf="item.smallImages.length > 0" class="avatar avatar"
+                                    src="{{item.smallImages[0].fileName}}">
+                                <div *ngIf="item.smallImages.length == 0" class="avatar avatar avatar-danger  avatar">
+                                    <span class="avatar-initials">{{item.title[0]}}</span>
+                                </div>
+
+                                <div class="ml-3">
+                                    <span class="d-block h6 text-hover-primary mb-0">{{item.title}}
+                                    </span>
+                                    <span class="d-block font-size-sm text-body">{{item.creationAt | date:
+                                        'dd/MM/yyyy hh:mm:ss'}}</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                120 <a class="badge badge-soft-dark ml-1" href="javascript:;" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="tasks completed today">+2</a>
+                            </div>
+                        </td>
+
+
+                        <td>
+                            <div class="ml-3">
+                                <span class="d-block h6 text-hover-primary mb-0"> {{item.choiceGroup.name}}
+                                </span>
+                                <span class="d-block font-size-sm text-body">{{item.choiceGroup.code}}
+                                </span>
+                                <div *ngIf="item.choiceGroup.choices.length > 0">
+                                    <span *ngFor="let choice of item.choiceGroup.choices.slice(0,5)"
+                                        style="border: 1px solid rgb(153, 153, 153); width: 10px; height: 10px;"
+                                        [style.background-color]="choice.color" class="legend-indicator">
+                                    </span>
+                                    <span style="font-size: 11px; font-weight: bold;"
+                                        *ngIf="item.choiceGroup.choices.length - 5 > 0">
+                                        +{{item.choiceGroup.choices.length - 5}}
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <span *ngIf="item.status == 0">
+                                <span class="legend-indicator bg-primary"></span>Devam eden
+                            </span>
+
+                            <span *ngIf="item.status == 1">
+                                <span class="legend-indicator bg-warning"></span>Kontrolde
+                            </span>
+
+                            <span *ngIf="item.status == 2">
+                                <span class="legend-indicator bg-success"></span>Tamamlandı
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm mr-2">35%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 35%"
+                                        aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a *ngIf="item.smallImages.length > 0" class="text-body" href="project-files.html">
+                                <i class="tio-attachment-diagonal"></i> {{item.smallImages.length}}
+                            </a>
+
+                            <div *ngIf="item.smallImages.length == 0">
+                                <div class="spinner-border spinner-border-sm text-danger" role="status">
+                                    <span class="sr-only">İşleniyor...</span>
+                                </div>
+                            </div>
+
+
+                        </td>
+                        <td>
+                            <div class="ml-3">
+                                <span *ngIf="!item.startNow" class="d-block h6 text-hover-primary mb-0">
+                                    {{item.creationAt | date: 'dd/MM/yy'}}
+                                </span>
+                                <span class="d-block font-size-sm text-body">tarihinde
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="item.finishAt" class="ml-3">
+                                <span class="d-block h6 text-hover-primary mb-0">
+                                    {{item.finishAt | date: 'dd/MM/yy'}}
+                                </span>
+                                <span class="d-block font-size-sm text-body">tarihinde
+                                </span>
+                            </div>
+                            <span *ngIf="!item.finishAt" class="d-block font-size-sm text-body">Manuel
+                            </span>
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+            <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 8 of 12
+                entries</div>
+        </div>
+    </div>
+    <!-- End Table -->
+
+    <!-- Footer -->
+    <div class="card-footer">
+        <!-- Pagination -->
+        <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
             <div class="col-sm mb-2 mb-sm-0">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-no-gutter">
-                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Anket Yönetimi</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">Anketler</li>
-                    </ol>
-                </nav>
+                <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
+                    <span class="mr-2">Showing:</span>
 
-                <h1 class="page-header-title">Anketler</h1>
+                    <!-- Select -->
+                    <select id="datatableEntries" class="js-select2-custom select2-hidden-accessible"
+                        data-hs-select2-options="{
+                          &quot;minimumResultsForSearch&quot;: &quot;Infinity&quot;,
+                          &quot;customClass&quot;: &quot;custom-select custom-select-sm custom-select-borderless&quot;,
+                          &quot;dropdownAutoWidth&quot;: true,
+                          &quot;width&quot;: true
+                        }" data-select2-id="datatableEntries" tabindex="-1" aria-hidden="true">
+                        <option value="4" data-select2-id="22">4</option>
+                        <option value="6" data-select2-id="23">6</option>
+                        <option value="8" selected="" data-select2-id="24">8</option>
+                        <option value="12" data-select2-id="25">12</option>
+                    </select><span class="select2 select2-container select2-container--default" dir="ltr"
+                        data-select2-id="21"><span class="selection"><span
+                                class="select2-selection custom-select custom-select-sm custom-select-borderless"
+                                role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0"
+                                aria-disabled="false" aria-labelledby="select2-datatableEntries-container"><span
+                                    class="select2-selection__rendered" id="select2-datatableEntries-container"
+                                    role="textbox" aria-readonly="true" title="8"><span>8</span></span><span
+                                    class="select2-selection__arrow" role="presentation"><b
+                                        role="presentation"></b></span></span></span><span class="dropdown-wrapper"
+                            aria-hidden="true"></span></span>
+                    <!-- End Select -->
+
+                    <span class="text-secondary mr-2">of</span>
+
+                    <!-- Pagination Quantity -->
+                    <span id="datatableWithPaginationInfoTotalQty">12</span>
+                </div>
             </div>
 
             <div class="col-sm-auto">
-                <div id="newProjectPopover" data-toggle="popover" data-placement="left" title=""
-                    data-content="Check out this New project modal example." data-html="true"
-                    data-original-title="<div class='d-flex align-items-center'>New project <a href='#!' class='close close-light ml-auto'><i id='closeNewProjectPopover' class='tio-clear'></i></a></div>"
-                    aria-describedby="popover711637">
-                    <a class="btn btn-primary" routerLink="/add-survey" data-toggle="modal"
-                        data-target="#newProjectModal">
-                        <i class="tio-add mr-1"></i> Yeni Anket
-                    </a>
+                <div class="d-flex justify-content-center justify-content-sm-end">
+                    <!-- Pagination -->
+                    <nav id="datatablePagination" aria-label="Activity pagination">
+                        <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                            <ul id="datatable_pagination" class="pagination datatable-custom-pagination">
+                                <li class="paginate_item page-item disabled"><a
+                                        class="paginate_button previous page-link" aria-controls="datatable"
+                                        data-dt-idx="0" tabindex="0" id="datatable_previous"><span
+                                            aria-hidden="true">Prev</span></a></li>
+                                <li class="paginate_item page-item active"><a class="paginate_button page-link"
+                                        aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a></li>
+                                <li class="paginate_item page-item"><a class="paginate_button page-link"
+                                        aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a></li>
+                                <li class="paginate_item page-item"><a class="paginate_button next page-link"
+                                        aria-controls="datatable" data-dt-idx="3" tabindex="0" id="datatable_next"><span
+                                            aria-hidden="true">Next</span></a></li>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </div>
         </div>
-        <!-- End Row -->
-
-
+        <!-- End Pagination -->
     </div>
-    <!-- End Page Header -->
-
-    <!-- Card -->
-    <div class="card mb-3 mb-lg-5">
-        <!-- Body -->
-        <div class="card-body">
-            <div class="media align-items-md-center">
-                <span class="display-3 text-dark mr-3">{{summary.totalSurveys}}</span>
-
-                <div class="media-body">
-                    <div class="row mx-md-n3">
-                        <div class="col-md px-md-4">
-                            <span class="d-block">Toplam Anketler</span>
-                            <span class="badge badge-soft-danger badge-pill p-1">
-                                <i class="tio-trending-down"></i> -2 late in due
-                            </span>
-                        </div>
-
-                        <div class="col-md-9 col-lg-10 column-divider-md px-md-4">
-                            <!-- Legend Indicators -->
-                            <div class="row justify-content-start mb-2">
-                                <div class="col-auto">
-                                    <span class="legend-indicator bg-primary"></span>
-                                    Devam eden ({{summary.continuingSurveys}})
-                                </div>
-                                <div class="col-auto">
-                                    <span class="legend-indicator bg-warning"></span>
-                                    Kontrolde ({{summary.controllingSurveys}})
-                                </div>
-                                <div class="col-auto">
-                                    <span class="legend-indicator bg-success"></span>
-                                    Tamamlandı ({{summary.closedSurveys}})
-                                </div>
-                            </div>
-                            <!-- End Legend Indicators -->
-
-                            <!-- Progress -->
-                            <div class="progress rounded-pill" style="height: 15px; font-weight: bold;">
-                                <div class="progress-bar" role="progressbar"
-                                    [style.width.%]="summary.continuingSurveysPercent" aria-valuenow="40"
-                                    aria-valuemin="0" aria-valuemax="100">% {{summary.continuingSurveysPercent}}
-                                </div>
-                                <div class="progress-bar bg-warning" role="progressbar"
-                                    [style.width.%]="summary.controllingSurveysPercent" aria-valuenow="30"
-                                    aria-valuemin="0" aria-valuemax="100">% {{summary.controllingSurveysPercent}}
-                                </div>
-
-                                <div class="progress-bar bg-success" role="progressbar"
-                                    [style.width.%]="summary.closedSurveysPercent" aria-valuenow="30" aria-valuemin="0"
-                                    aria-valuemax="100"> % {{summary.closedSurveysPercent}}
-                                </div>
-                            </div>
-                            <!-- End Progress -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Body -->
-    </div>
-    <!-- End Card -->
-
-    <!-- Card -->
-    <div class="card">
-        <!-- Header -->
-        <div class="card-header">
-            <div class="row justify-content-between align-items-center flex-grow-1">
-                <div class="col-sm-6 col-md-4 mb-3 mb-sm-0">
-                    <form>
-                        <!-- Search -->
-                        <div class="input-group input-group-merge input-group-flush">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="tio-search"></i>
-                                </div>
-                            </div>
-                            <input id="datatableSearch" type="search" class="form-control" placeholder="Anketlerde ara"
-                                aria-label="Search users">
-                        </div>
-                        <!-- End Search -->
-                    </form>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="d-flex justify-content-sm-end align-items-center">
-                        <!-- Datatable Info -->
-                        <div id="datatableCounterInfo" class="mr-2" style="display: none;">
-                            <div class="d-flex align-items-center">
-                                <span class="font-size-sm mr-3">
-                                    <span id="datatableCounter">0</span>
-                                    Selected
-                                </span>
-                                <a class="btn btn-sm btn-outline-danger" href="javascript:;">
-                                    <i class="tio-delete-outlined"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Datatable Info -->
-
-                        <!-- Unfold -->
-                        <div class="hs-unfold mr-2">
-                            <a class="js-hs-unfold-invoker btn btn-sm btn-white dropdown-toggle" href="javascript:;"
-                                data-hs-unfold-options="{
-                     &quot;target&quot;: &quot;#usersExportDropdown&quot;,
-                     &quot;type&quot;: &quot;css-animation&quot;
-                   }" data-hs-unfold-target="#usersExportDropdown" data-hs-unfold-invoker="">
-                                <i class="tio-download-to mr-1"></i> Aktar
-                            </a>
-
-                            <div id="usersExportDropdown"
-                                class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated hs-unfold-reverse-y"
-                                data-hs-target-height="280.2" data-hs-unfold-content=""
-                                data-hs-unfold-content-animation-in="slideInUp"
-                                data-hs-unfold-content-animation-out="fadeOut" style="animation-duration: 300ms;">
-                                <span class="dropdown-header">Options</span>
-                                <a id="export-copy" class="dropdown-item" href="javascript:;">
-                                    <img class="avatar avatar-xss avatar-4by3 mr-2"
-                                        src="./assets/svg/illustrations/copy.svg" >
-                                    Copy
-                                </a>
-                                <a id="export-print" class="dropdown-item" href="javascript:;">
-                                    <img class="avatar avatar-xss avatar-4by3 mr-2"
-                                        src="./assets/svg/illustrations/print.svg" >
-                                    Print
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <span class="dropdown-header">Download options</span>
-                                <a id="export-excel" class="dropdown-item" href="javascript:;">
-                                    <img class="avatar avatar-xss avatar-4by3 mr-2" src="./assets/svg/brands/excel.svg"
-                                        >
-                                    Excel
-                                </a>
-                                <a id="export-csv" class="dropdown-item" href="javascript:;">
-                                    <img class="avatar avatar-xss avatar-4by3 mr-2"
-                                        src="./assets/svg/components/placeholder-csv-format.svg"
-                                       >
-                                    .CSV
-                                </a>
-                                <a id="export-pdf" class="dropdown-item" href="javascript:;">
-                                    <img class="avatar avatar-xss avatar-4by3 mr-2" src="./assets/svg/brands/pdf.svg"
-                                        >
-                                    PDF
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Unfold -->
-
-                        <!-- Unfold -->
-                        <div class="hs-unfold">
-                            <a class="js-hs-unfold-invoker btn btn-sm btn-white" href="javascript:;"
-                                data-hs-unfold-options="{
-                     &quot;target&quot;: &quot;#usersFilterDropdown&quot;,
-                     &quot;type&quot;: &quot;css-animation&quot;,
-                     &quot;smartPositionOff&quot;: true
-                   }" data-hs-unfold-target="#usersFilterDropdown" data-hs-unfold-invoker="">
-                                <i class="tio-filter-list mr-1"></i> Filtrele <span
-                                    class="badge badge-soft-dark rounded-circle ml-1">2</span>
-                            </a>
-
-                            <div id="usersFilterDropdown"
-                                class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm-right dropdown-card card-dropdown-filter-centered hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                                style="min-width: 22rem; animation-duration: 300ms;" data-hs-target-height="0"
-                                data-hs-unfold-content="" data-hs-unfold-content-animation-in="slideInUp"
-                                data-hs-unfold-content-animation-out="fadeOut">
-                                <!-- Card -->
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-header-title">Filter users</h5>
-
-                                        <!-- Toggle Button -->
-                                        <a class="js-hs-unfold-invoker btn btn-icon btn-xs btn-ghost-secondary ml-2"
-                                            href="javascript:;" data-hs-unfold-options="{
-                          &quot;target&quot;: &quot;#usersFilterDropdown&quot;,
-                          &quot;type&quot;: &quot;css-animation&quot;,
-                          &quot;smartPositionOff&quot;: true
-                         }" data-hs-unfold-target="#usersFilterDropdown" data-hs-unfold-invoker="">
-                                            <i class="tio-clear tio-lg"></i>
-                                        </a>
-                                        <!-- End Toggle Button -->
-                                    </div>
-
-                                    <div class="card-body">
-                                        <form>
-                                            <div class="form-group">
-                                                <small class="text-cap mb-2">Role</small>
-
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <!-- Checkbox -->
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                id="usersFilerCheck1" checked="">
-                                                            <label class="custom-control-label"
-                                                                for="usersFilerCheck1">All</label>
-                                                        </div>
-                                                        <!-- End Checkbox -->
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <!-- Checkbox -->
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                id="usersFilerCheck2">
-                                                            <label class="custom-control-label"
-                                                                for="usersFilerCheck2">Employee</label>
-                                                        </div>
-                                                        <!-- End Checkbox -->
-                                                    </div>
-                                                </div>
-                                                <!-- End Row -->
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="col-sm form-group">
-                                                    <small class="text-cap mb-2">Due date</small>
-
-                                                    <!-- Select -->
-                                                    <select
-                                                        class="js-select2-custom js-datatable-filter custom-select select2-hidden-accessible"
-                                                        size="1" style="opacity: 0;" data-hs-select2-options="{
-                                      &quot;minimumResultsForSearch&quot;: &quot;Infinity&quot;
-                                    }" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                                        <option value="" data-select2-id="3">Any</option>
-                                                        <option value="This week" data-select2-id="4">This week</option>
-                                                        <option value="Next week" data-select2-id="5">Next week</option>
-                                                        <option value="Next month" data-select2-id="6">Next month
-                                                        </option>
-                                                    </select><span
-                                                        class="select2 select2-container select2-container--default"
-                                                        dir="ltr" data-select2-id="2" style="width: 100%;"><span
-                                                            class="selection"><span
-                                                                class="select2-selection custom-select" role="combobox"
-                                                                aria-haspopup="true" aria-expanded="false" tabindex="0"
-                                                                aria-disabled="false"
-                                                                aria-labelledby="select2-rqfj-container"><span
-                                                                    class="select2-selection__rendered"
-                                                                    id="select2-rqfj-container" role="textbox"
-                                                                    aria-readonly="true"
-                                                                    title="Any"><span>Any</span></span><span
-                                                                    class="select2-selection__arrow"
-                                                                    role="presentation"><b
-                                                                        role="presentation"></b></span></span></span><span
-                                                            class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                                    <!-- End Select -->
-                                                </div>
-
-                                                <div class="col-sm form-group">
-                                                    <small class="text-cap mb-2">Status</small>
-
-                                                    <!-- Select -->
-                                                    <select
-                                                        class="js-select2-custom js-datatable-filter custom-select select2-hidden-accessible"
-                                                        size="1" style="opacity: 0;" data-target-column-index="4"
-                                                        data-hs-select2-options="{
-                                      &quot;minimumResultsForSearch&quot;: &quot;Infinity&quot;
-                                    }" data-select2-id="7" tabindex="-1" aria-hidden="true">
-                                                        <option value="" data-select2-id="9">Any status</option>
-                                                        <option value="Completed"
-                                                            data-option-template="<span class=&quot;legend-indicator bg-success&quot;></span>Completed"
-                                                            data-select2-id="10">Completed</option>
-                                                        <option value="In progress"
-                                                            data-option-template="<span class=&quot;legend-indicator bg-primary&quot;></span>In progress"
-                                                            data-select2-id="11">In progress</option>
-                                                        <option value="To do"
-                                                            data-option-template="<span class=&quot;legend-indicator&quot;></span>To do"
-                                                            data-select2-id="12">To do</option>
-                                                    </select><span
-                                                        class="select2 select2-container select2-container--default"
-                                                        dir="ltr" data-select2-id="8" style="width: 100%;"><span
-                                                            class="selection"><span
-                                                                class="select2-selection custom-select" role="combobox"
-                                                                aria-haspopup="true" aria-expanded="false" tabindex="0"
-                                                                aria-disabled="false"
-                                                                aria-labelledby="select2-11i6-container"><span
-                                                                    class="select2-selection__rendered"
-                                                                    id="select2-11i6-container" role="textbox"
-                                                                    aria-readonly="true" title="Any status"><span>Any
-                                                                        status</span></span><span
-                                                                    class="select2-selection__arrow"
-                                                                    role="presentation"><b
-                                                                        role="presentation"></b></span></span></span><span
-                                                            class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                                    <!-- End Select -->
-                                                </div>
-
-                                                <div class="col-12 form-group">
-                                                    <small class="text-cap mb-2">Members</small>
-
-                                                    <!-- Select -->
-                                                    <select
-                                                        class="js-select2-custom custom-select select2-hidden-accessible"
-                                                        size="1" style="opacity: 0;" multiple=""
-                                                        data-hs-select2-options="{
-                                      &quot;singleMultiple&quot;: true,
-                                      &quot;placeholder&quot;: &quot;Select a member&quot;
-                                    }" data-select2-id="13" tabindex="-1" aria-hidden="true">
-                                                        <option label="empty" data-select2-id="15"></option>
-                                                        <option value="AH" selected=""
-                                                            data-option-template="<span class=&quot;d-flex align-items-center&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/img/160x160/img10.jpg&quot; alt=&quot;Image Description&quot; /><span class=&quot;text-truncate&quot;>Amanda Harvey</span></span>"
-                                                            data-select2-id="16">Amanda Harvey</option>
-                                                        <option value="DH" selected=""
-                                                            data-option-template="<span class=&quot;d-flex align-items-center&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/img/160x160/img3.jpg&quot; alt=&quot;Image Description&quot; /><span class=&quot;text-truncate&quot;>David Harrison</span></span>"
-                                                            data-select2-id="17">David Harrison</option>
-                                                        <option value="SK"
-                                                            data-option-template="<span class=&quot;d-flex align-items-center&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/img/160x160/img4.jpg&quot; alt=&quot;Image Description&quot; /><span class=&quot;text-truncate&quot;>Sam Kart</span></span>"
-                                                            data-select2-id="18">Sam Kart</option>
-                                                        <option value="FH"
-                                                            data-option-template="<span class=&quot;d-flex align-items-center&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/img/160x160/img5.jpg&quot; alt=&quot;Image Description&quot; /><span class=&quot;text-truncate&quot;>Finch Hoot</span></span>"
-                                                            data-select2-id="19">Finch Hoot</option>
-                                                        <option value="CQ" selected=""
-                                                            data-option-template="<span class=&quot;d-flex align-items-center&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/img/160x160/img6.jpg&quot; alt=&quot;Image Description&quot; /><span class=&quot;text-truncate&quot;>Costa Quinn</span></span>"
-                                                            data-select2-id="20">Costa Quinn</option>
-                                                    </select><span
-                                                        class="select2 select2-container select2-container--default"
-                                                        dir="ltr" data-select2-id="14" style="width: 100%;"><span
-                                                            class="selection"><span
-                                                                class="select2-selection custom-select active"
-                                                                role="combobox" aria-haspopup="true"
-                                                                aria-expanded="false" tabindex="-1"
-                                                                aria-disabled="false"><span
-                                                                    class="select2-selection__rendered" role="textbox"
-                                                                    aria-readonly="true"><span
-                                                                        class="select2-selection__placeholder">3 item(s)
-                                                                        selected</span></span><span
-                                                                    class="select2-selection__arrow"
-                                                                    role="presentation"><b
-                                                                        role="presentation"></b></span></span></span><span
-                                                            class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                                    <!-- End Select -->
-                                                </div>
-                                            </div>
-                                            <!-- End Row -->
-
-                                            <a class="btn btn-block btn-primary" href="javascript:;">Apply</a>
-                                        </form>
-                                    </div>
-                                </div>
-                                <!-- End Card -->
-                            </div>
-                        </div>
-                        <!-- End Unfold -->
-                    </div>
-                </div>
-            </div>
-            <!-- End Row -->
-        </div>
-        <!-- End Header -->
-
-        <!-- Table -->
-        <div class="table-responsive datatable-custom">
-            <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
-                <div class="dt-buttons"> <button class="dt-button buttons-copy buttons-html5 d-none" tabindex="0"
-                        aria-controls="datatable" type="button"><span>Copy</span></button> <button
-                        class="dt-button buttons-excel buttons-html5 d-none" tabindex="0" aria-controls="datatable"
-                        type="button"><span>Excel</span></button> <button
-                        class="dt-button buttons-csv buttons-html5 d-none" tabindex="0" aria-controls="datatable"
-                        type="button"><span>CSV</span></button> <button
-                        class="dt-button buttons-pdf buttons-html5 d-none" tabindex="0" aria-controls="datatable"
-                        type="button"><span>PDF</span></button> <button class="dt-button buttons-print d-none"
-                        tabindex="0" aria-controls="datatable" type="button"><span>Print</span></button> </div>
-                <div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search" class=""
-                            placeholder="" aria-controls="datatable"></label></div>
-                <table id="datatable"
-                    class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer"
-                    data-hs-datatables-options="{
-                 &quot;columnDefs&quot;: [{
-                    &quot;targets&quot;: [0, 2, 3, 6, 7],
-                    &quot;orderable&quot;: false
-                  }],
-                 &quot;order&quot;: [],
-                 &quot;info&quot;: {
-                   &quot;totalQty&quot;: &quot;#datatableWithPaginationInfoTotalQty&quot;
-                 },
-                 &quot;search&quot;: &quot;#datatableSearch&quot;,
-                 &quot;entries&quot;: &quot;#datatableEntries&quot;,
-                 &quot;pageLength&quot;: 15,
-                 &quot;isResponsive&quot;: false,
-                 &quot;isShowPaging&quot;: false,
-                 &quot;pagination&quot;: &quot;datatablePagination&quot;
-               }" role="grid" aria-describedby="datatable_info">
-                    <thead class="thead-light">
-                        <tr role="row">
-                            <th class="table-column-pr-0 sorting_disabled" rowspan="1" colspan="1" aria-label="
-                
-                  
-                  
-                
-              " style="width: 25.4px;">
-                                <div class="custom-control custom-checkbox">
-                                    <input id="datatableCheckAll" type="checkbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="datatableCheckAll"></label>
-                                </div>
-                            </th>
-                            <th class="table-column-pl-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1"
-                                colspan="1" aria-label="Project: activate to sort column ascending"
-                                style="width: 320.6px;">Anket</th>
-                            <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Tasks"
-                                style="width: 52.4px;">Katılımlar</th>
-                           
-                            <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Members"
-                                style="width: 86px;">Seçenek Grubu</th>
-                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                                aria-label="Status: activate to sort column ascending" style="width: 91.6px;">Durum
-                            </th>
-                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                                aria-label="Completion: activate to sort column ascending" style="width: 125.2px;">
-                                Tamamlanma</th>
-                            <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 37.2px;"><i
-                                    class="tio-attachment-diagonal"></i></th>
-
-                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                                aria-label="Due date: activate to sort column ascending" style="width: 81.2px;">
-                                Başlangıç
-                            </th>
-                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                                aria-label="Due date: activate to sort column ascending" style="width: 81.2px;">
-                                Sonlanma
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <tr *ngFor="let item of data;let i=index" role="row" class="odd">
-                            <td class="table-column-pr-0">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="usersDataCheck{{i}}">
-                                    <label class="custom-control-label" for="usersDataCheck{{i}}"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-pl-0">
-                                <a class="d-flex align-items-center" [routerLink]="['/survey',item.id]">
-                                    <img *ngIf="item.smallImages.length > 0" class="avatar avatar"
-                                        src="{{item.smallImages[0].fileName}}" >
-                                    <div *ngIf="item.smallImages.length == 0"
-                                        class="avatar avatar avatar-danger  avatar">
-                                        <span class="avatar-initials">{{item.title[0]}}</span>
-                                    </div>
-
-                                    <div class="ml-3">
-                                        <span class="d-block h6 text-hover-primary mb-0">{{item.title}}
-                                        </span>
-                                        <span class="d-block font-size-sm text-body">{{item.creationAt | date:
-                                            'dd/MM/yyyy hh:mm:ss'}}</span>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    120 <a class="badge badge-soft-dark ml-1" href="javascript:;" data-toggle="tooltip"
-                                        data-placement="top" title="" data-original-title="tasks completed today">+2</a>
-                                </div>
-                            </td>
-                          
-
-                            <td>
-                                <div class="ml-3">
-                                    <span class="d-block h6 text-hover-primary mb-0"> {{item.choiceGroup.name}}
-                                    </span>
-                                    <span class="d-block font-size-sm text-body">{{item.choiceGroup.code}}
-                                    </span>
-                                    <div *ngIf="item.choiceGroup.choices.length > 0">
-                                        <span *ngFor="let choice of item.choiceGroup.choices.slice(0,5)"
-                                            style="border: 1px solid rgb(153, 153, 153); width: 10px; height: 10px;"
-                                            [style.background-color]="choice.color" class="legend-indicator">
-                                        </span>
-                                        <span style="font-size: 11px; font-weight: bold;"
-                                            *ngIf="item.choiceGroup.choices.length - 5 > 0">
-                                            +{{item.choiceGroup.choices.length - 5}}
-                                        </span>
-                                    </div>
-                                </div>
-                            </td>
-
-                            <td>
-                                <span *ngIf="item.status == 0">
-                                    <span class="legend-indicator bg-primary"></span>Devam eden
-                                </span>
-
-                                <span *ngIf="item.status == 1">
-                                    <span class="legend-indicator bg-warning"></span>Kontrolde
-                                </span>
-
-                                <span *ngIf="item.status == 2">
-                                    <span class="legend-indicator bg-success"></span>Tamamlandı
-                                </span>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <span class="font-size-sm mr-2">35%</span>
-                                    <div class="progress table-progress">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 35%"
-                                            aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a *ngIf="item.smallImages.length > 0" class="text-body" href="project-files.html">
-                                    <i class="tio-attachment-diagonal"></i> {{item.smallImages.length}}
-                                </a>
-
-                                <div *ngIf="item.smallImages.length == 0">
-                                    <div class="spinner-border spinner-border-sm text-danger" role="status">
-                                        <span class="sr-only">İşleniyor...</span>
-                                    </div>
-                                </div>
-
-
-                            </td>
-                            <td>
-                                <div class="ml-3">
-                                    <span *ngIf="!item.startNow" class="d-block h6 text-hover-primary mb-0">
-                                        {{item.creationAt | date: 'dd/MM/yy'}}
-                                    </span>
-                                    <span class="d-block font-size-sm text-body">tarihinde
-                                    </span>
-                                </div>
-                            </td>
-                            <td>
-                                <div *ngIf="item.finishAt" class="ml-3">
-                                    <span class="d-block h6 text-hover-primary mb-0">
-                                        {{item.finishAt | date: 'dd/MM/yy'}}
-                                    </span>
-                                    <span class="d-block font-size-sm text-body">tarihinde
-                                    </span>
-                                </div>
-                                <span *ngIf="!item.finishAt" class="d-block font-size-sm text-body">Manuel
-                                </span>
-                            </td>
-                        </tr>
-
-
-                    </tbody>
-                </table>
-                <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 15 of 24
-                    entries</div>
-            </div>
-        </div>
-        <!-- End Table -->
-
-        <!-- Footer -->
-        <div class="card-footer">
-            <!-- Pagination -->
-            <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
-                <div class="col-sm mb-2 mb-sm-0">
-                    <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
-                        <span class="mr-2">Showing:</span>
-
-                        <!-- Select -->
-                        <select id="datatableEntries" class="js-select2-custom select2-hidden-accessible"
-                            data-hs-select2-options="{
-                        &quot;minimumResultsForSearch&quot;: &quot;Infinity&quot;,
-                        &quot;customClass&quot;: &quot;custom-select custom-select-sm custom-select-borderless&quot;,
-                        &quot;dropdownAutoWidth&quot;: true,
-                        &quot;width&quot;: true
-                      }" data-select2-id="datatableEntries" tabindex="-1" aria-hidden="true">
-                            <option value="10" data-select2-id="25">10</option>
-                            <option value="15" selected="" data-select2-id="26">15</option>
-                            <option value="20" data-select2-id="27">20</option>
-                        </select><span class="select2 select2-container select2-container--default" dir="ltr"
-                            data-select2-id="24"><span class="selection"><span
-                                    class="select2-selection custom-select custom-select-sm custom-select-borderless"
-                                    role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0"
-                                    aria-disabled="false" aria-labelledby="select2-datatableEntries-container"><span
-                                        class="select2-selection__rendered" id="select2-datatableEntries-container"
-                                        role="textbox" aria-readonly="true" title="15"><span>15</span></span><span
-                                        class="select2-selection__arrow" role="presentation"><b
-                                            role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-                                aria-hidden="true"></span></span>
-                        <!-- End Select -->
-
-                        <span class="text-secondary mr-2">of</span>
-
-                        <!-- Pagination Quantity -->
-                        <span id="datatableWithPaginationInfoTotalQty">24</span>
-                    </div>
-                </div>
-
-                <div class="col-sm-auto">
-                    <div class="d-flex justify-content-center justify-content-sm-end">
-                        <!-- Pagination -->
-                        <nav id="datatablePagination" aria-label="Activity pagination">
-                            <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
-                                <ul id="datatable_pagination" class="pagination datatable-custom-pagination">
-                                    <li class="paginate_item page-item"
-                                        [attr.disabled]="search.pagination.page == 1 ? '' : null">
-                                        <a (click)="previousPage()" class="paginate_button previous page-link"
-                                            aria-controls="datatable" data-dt-idx="0" tabindex="0"
-                                            id="datatable_previous"><span aria-hidden="true">Geri</span>
-                                        </a>
-                                    </li>
-                                    <li class="paginate_item page-item active"><a class="paginate_button page-link"
-                                            aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a></li>
-                                    <li class="paginate_item page-item"><a class="paginate_button page-link"
-                                            aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a></li>
-                                    <li (click)="nextPage()" class="paginate_item page-item"><a
-                                            class="paginate_button next page-link" aria-controls="datatable"
-                                            data-dt-idx="3" tabindex="0" id="datatable_next"><span
-                                                aria-hidden="true">İleri</span></a></li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <!-- End Pagination -->
-        </div>
-        <!-- End Footer -->
-    </div>
-    <!-- End Card -->
+    <!-- End Footer -->
+</div>

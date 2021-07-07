@@ -34,4 +34,7 @@ export class AdminsComponent implements OnInit {
       'avatar avatar-soft-info avatar-circle' :
       'avatar avatar-soft-danger avatar-circle';
   }
+
+  apply(): void { }
+  clear(): void { }
 }

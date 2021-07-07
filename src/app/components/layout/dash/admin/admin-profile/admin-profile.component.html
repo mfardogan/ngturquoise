@@ -367,7 +367,6 @@
             </div>
         </ng-template>
 
-
         <ng-template #tabSurveys>
             <div class="row align-items-center mb-5">
                 <div class="col">
@@ -428,39 +427,19 @@
                                             <span class="badge badge-soft-success p-2">Tamamlandı</span>
                                         </div>
 
-                                        <div class="col-auto">
-                                            <!-- Unfold -->
-                                            <div class="hs-unfold card-unfold">
-                                                <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                                                    href="javascript:;" data-hs-unfold-options="{
-                                     &quot;target&quot;: &quot;#projectsGridDropdown1&quot;,
-                                     &quot;type&quot;: &quot;css-animation&quot;
-                                   }" [attr.data-hs-unfold-target]="'#projectsGridDropdown'+i"
-                                                    data-hs-unfold-invoker="">
-                                                    <i class="tio-more-vertical"></i>
-                                                </a>
 
-                                                <div id="projectsGridDropdown{{i}}"
-                                                    class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated hs-unfold-reverse-y"
-                                                    data-hs-target-height="148.2" data-hs-unfold-content=""
-                                                    data-hs-unfold-content-animation-in="slideInUp"
-                                                    data-hs-unfold-content-animation-out="fadeOut"
-                                                    style="animation-duration: 300ms;">
-                                                    <a class="dropdown-item" href="#">Rename project </a>
-                                                    <a class="dropdown-item" href="#">Add to favorites</a>
-                                                    <a class="dropdown-item" href="#">Archive project</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                </div>
-                                            </div>
-                                            <!-- End Unfold -->
-                                        </div>
                                     </div>
 
                                     <div class="d-flex justify-content-center mb-2">
                                         <!-- Avatar -->
-                                        <img class="avatar avatar-lg" src="{{item.smallImages[0].fileName}}"
-                                            alt="Image Description">
+                                        <img *ngIf="item.smallImages.length > 0" class="avatar avatar-lg"
+                                            src="{{item.smallImages[0].fileName}}" alt="Image Description">
+
+
+                                        <span *ngIf="item.smallImages.length == 0"
+                                            class="avatar avatar-lg avatar-primary ">
+                                            <span class="avatar-initials">{{item.title[0]}}</span>
+                                        </span>
                                     </div>
 
                                     <div class="mb-4">
@@ -469,44 +448,17 @@
                                         <span class="font-size-sm">{{item.creationAt | date: 'dd.MM.yyyy hh:mm'}}</span>
                                     </div>
 
-                                    <small class="card-subtitle">Gruplar: </small>
+                                    <small class="card-subtitle">{{item.choiceGroup.name}} </small>
 
                                     <div class="d-flex justify-content-center">
-                                        <!-- Avatar Group -->
-                                        <div class="avatar-group avatar-group-sm avatar-circle z-index-2">
-                                            <a class="avatar" href="#" data-toggle="tooltip" data-placement="top"
-                                                title="" data-original-title="Ella Lauda">
-                                                <img class="avatar-img" src="./assets/img/160x160/img9.jpg"
-                                                    alt="Image Description">
-                                            </a>
-                                            <a class="avatar" href="#" data-toggle="tooltip" data-placement="top"
-                                                title="" data-original-title="David Harrison">
-                                                <img class="avatar-img" src="./assets/img/160x160/img3.jpg"
-                                                    alt="Image Description">
-                                            </a>
-                                            <a class="avatar avatar-soft-dark" href="#" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Antony Taylor">
-                                                <span class="avatar-initials">A</span>
-                                            </a>
-                                            <a class="avatar avatar-soft-info" href="#" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Sara Iwens">
-                                                <span class="avatar-initials">S</span>
-                                            </a>
-                                            <a class="avatar" href="#" data-toggle="tooltip" data-placement="top"
-                                                title="" data-original-title="Finch Hoot">
-                                                <img class="avatar-img" src="./assets/img/160x160/img5.jpg"
-                                                    alt="Image Description">
-                                            </a>
-                                            <a class="avatar avatar-light avatar-circle" href="#" data-toggle="tooltip"
-                                                data-placement="top" title=""
-                                                data-original-title="Sam Kart, Amanda Harvey and 1 more">
-                                                <span class="avatar-initials">+3</span>
-                                            </a>
-                                        </div>
-                                        <!-- End Avatar Group -->
+                                        <span *ngFor="let choice of item.choiceGroup.choices"
+                                            style="border: 1px solid rgb(153, 153, 153); width: 20px; height: 20px;"
+                                            [style.background-color]="choice.color"
+                                            class="legend-indicator legend-indicator-lg">
+                                        </span>
                                     </div>
 
-                                    <a class="stretched-link" href="#"></a>
+                                    <a class="stretched-link" [routerLink]="['/survey',item.id]"></a>
                                 </div>
                                 <!-- End Body -->
 
@@ -520,7 +472,7 @@
                                         </div>
 
                                         <div class="col column-divider">
-                                            <span class="h4">{{item.progressPercent}}%</span>
+                                            <span class="h4">% {{item.progressPercent}}</span>
                                             <span class="d-block font-size-sm"> Tamamlandı</span>
                                         </div>
 
@@ -531,80 +483,53 @@
                             </div>
                             <!-- End Card -->
                         </div>
-
                     </div>
                     <!-- End Row -->
                 </div>
 
                 <div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="list-tab">
-                    <div class="row row-cols-1">
+                    <div *ngFor="let item of surveys" class="row row-cols-1">
                         <div class="col mb-3 mb-lg-5">
                             <!-- Card -->
                             <div class="card card-body">
                                 <div class="media">
                                     <!-- Avatar -->
-                                    <img class="avatar mr-3 mr-lg-4" src="./assets/svg/brands/google-webdev.svg"
-                                        alt="Image Description">
+                                    <a [routerLink]="['/survey/',item.id]">
+                                        <img *ngIf="item.smallImages.length>0" class="avatar mr-3 mr-lg-4"
+                                            src="{{item.smallImages[0].fileName}}" alt="Image Description">
+                                        <span *ngIf="item.smallImages.length == 0"
+                                            class="avatar avatar-primary mr-3 mr-lg-4">
+                                            <span class="avatar-initials">{{item.title[0]}}</span>
+                                        </span>
+                                    </a>
 
                                     <div class="media-body">
                                         <div class="row align-items-sm-center">
                                             <div class="col">
-                                                <span class="badge badge-soft-secondary p-2 mb-2">To do</span>
 
-                                                <h3 class="mb-1">Webdev</h3>
+                                                <div *ngIf="item.status === 0">
+                                                    <span class="badge badge-soft-primary">Devam ediyor</span>
+                                                </div>
+
+                                                <div *ngIf="item.status === 1">
+                                                    <span class="badge badge-soft-warning">Kontrolde</span>
+                                                </div>
+
+                                                <div *ngIf="item.status === 2">
+                                                    <span class="badge badge-soft-success">Tamamlandı</span>
+                                                </div>
+
+                                                <h3 class="mb-1">{{item.title}}</h3>
                                             </div>
 
                                             <div class="col-md-3 d-none d-md-flex justify-content-md-end ml-n3">
-                                                <!-- Avatar Group -->
-                                                <div class="avatar-group avatar-group-sm avatar-circle">
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Finch Hoot">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img5.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar avatar-soft-dark" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Bob Bardly">
-                                                        <span class="avatar-initials">B</span>
-                                                    </a>
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title=""
-                                                        data-original-title="Clarice Boone">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img7.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar avatar-soft-dark" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Adam Keep">
-                                                        <span class="avatar-initials">A</span>
-                                                    </a>
+                                                <div class="d-flex justify-content-center">
+                                                    <span *ngFor="let choice of item.choiceGroup.choices"
+                                                        style="border: 1px solid rgb(153, 153, 153); width: 15px; height: 15px;"
+                                                        [style.background-color]="choice.color"
+                                                        class="legend-indicator legend-indicator-lg">
+                                                    </span>
                                                 </div>
-                                                <!-- End Avatar Group -->
-                                            </div>
-
-                                            <div class="col-auto">
-                                                <!-- Unfold -->
-                                                <div class="hs-unfold card-unfold">
-                                                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                                                        href="javascript:;" data-hs-unfold-options="{
-                                       &quot;target&quot;: &quot;#projectsListDropdown1&quot;,
-                                       &quot;type&quot;: &quot;css-animation&quot;
-                                     }" data-hs-unfold-target="#projectsListDropdown1" data-hs-unfold-invoker="">
-                                                        <i class="tio-more-vertical"></i>
-                                                    </a>
-
-                                                    <div id="projectsListDropdown1"
-                                                        class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                                                        data-hs-target-height="0" data-hs-unfold-content=""
-                                                        data-hs-unfold-content-animation-in="slideInUp"
-                                                        data-hs-unfold-content-animation-out="fadeOut"
-                                                        style="animation-duration: 300ms;">
-                                                        <a class="dropdown-item" href="#">Rename project </a>
-                                                        <a class="dropdown-item" href="#">Add to favorites</a>
-                                                        <a class="dropdown-item" href="#">Archive project</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                                <!-- End Unfold -->
                                             </div>
                                         </div>
                                         <!-- End Row -->
@@ -612,810 +537,50 @@
                                         <!-- Stats -->
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                                <span class="font-size-sm">Updated:</span>
-                                                <span class="font-weight-bold text-dark">2 hours ago</span>
+                                                <span class="font-size-sm">Oluşturulma: </span>
+                                                <span class="font-weight-bold text-dark">{{item.creationAt | date:
+                                                    'dd.MM.yyyy hh:MM:ss'}}</span>
                                             </li>
 
                                             <li class="list-inline-item">
-                                                <span class="font-size-sm">Tasks:</span>
-                                                <span class="font-weight-bold text-dark">19</span>
+                                                <span class="font-size-sm">Katılımlar: </span>
+                                                <span class="font-weight-bold text-dark">{{item.answerCount}}</span>
                                             </li>
 
                                             <li class="list-inline-item">
-                                                <span class="font-size-sm">Completed:</span>
-                                                <span class="font-weight-bold text-dark">33</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Days left:</span>
-                                                <span class="font-weight-bold text-dark">10</span>
+                                                <span class="font-size-sm">Tamamlanma: </span>
+                                                <span class="font-weight-bold text-dark">%
+                                                    {{item.progressPercent}}</span>
                                             </li>
                                         </ul>
                                         <!-- End Stats -->
 
+
+
                                         <!-- Progress -->
                                         <div class="progress card-progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 0%"
-                                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div [ngClass]="getProgressPercentClass(item.id)" role="progressbar"
+                                                [style.width.%]="item.progressPercent" aria-valuenow="72"
+                                                aria-valuemin="0" aria-valuemax="100">
+                                            </div>
                                         </div>
                                         <!-- End Progress -->
 
-                                        <a class="stretched-link" href="#"></a>
+                                        <a class="stretched-link" [routerLink]="['/survey',item.id]"></a>
                                     </div>
                                 </div>
                             </div>
                             <!-- End Card -->
                         </div>
 
-                        <div class="col mb-3 mb-lg-5">
-                            <!-- Card -->
-                            <div class="card card-body">
-                                <div class="media">
-                                    <!-- Avatar -->
-                                    <img class="avatar mr-3 mr-lg-4" src="./assets/svg/brands/spec.svg"
-                                        alt="Image Description">
-
-                                    <div class="media-body">
-                                        <div class="row align-items-sm-center">
-                                            <div class="col">
-                                                <span class="badge badge-soft-primary p-2 mb-2">In progress</span>
-
-                                                <h3 class="mb-1">Get a complete store audit</h3>
-                                            </div>
-
-                                            <div class="col-md-3 d-none d-md-flex justify-content-md-end ml-n3">
-                                                <!-- Avatar Group -->
-                                                <div class="avatar-group avatar-group-sm avatar-circle">
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Ella Lauda">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img9.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar avatar-soft-info" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Sara Iwens">
-                                                        <span class="avatar-initials">S</span>
-                                                    </a>
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Finch Hoot">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img5.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar avatar-light avatar-circle" href="#"
-                                                        data-toggle="tooltip" data-placement="top" title=""
-                                                        data-original-title="Sam Kart, Amanda Harvey and 1 more">
-                                                        <span class="avatar-initials">+5</span>
-                                                    </a>
-                                                </div>
-                                                <!-- End Avatar Group -->
-                                            </div>
-
-                                            <div class="col-auto">
-                                                <!-- Unfold -->
-                                                <div class="hs-unfold card-unfold">
-                                                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                                                        href="javascript:;" data-hs-unfold-options="{
-                                       &quot;target&quot;: &quot;#projectsListDropdown2&quot;,
-                                       &quot;type&quot;: &quot;css-animation&quot;
-                                     }" data-hs-unfold-target="#projectsListDropdown2" data-hs-unfold-invoker="">
-                                                        <i class="tio-more-vertical"></i>
-                                                    </a>
-
-                                                    <div id="projectsListDropdown2"
-                                                        class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                                                        data-hs-target-height="0" data-hs-unfold-content=""
-                                                        data-hs-unfold-content-animation-in="slideInUp"
-                                                        data-hs-unfold-content-animation-out="fadeOut"
-                                                        style="animation-duration: 300ms;">
-                                                        <a class="dropdown-item" href="#">Rename project </a>
-                                                        <a class="dropdown-item" href="#">Add to favorites</a>
-                                                        <a class="dropdown-item" href="#">Archive project</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                                <!-- End Unfold -->
-                                            </div>
-                                        </div>
-                                        <!-- End Row -->
-
-                                        <!-- Stats -->
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Updated:</span>
-                                                <span class="font-weight-bold text-dark">1 day ago</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Tasks:</span>
-                                                <span class="font-weight-bold text-dark">4</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Completed:</span>
-                                                <span class="font-weight-bold text-dark">8</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Days left:</span>
-                                                <span class="font-weight-bold text-dark">18</span>
-                                            </li>
-                                        </ul>
-                                        <!-- End Stats -->
-
-                                        <!-- Progress -->
-                                        <div class="progress card-progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 45%"
-                                                aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <!-- End Progress -->
-
-                                        <a class="stretched-link" href="#"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Card -->
-                        </div>
-
-                        <div class="col mb-3 mb-lg-5">
-                            <!-- Card -->
-                            <div class="card card-body">
-                                <div class="media">
-                                    <!-- Avatar -->
-                                    <img class="avatar mr-3 mr-lg-4" src="./assets/svg/brands/capsule.svg"
-                                        alt="Image Description">
-
-                                    <div class="media-body">
-                                        <div class="row align-items-sm-center">
-                                            <div class="col">
-                                                <span class="badge badge-soft-success p-2 mb-2">Completed</span>
-
-                                                <h3 class="mb-1">Build stronger customer relationships</h3>
-                                            </div>
-
-                                            <div class="col-md-3 d-none d-md-flex justify-content-md-end ml-n3">
-                                                <!-- Avatar Group -->
-                                                <div class="avatar-group avatar-group-sm avatar-circle">
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title=""
-                                                        data-original-title="Amanda Harvey">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img10.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title=""
-                                                        data-original-title="David Harrison">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img3.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar avatar-soft-dark" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Zack Ins">
-                                                        <span class="avatar-initials">Z</span>
-                                                    </a>
-                                                    <a class="avatar avatar-light avatar-circle" href="#"
-                                                        data-toggle="tooltip" data-placement="top" title=""
-                                                        data-original-title="Lewis Clarke, Chris Mathew and 3 more">
-                                                        <span class="avatar-initials">+5</span>
-                                                    </a>
-                                                </div>
-                                                <!-- End Avatar Group -->
-                                            </div>
-
-                                            <div class="col-auto">
-                                                <!-- Unfold -->
-                                                <div class="hs-unfold card-unfold">
-                                                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                                                        href="javascript:;" data-hs-unfold-options="{
-                                       &quot;target&quot;: &quot;#projectsListDropdown3&quot;,
-                                       &quot;type&quot;: &quot;css-animation&quot;
-                                     }" data-hs-unfold-target="#projectsListDropdown3" data-hs-unfold-invoker="">
-                                                        <i class="tio-more-vertical"></i>
-                                                    </a>
-
-                                                    <div id="projectsListDropdown3"
-                                                        class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                                                        data-hs-target-height="0" data-hs-unfold-content=""
-                                                        data-hs-unfold-content-animation-in="slideInUp"
-                                                        data-hs-unfold-content-animation-out="fadeOut"
-                                                        style="animation-duration: 300ms;">
-                                                        <a class="dropdown-item" href="#">Rename project </a>
-                                                        <a class="dropdown-item" href="#">Add to favorites</a>
-                                                        <a class="dropdown-item" href="#">Archive project</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                                <!-- End Unfold -->
-                                            </div>
-                                        </div>
-                                        <!-- End Row -->
-
-                                        <!-- Stats -->
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Updated:</span>
-                                                <span class="font-weight-bold text-dark">1 day ago</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Tasks:</span>
-                                                <span class="font-weight-bold text-dark">7</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Completed:</span>
-                                                <span class="font-weight-bold text-dark">7</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Days left:</span>
-                                                <span class="font-weight-bold text-dark">0</span>
-                                            </li>
-                                        </ul>
-                                        <!-- End Stats -->
-
-                                        <!-- Progress -->
-                                        <div class="progress card-progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <!-- End Progress -->
-
-                                        <a class="stretched-link" href="#"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Card -->
-                        </div>
-
-                        <div class="col mb-3 mb-lg-5">
-                            <!-- Card -->
-                            <div class="card card-body">
-                                <div class="media">
-                                    <!-- Avatar -->
-                                    <img class="avatar mr-3 mr-lg-4" src="./assets/svg/brands/prosperops.svg"
-                                        alt="Image Description">
-
-                                    <div class="media-body">
-                                        <div class="row align-items-sm-center">
-                                            <div class="col">
-                                                <span class="badge badge-soft-primary p-2 mb-2">In progress</span>
-
-                                                <h3 class="mb-1">Cloud computing</h3>
-                                            </div>
-
-                                            <div class="col-md-3 d-none d-md-flex justify-content-md-end ml-n3">
-                                                <!-- Avatar Group -->
-                                                <div class="avatar-group avatar-group-sm avatar-circle">
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Finch Hoot">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img5.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar avatar-soft-dark" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Bob Bardly">
-                                                        <span class="avatar-initials">B</span>
-                                                    </a>
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Linda Bates">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img8.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Ella Lauda">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img9.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                </div>
-                                                <!-- End Avatar Group -->
-                                            </div>
-
-                                            <div class="col-auto">
-                                                <!-- Unfold -->
-                                                <div class="hs-unfold card-unfold">
-                                                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                                                        href="javascript:;" data-hs-unfold-options="{
-                                       &quot;target&quot;: &quot;#projectsListDropdown4&quot;,
-                                       &quot;type&quot;: &quot;css-animation&quot;
-                                     }" data-hs-unfold-target="#projectsListDropdown4" data-hs-unfold-invoker="">
-                                                        <i class="tio-more-vertical"></i>
-                                                    </a>
-
-                                                    <div id="projectsListDropdown4"
-                                                        class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                                                        data-hs-target-height="0" data-hs-unfold-content=""
-                                                        data-hs-unfold-content-animation-in="slideInUp"
-                                                        data-hs-unfold-content-animation-out="fadeOut"
-                                                        style="animation-duration: 300ms;">
-                                                        <a class="dropdown-item" href="#">Rename project </a>
-                                                        <a class="dropdown-item" href="#">Add to favorites</a>
-                                                        <a class="dropdown-item" href="#">Archive project</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                                <!-- End Unfold -->
-                                            </div>
-                                        </div>
-                                        <!-- End Row -->
-
-                                        <!-- Stats -->
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Updated:</span>
-                                                <span class="font-weight-bold text-dark">2 hours ago</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Tasks:</span>
-                                                <span class="font-weight-bold text-dark">4</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Completed:</span>
-                                                <span class="font-weight-bold text-dark">8</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Days left:</span>
-                                                <span class="font-weight-bold text-dark">30</span>
-                                            </li>
-                                        </ul>
-                                        <!-- End Stats -->
-
-                                        <!-- Progress -->
-                                        <div class="progress card-progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 57%"
-                                                aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <!-- End Progress -->
-
-                                        <a class="stretched-link" href="#"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Card -->
-                        </div>
-
-                        <div class="col mb-3 mb-lg-5">
-                            <!-- Card -->
-                            <div class="card card-body">
-                                <div class="media">
-                                    <!-- Avatar -->
-                                    <img class="avatar mr-3 mr-lg-4" src="./assets/svg/brands/mailchimp.svg"
-                                        alt="Image Description">
-
-                                    <div class="media-body">
-                                        <div class="row align-items-sm-center">
-                                            <div class="col">
-                                                <span class="badge badge-soft-primary p-2 mb-2">In progress</span>
-
-                                                <h3 class="mb-1">Update subscription method</h3>
-                                            </div>
-
-                                            <div class="col-md-3 d-none d-md-flex justify-content-md-end ml-n3">
-                                                <!-- Avatar Group -->
-                                                <div class="avatar-group avatar-group-sm avatar-circle">
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Costa Quinn">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img6.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title=""
-                                                        data-original-title="Clarice Boone">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img7.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar avatar-soft-dark" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Adam Keep">
-                                                        <span class="avatar-initials">A</span>
-                                                    </a>
-                                                </div>
-                                                <!-- End Avatar Group -->
-                                            </div>
-
-                                            <div class="col-auto">
-                                                <!-- Unfold -->
-                                                <div class="hs-unfold card-unfold">
-                                                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                                                        href="javascript:;" data-hs-unfold-options="{
-                                       &quot;target&quot;: &quot;#projectsListDropdown5&quot;,
-                                       &quot;type&quot;: &quot;css-animation&quot;
-                                     }" data-hs-unfold-target="#projectsListDropdown5" data-hs-unfold-invoker="">
-                                                        <i class="tio-more-vertical"></i>
-                                                    </a>
-
-                                                    <div id="projectsListDropdown5"
-                                                        class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                                                        data-hs-target-height="0" data-hs-unfold-content=""
-                                                        data-hs-unfold-content-animation-in="slideInUp"
-                                                        data-hs-unfold-content-animation-out="fadeOut"
-                                                        style="animation-duration: 300ms;">
-                                                        <a class="dropdown-item" href="#">Rename project </a>
-                                                        <a class="dropdown-item" href="#">Add to favorites</a>
-                                                        <a class="dropdown-item" href="#">Archive project</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                                <!-- End Unfold -->
-                                            </div>
-                                        </div>
-                                        <!-- End Row -->
-
-                                        <!-- Stats -->
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Updated:</span>
-                                                <span class="font-weight-bold text-dark">2 days ago</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Tasks:</span>
-                                                <span class="font-weight-bold text-dark">25</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Completed:</span>
-                                                <span class="font-weight-bold text-dark">30</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Days left:</span>
-                                                <span class="font-weight-bold text-dark">20</span>
-                                            </li>
-                                        </ul>
-                                        <!-- End Stats -->
-
-                                        <!-- Progress -->
-                                        <div class="progress card-progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 59%"
-                                                aria-valuenow="59" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <!-- End Progress -->
-
-                                        <a class="stretched-link" href="#"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Card -->
-                        </div>
-
-                        <div class="col mb-3 mb-lg-5">
-                            <!-- Card -->
-                            <div class="card card-body">
-                                <div class="media">
-                                    <!-- Avatar -->
-                                    <span class="avatar avatar-soft-info avatar-circle mr-3 mr-lg-4">
-                                        <span class="avatar-initials">I</span>
-                                    </span>
-                                    <!-- End Avatar -->
-
-                                    <div class="media-body">
-                                        <div class="row align-items-sm-center">
-                                            <div class="col">
-                                                <span class="badge badge-soft-secondary p-2 mb-2">To do</span>
-
-                                                <h3 class="mb-1">Improve social banners</h3>
-                                            </div>
-
-                                            <div class="col-md-3 d-none d-md-flex justify-content-md-end ml-n3">
-                                                <!-- Avatar Group -->
-                                                <div class="avatar-group avatar-group-sm avatar-circle">
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Costa Quinn">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img6.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title=""
-                                                        data-original-title="Clarice Boone">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img7.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Sam Kart">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img4.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar avatar-soft-primary" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Daniel Cs.">
-                                                        <span class="avatar-initials">D</span>
-                                                    </a>
-                                                </div>
-                                                <!-- End Avatar Group -->
-                                            </div>
-
-                                            <div class="col-auto">
-                                                <!-- Unfold -->
-                                                <div class="hs-unfold card-unfold">
-                                                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                                                        href="javascript:;" data-hs-unfold-options="{
-                                       &quot;target&quot;: &quot;#projectsListDropdown6&quot;,
-                                       &quot;type&quot;: &quot;css-animation&quot;
-                                     }" data-hs-unfold-target="#projectsListDropdown6" data-hs-unfold-invoker="">
-                                                        <i class="tio-more-vertical"></i>
-                                                    </a>
-
-                                                    <div id="projectsListDropdown6"
-                                                        class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                                                        data-hs-target-height="0" data-hs-unfold-content=""
-                                                        data-hs-unfold-content-animation-in="slideInUp"
-                                                        data-hs-unfold-content-animation-out="fadeOut"
-                                                        style="animation-duration: 300ms;">
-                                                        <a class="dropdown-item" href="#">Rename project </a>
-                                                        <a class="dropdown-item" href="#">Add to favorites</a>
-                                                        <a class="dropdown-item" href="#">Archive project</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                                <!-- End Unfold -->
-                                            </div>
-                                        </div>
-                                        <!-- End Row -->
-
-                                        <!-- Stats -->
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Updated:</span>
-                                                <span class="font-weight-bold text-dark">1 week ago</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Tasks:</span>
-                                                <span class="font-weight-bold text-dark">9</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Completed:</span>
-                                                <span class="font-weight-bold text-dark">16</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Days left:</span>
-                                                <span class="font-weight-bold text-dark">21</span>
-                                            </li>
-                                        </ul>
-                                        <!-- End Stats -->
-
-                                        <!-- Progress -->
-                                        <div class="progress card-progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 0%"
-                                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <!-- End Progress -->
-
-                                        <a class="stretched-link" href="#"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Card -->
-                        </div>
-
-                        <div class="col mb-3 mb-lg-5">
-                            <!-- Card -->
-                            <div class="card card-body">
-                                <div class="media">
-                                    <!-- Avatar -->
-                                    <img class="avatar mr-3 mr-lg-4" src="./assets/svg/brands/figma.svg"
-                                        alt="Image Description">
-
-                                    <div class="media-body">
-                                        <div class="row align-items-sm-center">
-                                            <div class="col">
-                                                <span class="badge badge-soft-success p-2 mb-2">Completed</span>
-
-                                                <h3 class="mb-1">Create a new theme</h3>
-                                            </div>
-
-                                            <div class="col-md-3 d-none d-md-flex justify-content-md-end ml-n3">
-                                                <!-- Avatar Group -->
-                                                <div class="avatar-group avatar-group-sm avatar-circle">
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Costa Quinn">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img6.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title=""
-                                                        data-original-title="Clarice Boone">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img7.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar avatar-soft-dark" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Zack Ins">
-                                                        <span class="avatar-initials">Z</span>
-                                                    </a>
-                                                </div>
-                                                <!-- End Avatar Group -->
-                                            </div>
-
-                                            <div class="col-auto">
-                                                <!-- Unfold -->
-                                                <div class="hs-unfold card-unfold">
-                                                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                                                        href="javascript:;" data-hs-unfold-options="{
-                                       &quot;target&quot;: &quot;#projectsListDropdown7&quot;,
-                                       &quot;type&quot;: &quot;css-animation&quot;
-                                     }" data-hs-unfold-target="#projectsListDropdown7" data-hs-unfold-invoker="">
-                                                        <i class="tio-more-vertical"></i>
-                                                    </a>
-
-                                                    <div id="projectsListDropdown7"
-                                                        class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                                                        data-hs-target-height="0" data-hs-unfold-content=""
-                                                        data-hs-unfold-content-animation-in="slideInUp"
-                                                        data-hs-unfold-content-animation-out="fadeOut"
-                                                        style="animation-duration: 300ms;">
-                                                        <a class="dropdown-item" href="#">Rename project </a>
-                                                        <a class="dropdown-item" href="#">Add to favorites</a>
-                                                        <a class="dropdown-item" href="#">Archive project</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                                <!-- End Unfold -->
-                                            </div>
-                                        </div>
-                                        <!-- End Row -->
-
-                                        <!-- Stats -->
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Updated:</span>
-                                                <span class="font-weight-bold text-dark">1 week ago</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Tasks:</span>
-                                                <span class="font-weight-bold text-dark">7</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Completed:</span>
-                                                <span class="font-weight-bold text-dark">7</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Days left:</span>
-                                                <span class="font-weight-bold text-dark">0</span>
-                                            </li>
-                                        </ul>
-                                        <!-- End Stats -->
-
-                                        <!-- Progress -->
-                                        <div class="progress card-progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <!-- End Progress -->
-
-                                        <a class="stretched-link" href="#"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Card -->
-                        </div>
-
-                        <div class="col mb-3 mb-lg-5">
-                            <!-- Card -->
-                            <div class="card card-body">
-                                <div class="media">
-                                    <!-- Avatar -->
-                                    <span class="avatar avatar-soft-dark avatar-circle mr-3 mr-lg-4">
-                                        <span class="avatar-initials">N</span>
-                                    </span>
-                                    <!-- End Avatar -->
-
-                                    <div class="media-body">
-                                        <div class="row align-items-sm-center">
-                                            <div class="col">
-                                                <span class="badge badge-soft-primary p-2 mb-2">In progress</span>
-
-                                                <h3 class="mb-1">Notifications</h3>
-                                            </div>
-
-                                            <div class="col-md-3 d-none d-md-flex justify-content-md-end ml-n3">
-                                                <!-- Avatar Group -->
-                                                <div class="avatar-group avatar-group-sm avatar-circle">
-                                                    <a class="avatar avatar-soft-danger" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title=""
-                                                        data-original-title="Teresa Eyker">
-                                                        <span class="avatar-initials">T</span>
-                                                    </a>
-                                                    <a class="avatar" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title=""
-                                                        data-original-title="Amanda Harvey">
-                                                        <img class="avatar-img" src="./assets/img/160x160/img10.jpg"
-                                                            alt="Image Description">
-                                                    </a>
-                                                    <a class="avatar avatar-soft-warning" href="#" data-toggle="tooltip"
-                                                        data-placement="top" title="" data-original-title="Olivier L.">
-                                                        <span class="avatar-initials">O</span>
-                                                    </a>
-                                                    <a class="avatar avatar-light avatar-circle" href="#"
-                                                        data-toggle="tooltip" data-placement="top" title=""
-                                                        data-original-title="Brian Halligan, Rachel Doe and 7 more">
-                                                        <span class="avatar-initials">+9</span>
-                                                    </a>
-                                                </div>
-                                                <!-- End Avatar Group -->
-                                            </div>
-
-                                            <div class="col-auto">
-                                                <!-- Unfold -->
-                                                <div class="hs-unfold card-unfold">
-                                                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                                                        href="javascript:;" data-hs-unfold-options="{
-                                       &quot;target&quot;: &quot;#projectsListDropdown8&quot;,
-                                       &quot;type&quot;: &quot;css-animation&quot;
-                                     }" data-hs-unfold-target="#projectsListDropdown8" data-hs-unfold-invoker="">
-                                                        <i class="tio-more-vertical"></i>
-                                                    </a>
-
-                                                    <div id="projectsListDropdown8"
-                                                        class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                                                        data-hs-target-height="0" data-hs-unfold-content=""
-                                                        data-hs-unfold-content-animation-in="slideInUp"
-                                                        data-hs-unfold-content-animation-out="fadeOut"
-                                                        style="animation-duration: 300ms;">
-                                                        <a class="dropdown-item" href="#">Rename project </a>
-                                                        <a class="dropdown-item" href="#">Add to favorites</a>
-                                                        <a class="dropdown-item" href="#">Archive project</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                    </div>
-                                                </div>
-                                                <!-- End Unfold -->
-                                            </div>
-                                        </div>
-                                        <!-- End Row -->
-
-                                        <!-- Stats -->
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Updated:</span>
-                                                <span class="font-weight-bold text-dark">1 week ago</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Tasks:</span>
-                                                <span class="font-weight-bold text-dark">9</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Completed:</span>
-                                                <span class="font-weight-bold text-dark">16</span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span class="font-size-sm">Days left:</span>
-                                                <span class="font-weight-bold text-dark">21</span>
-                                            </li>
-                                        </ul>
-                                        <!-- End Stats -->
-
-                                        <!-- Progress -->
-                                        <div class="progress card-progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 77%"
-                                                aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <!-- End Progress -->
-
-                                        <a class="stretched-link" href="#"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Card -->
-                        </div>
                     </div>
                     <!-- End Row -->
                 </div>
             </div>
 
-            <a *ngIf="data.createdSurveys" class="btn btn-block btn-white" href="javascript:;">
-                <i class="tio-refresh mr-1"></i> Daha fazla anket...
+            <a (click)="nextPageOfProjectHistory()" *ngIf="data.createdSurveys" class="btn btn-block btn-white"
+                href="javascript:;">
+                <i class="tio-refresh mr-1"></i> Daha fazla
             </a>
         </ng-template>
 

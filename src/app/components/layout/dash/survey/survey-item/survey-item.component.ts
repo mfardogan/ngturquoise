@@ -12,6 +12,7 @@ import SurveyHttp from '../survey-http';
 export class SurveyItemComponent implements OnInit {
 
   constructor(
+    private surveyHttp: SurveyHttp,
     private route: ActivatedRoute
   ) { }
 
@@ -24,9 +25,12 @@ export class SurveyItemComponent implements OnInit {
     if (!(survey == undefined || survey == '')) {
       this.survey = Number(survey);
 
-      Dependency.get(SurveyHttp)
+      this.surveyHttp
         .get(this.survey)
-        .subscribe(e => this.data = e);
+        .subscribe(e => {
+          this.data = e;
+          console.log(this.data);
+        });
     }
   }
 

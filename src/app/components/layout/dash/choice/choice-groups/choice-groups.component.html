@@ -15,7 +15,7 @@
 
 
         <div class="col-sm-auto">
-            <a routerLink="/choice" class="btn btn-success" data-toggle="modal" data-target="#createAKIKeyModal">
+            <a routerLink="/choice" class="btn btn-primary" data-toggle="modal" data-target="#createAKIKeyModal">
                 <i class="tio-add mr-1"></i> Yeni Seçenek Grubu
             </a>
         </div>
@@ -24,122 +24,172 @@
 </div>
 <!-- End Page Header -->
 
-<!-- Stats -->
-<div class="row">
-    <div class="col-md-6 col-lg-4 mb-3 mb-lg-5">
-        <!-- Card -->
-        <div class="card">
-            <div class="card-body text-center">
-                <small class="text-cap">Projects</small>
-                <span class="js-counter d-block display-3 text-dark mb-2" data-value="150">150</span>
+<div class="card mb-3 mb-lg-5">
+    <!-- Body -->
+    <div class="card-body">
+        <div class="row align-items-md-center gx-md-5">
+            <div class="col-md-auto mb-3 mb-md-0">
+                <div class="d-flex align-items-center">
+                    <img class="avatar avatar-xxl avatar-4by3 mr-4" src="./assets/svg/illustrations/think.svg"
+                        alt="Image Description">
 
-                <div class="row">
-                    <div class="col text-right">
-                        <span class="d-block font-weight-bold text-success">
-                            <i class="tio-trending-up"></i> 12%
-                        </span>
-                        <span class="d-block">change</span>
-                    </div>
-
-                    <div class="col column-divider text-left">
-                        <span class="d-block font-weight-bold text-dark">5</span>
-                        <span class="d-block">last week</span>
+                    <div class="d-block">
+                        <h4 class="display-2 text-dark mb-0">4.84</h4>
+                        <p>— of 7 reviews <span class="badge badge-soft-dark badge-pill ml-1">+1 this week</span></p>
                     </div>
                 </div>
-                <!-- End Row -->
+            </div>
+
+            <div class="col-md">
+                <ul class="list-unstyled list-unstyled-py-2 mb-0">
+
+
+                    <!-- Review Ratings -->
+                    <li class="d-flex align-items-center font-size-sm">
+                        <span class="mr-3">3 star</span>
+                        <div class="progress flex-grow-1">
+                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <span class="ml-3">0</span>
+                    </li>
+                    <!-- End Review Ratings -->
+
+                    <!-- Review Ratings -->
+                    <li class="d-flex align-items-center font-size-sm">
+                        <span class="mr-3">2 star</span>
+                        <div class="progress flex-grow-1">
+                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <span class="ml-3">0</span>
+                    </li>
+                    <!-- End Review Ratings -->
+
+                    <!-- Review Ratings -->
+                    <li class="d-flex align-items-center font-size-sm">
+                        <span class="mr-3">1 star</span>
+                        <div class="progress flex-grow-1">
+                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <span class="ml-3">0</span>
+                    </li>
+                    <!-- End Review Ratings -->
+                </ul>
             </div>
         </div>
-        <!-- End Card -->
     </div>
-
-    <div class="col-md-6 col-lg-4 mb-3 mb-lg-5">
-        <!-- Card -->
-        <div class="card">
-            <div class="card-body text-center">
-                <small class="text-cap"><span class="legend-indicator bg-success"></span> Successful
-                    conversions</small>
-                <span class="js-counter d-block display-3 text-dark mb-2" data-value="25">25</span>
-
-                <div class="row">
-                    <div class="col text-right">
-                        <span class="d-block font-weight-bold text-success">
-                            <i class="tio-trending-up"></i> 5.6%
-                        </span>
-                        <span class="d-block">change</span>
-                    </div>
-
-                    <div class="col column-divider text-left">
-                        <span class="d-block font-weight-bold text-dark">7</span>
-                        <span class="d-block">last week</span>
-                    </div>
-                </div>
-                <!-- End Row -->
-            </div>
-        </div>
-        <!-- End Card -->
-    </div>
-
-    <div class="col-md-6 col-lg-4 mb-3 mb-lg-5">
-        <!-- Card -->
-        <div class="card">
-            <div class="card-body text-center">
-                <small class="text-cap"><span class="legend-indicator bg-danger"></span> Failed conversions</small>
-                <span class="js-counter d-block display-3 text-dark mb-2" data-value="4">4</span>
-
-                <div class="row">
-                    <div class="col text-right">
-                        <span class="d-block font-weight-bold text-danger">
-                            <i class="tio-trending-down"></i> 2.3%
-                        </span>
-                        <span class="d-block">change</span>
-                    </div>
-
-                    <div class="col column-divider text-left">
-                        <span class="d-block font-weight-bold text-dark">1</span>
-                        <span class="d-block">last week</span>
-                    </div>
-                </div>
-                <!-- End Row -->
-            </div>
-        </div>
-        <!-- End Card -->
-    </div>
+    <!-- End Body -->
 </div>
-<!-- End Stats -->
 
 <div class="card">
     <!-- Header -->
     <div class="card-header">
         <div class="row justify-content-between align-items-center flex-grow-1">
-            <div class="col-12 col-md">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="card-header-title">Seçenek grupları</h5>
-                </div>
+            <div class="col-md mb-2 mb-md-0">
+                <h4 class="card-header-title">Seçenek Grupları</h4>
+                <p class="card-text font-size-sm">Anketlere uygulanacak seçenek sınıfları</p>
             </div>
 
             <div class="col-auto">
-                <!-- Filter -->
-                <form>
-                    <!-- Search -->
-                    <div class="input-group input-group-merge input-group-flush">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="tio-search"></i>
-                            </div>
-                        </div>
-                        <input id="datatableWithSearchInput" type="search" class="form-control" placeholder="Ara"
-                            aria-label="Ara">
-                    </div>
-                    <!-- End Search -->
-                </form>
-                <!-- End Filter -->
+                <div class="d-flex align-items-center">
+
+
+                    <!-- Filter Collapse Trigger -->
+                    <a class="btn btn-white  collapsed" data-toggle="collapse" href="#filterSearchCollapse"
+                        role="button" aria-expanded="false" aria-controls="filterSearchCollapse">
+                        <i class="tio-filter-outlined mr-1"></i> Filtrele
+                    </a>
+                    <!-- End Filter Collapse Trigger -->
+                </div>
             </div>
         </div>
+        <!-- End Row -->
     </div>
     <!-- End Header -->
 
+
+    <!-- Filter Search Collapse -->
+    <div class="collapse" id="filterSearchCollapse">
+        <div class="card-body">
+            <form>
+
+                <div class="row">
+
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            <div class="alert alert-soft-white mb-5 mb-lg-7" role="alert">
+                                <div class="media align-items-center">
+                                    <img class="avatar avatar-xl mr-3"
+                                        src="./assets/svg/illustrations/yelling-reverse.svg" alt="Image Description">
+
+                                    <div class="media-body">
+                                        <h3 class="alert-heading mb-1">Dikkat!</h3>
+                                        <p class="mb-0">Kayıtları filtrelemek için istediğiniz alanları doldurun ve
+                                            <span style="font-weight: bold;">"Uygula"</span>yın. Dilediğiniz zaman
+                                            <span style="font-weight: bold;">"Temizle"</span>yerek filtreleri
+                                            kaldırabilirsiniz.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-lg-6">
+                        <!-- Form Group -->
+                        <div class="form-group">
+                            <label for="teamsFilterLabel" class="input-label">Başlık</label>
+
+                            <div class="input-group input-group-merge">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="tio-group-senior"></i>
+                                    </div>
+                                </div>
+                                <input [(ngModel)]="filterClauses.name" class=" form-control form-control-sm"
+                                    name="name" id="name" placeholder="Seçenek grubu başlığı"
+                                    aria-label="Seçenek grubu başlığı">
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <!-- Form Group -->
+                        <div class="form-group">
+                            <label for="tagsFilterLabel" class="input-label">Kod</label>
+
+                            <div class="input-group input-group-merge">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="tio-key"></i>
+                                    </div>
+                                </div>
+                                <input [(ngModel)]="filterClauses.code" class=" form-control form-control-sm"
+                                    name="code" id="code" placeholder="Seçenek grubu kodu"
+                                    aria-label="Seçenek grubu kodu">
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+                    </div>
+                </div>
+                <!-- End Row -->
+
+                <div class="d-flex justify-content-end">
+                    <button (click)="clearFilters()" type="button" class="btn btn-white mr-2">
+                        <i class="tio-clear"></i> Temizle</button>
+                    <button (click)="applyFilters()" type="button" class="btn btn-success">
+                        <i class="tio-filter"></i> Uygula</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End Filter Search Collapse -->
+
     <!-- Table -->
-    <div class="table-responsive datatable-custom">
+    <div *ngIf="data.length > 0" class="table-responsive datatable-custom">
         <div id="datatableWithSearch_wrapper" class="dataTables_wrapper no-footer">
             <div class="dataTables_length" id="datatableWithSearch_length"><label>Show <select
                         name="datatableWithSearch_length" aria-controls="datatableWithSearch" class="">
@@ -153,12 +203,12 @@
             <table id="datatableWithSearch"
                 class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer"
                 data-hs-datatables-options="{
-                   &quot;order&quot;: [],
-                   &quot;search&quot;: &quot;#datatableWithSearchInput&quot;,
-                   &quot;isResponsive&quot;: false,
-                   &quot;isShowPaging&quot;: false,
-                   &quot;pagination&quot;: &quot;datatableWithSearchPagination&quot;
-                 }" role="grid" aria-describedby="datatableWithSearch_info">
+               &quot;order&quot;: [],
+               &quot;search&quot;: &quot;#datatableWithSearchInput&quot;,
+               &quot;isResponsive&quot;: false,
+               &quot;isShowPaging&quot;: false,
+               &quot;pagination&quot;: &quot;datatableWithSearchPagination&quot;
+             }" role="grid" aria-describedby="datatableWithSearch_info">
                 <thead class="thead-light">
                     <tr role="row">
                         <th class="" tabindex="0" rowspan="1" colspan="1"
@@ -190,9 +240,9 @@
                     <tr role="row" class="{{i%2 == 0 ? 'odd' : 'even'}}" *ngFor="let item of data;let i = index;">
                         <td>{{i+1}}</td>
                         <td>
-                            <a class="d-flex align-items-center" href="./user-profile.html">
+                            <a class="d-flex align-items-center" [routerLink]="['/choice', item.id]">
                                 <div class="avatar avatar-soft-dark avatar-circle">
-                                    <span class="avatar-initials">{{item.name[0]}}</span>
+                                    <span class="avatar-initials">{{item.name.slice(0,2)}}</span>
                                 </div>
                                 <div class="ml-3">
                                     <span class="d-block h5 text-hover-primary mb-0">{{item.name}}</span>
@@ -243,17 +293,17 @@
                         <td>
 
                             <div class="dropdown">
-                                <button class="btn btn-sm btn-white dropdown-toggle" type="button"
-                                    id="dropdownMenuButtonWithIcon{{i}}" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    İşlem
+                                <button class="btn btn-sm btn-white" type="button" id="dropdownMenuButtonWithIcon{{i}}"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="tio-cut"></i> İşlem
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonWithIcon">
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" [routerLink]="['/choice',item.id]">
                                         <i class="tio-edit dropdown-item-icon"></i> Düzenle
                                     </a>
                                     <a style="color: rgb(151, 24, 24);" class="dropdown-item" href="#">
-                                        <i style="color: rgb(151, 24, 24);" class="tio-delete-outlined dropdown-item-icon"></i> Sil
+                                        <i style="color: rgb(151, 24, 24);"
+                                            class="tio-delete-outlined dropdown-item-icon"></i> Sil
                                     </a>
 
                                 </div>
@@ -273,7 +323,7 @@
     <!-- End Table -->
 
     <!-- Footer -->
-    <div class="card-footer">
+    <div *ngIf="data.length > 0" class="card-footer">
         <!-- Pagination -->
         <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
             <div class="col-sm mb-2 mb-sm-0">
@@ -283,16 +333,16 @@
                     <!-- Select -->
                     <select id="datatableEntries" class="js-select2-custom select2-hidden-accessible"
                         data-hs-select2-options="{
-                            &quot;minimumResultsForSearch&quot;: &quot;Infinity&quot;,
-                            &quot;customClass&quot;: &quot;custom-select custom-select-sm custom-select-borderless&quot;,
-                            &quot;dropdownAutoWidth&quot;: true,
-                            &quot;width&quot;: true
-                          }" data-select2-id="datatableEntries" tabindex="-1" aria-hidden="true">
-                        <option value="10" data-select2-id="2">10</option>
-                        <option value="15" selected="" data-select2-id="3">15</option>
-                        <option value="20" data-select2-id="4">20</option>
+                      &quot;minimumResultsForSearch&quot;: &quot;Infinity&quot;,
+                      &quot;customClass&quot;: &quot;custom-select custom-select-sm custom-select-borderless&quot;,
+                      &quot;dropdownAutoWidth&quot;: true,
+                      &quot;width&quot;: true
+                    }" data-select2-id="datatableEntries" tabindex="-1" aria-hidden="true">
+                        <option value="10" data-select2-id="25">10</option>
+                        <option value="15" selected="" data-select2-id="26">15</option>
+                        <option value="20" data-select2-id="27">20</option>
                     </select><span class="select2 select2-container select2-container--default" dir="ltr"
-                        data-select2-id="1"><span class="selection"><span
+                        data-select2-id="24"><span class="selection"><span
                                 class="select2-selection custom-select custom-select-sm custom-select-borderless"
                                 role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0"
                                 aria-disabled="false" aria-labelledby="select2-datatableEntries-container"><span
@@ -306,7 +356,7 @@
                     <span class="text-secondary mr-2">of</span>
 
                     <!-- Pagination Quantity -->
-                    <span id="datatableWithPaginationInfoTotalQty">25</span>
+                    <span id="datatableWithPaginationInfoTotalQty">24</span>
                 </div>
             </div>
 
@@ -319,14 +369,14 @@
                                 <li class="paginate_item page-item disabled"><a
                                         class="paginate_button previous page-link" aria-controls="datatable"
                                         data-dt-idx="0" tabindex="0" id="datatable_previous"><span
-                                            aria-hidden="true">Geri</span></a></li>
+                                            aria-hidden="true">Prev</span></a></li>
                                 <li class="paginate_item page-item active"><a class="paginate_button page-link"
                                         aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a></li>
                                 <li class="paginate_item page-item"><a class="paginate_button page-link"
                                         aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a></li>
                                 <li class="paginate_item page-item"><a class="paginate_button next page-link"
                                         aria-controls="datatable" data-dt-idx="3" tabindex="0" id="datatable_next"><span
-                                            aria-hidden="true">İleri</span></a></li>
+                                            aria-hidden="true">Next</span></a></li>
                             </ul>
                         </div>
                     </nav>
@@ -336,4 +386,12 @@
         <!-- End Pagination -->
     </div>
     <!-- End Footer -->
+
+
+
+    <div *ngIf="data.length == 0" class="card-body card-body-height card-body-centered">
+        <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/yelling.svg" alt="Image Description">
+        <p class="card-text">Kayıt bulunamadı!</p>
+        <a class="btn btn-sm btn-white" routerLink="/choice">Yeni seçenek grubu</a>
+    </div>
 </div>

@@ -91,7 +91,8 @@
 
                     <h1 class="page-header-title">{{title}} {{name}} {{surname}}<i
                             class="tio-verified tio-lg text-primary" data-toggle="tooltip" data-placement="top" title=""
-                            data-original-title="Top endorsed"></i></h1>
+                            data-original-title="Top endorsed"></i>
+                    </h1>
 
                     <!-- List -->
                     <ul class="list-inline list-inline-m-1">
@@ -186,8 +187,9 @@
                                         <!-- Custom Radio -->
                                         <div class="form-control">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input"
-                                                    name="userAccountTypeRadio" id="userAccountTypeRadio1" checked="">
+                                                <input (change)="setGender(1, $event)" type="radio"
+                                                    class="custom-control-input" name="userAccountTypeRadio"
+                                                    id="userAccountTypeRadio1" [checked]="data.gender == 1">
                                                 <label class="custom-control-label"
                                                     for="userAccountTypeRadio1">Bay</label>
                                             </div>
@@ -197,8 +199,9 @@
                                         <!-- Custom Radio -->
                                         <div class="form-control">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input"
-                                                    name="userAccountTypeRadio" id="userAccountTypeRadio2">
+                                                <input (change)="setGender(2, $event)" type="radio"
+                                                    class="custom-control-input" name="userAccountTypeRadio"
+                                                    id="userAccountTypeRadio2" [checked]="data.gender == 2">
                                                 <label class="custom-control-label"
                                                     for="userAccountTypeRadio2">Bayan</label>
                                             </div>
@@ -208,8 +211,9 @@
                                         <!-- Custom Radio -->
                                         <div class="form-control">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input"
-                                                    name="userAccountTypeRadio" id="userAccountTypeRadio3">
+                                                <input (change)="setGender(0, $event)" type="radio"
+                                                    class="custom-control-input" name="userAccountTypeRadio"
+                                                    id="userAccountTypeRadio3" [checked]="data.gender == 0">
                                                 <label class="custom-control-label"
                                                     for="userAccountTypeRadio3">Diğer</label>
                                             </div>

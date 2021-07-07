@@ -44,9 +44,9 @@ export class DoctorProfileComponent implements OnInit {
     }
   }
 
-  getAvatarClassNameByGender(gender: number): string {
-    const to: number = gender <= 2 ? gender : gender % 3;
-    return this.avatarClassNames[to];
+  getAvatarClassNameByGender(gender?: number): string {
+    const to = gender! <= 2 ? gender : gender! % 3;
+    return this.avatarClassNames[to!];
   }
 
   canEdit() {

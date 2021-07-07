@@ -7,18 +7,33 @@ import DoctorHttp from '../doctor-http';
 @Component({
   selector: 'doctors',
   templateUrl: './doctors.component.html',
-  styleUrls: ['./doctors.component.css', '../../../../../../assets/vendor/select2/dist/css/select2.min.css']
+  styleUrls: [
+    './doctors.component.css',
+    '../../../../../../assets/vendor/select2/dist/css/select2.min.css'
+  ]
 })
 export class DoctorsComponent implements OnInit {
 
+  constructor(
+    private doctorHttp: DoctorHttp
+  ) { }
+
   data: Array<Doctor> = [];
+  filterClauses: Doctor = new Doctor();
   search: Search<Doctor> = new Search();
 
-  constructor() { }
-
+  /**
+   * Prepare
+   */
   ngOnInit(): void {
-    Dependency.get(DoctorHttp)
-      .search(this.search)
+    this.getNextPageOfDoctors();
+  }
+
+  /**
+   * Get next page
+   */
+  getNextPageOfDoctors(): void {
+    this.doctorHttp.search(this.search)
       .subscribe((data: Array<Doctor>) => {
         this.data = data;
       })
@@ -30,14 +45,13 @@ export class DoctorsComponent implements OnInit {
       return;
     }
 
-    Dependency.get(DoctorHttp)
-      .confirm(id)
+    this.doctorHttp.confirm(id)
       .subscribe((x: any) => {
         doctor.isConfirmed = true;
       })
   }
 
-  getAvatarClassNameByGender(gender: number): string {
+  getAvatarClassNameByGender(gender?: number): string {
     return gender == 0 ? 'avatar avatar-soft-dark avatar-circle' : gender == 1 ?
       'avatar avatar-soft-info avatar-circle' :
       'avatar avatar-soft-danger avatar-circle';
@@ -45,15 +59,16 @@ export class DoctorsComponent implements OnInit {
 
   changeDoctorType(id: number, type: string) {
     const to = Number(type);
-    Dependency.get(DoctorHttp)
-      .changeType(id, to)
-      .subscribe(e => { });
+    this.doctorHttp.changeType(id, to)
+      .subscribe(e => {
+
+      });
   }
 
   getActivityPercentClass(id: number): string {
     const doctor: Doctor = this.data.filter(e => e.id === id)[0];
     const activity = doctor.activityPercent;
-   
+
     if (activity >= 0 && activity <= 40) {
       return 'progress-bar bg-danger';
     }
@@ -61,5 +76,29 @@ export class DoctorsComponent implements OnInit {
       return 'progress-bar bg-primary';
     }
     return 'progress-bar bg-success';
+  }
+
+  /**
+   * Apply filters
+   */
+  apply(): void {
+    this.search = new Search<Doctor>();
+    this.search.filter = this.filterClauses;
+    this.getNextPageOfDoctors();
+  }
+
+  /**
+   * Clear filters
+   */
+  clear(): void {
+    console.log(this.filterClauses);
+    this.filterClauses = new Doctor();
+    this.search = new Search<Doctor>();
+    this.getNextPageOfDoctors();
+
+  }
+
+  setGender(i: number) {
+    this.search.filter.gender = 2;
   }
 }

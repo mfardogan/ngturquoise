@@ -7,36 +7,79 @@ import ChoiceGroup from 'src/app/@core/models/choice-group';
 @Component({
   selector: 'choice-groups',
   templateUrl: './choice-groups.component.html',
-  styleUrls: ['./choice-groups.component.css', '../../../../../../assets/vendor/select2/dist/css/select2.min.css']
+  styleUrls: [
+    './choice-groups.component.css',
+    '../../../../../../assets/vendor/select2/dist/css/select2.min.css'
+  ]
 })
 export class ChoiceGroupsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private choiceGroupHttp: ChoiceGroupHttp
+  ) { }
 
   data: Array<ChoiceGroup> = [];
+  filterClauses: ChoiceGroup = new ChoiceGroup();
   search: Search<ChoiceGroup> = new Search<ChoiceGroup>();
 
+  /**
+   * Prepare
+   */
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    Dependency.get(ChoiceGroupHttp).search(this.search)
+    this.getNextPageOfChoiceGroups();
+  }
+
+  /**
+   * Get from server
+   */
+  getNextPageOfChoiceGroups() {
+    this.choiceGroupHttp.search(this.search)
       .subscribe((data: Array<ChoiceGroup>) => {
         this.data = data;
       });
   }
 
+  /**
+   * Remove choice group
+   * @param id Choice group id
+   */
   remove(id: number): void {
-    Dependency.get(ChoiceGroupHttp).remove(id).subscribe(x => {
-      const sequence: number = this.data.findIndex(e => e.id == id);
-      this.data.splice(sequence, 1);
-    });
+    this.choiceGroupHttp.remove(id)
+      .subscribe(x => {
+        const sequence: number = this.data.findIndex(e => e.id == id);
+        this.data.splice(sequence, 1);
+      });
   }
 
+  /**
+   * Set as default
+   * @param id Choice group id
+   */
   markAsDefault(id: number): void {
-    Dependency.get(ChoiceGroupHttp).markAsDefault(id).subscribe((e: any) => {
-      this.data.forEach(element => {
-        element.default = element.id == id;
+    this.choiceGroupHttp.markAsDefault(id)
+      .subscribe((e: any) => {
+        this.data.forEach(element => {
+          element.default = element.id == id;
+        });
       });
-    });
+  }
+
+  /**
+   * Apply filters
+   */
+  applyFilters() {
+    this.search.filter = this.filterClauses;
+    this.getNextPageOfChoiceGroups();
+  }
+
+  /**
+   * Clear filters
+   */
+  clearFilters() {
+    this.filterClauses = new ChoiceGroup();
+    this.search = new Search();
+    this.getNextPageOfChoiceGroups();
   }
 }

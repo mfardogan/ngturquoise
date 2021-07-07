@@ -1,193 +1,205 @@
-    <!-- Page Header -->
-    <div class="page-header">
-        <div class="row align-items-end mb-3">
-            <div class="col-sm">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-no-gutter">
-                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Anket</a></li>
-                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Seçenek</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Seçenek Grubu</li>
-                    </ol>
-                </nav>
+<!-- Page Header -->
+<div class="page-header">
+    <div class="row align-items-end mb-3">
+        <div class="col-sm">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-no-gutter">
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Anket</a></li>
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Seçenek</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Seçenek Grubu</li>
+                </ol>
+            </nav>
 
-                <h1 class="page-header-title">Seçenek Grubu</h1>
-            </div>
+            <h1 class="page-header-title">Seçenek Grubu</h1>
         </div>
-        <!-- End Row -->
-
-        <!-- Nav -->
-        <!-- Nav -->
-        <div class="js-nav-scroller hs-nav-scroller-horizontal">
-            <span class="hs-nav-scroller-arrow-prev" style="display: none;">
-                <a class="hs-nav-scroller-arrow-link" href="javascript:;">
-                    <i class="tio-chevron-left"></i>
-                </a>
-            </span>
-
-            <span class="hs-nav-scroller-arrow-next" style="display: none;">
-                <a class="hs-nav-scroller-arrow-link" href="javascript:;">
-                    <i class="tio-chevron-right"></i>
-                </a>
-            </span>
-
-
-        </div>
-        <!-- End Nav -->
     </div>
-    <!-- End Page Header -->
+    <!-- End Row -->
+
+    <!-- Nav -->
+    <!-- Nav -->
+    <div class="js-nav-scroller hs-nav-scroller-horizontal">
+        <span class="hs-nav-scroller-arrow-prev" style="display: none;">
+            <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                <i class="tio-chevron-left"></i>
+            </a>
+        </span>
+
+        <span class="hs-nav-scroller-arrow-next" style="display: none;">
+            <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                <i class="tio-chevron-right"></i>
+            </a>
+        </span>
 
 
-    <div class="card card-lg mb-3 mb-lg-5">
-        <!-- Header -->
-        <div class="card-header">
-            <h4 class="card-header-title">Seçenek grubu ekle</h4>
+    </div>
+    <!-- End Nav -->
+</div>
+<!-- End Page Header -->
+
+
+<div class="row">
+    <div class="col-lg-7">
+        <!-- Card -->
+        <div class="card mb-3 mb-lg-5">
+            <!-- Header -->
+            <div class="card-header">
+                <h4 class="card-header-title">Grup Bilgileri</h4>
+            </div>
+            <!-- End Header -->
+
+            <!-- Body -->
+            <div class="card-body">
+                <alert-box title="Dikkat!" message="Seçenek grubu bir ankete uygulamak isteyeceğiniz seçeneklerden oluşan bir dizi hastalık sınıfının kümesidir. 
+                ">
+                </alert-box>
+                <!-- Form Group -->
+                <div class=" form-group">
+                    <label for="projectNameProjectSettingsLabel" class="input-label">Grup adı <i
+                            class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top" title=""
+                            data-original-title="Displayed on public forums, such as Front."></i></label>
+
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="tio-briefcase-outlined"></i>
+                            </div>
+                        </div>
+                        <input [(ngModel)]="data.name" type="text" class="form-control" name="projectName"
+                            id="projectNameProjectSettingsLabel" placeholder="Seçenek grubu adı" aria-label="" value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectNameProjectSettingsLabel" class="input-label">Kod <i
+                            class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top" title=""
+                            data-original-title="Displayed on public forums, such as Front."></i></label>
+
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="tio-briefcase-outlined"></i>
+                            </div>
+                        </div>
+                        <input [(ngModel)]="data.code" type="text" class="form-control" name="projectName"
+                            id="projectNameProjectSettingsLabel" placeholder="Seçenek grubu kodu" aria-label=""
+                            value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectNameProjectSettingsLabel" class="input-label">Açıklama <i
+                            class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top" title=""
+                            data-original-title=""></i></label>
+
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="tio-briefcase-outlined"></i>
+                            </div>
+                        </div>
+                        <textarea [(ngModel)]="data.description" class="form-control" name="projectName"
+                            id="projectNameProjectSettingsLabel" placeholder="Seçenek grubu açıklaması" aria-label=""
+                            value=""></textarea>
+                    </div>
+                </div>
+                <!-- End Form Group -->
+
+
+            </div>
+            <!-- Body -->
+
+            <!-- Footer -->
+            <div class="card-footer d-flex justify-content-end align-items-center">
+                <button (click)="cancel()" type="button" class="btn btn-danger mr-2">
+                    İptal
+                </button>
+                <button (click)="save()" type="button" class="btn btn-success">
+                    <i class="tio-add"></i> Kaydet
+                </button>
+            </div>
+            <!-- End Footer -->
         </div>
-        <!-- End Header -->
+        <!-- End Card -->
+    </div>
 
-        <!-- Body -->
-        <div class="card-body">
+    <div class="col-lg-5">
+        <!-- Card -->
+        <div class="card mb-3 mb-lg-5">
+            <!-- Header -->
+            <div class="card-header">
+                <h4 class="card-header-title">Sınıflar</h4>
+            </div>
+            <!-- End Header -->
 
-            <alert-box title="Dikkat!" message="Seçenek grubu bir ankete uygulamak isteyeceğiniz seçeneklerden oluşan bir dizi hastalık sınıfının kümesidir. 
-                        Yeni bir seçenek grubu oluşturmak için formu doldurun.">
-            </alert-box>
-            <!-- Form Group -->
-            <div class=" form-group">
-                <label for="projectNameProjectSettingsLabel" class="input-label">Grup adı <i
-                        class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top" title=""
-                        data-original-title="Displayed on public forums, such as Front."></i></label>
+            <!-- Body -->
+            <div class="card-body">
 
-                <div class="input-group input-group-merge">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="tio-briefcase-outlined"></i>
+
+                <div class="bg-light border-bottom p-2 mb-3">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="card-title text-cap">Ad</h6>
                         </div>
-                    </div>
-                    <input [(ngModel)]="data.name" type="text" class="form-control" name="projectName"
-                        id="projectNameProjectSettingsLabel" placeholder="Seçenek grubu adı" aria-label="" value="">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="projectNameProjectSettingsLabel" class="input-label">Kod <i
-                        class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top" title=""
-                        data-original-title="Displayed on public forums, such as Front."></i></label>
-
-                <div class="input-group input-group-merge">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="tio-briefcase-outlined"></i>
+                        <div class="col-sm-3 d-none d-sm-inline-block">
+                            <h6 class="card-title text-cap">Kod</h6>
                         </div>
-                    </div>
-                    <input [(ngModel)]="data.code" type="text" class="form-control" name="projectName"
-                        id="projectNameProjectSettingsLabel" placeholder="Seçenek grubu kodu" aria-label="" value="">
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label for="projectNameProjectSettingsLabel" class="input-label">Açıklama <i
-                        class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top" title=""
-                        data-original-title=""></i></label>
-
-                <div class="input-group input-group-merge">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="tio-briefcase-outlined"></i>
+                        <div class="col-sm-3 d-none d-sm-inline-block">
+                            <h6 class="card-title text-cap">Renk</h6>
                         </div>
+
                     </div>
-                    <textarea [(ngModel)]="data.description" class="form-control" name="projectName"
-                        id="projectNameProjectSettingsLabel" placeholder="Seçenek grubu açıklaması" aria-label=""
-                        value=""></textarea>
                 </div>
-            </div>
-            <!-- End Form Group -->
 
-            <div class="bg-light border-bottom p-2 mb-3">
-                <div class="row">
-                    <div class="col-sm-5">
-                        <h6 class="card-title text-cap">Ad</h6>
-                    </div>
-                    <div class="col-sm-3 d-none d-sm-inline-block">
-                        <h6 class="card-title text-cap">Kod</h6>
-                    </div>
-                    <div class="col-sm-2 d-none d-sm-inline-block">
-                        <h6 class="card-title text-cap">Numara</h6>
-                    </div>
-                    <div class="col-sm-2 d-none d-sm-inline-block">
-                        <h6 class="card-title text-cap">Renk</h6>
-                    </div>
-
+                <div *ngIf="data.choices !==undefined && data.choices.length > 0 then hasdata else nodata">
                 </div>
-            </div>
-
-            <div *ngIf="data.choices !==undefined && data.choices.length > 0 then hasdata else nodata">
-            </div>
 
 
 
-            <ng-template #nodata>
-                <div class="card-body card-body-height card-body-centered" style="height: 12.25rem">
-                    <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/sorry.svg"
-                        alt="Image Description">
-                    <p class="card-text">Henüz seçenek yok!</p>
-                </div>
-            </ng-template>
-
-            <ng-template #hasdata>
-
-
-                <div class="row input-group-add-field" *ngFor="let item of data.choices; let i = index;">
-                    <div class="col-md-5">
-                        <input [(ngModel)]="item.name" type="text" class="form-control mb-3 choice-form-control"
-                            placeholder="Sınıf adı*" aria-label="Item name">
+                <ng-template #nodata>
+                    <div class="card-body card-body-height card-body-centered" style="height: 12.25rem">
+                        <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/sorry.svg"
+                            alt="Image Description">
+                        <p class="card-text">Henüz seçenek yok!</p>
                     </div>
+                </ng-template>
 
-                    <div class="col-12 col-sm-auto col-md-3">
-                        <!-- Quantity Counter -->
-                        <div class="js-quantity-counter input-group-quantity-counter mb-3">
+                <ng-template #hasdata>
+
+
+                    <div class="row input-group-add-field" *ngFor="let item of data.choices; let i = index;">
+                        <div class="col-md-4">
+                            <input [(ngModel)]="item.name" type="text" class="form-control mb-3 choice-form-control"
+                                placeholder="Sınıf adı*" aria-label="Item name">
+                        </div>
+
+                        <div class="col-md-3">
                             <input [(ngModel)]="item.code" type="text"
                                 class="js-result form-control input-group-quantity-counter-control choice-form-control"
                                 value="" placeholder="Cl1">
                         </div>
-                        <!-- End Quantity Counter -->
-                    </div>
 
-                    <div class="col-12 col-sm col-md-2">
-                        <!-- Input Group -->
-                        <div class="mb-3">
-                            <input [(ngModel)]="item.number" type="number" class="form-control choice-form-control"
-                                placeholder="0" aria-label="0">
+                        <div class="col col-md-3">
+                            <input [(ngModel)]="item.color" type="color" class="form-control mb-3 choice-form-control">
+
                         </div>
-                        <!-- End Input Group -->
+                        <div class="col col-md-1">
+                            <a class="btn btn-xs btn-ghost-danger mb-1" (click)="killChoice(i)" href="javascript:;">
+                                <i class="tio-delete-outlined"></i>
+                            </a>
+                        </div>
                     </div>
+                </ng-template>
 
-                    <div class="col col-md-1">
-                        <input [(ngModel)]="item.color" type="color" class="form-control mb-3 choice-form-control">
-
-                    </div>
-                    <div class="col col-md-1">
-                        <a class="btn btn-ghost-danger mb-1" (click)="killChoice(i)" href="javascript:;">
-                            <i class="tio-clear"></i>
-                        </a>
-                    </div>
-                </div>
-            </ng-template>
-
-            <a (click)="addChoice()" href="javascript:;"
-                class="js-create-field form-link btn btn-sm btn-no-focus btn-ghost-primary">
-                <i class="tio-add"></i> Seçenek
-            </a>
+                <a (click)="addChoice()" href="javascript:;"
+                    class="js-create-field form-link btn btn-sm btn-no-focus btn-ghost-primary">
+                    <i class="tio-add"></i> Seçenek
+                </a>
+            </div>
+            <!-- Body -->
         </div>
-        <!-- End Body -->
+        <!-- End Card -->
 
-        <!-- Footer -->
-        <div class="card-footer d-flex justify-content-end align-items-center">
-            <button (click)="cancel()" type="button" class="btn btn-danger mr-2">
-                İptal
-            </button>
-            <button (click)="save()" type="button" class="btn btn-success">
-                <i class="tio-add"></i> Kaydet
-            </button>
-        </div>
-        <!-- End Footer -->
+
     </div>
-    <!-- End Card -->
+</div>

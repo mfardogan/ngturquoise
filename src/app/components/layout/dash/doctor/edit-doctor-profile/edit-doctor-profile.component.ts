@@ -48,8 +48,8 @@ export class EditDoctorProfileComponent implements OnInit {
       });
   }
 
-  getAvatarClassNameByGender(gender: number): string {
-    return this.avatarClassNames[gender];
+  getAvatarClassNameByGender(gender?: number): string {
+    return this.avatarClassNames[gender!];
   }
 
   setBasicInfo() {

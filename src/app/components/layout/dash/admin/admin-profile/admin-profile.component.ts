@@ -29,6 +29,8 @@ export class AdminProfileComponent implements OnInit {
 
   private id!: number;
   private activiyPage: number = 0;
+  private surveysPage: number = 0;
+
   private avatarClassNames: Array<string> = [
     'avatar avatar-xxl avatar-soft-dark avatar-circle',
     'avatar avatar-xxl avatar-soft-info avatar-circle',
@@ -51,10 +53,7 @@ export class AdminProfileComponent implements OnInit {
       this.adminHttpService.get(this.id).subscribe(
         (data: Administrator) => {
           this.data = data;
-        }, (error: HttpErrorResponse) => {
-          if (error.status == 404) {
-          }
-        }); //HttpInterceptor
+        });
 
       this.nextPageOfActivity();
       this.nextPageOfProjectHistory();
@@ -63,22 +62,22 @@ export class AdminProfileComponent implements OnInit {
 
 
   nextPageOfProjectHistory(): void {
-    const searchByCreator = new SurveyByCreator();
-    searchByCreator.administratorId = this.id;
-    searchByCreator.pagination = new Pagination(1, 5);
+    const search = new SurveyByCreator();
+    search.administratorId = this.id;
+    search.pagination = new Pagination(++this.surveysPage, 5);
 
-    this.surveyHttpService.byCreator(searchByCreator)
+    this.surveyHttpService.byCreator(search)
       .subscribe((surveys: Survey[]) => {
-        this.surveys = surveys;
+        this.surveys = this.surveys.concat(surveys);
       });
   }
 
   nextPageOfActivity(): void {
-    const searchActivity = new SearchActivity();
-    searchActivity.creator = this.id;
-    searchActivity.pagination = new Pagination(++this.activiyPage, 4);
+    const search = new SearchActivity();
+    search.creator = this.id;
+    search.pagination = new Pagination(++this.activiyPage, 5);
 
-    this.surveyHttpService.getActivity(searchActivity)
+    this.surveyHttpService.getActivity(search)
       .subscribe((activity: SurveyActivity[]) => {
         this.activity = this.activity.concat(activity);
       });

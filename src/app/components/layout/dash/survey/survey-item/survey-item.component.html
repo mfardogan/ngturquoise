@@ -2,7 +2,7 @@
     <div class="media mb-3">
         <!-- Avatar -->
         <div class="avatar avatar-xl avatar-4by3 mr-2">
-            <img class="avatar-img" src="{{data.smallImages[0].fileName}}">
+            <img *ngIf="data.smallImages" class="avatar-img" src="{{data.smallImages[0].fileName}}">
         </div>
         <!-- End Avatar -->
 
@@ -13,7 +13,6 @@
 
                     <div class="row align-items-center">
                         <div class="col-auto">
-
                             <span *ngFor="let choice of data.choiceGroup.choices.slice(0,5)"
                                 style="border: 1px solid rgb(153, 153, 153); " [style.background-color]="choice.color"
                                 class="legend-indicator">
@@ -93,18 +92,14 @@
 
         <ul class="nav nav-tabs page-header-tabs" id="projectsTab" role="tablist">
             <li class="nav-item">
-                <a (click)="changePage(1)" class="nav-link active" href="javascript:;">Genel</a>
+                <a (click)="changePage(1)" class="nav-link " [class.active]="page==1" href="javascript:;">Genel</a>
             </li>
             <li class="nav-item">
-                <a (click)="changePage(2)" class="nav-link " href="javascript:;">Dosyalar <span
-                        class="badge badge-soft-dark rounded-circle ml-1">{{data.images.length}}</span></a>
-            </li>
-            <li class="nav-item">
-                <a (click)="changePage(3)" class="nav-link " href="javascript:;">Aktivite</a>
+                <a (click)="changePage(2)" class="nav-link " [class.active]="page==2" href="javascript:;">Aktivite</a>
             </li>
 
             <li class="nav-item">
-                <a (click)="changePage(4)" class="nav-link " href="javascript:;">Ayarlar</a>
+                <a (click)="changePage(4)" class="nav-link " [class.active]="page==3" href="javascript:;">Ayarlar</a>
             </li>
         </ul>
     </div>
@@ -114,6 +109,5 @@
 
 <div [ngSwitch]="page">
     <survey-general *ngSwitchCase="1" [survey]="data"></survey-general>
-    <survey-file *ngSwitchCase="2" [survey]="data"></survey-file>
-    <survey-activity *ngSwitchCase="3" [survey]="data"></survey-activity>
+    <survey-activity *ngSwitchCase="2" [survey]="data"></survey-activity>
 </div>

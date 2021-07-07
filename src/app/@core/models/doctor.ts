@@ -12,9 +12,6 @@ class Doctor extends Concurrency {
     dateOfBirth!: Date;
     image!: File;
     password: string = '';
-    facebook!: string;
-    linkedin!: string;
-    instagram!: string;
     about!: string;
     hospital!: string;
     department!: string;

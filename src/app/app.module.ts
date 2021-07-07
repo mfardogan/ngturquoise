@@ -30,13 +30,13 @@ import { DoctorProfileComponent } from './components/layout/dash/doctor/doctor-p
 import { CreateSurveyComponent } from './components/layout/dash/survey/create-survey/create-survey.component';
 import { SurveysComponent } from './components/layout/dash/survey/surveys/surveys.component';
 import { SurveyItemComponent } from './components/layout/dash/survey/survey-item/survey-item.component';
-import { SurveyFileComponent } from './components/layout/dash/survey/survey-file/survey-file.component';
 import { EditDoctorProfileComponent } from './components/layout/dash/doctor/edit-doctor-profile/edit-doctor-profile.component';
 import { SurveyActivityComponent } from './components/layout/dash/survey/survey-activity/survey-activity.component';
 import { SurveyGeneralComponent } from './components/layout/dash/survey/survey-general/survey-general.component';
 import ChoiceGroupHttp from './components/layout/dash/choice/choice-group-http';
 import DoctorHttp from './components/layout/dash/doctor/doctor-http';
 import SurveyHttp from './components/layout/dash/survey/survey-http';
+import AnswerHttp from './components/layout/dash/answer/answer-http';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,6 @@ import SurveyHttp from './components/layout/dash/survey/survey-http';
     CreateSurveyComponent,
     SurveysComponent,
     SurveyItemComponent,
-    SurveyFileComponent,
     EditDoctorProfileComponent,
     SignInComponent,
     SignUpComponent,
@@ -82,6 +81,7 @@ import SurveyHttp from './components/layout/dash/survey/survey-http';
     AdminHttp,
     SurveyHttp,
     AuthHttp,
+    AnswerHttp,
     BackendConfigService,
     {
       provide: HTTP_INTERCEPTORS,

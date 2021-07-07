@@ -110,6 +110,13 @@ export class EditAdminProfileComponent implements OnInit {
       });
   }
 
+  setGender(gender: number, event: any) {
+    if (event.target.value) {
+      this.data.gender = gender;
+      console.log(this.data.gender);
+    }
+  }
+
   removeMyAvatar() {
     const http: AdminHttp = Dependency.get(AdminHttp);
     if (this.data.image == null) { return };

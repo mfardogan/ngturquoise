@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import Doctor from 'src/app/@core/models/doctor';
+import DoctorSearch from 'src/app/@core/models/doctor-search';
+import DoctorSummary from 'src/app/@core/models/doctor-summary';
 import Search from 'src/app/@core/models/search';
-import { Dependency } from 'src/app/app.module';
 import DoctorHttp from '../doctor-http';
 
 @Component({
@@ -19,21 +20,29 @@ export class DoctorsComponent implements OnInit {
   ) { }
 
   data: Array<Doctor> = [];
-  filterClauses: Doctor = new Doctor();
-  search: Search<Doctor> = new Search();
+  summary: DoctorSummary = new DoctorSummary();
+  filterClauses: DoctorSearch = new DoctorSearch();
+  search: Search<DoctorSearch> = new Search();
 
   /**
    * Prepare
    */
   ngOnInit(): void {
+    this.getSummary();
     this.getNextPageOfDoctors();
+  }
+
+  getSummary(): void {
+    this.doctorHttp.getSummary().subscribe((summary: DoctorSummary) => {
+      this.summary = summary;
+    });
   }
 
   /**
    * Get next page
    */
   getNextPageOfDoctors(): void {
-    this.doctorHttp.search(this.search)
+    this.doctorHttp.searchDoctors(this.search)
       .subscribe((data: Array<Doctor>) => {
         this.data = data;
       })
@@ -61,7 +70,7 @@ export class DoctorsComponent implements OnInit {
     const to = Number(type);
     this.doctorHttp.changeType(id, to)
       .subscribe(e => {
-
+        this.getSummary();
       });
   }
 
@@ -82,7 +91,8 @@ export class DoctorsComponent implements OnInit {
    * Apply filters
    */
   apply(): void {
-    this.search = new Search<Doctor>();
+    console.log(JSON.stringify(this.filterClauses))
+    this.search.pagination.page = 1;
     this.search.filter = this.filterClauses;
     this.getNextPageOfDoctors();
   }
@@ -91,14 +101,20 @@ export class DoctorsComponent implements OnInit {
    * Clear filters
    */
   clear(): void {
-    console.log(this.filterClauses);
-    this.filterClauses = new Doctor();
-    this.search = new Search<Doctor>();
+    this.filterClauses = new DoctorSearch();
+    this.search = new Search<DoctorSearch>();
     this.getNextPageOfDoctors();
-
   }
 
-  setGender(i: number) {
-    this.search.filter.gender = 2;
+  /**
+   * Change search's gender parameter
+   * @param gender Gender
+   * @param event Event
+   */
+  setGender(gender: number, event: any) {
+    if (event.target.value) {
+      if (gender == -1) this.filterClauses.gender = undefined;
+      else this.filterClauses.gender = gender;
+    }
   }
 }

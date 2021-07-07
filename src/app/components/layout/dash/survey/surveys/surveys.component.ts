@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import ChoiceGroup from 'src/app/@core/models/choice-group';
 import Pagination from 'src/app/@core/models/pagination';
 import Search from 'src/app/@core/models/search';
+import SurveySearch from 'src/app/@core/models/surve-search';
 import Survey from 'src/app/@core/models/survey';
 import SurveySummary from 'src/app/@core/models/survey-summary';
 import ChoiceGroupHttp from '../../choice/choice-group-http';
@@ -25,8 +26,8 @@ export class SurveysComponent implements OnInit {
   data: Array<Survey> = []
   choiceGroups: Array<ChoiceGroup> = []
 
-  filterClauses: Survey = new Survey()
-  search: Search<Survey> = new Search<Survey>()
+  filterClauses: SurveySearch = new SurveySearch()
+  search: Search<SurveySearch> = new Search<SurveySearch>()
   summary: SurveySummary = new SurveySummary()
 
   ngOnInit(): void {
@@ -53,12 +54,11 @@ export class SurveysComponent implements OnInit {
     getSurveySummary();
   }
 
-
   /**
    * Get surveys by search
    */
   getSurveysBySearch(): void {
-    this.surveyHttp.search(this.search)
+    this.surveyHttp.searchSurveys(this.search)
       .subscribe((data: Survey[]) => {
         this.data = data
       })
@@ -97,8 +97,8 @@ export class SurveysComponent implements OnInit {
    * Clear filters
    */
   clearFilters(): void {
-    this.search = new Search<Survey>()
-    this.filterClauses = new Survey()
+    this.search = new Search<SurveySearch>()
+    this.filterClauses = new SurveySearch()
     this.getSurveysBySearch()
   }
 }

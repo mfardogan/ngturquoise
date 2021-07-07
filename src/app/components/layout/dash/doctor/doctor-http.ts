@@ -1,11 +1,22 @@
 import { Observable } from "rxjs";
 import ChangePassword from "src/app/@core/models/change-password";
 import Doctor from "src/app/@core/models/doctor";
+import DoctorSearch from "src/app/@core/models/doctor-search";
+import DoctorSummary from "src/app/@core/models/doctor-summary";
+import Search from "src/app/@core/models/search";
 import BaseHttp from "src/app/base-http";
 
 class DoctorHttp extends BaseHttp<Doctor>{
     constructor() {
         super("/api/Doctors");
+    }
+
+    getSummary(): Observable<DoctorSummary> {
+        return this.http.get<DoctorSummary>(this.prefix + '/summary');
+    }
+
+    searchDoctors(search: Search<DoctorSearch>): Observable<Array<Doctor>> {
+        return this.http.put<Doctor[]>(this.prefix + '/search', search);
     }
 
     confirm(id: number): Observable<any> {

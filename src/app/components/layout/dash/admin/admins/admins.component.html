@@ -143,8 +143,8 @@
                                         <i class="tio-user"></i>
                                     </div>
                                 </div>
-                                <input class=" form-control form-control-sm" name="name" id="name"
-                                    placeholder="Yönetici adı" aria-label="Yönetici adı">
+                                <input [(ngModel)]="filterClauses.name" class=" form-control form-control-sm"
+                                    name="name" id="name" placeholder="Yönetici adı" aria-label="Yönetici adı">
                             </div>
                         </div>
                         <!-- End Form Group -->
@@ -161,8 +161,9 @@
                                         <i class="tio-user"></i>
                                     </div>
                                 </div>
-                                <input class=" form-control form-control-sm" name="code" id="code"
-                                    placeholder="Yönetici soyadı" aria-label="Yönetici soyadı">
+                                <input [(ngModel)]="filterClauses.surname" class=" form-control form-control-sm"
+                                    name="surname" id="surname" placeholder="Yönetici soyadı"
+                                    aria-label="Yönetici soyadı">
                             </div>
                         </div>
                         <!-- End Form Group -->
@@ -179,8 +180,8 @@
                                         <i class="tio-user"></i>
                                     </div>
                                 </div>
-                                <input class=" form-control form-control-sm" name="code" id="code"
-                                    placeholder="Yönetici ünvanı" aria-label="Doktor ünvanı">
+                                <input [(ngModel)]="filterClauses.title" class=" form-control form-control-sm"
+                                    name="title" id="title" placeholder="Yönetici ünvanı" aria-label="Doktor ünvanı">
                             </div>
                         </div>
                         <!-- End Form Group -->
@@ -200,7 +201,8 @@
                                         <i class="tio-email"></i>
                                     </div>
                                 </div>
-                                <input type="email" class=" form-control form-control-sm" name="name" id="name"
+                                <input [(ngModel)]="filterClauses.email" type="email"
+                                    class=" form-control form-control-sm" name="email" id="email"
                                     placeholder="Email adresi" aria-label="Email adresi">
                             </div>
                         </div>
@@ -218,7 +220,8 @@
                                         <i class="tio-call"></i>
                                     </div>
                                 </div>
-                                <input type="tel" class=" form-control form-control-sm" name="code" id="code"
+                                <input [(ngModel)]="filterClauses.phone" type="tel"
+                                    class=" form-control form-control-sm" name="phone" id="phone"
                                     placeholder="Telefon numarası" aria-label="Telefon numarası">
                             </div>
                         </div>
@@ -235,7 +238,8 @@
                                 <!-- Custom Radio -->
                                 <div class="form-control form-control-sm">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" name="genderTypeRadioEg"
+                                        <input [checked]="filterClauses.gender == 1" (change)="setGender(1, $event)"
+                                            type="radio" class="custom-control-input " name="genderTypeRadioEg"
                                             id="genderTypeRadioEg1">
                                         <label class="custom-control-label" for="genderTypeRadioEg1">Bay</label>
                                     </div>
@@ -245,7 +249,8 @@
                                 <!-- Custom Radio -->
                                 <div class="form-control form-control-sm">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" name="genderTypeRadioEg"
+                                        <input [checked]="filterClauses.gender == 2" (change)="setGender(2, $event)"
+                                            type="radio" class="custom-control-input" name="genderTypeRadioEg"
                                             id="genderTypeRadioEg2">
                                         <label class="custom-control-label" for="genderTypeRadioEg2">Bayan</label>
                                     </div>
@@ -255,7 +260,8 @@
                                 <!-- Custom Radio -->
                                 <div class="form-control form-control-sm">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" name="genderTypeRadioEg"
+                                        <input [checked]="filterClauses.gender == 0" (change)="setGender(0, $event)"
+                                            type="radio" class="custom-control-input" name="genderTypeRadioEg"
                                             id="genderTypeRadioEg3">
                                         <label class="custom-control-label" for="genderTypeRadioEg3">Diğer</label>
                                     </div>
@@ -265,8 +271,9 @@
                                 <!-- Custom Radio -->
                                 <div class="form-control form-control-sm">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" name="genderTypeRadioEg"
-                                            id="genderTypeRadioEg4" checked>
+                                        <input [checked]="filterClauses.gender == undefined"
+                                            (change)="setGender(-1, $event)" type="radio" class="custom-control-input"
+                                            name="genderTypeRadioEg" id="genderTypeRadioEg4" checked>
                                         <label class="custom-control-label" for="genderTypeRadioEg4">Tümü</label>
                                     </div>
                                 </div>
@@ -292,7 +299,7 @@
 
 
     <!-- Table -->
-    <div class="table-responsive datatable-custom">
+    <div *ngIf="data.length > 0" class="table-responsive datatable-custom">
         <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
             <div class="dt-buttons"> <button class="dt-button buttons-copy buttons-html5 d-none" tabindex="0"
                     aria-controls="datatable" type="button"><span>Copy</span></button> <button
@@ -424,6 +431,12 @@
         </div>
     </div>
     <!-- End Table -->
+
+    <div *ngIf="data.length == 0" class="card-body card-body-height card-body-centered">
+        <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/yelling.svg" alt="Image Description">
+        <p class="card-text">Kayıt bulunamadı!</p>
+        <a class="btn btn-sm btn-primary" routerLink="/add-admin">Yeni Yönetici Oluştur</a>
+    </div>
 
     <!-- Footer -->
     <div class="card-footer">

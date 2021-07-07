@@ -141,7 +141,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-12 col-lg-4">
+                    <div class="col-sm-12 col-lg-6">
                         <!-- Form Group -->
                         <div class="form-group">
                             <label for="teamsFilterLabel" class="input-label">Başlık</label>
@@ -159,7 +159,7 @@
                         <!-- End Form Group -->
                     </div>
 
-                    <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-sm-12 col-md-6 col-lg-3">
                         <!-- Form Group -->
                         <div class="form-group">
                             <label for="tagsFilterLabel" class="input-label">Seçenek Grubu</label>
@@ -173,7 +173,7 @@
                                 <select [(ngModel)]="filterClauses.choiceGroupId"
                                     class="form-control form-control-sm form-select form-select-sm"
                                     aria-label=".form-select-sm example" name="choiceGroupId" id="choiceGroupId">
-                                    <option selected value="0">Tümü</option>
+                                    <option selected value="undefined">Tümü</option>
                                     <option *ngFor="let item of choiceGroups" value="{{item.id}}">{{item.name}}</option>
                                 </select>
                             </div>
@@ -181,7 +181,7 @@
                         <!-- End Form Group -->
                     </div>
 
-                    <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-sm-12 col-md-6 col-lg-3">
                         <!-- Form Group -->
                         <div class="form-group">
                             <label for="ratingFilterLabel" class="input-label">Durum</label>
@@ -196,9 +196,9 @@
                                     class="form-control form-control-sm form-select form-select-sm"
                                     aria-label=".form-select-sm example" name="status" id="status">
                                     <option selected value="undefined">Tümü</option>
-                                    <option value="1">Devam eden</option>
-                                    <option value="2">Kontrolde</option>
-                                    <option value="3">Tamamlandı</option>
+                                    <option value="0">Devam eden</option>
+                                    <option value="1">Kontrolde</option>
+                                    <option value="2">Tamamlandı</option>
                                 </select>
                             </div>
                         </div>
@@ -207,6 +207,47 @@
                 </div>
                 <!-- End Row -->
 
+                <div class="row">
+
+                    <div class="col-sm-12 col-lg-4">
+                        <!-- Form Group -->
+                        <div class="form-group">
+                            <label for="teamsFilterLabel" class="input-label">Başlangıç (Oluşturma tarihi için)</label>
+
+                            <div class="input-group input-group-merge">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="tio-calendar"></i>
+                                    </div>
+                                </div>
+                                <input type="date" [(ngModel)]="filterClauses.min" class=" form-control form-control-sm"
+                                    name="min" id="min" placeholder="Tarih aralığı (en küçük)"
+                                    aria-label="Tarih aralığı (en küçük)">
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+                    </div>
+
+                    <div class="col-sm-12 col-lg-4">
+                        <!-- Form Group -->
+                        <div class="form-group">
+                            <label for="teamsFilterLabel" class="input-label">Bitiş (Oluşturma tarihi için)</label>
+
+                            <div class="input-group input-group-merge">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="tio-calendar"></i>
+                                    </div>
+                                </div>
+                                <input type="date" [(ngModel)]="filterClauses.max" class=" form-control form-control-sm"
+                                    name="max" id="max" placeholder="Tarih aralığı (en büyük)"
+                                    aria-label="Tarih aralığı (en büyük)">
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+                    </div>
+
+                </div>
                 <div class="d-flex justify-content-end">
                     <button (click)="clearFilters()" type="button" class="btn btn-white mr-2">
                         <i class="tio-clear"></i> Temizle</button>
@@ -219,7 +260,7 @@
     <!-- End Filter Search Collapse -->
 
     <!-- Table -->
-    <div class="table-responsive datatable-custom">
+    <div *ngIf="data.length > 0" class="table-responsive datatable-custom">
         <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
             <div class="dataTables_length" id="datatable_length"><label>Show <select name="datatable_length"
                         aria-controls="datatable" class="">
@@ -452,6 +493,12 @@
         </div>
     </div>
     <!-- End Table -->
+
+    <div *ngIf="data.length == 0" class="card-body card-body-height card-body-centered">
+        <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/yelling.svg" alt="Image Description">
+        <p class="card-text">Kayıt bulunamadı!</p>
+        <a class="btn btn-sm btn-primary" routerLink="/add-survey">Yeni Anket Oluştur</a>
+    </div>
 
     <!-- Footer -->
     <div class="card-footer">

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Administrator from 'src/app/@core/models/administrator';
 import Search from 'src/app/@core/models/search';
-import { Dependency } from 'src/app/app.module';
+import SearchAdmin from 'src/app/@core/models/search-admin';
 import AdminHttp from '../admin-http';
 
 @Component({
@@ -14,20 +14,30 @@ import AdminHttp from '../admin-http';
 })
 export class AdminsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private adminHttp: AdminHttp
+  ) { }
 
   data: Array<Administrator> = [];
-  search: Search<Administrator> = new Search<Administrator>();
+  filterClauses: SearchAdmin = new SearchAdmin();
+  search: Search<SearchAdmin> = new Search<SearchAdmin>();
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    Dependency.get(AdminHttp)
-      .search(this.search)
+    this.getNextPageOfAdministrators();
+  }
+
+  /**
+  * Get next page
+  */
+  getNextPageOfAdministrators(): void {
+    this.adminHttp.searchAdministrators(this.search)
       .subscribe((data: Array<Administrator>) => {
         this.data = data;
       })
   }
+
 
   getAvatarClassNameByGender(gender: number): string {
     return gender == 0 ? 'avatar avatar-soft-dark avatar-circle' : gender == 1 ?
@@ -35,6 +45,33 @@ export class AdminsComponent implements OnInit {
       'avatar avatar-soft-danger avatar-circle';
   }
 
-  apply(): void { }
-  clear(): void { }
+  /**
+     * Apply filters
+     */
+  apply(): void {
+    this.search.pagination.page = 1;
+    this.search.filter = this.filterClauses;
+    this.getNextPageOfAdministrators();
+  }
+
+  /**
+   * Clear filters
+   */
+  clear(): void {
+    this.filterClauses = new SearchAdmin();
+    this.search = new Search<SearchAdmin>();
+    this.getNextPageOfAdministrators();
+  }
+
+  /**
+   * Change search's gender parameter
+   * @param gender Gender
+   * @param event Event
+   */
+  setGender(gender: number, event: any) {
+    if (event.target.value) {
+      if (gender == -1) this.filterClauses.gender = undefined;
+      else this.filterClauses.gender = gender;
+    }
+  }
 }

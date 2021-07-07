@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
+import Search from "src/app/@core/models/search";
 import SearchActivity from "src/app/@core/models/search-activity";
 import SurveyActivity from "src/app/@core/models/surve-activity";
+import SurveySearch from "src/app/@core/models/surve-search";
 import Survey from "src/app/@core/models/survey";
 import SurveyByCreator from "src/app/@core/models/survey-by-creator";
 import SurveySummary from "src/app/@core/models/survey-summary";
@@ -13,6 +15,10 @@ export default class SurveyHttp extends BaseHttp<Survey> {
 
     constructor() {
         super('/api/Surveys');
+    }
+
+    searchSurveys(search: Search<SurveySearch>): Observable<Array<Survey>> {
+        return this.http.put<Survey[]>(this.prefix + '/search', search);
     }
 
     createByForm(form: FormData): Observable<any> {

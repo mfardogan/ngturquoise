@@ -25,8 +25,8 @@
                 <div class="text-center">
                     <img class="avatar avatar-xl avatar-4by3 mb-4" src="./assets/svg/illustrations/click.svg"
                         alt="Image Description">
-                    <small class="text-cap">Toplam doktorlar</small>
-                    <span class="d-block display-4 text-dark mb-2">150</span>
+                    <small class="text-cap">Katılımcılar</small>
+                    <span class="d-block display-4 text-dark mb-2">{{summary.participants}}</span>
 
                     <div class="row">
                         <div class="col text-right">
@@ -56,7 +56,7 @@
                     <img class="avatar avatar-xl avatar-4by3 mb-4" src="./assets/svg/illustrations/presenting.svg"
                         alt="Image Description">
                     <small class="text-cap">Denetimciler</small>
-                    <span class="d-block display-4 text-dark mb-2">$7,253.00</span>
+                    <span class="d-block display-4 text-dark mb-2">{{summary.controllers}}</span>
 
                     <div class="row">
                         <div class="col text-right">
@@ -85,8 +85,8 @@
                 <div class="text-center">
                     <img class="avatar avatar-xl avatar-4by3 mb-4" src="./assets/svg/illustrations/hi-five.svg"
                         alt="Image Description">
-                    <small class="text-cap">Onaylanmayanlar</small>
-                    <span class="d-block display-4 text-dark mb-2">25</span>
+                    <small class="text-cap">Katılımcı & Denetimciler</small>
+                    <span class="d-block display-4 text-dark mb-2">{{summary.participantAndControllers}}</span>
 
                     <div class="row">
                         <div class="col text-right">
@@ -177,10 +177,10 @@
                                 <select [(ngModel)]="filterClauses.type" name="type" id="type"
                                     class="form-control form-control-sm form-select form-select-lg "
                                     aria-label=".form-select-lg example">
-                                    <option selected value="0">Tümü</option>
-                                    <option value="1">Katılımcılar</option>
-                                    <option value="2">Denetimciler</option>
-                                    <option value="3">Katılımcı-Denetimciler</option>
+                                    <option selected [ngValue]="undefined">Tümü</option>
+                                    <option [ngValue]="0">Katılımcılar</option>
+                                    <option [ngValue]="1">Denetimciler</option>
+                                    <option [ngValue]="2">Her İkisi</option>
                                 </select>
                             </div>
                         </div>
@@ -198,12 +198,12 @@
                                         <i class="tio-castle"></i>
                                     </div>
                                 </div>
-                                <select [(ngModel)]="filterClauses.isConfirmed" name="isConfirmed" id="isConfirmed"
+                                <select [(ngModel)]="filterClauses.confirm" name="confirm" id="confirm"
                                     class="form-control form-control-sm form-select form-select-lg "
                                     aria-label=".form-select-lg example">
-                                    <option selected value="0">Tümü</option>
-                                    <option value="1">Onaylananlar</option>
-                                    <option value="2">Onaylanmayanlar</option>
+                                    <option selected [ngValue]="undefined">Tümü</option>
+                                    <option [ngValue]="true">Onaylananlar</option>
+                                    <option [ngValue]="false">Onaylanmayanlar</option>
                                 </select>
                             </div>
                         </div>
@@ -318,8 +318,9 @@
                                 <!-- Custom Radio -->
                                 <div class="form-control form-control-sm">
                                     <div class="custom-control custom-radio">
-                                        <input (change)="setGender(1)" type="radio" class="custom-control-input "
-                                            name="genderTypeRadioEg" id="genderTypeRadioEg1">
+                                        <input [checked]="filterClauses.gender == 1" (change)="setGender(1, $event)"
+                                            type="radio" class="custom-control-input " name="genderTypeRadioEg"
+                                            id="genderTypeRadioEg1">
                                         <label class="custom-control-label" for="genderTypeRadioEg1">Bay</label>
                                     </div>
                                 </div>
@@ -328,8 +329,9 @@
                                 <!-- Custom Radio -->
                                 <div class="form-control form-control-sm">
                                     <div class="custom-control custom-radio">
-                                        <input (change)="setGender(2)" type="radio" class="custom-control-input"
-                                            name="genderTypeRadioEg" id="genderTypeRadioEg2">
+                                        <input [checked]="filterClauses.gender == 2" (change)="setGender(2, $event)"
+                                            type="radio" class="custom-control-input" name="genderTypeRadioEg"
+                                            id="genderTypeRadioEg2">
                                         <label class="custom-control-label" for="genderTypeRadioEg2">Bayan</label>
                                     </div>
                                 </div>
@@ -338,8 +340,9 @@
                                 <!-- Custom Radio -->
                                 <div class="form-control form-control-sm">
                                     <div class="custom-control custom-radio">
-                                        <input (change)="setGender(0)" type="radio" class="custom-control-input"
-                                            name="genderTypeRadioEg" id="genderTypeRadioEg3">
+                                        <input [checked]="filterClauses.gender == 0" (change)="setGender(0, $event)"
+                                            type="radio" class="custom-control-input" name="genderTypeRadioEg"
+                                            id="genderTypeRadioEg3">
                                         <label class="custom-control-label" for="genderTypeRadioEg3">Diğer</label>
                                     </div>
                                 </div>
@@ -348,7 +351,8 @@
                                 <!-- Custom Radio -->
                                 <div class="form-control form-control-sm">
                                     <div class="custom-control custom-radio">
-                                        <input (change)="setGender(-1)" type="radio" class="custom-control-input"
+                                        <input [checked]="filterClauses.gender == undefined"
+                                            (change)="setGender(-1, $event)" type="radio" class="custom-control-input"
                                             name="genderTypeRadioEg" id="genderTypeRadioEg4" checked>
                                         <label class="custom-control-label" for="genderTypeRadioEg4">Tümü</label>
                                     </div>
@@ -374,7 +378,7 @@
     <!-- End Filter Search Collapse -->
 
     <!-- Table -->
-    <div class="table-responsive datatable-custom">
+    <div *ngIf="data.length > 0" class="table-responsive datatable-custom">
         <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
             <div class="dt-buttons"> <button class="dt-button buttons-copy buttons-html5 d-none" tabindex="0"
                     aria-controls="datatable" type="button"><span>Copy</span></button> <button
@@ -534,6 +538,12 @@
         </div>
     </div>
     <!-- End Table -->
+
+    <div *ngIf="data.length == 0" class="card-body card-body-height card-body-centered">
+        <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/yelling.svg" alt="Image Description">
+        <p class="card-text">Kayıt bulunamadı!</p>
+        <a class="btn btn-sm btn-primary" routerLink="/choice">Yeni Doktor Oluştur</a>
+    </div>
 
     <!-- Footer -->
     <div class="card-footer">

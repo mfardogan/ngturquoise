@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
-import { FormGroup } from "@angular/forms";
 import { Observable } from "rxjs";
 import Administrator from "src/app/@core/models/administrator";
 import ChangePassword from "src/app/@core/models/change-password";
+import Search from "src/app/@core/models/search";
+import SearchAdmin from "src/app/@core/models/search-admin";
 import BaseHttp from "src/app/base-http";
 
 @Injectable()
@@ -10,6 +11,10 @@ export default class AdminHttp extends BaseHttp<Administrator> {
 
     constructor() {
         super('/api/Administrators');
+    }
+
+    searchAdministrators(search: Search<SearchAdmin>): Observable<Array<Administrator>> {
+        return this.http.put<Administrator[]>(this.prefix + '/search', search);
     }
 
     setBasicInfo(administrator: Administrator): Observable<any> {

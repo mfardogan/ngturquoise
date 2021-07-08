@@ -3,8 +3,10 @@
         <div class="col-sm mb-2 mb-sm-0">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-no-gutter">
-                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Kullanıcı</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Yönetici</li>
+                    <li class="breadcrumb-item">
+                        <a class="breadcrumb-link" href="javascript:;">Genel</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Ayarlar</li>
                 </ol>
             </nav>
 
@@ -14,36 +16,33 @@
     <!-- End Row -->
 </div>
 
+<div class="row">
+    <div class="col-10">
+        <div class="alert alert-white mb-5 mb-lg-7" role="alert">
+            <div class="media align-items-center">
+                <img class="avatar avatar-xl mr-3" src="./assets/svg/illustrations/yelling-reverse.svg"
+                    alt="Image Description">
 
-
+                <div class="media-body">
+                    <h3 class="alert-heading mb-1">Dikkat!</h3>
+                    <p class="mb-0">Uygulamanın genel ayarlarını bu form üzerinden yapabilirsiniz. Bu ayarlar
+                        anketlerin otomatik olarak sonlandırılmasının kapatılması veya kullanıcılarınıza gidecek
+                        doğrulama mailinin devre dışı bırakılması gibi ayarlardır.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="connectedAccountsSection" class="card mb-3 mb-lg-5">
     <div class="card-header">
         <h4 class="card-title">Uygulama Ayarları</h4>
     </div>
 
+
     <!-- Body -->
     <div class="card-body">
-
-        <div class="row">
-            <div class="col-10">
-                <div class="alert alert-white mb-5 mb-lg-7" role="alert">
-                    <div class="media align-items-center">
-                        <img class="avatar avatar-xl mr-3" src="./assets/svg/illustrations/yelling-reverse.svg"
-                            alt="Image Description">
-
-                        <div class="media-body">
-                            <h3 class="alert-heading mb-1">Dikkat!</h3>
-                            <p class="mb-0">Uygulamanın genel ayarlarını bu form üzerinden yapabilirsiniz. Bu ayarlar
-                                anketlerin otomatik olarak sonlandırılmasının kapatılması veya kullanıcılarınıza gidecek
-                                doğrulama mailinin devre dışı bırakılması gibi ayarlardır.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Form -->
         <form>
             <div class="list-group list-group-lg list-group-flush list-group-no-gutters">
@@ -149,9 +148,7 @@
     <!-- End Body -->
 
     <div class="card-footer d-flex justify-content-end align-items-center">
-        <button type="button" class="btn btn-white mr-2"> İptal </button>
         <button (click)="upsertCurrentSettings()" type="button" class="btn btn-primary"><i class="tio-add"></i> Kaydet
         </button>
     </div>
-
 </div>

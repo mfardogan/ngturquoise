@@ -1,0 +1,384 @@
+<div class="row">
+    <div class="col-lg-8">
+        <!-- Card -->
+        <div class="card mb-3 mb-lg-5">
+            <!-- Header -->
+            <div class="card-header">
+                <h4 class="card-header-title">Temel Bilgiler</h4>
+            </div>
+            <!-- End Header -->
+
+            <!-- Body -->
+            <div class="card-body">
+                <div class="form-group">
+                    <label class="input-label" for="exampleFormControlTitleInput">Başlık
+                        <i class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top" title=""
+                            data-original-title="Products are the goods or services you sell."></i>
+
+                    </label>
+                    <input [(ngModel)]="survey.title"
+                        style="font-size: 20px; color:rgb(53, 53, 53); border-radius: 0; border-bottom: 2px solid rgb(226, 226, 226);"
+                        type="text" id="exampleFormControlTitleInput" class="form-control form-control-title"
+                        placeholder="Başlık giriniz">
+                </div>
+
+                <!-- Form Group -->
+                <div class="form-group">
+                    <label class="input-label" for="exampleFormControlTitleInput">Seçenek Grubu
+                        <i class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top" title=""
+                            data-original-title="Products are the goods or services you sell."></i>
+
+                    </label>
+                    <select [(ngModel)]="survey.choiceGroupId"
+                        style=" color:rgb(53, 53, 53); border-radius: 0; border-left: 0; border-right: 0; border-top: 0; border-bottom: 2px solid rgb(226, 226, 226);"
+                        class="form-control" aria-label="Default select example">
+                        <option value="0" selected>Seçiniz</option>
+                        <option *ngFor="let item of choices" value="{{item.id}}">{{item.name}}</option>
+                    </select>
+                </div>
+                <!-- End Form Group -->
+
+                <!-- Form Group -->
+                <div class="form-group">
+                    <label for="productNameLabel" class="input-label">Açıklama
+                        <span class="input-label-secondary">(Opsiyonel)</span>
+                    </label>
+
+                    <textarea [(ngModel)]="survey.body" style="height: 150px;" type="text" class="form-control"
+                        name="productName" id="productNameLabel"
+                        placeholder="Ankete ait detay veya açıklamalar"></textarea>
+                </div>
+                <!-- End Form Group -->
+                <!-- End Row -->
+
+                <div class="card-footer d-flex justify-content-end align-items-center">
+                    <div class="d-flex justify-content-end">
+                        <button (click)="save()" type="submit" class="btn btn-primary">
+                            <i class="tio-edit"></i>
+                            Değişiklikleri Kaydet</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Body -->
+        </div>
+        <!-- End Card -->
+
+
+
+    </div>
+
+    <div class="col-lg-4">
+        <!-- Card -->
+        <div class="card mb-3 mb-lg-5">
+            <!-- Header -->
+            <div class="card-header">
+                <h4 class="card-header-title">Zamanlama</h4>
+            </div>
+            <!-- End Header -->
+
+            <!-- Body -->
+            <div class="card-body">
+                <!-- Form Group -->
+                <div class="form-group">
+                    <label for="productNameLabel" class="input-label">Başlama
+                        <span class="input-label-secondary">(Opsiyonel)</span>
+                    </label>
+
+                    <div class="input-group">
+                        <input [disabled]="!survey.startNow" [(ngModel)]="survey.startAt" type="date"
+                            class="form-control" name="startAt" id="finishAt" placeholder="gg/aa/yy">
+                    </div>
+                </div>
+                <!-- End Form Group -->
+
+                <div class="form-group">
+                    <label for="productNameLabel" class="input-label">Sonlanma
+                        <span class="input-label-secondary">(Opsiyonel)</span>
+                    </label>
+
+                    <div class="input-group">
+                        <input [(ngModel)]="survey.finishAt" [disabled]="!survey.automaticFinish" type="date"
+                            class="form-control" name="startAt" id="finishAt" placeholder="gg/aa/yy">
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <!-- Toggle Switch -->
+                <label class="row toggle-switch" for="availabilitySwitch2">
+                    <span class="col-8 col-sm-9 toggle-switch-content">
+                        <span class="text-dark">Zamanı gelince başlat</span>
+                    </span>
+                    <span class="col-4 col-sm-3">
+                        <input [(ngModel)]="survey.startNow" type="checkbox" class="toggle-switch-input"
+                            id="availabilitySwitch2">
+                        <span class="toggle-switch-label ml-auto">
+                            <span class="toggle-switch-indicator"></span>
+                        </span>
+                    </span>
+                </label>
+                <!-- End Toggle Switch -->
+
+                <!-- Toggle Switch -->
+                <label class="row toggle-switch" for="availabilitySwitch1">
+                    <span class="col-8 col-sm-9 toggle-switch-content">
+                        <span class="text-dark">Zamanı gelince sonlandır</span>
+                    </span>
+                    <span class="col-4 col-sm-3">
+                        <input [(ngModel)]="survey.automaticFinish" type="checkbox" class="toggle-switch-input"
+                            id="availabilitySwitch1">
+                        <span class="toggle-switch-label ml-auto">
+                            <span class="toggle-switch-indicator"></span>
+                        </span>
+                    </span>
+                </label>
+                <!-- End Toggle Switch -->
+            </div>
+            <!-- Body -->
+        </div>
+        <!-- End Card -->
+    </div>
+</div>
+<!-- End Row -->
+
+
+
+<div class="row">
+    <div class="col-lg-8">
+        <!-- Card -->
+        <div class="card mb-3 mb-lg-5">
+            <!-- Header -->
+            <div class="card-header">
+                <h4 class="card-header-title">Anketi Durumu</h4>
+            </div>
+            <!-- End Header -->
+
+            <div class="card-body">
+
+                <div style="margin-bottom: 2rem;"
+                    class="list-group list-group-lg list-group-flush list-group-no-gutters">
+                    <!-- List Item -->
+                    <div class="list-group-item">
+                        <div class="media">
+                            <span style="margin-right: 1rem;" class="avatar avatar-primary avatar-circle">
+                                <span class="avatar-initials">D</span>
+                            </span>
+
+                            <div class="media-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="mb-0">Devam
+                                            Eden</h5>
+                                        <p class="font-size-sm mb-0">Kullanıcılar ankete katılmaya devam edebilir.</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End List Item -->
+
+                    <!-- List Item -->
+                    <div class="list-group-item">
+                        <div class="media">
+                            <span style="margin-right: 1rem;" class="avatar avatar-warning avatar-circle">
+                                <span class="avatar-initials">K</span>
+                            </span>
+
+                            <div class="media-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="mb-0">Kontrolde</h5>
+                                        <p class="font-size-sm mb-0">Kullanıcılar ankete katılamaz! Denetimci
+                                            kullanıcılar varolan katılımları düzenleyebilir.</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End List Item -->
+
+                    <!-- List Item -->
+                    <div class="list-group-item">
+                        <div class="media">
+                            <span style="margin-right: 1rem;" class="avatar avatar-success avatar-circle">
+                                <span class="avatar-initials">T</span>
+                            </span>
+
+                            <div class="media-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="mb-0">Tamamlandı</h5>
+                                        <p class="font-size-sm mb-0">Anket sonuçları kullanıma hazır hale gelmiştir.</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End List Item -->
+                </div>
+
+                <!-- Form -->
+                <form>
+                    <!-- Form Group -->
+                    <div class="row form-group">
+                        <div class="row">
+                            <!-- Custom Radio -->
+                            <div class="col-4 text-center">
+                                <div class="text-center">
+                                    <div class="custom-checkbox-card mb-2">
+                                        <input [checked]="survey.status==0" (change)="setStatus(0,$event)" type="radio"
+                                            class="custom-checkbox-card-input" name="layoutSkinsRadio"
+                                            id="layoutSkinsRadio1" checked value="default">
+                                        <label class="custom-checkbox-card-label" for="layoutSkinsRadio1">
+
+                                            <span style="margin: 0.7rem;" class="avatar avatar-primary avatar-circle">
+                                                <span class="avatar-initials">D</span>
+                                            </span>
+                                        </label>
+                                        <span style="font-weight: bold; font-size: 12px; color: gray;"
+                                            class="custom-checkbox-card-text">Devam Eden</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Custom Radio -->
+
+                            <!-- Custom Radio -->
+                            <div class="col-4 text-center">
+                                <div class="text-center">
+                                    <div class="custom-checkbox-card mb-2">
+                                        <input [checked]="survey.status==1" (change)="setStatus(1,$event)" type="radio"
+                                            class="custom-checkbox-card-input" name="layoutSkinsRadio"
+                                            id="layoutSkinsRadio2" value="navbar-dark">
+                                        <label class="custom-checkbox-card-label" for="layoutSkinsRadio2">
+                                            <span style="margin: 0.7rem;" class="avatar avatar-warning avatar-circle">
+                                                <span class="avatar-initials">K</span>
+                                            </span>
+                                        </label>
+                                        <span style="font-weight: bold; font-size: 12px; color: gray;"
+                                            class="custom-checkbox-card-text">Kontrolde</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Custom Radio -->
+
+                            <!-- Custom Radio -->
+                            <div class="col-4 text-center">
+                                <div class="text-center">
+                                    <div class="custom-checkbox-card mb-2">
+                                        <input [checked]="survey.status==2" (change)="setStatus(2,$event)" type="radio"
+                                            class="custom-checkbox-card-input" name="layoutSkinsRadio"
+                                            id="layoutSkinsRadio3" value="navbar-light">
+                                        <label class="custom-checkbox-card-label" for="layoutSkinsRadio3">
+                                            <span style="margin: 0.7rem;" class="avatar avatar-success avatar-circle">
+                                                <span class="avatar-initials">T</span>
+                                            </span>
+                                        </label>
+                                        <span style="font-weight: bold; font-size: 12px; color: gray;"
+                                            class="custom-checkbox-card-text">Tamamlandı</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Custom Radio -->
+                        </div>
+                        <!-- End Row -->
+                    </div>
+                    <!-- End Form Group -->
+
+                    <div class="card-footer d-flex justify-content-end align-items-center">
+                        <div class="d-flex justify-content-end">
+                            <button (click)="changeStatus()" type="submit" class="btn btn-primary">
+                                <i class="tio-edit"></i>
+                                Değişiklikleri Kaydet
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End Form -->
+            </div>
+        </div>
+        <!-- End Card -->
+
+
+
+    </div>
+
+
+</div>
+<!-- End Row -->
+
+
+
+
+<div class="row">
+    <div class="col-lg-8">
+        <!-- Card -->
+        <div class="card mb-3 mb-lg-5">
+            <!-- Header -->
+            <div class="card-header">
+                <h4 class="card-header-title">Anketi Sil</h4>
+            </div>
+            <!-- End Header -->
+
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="alert alert-soft-white mb-5 mb-lg-7" role="alert">
+                            <div class="media align-items-center">
+                                <img class="avatar avatar-xl mr-3" src="./assets/svg/illustrations/yelling-reverse.svg"
+                                    alt="Image Description">
+
+                                <div class="media-body">
+                                    <h3 class="alert-heading mb-1">Dikkat!</h3>
+                                    <p class="mb-0">Anket silindiğinde ankete dair tüm veriler <span
+                                            style="font-weight: bold;">kalıcı </span> olarak
+                                        silinecektir. Bu işlem geri döndürelemez!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <!-- Custom Checkbox -->
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="deleteAccountCheckbox">
+                        <label class="custom-control-label" for="deleteAccountCheckbox">
+                            <span style="font-weight: bold; text-decoration: underline;">{{survey.title}}</span> isimli
+                            anketi silmeyi gerçekten
+                            istiyorum.
+                        </label>
+                    </div>
+                    <!-- End Custom Checkbox -->
+                </div>
+
+                <div class="card-footer d-flex justify-content-end align-items-center">
+                    <div class="d-flex justify-content-end">
+                        <a class="btn btn-white mr-2" href="#">Daha Fazla Bilgi <i class="tio-open-in-new ml-1"></i></a>
+
+                        <button (click)="remove()" type="submit" class="btn btn-danger">
+                            <i class="tio-delete"></i>
+                            Anketi Sil
+                        </button>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <!-- End Card -->
+
+
+
+    </div>
+
+
+</div>
+<!-- End Row -->

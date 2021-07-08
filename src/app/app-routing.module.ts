@@ -46,10 +46,11 @@ const routes: Routes = [
   },
 
   {
-    path: '',
-    canActivate: [AuthGuardService],
+    path: 'dashboard',
+    canActivate: [AuthGuardService], //CanDiactivate
     component: ContentComponent,
     children: [
+      { path: '', redirectTo: 'settings', pathMatch: 'full' },
       { path: 'settings', component: SettingsComponent },
       { path: 'dashboard', component: ContentComponent },
       { path: 'survey/:id', component: SurveyItemComponent },

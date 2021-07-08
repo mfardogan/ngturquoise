@@ -773,11 +773,11 @@
                             <div class="dropdown-divider"></div>
 
 
-                            <a class="dropdown-item" routerLink="/admin/{{administrator.id}}">
+                            <a class="dropdown-item" [routerLink]="['dashboard/admin',administrator.id]">
                                 <span class="text-truncate pr-2" title="Profile &amp; account">Profilim</span>
                             </a>
 
-                            <a class="dropdown-item" routerLink="/edit-admin">
+                            <a class="dropdown-item" routerLink="dashboard/edit-admin">
                                 <span class="text-truncate pr-2" title="Settings">Ayarlarım</span>
                             </a>
 

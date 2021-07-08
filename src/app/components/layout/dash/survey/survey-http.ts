@@ -17,8 +17,18 @@ export default class SurveyHttp extends BaseHttp<Survey> {
         super('/api/Surveys');
     }
 
+    setSurveyStatus(id: number, status: number): Observable<any> {
+        const path: string = this.prefix + '/setstatus/' + id + '/' + status;
+        return this.http.put(path, undefined);
+    }
+
     searchSurveys(search: Search<SurveySearch>): Observable<Array<Survey>> {
         return this.http.put<Survey[]>(this.prefix + '/search', search);
+    }
+
+    modifyByForm(form: FormData): Observable<any> {
+        const path: string = this.prefix;
+        return this.http.put<any>(path, form);
     }
 
     createByForm(form: FormData): Observable<any> {

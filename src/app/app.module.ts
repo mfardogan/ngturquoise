@@ -41,6 +41,7 @@ import { JoinSurveyComponent } from './components/layout/doctor/join-survey/join
 import { DoctorLayoutComponent } from './components/layout/doctor/doctor-layout/doctor-layout.component';
 import { SettingsComponent } from './components/layout/dash/settings/settings.component';
 import { SettingsHttp } from './components/layout/dash/settings/settings-http';
+import { SurveyEditComponent } from './components/layout/dash/survey/survey-edit/survey-edit.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { SettingsHttp } from './components/layout/dash/settings/settings-http';
     JoinSurveyComponent,
     DoctorLayoutComponent,
     SettingsComponent,
+    SurveyEditComponent,
   ],
 
   imports: [

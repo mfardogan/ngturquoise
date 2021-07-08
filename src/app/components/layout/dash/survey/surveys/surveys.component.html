@@ -18,7 +18,7 @@
                 data-content="Check out this New project modal example." data-html="true"
                 data-original-title="<div class='d-flex align-items-center'>New project <a href='#!' class='close close-light ml-auto'><i id='closeNewProjectPopover' class='tio-clear'></i></a></div>"
                 aria-describedby="popover711637">
-                <a class="btn btn-primary" routerLink="/add-survey" data-toggle="modal" data-target="#newProjectModal">
+                <a class="btn btn-primary" [routerLink]="['../add-survey']" data-toggle="modal" data-target="#newProjectModal">
                     <i class="tio-add mr-1"></i> Yeni Anket Oluştur
                 </a>
             </div>
@@ -386,7 +386,7 @@
                             </div>
                         </td>
                         <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" [routerLink]="['/survey',item.id]">
+                            <a class="d-flex align-items-center" [routerLink]="['../survey',item.id]">
                                 <img *ngIf="item.smallImages.length > 0" class="avatar avatar"
                                     src="{{item.smallImages[0].fileName}}">
                                 <div *ngIf="item.smallImages.length == 0" class="avatar avatar avatar-danger  avatar">
@@ -497,7 +497,7 @@
     <div *ngIf="data.length == 0" class="card-body card-body-height card-body-centered">
         <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/sorry.svg" alt="Image Description">
         <p class="card-text">Kayıt bulunamadı!</p>
-        <a class="btn btn-sm btn-primary" routerLink="/add-survey">Yeni Anket Oluştur</a>
+        <a class="btn btn-sm btn-primary" routerLink="../add-survey">Yeni Anket Oluştur</a>
     </div>
 
     <!-- Footer -->

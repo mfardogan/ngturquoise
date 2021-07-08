@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="col-auto">
-                            <a [routerLink]="[ '/admin', data.administrator.id ]">
+                            <a [routerLink]="[ '../admin', data.administrator.id ]">
                                 <span class="media align-items-center">
                                     <img *ngIf="data.administrator.image != null"
                                         class="avatar avatar-xs avatar-circle mr-2"
@@ -99,7 +99,7 @@
             </li>
 
             <li class="nav-item">
-                <a (click)="changePage(4)" class="nav-link " [class.active]="page==3" href="javascript:;">Ayarlar</a>
+                <a (click)="changePage(3)" class="nav-link " [class.active]="page==3" href="javascript:;">Ayarlar</a>
             </li>
         </ul>
     </div>
@@ -110,4 +110,5 @@
 <div [ngSwitch]="page">
     <survey-general *ngSwitchCase="1" [survey]="data"></survey-general>
     <survey-activity *ngSwitchCase="2" [survey]="data"></survey-activity>
+    <survey-edit *ngSwitchCase="3" [survey]="data"></survey-edit>
 </div>

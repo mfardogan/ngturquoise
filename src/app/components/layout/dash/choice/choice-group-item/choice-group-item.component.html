@@ -49,9 +49,26 @@
 
             <!-- Body -->
             <div class="card-body">
-                <alert-box title="Dikkat!" message="Seçenek grubu bir ankete uygulamak isteyeceğiniz seçeneklerden oluşan bir dizi hastalık sınıfının kümesidir. 
-                ">
-                </alert-box>
+
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="alert alert-soft-warning mb-5 mb-lg-7" role="alert">
+                            <div class="media align-items-center">
+                                <img class="avatar avatar-xl mr-3" src="./assets/svg/illustrations/yelling-reverse.svg"
+                                    alt="Image Description">
+
+                                <div class="media-body">
+                                    <h3 class="alert-heading mb-1">Dikkat!</h3>
+                                    <p class="mb-0">Seçenek grubu anketlere uygulanacak alakalı hastalık sınıflarının
+                                        bir kümesidir.
+                                        Yeni bir seçenek grubu tanımlamak ve varolanı düzenlemek için formu doldurun.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Form Group -->
                 <div class=" form-group">
                     <label for="projectNameProjectSettingsLabel" class="input-label">Grup adı <i
@@ -110,10 +127,10 @@
 
             <!-- Footer -->
             <div class="card-footer d-flex justify-content-end align-items-center">
-                <button (click)="cancel()" type="button" class="btn btn-danger mr-2">
+                <button (click)="cancel()" type="button" class="btn btn-white mr-2">
                     İptal
                 </button>
-                <button (click)="save()" type="button" class="btn btn-success">
+                <button (click)="save()" type="button" class="btn btn-primary">
                     <i class="tio-add"></i> Kaydet
                 </button>
             </div>

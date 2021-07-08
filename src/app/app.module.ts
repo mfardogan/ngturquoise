@@ -37,6 +37,10 @@ import ChoiceGroupHttp from './components/layout/dash/choice/choice-group-http';
 import DoctorHttp from './components/layout/dash/doctor/doctor-http';
 import SurveyHttp from './components/layout/dash/survey/survey-http';
 import AnswerHttp from './components/layout/dash/answer/answer-http';
+import { JoinSurveyComponent } from './components/layout/doctor/join-survey/join-survey.component';
+import { DoctorLayoutComponent } from './components/layout/doctor/doctor-layout/doctor-layout.component';
+import { SettingsComponent } from './components/layout/dash/settings/settings.component';
+import { SettingsHttp } from './components/layout/dash/settings/settings-http';
 
 @NgModule({
   declarations: [
@@ -66,6 +70,9 @@ import AnswerHttp from './components/layout/dash/answer/answer-http';
     SurveyActivityComponent,
     SurveyGeneralComponent,
     NoAuthLayoutComponent,
+    JoinSurveyComponent,
+    DoctorLayoutComponent,
+    SettingsComponent,
   ],
 
   imports: [
@@ -82,6 +89,7 @@ import AnswerHttp from './components/layout/dash/answer/answer-http';
     SurveyHttp,
     AuthHttp,
     AnswerHttp,
+    SettingsHttp,
     BackendConfigService,
     {
       provide: HTTP_INTERCEPTORS,

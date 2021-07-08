@@ -10,9 +10,12 @@ import { ContentComponent } from './components/layout/dash/content/content.compo
 import { DoctorProfileComponent } from './components/layout/dash/doctor/doctor-profile/doctor-profile.component';
 import { DoctorsComponent } from './components/layout/dash/doctor/doctors/doctors.component';
 import { EditDoctorProfileComponent } from './components/layout/dash/doctor/edit-doctor-profile/edit-doctor-profile.component';
+import { SettingsComponent } from './components/layout/dash/settings/settings.component';
 import { CreateSurveyComponent } from './components/layout/dash/survey/create-survey/create-survey.component';
 import { SurveyItemComponent } from './components/layout/dash/survey/survey-item/survey-item.component';
 import { SurveysComponent } from './components/layout/dash/survey/surveys/surveys.component';
+import { DoctorLayoutComponent } from './components/layout/doctor/doctor-layout/doctor-layout.component';
+import { JoinSurveyComponent } from './components/layout/doctor/join-survey/join-survey.component';
 import { Error401Component } from './components/layout/noauth/error401/error401.component';
 import { Error404Component } from './components/layout/noauth/error404/error404.component';
 import { Error500Component } from './components/layout/noauth/error500/error500.component';
@@ -22,6 +25,13 @@ import { SignInComponent } from './components/layout/noauth/sign-in/sign-in.comp
 import { SignUpComponent } from './components/layout/noauth/sign-up/sign-up.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: DoctorLayoutComponent,
+    children: [
+      { path: 'join/:id', component: JoinSurveyComponent, pathMatch: 'full' },
+    ]
+  },
   {
     path: '',
     component: NoAuthLayoutComponent,
@@ -40,6 +50,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     component: ContentComponent,
     children: [
+      { path: 'settings', component: SettingsComponent },
       { path: 'dashboard', component: ContentComponent },
       { path: 'survey/:id', component: SurveyItemComponent },
       { path: 'surveys', component: SurveysComponent },

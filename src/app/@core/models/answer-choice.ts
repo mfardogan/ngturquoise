@@ -23,6 +23,7 @@ class AnswerChoice extends Concurrency implements IIterable<Box>{
             return;
         }
         this.boxes.push(box);
+        this.backStack.free();
     }
 
     canUndo(): boolean {

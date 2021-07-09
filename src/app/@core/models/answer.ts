@@ -24,7 +24,7 @@ class Answer extends Concurrency {
         return answer;
     }
 
-    getAnswerChoice(image: number): AnswerChoice {
+    getAnswerByImage(image: number): AnswerChoice {
         const choice = this.choices.find(e => e.surveyImageId === image);
         return choice!;
     }

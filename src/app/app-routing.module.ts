@@ -26,6 +26,7 @@ import { SignInComponent } from './components/layout/noauth/sign-in/sign-in.comp
 import { SignUpComponent } from './components/layout/noauth/sign-up/sign-up.component';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', component: ContentComponent, canActivate: [AuthGuardService] },
   {
     path: '',
     component: DoctorLayoutComponent,

@@ -6,6 +6,8 @@ import Survey from 'src/app/@core/models/survey';
 import { Component, OnInit } from '@angular/core';
 import SurveyHttp from '../../dash/survey/survey-http';
 import { IIterator } from 'src/app/IIterator';
+import { Dependency } from 'src/app/app.module';
+import AnswerHttp from '../../dash/answer/answer-http';
 
 @Component({
   selector: 'app-join-survey',
@@ -16,6 +18,7 @@ export class JoinSurveyComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private answerHttp: AnswerHttp,
     private surveyHttp: SurveyHttp
   ) { }
 
@@ -28,6 +31,8 @@ export class JoinSurveyComponent implements OnInit {
   canvas!: HTMLCanvasElement;
   context!: CanvasRenderingContext2D;
 
+  private positionX: number = 0;
+  private positionY: number = 0;
   private answer!: Answer;
   private startX: number = 0;
   private startY: number = 0;
@@ -54,7 +59,6 @@ export class JoinSurveyComponent implements OnInit {
       this.container.style.width = background.width + 'px';
       this.container.style.height = background.height + 'px';
       this.container.setAttribute("style", `background-image: url('${path.replace(/\\/g, "/")}')`);
-      this.context.lineWidth = 2;
       this.context.fillStyle = "transparent";
       this.context.canvas.width = background.width;
       this.context.canvas.height = background.height;
@@ -80,25 +84,20 @@ export class JoinSurveyComponent implements OnInit {
           this.otherBackground(true);
           this.activateClassByIndex(0);
           this.answer = Answer.prepare(survey.images.map(s => s.id));
+          this.answer.surveyId = this.surveyid;
         });
     }
   }
 
   otherBackground(forwar: boolean) {
     if (forwar) {
-      if (this.sequence + 1 < this.survey.images.length) {
-        this.sequence++;
-      }
+      if (this.sequence + 1 < this.survey.images.length) { this.sequence++; }
     } else {
-      if (this.sequence > 0) {
-        this.sequence--;
-      }
+      if (this.sequence > 0) { this.sequence--; }
     }
     const next = this.survey.images[this.sequence];
     this.changeBackgroundImage(next.fileName);
   }
-
-
 
   zoomIn() { }
   zoomOut() { }
@@ -111,8 +110,8 @@ export class JoinSurveyComponent implements OnInit {
     if (this.temponary.length > 0) {
       const box: Box = this.temponary.pop()!;
       const image = this.survey.images[this.sequence];
-      const answerChoice = this.answer.getAnswerChoice(image.id);
-      answerChoice.addBox(box);
+      const picture = this.answer.getAnswerByImage(image.id);
+      picture.addBox(box);
     }
   }
 
@@ -120,11 +119,11 @@ export class JoinSurveyComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
 
-    var top = this.canvas.getBoundingClientRect().top;
-    var left = this.canvas.getBoundingClientRect().left;
+    const top = this.canvas.getBoundingClientRect().top;
+    const left = this.canvas.getBoundingClientRect().left;
 
-    var y = window.pageYOffset + top;
-    var x = window.pageXOffset + left;
+    const y = window.pageYOffset + top;
+    const x = window.pageXOffset + left;
 
     this.temponary = [];
     this.startX = Number(event.clientX - x);
@@ -136,10 +135,6 @@ export class JoinSurveyComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
 
-    if (!this.isDown) {
-      return;
-    }
-
     const top = this.canvas.getBoundingClientRect().top;
     const left = this.canvas.getBoundingClientRect().left;
 
@@ -149,18 +144,27 @@ export class JoinSurveyComponent implements OnInit {
     const mouseX = Number(event.clientX - x);
     const mouseY = Number(event.clientY - y);
 
+    this.positionX = mouseX;
+    this.positionY = mouseY;
+
+    if (!this.isDown) {
+      return;
+    }
+
     const width = mouseX - this.startX;
     const height = mouseY - this.startY;
 
     this.context.clearRect(this.startX, this.startY, width, height);
+    this.context.lineWidth = 3;
+
     this.context.strokeStyle = this.activatedChoice.color;
     this.context.strokeRect(this.startX, this.startY, width, height);
 
     const box: Box = new Box();
     box.width = width;
     box.height = height;
-    box.startX = this.startX;
-    box.startY = this.startY;
+    box.startX = Math.floor(this.startX);
+    box.startY = Math.floor(this.startY);
     box.choiceId = this.activatedChoice.id;
     this.temponary.push(box);
   }
@@ -178,7 +182,22 @@ export class JoinSurveyComponent implements OnInit {
   }
 
   clearCanvas() {
-    this.context.beginPath();
+    const width = this.canvas.width;
+    const height = this.canvas.height;
+    this.context.clearRect(0, 0, width, height);
+  }
+
+  drawStack() {
+    const to = this.survey.images[this.sequence];
+    const answer = this.answer.getAnswerByImage(to.id);
+    const iterator: IIterator<Box> = answer.createIterator();
+
+    while (!iterator.finished()) {
+      const next: Box = iterator.next();
+      const choice = this.survey.choiceGroup.choices.filter(e => e.id == next.choiceId)[0];
+      this.context.strokeStyle = choice.color;
+      this.context.strokeRect(next.startX, next.startY, next.width, next.height);
+    }
   }
 
   touchEnd(event: TouchEvent) {
@@ -204,32 +223,36 @@ export class JoinSurveyComponent implements OnInit {
     this.canvas.dispatchEvent(mouseEvent);
   }
 
-  save() {
-    const to = this.survey.images[this.sequence];
-    const answer = this.answer.getAnswerChoice(to.id);
-
-    const iterator: IIterator<Box> = answer.createIterator();
-    while (!iterator.finished()) {
-      const next: Box = iterator.next();
-      console.log(next);
-    }
-  }
-
   undo() {
     const to = this.survey.images[this.sequence];
-    const answer = this.answer.getAnswerChoice(to.id);
+    const answer = this.answer.getAnswerByImage(to.id);
 
     if (answer.canUndo()) {
       answer.undo();
+      this.clearCanvas();
+      this.drawStack();
     }
   }
 
   redo() {
     const to = this.survey.images[this.sequence];
-    const answer = this.answer.getAnswerChoice(to.id);
+    const answer = this.answer.getAnswerByImage(to.id);
 
     if (answer.canRedo()) {
       answer.redo();
+      this.clearCanvas();
+      this.drawStack();
     }
+  }
+
+  handleBox() {
+    if (this.positionY + this.positionX == 0)
+      return;
+  }
+
+  save() {
+    this.answerHttp.add(this.answer)
+      .subscribe((e: any) => {
+      });
   }
 }

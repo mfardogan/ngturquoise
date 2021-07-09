@@ -4,7 +4,7 @@ import Concurrency from "./concurrency";
 import Doctor from "./doctor";
 import Survey from "./survey";
 
-class Answer extends Concurrency{
+class Answer extends Concurrency {
 
     doctorId: number = 0;
     doctor!: Doctor;
@@ -15,20 +15,18 @@ class Answer extends Concurrency{
 
     static prepare(images: Array<number>): Answer {
 
-        const answer: Answer = new Answer();
+        const answer = new Answer();
         images.forEach((id: number) => {
-
-            const choice: AnswerChoice = new AnswerChoice();
-            choice.boxes = [];
+            const choice = new AnswerChoice();
             choice.surveyImageId = id;
             answer.choices.push(choice);
         })
         return answer;
     }
 
-    addBox(image: number, box: Box): void {
+    getAnswerChoice(image: number): AnswerChoice {
         const choice = this.choices.find(e => e.surveyImageId === image);
-        choice?.boxes.push(box);
+        return choice!;
     }
 }
 export default Answer;

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import Box from 'src/app/@core/models/box';
 import { ActivatedRoute } from '@angular/router';
+import Answer from 'src/app/@core/models/answer';
 import Choice from 'src/app/@core/models/choice';
 import Survey from 'src/app/@core/models/survey';
+import { Component, OnInit } from '@angular/core';
 import SurveyHttp from '../../dash/survey/survey-http';
+import { IIterator } from 'src/app/IIterator';
 
 @Component({
   selector: 'app-join-survey',
@@ -18,18 +21,16 @@ export class JoinSurveyComponent implements OnInit {
 
   surveyid!: number;
   sequence: number = 0;
-
   activatedChoice!: Choice;
+  temponary: Array<Box> = [];
   survey: Survey = new Survey();
-
   container!: HTMLDivElement;
   canvas!: HTMLCanvasElement;
   context!: CanvasRenderingContext2D;
 
+  private answer!: Answer;
   private startX: number = 0;
   private startY: number = 0;
-  private offsetX: number = 0;
-  private offsetY: number = 0;
   private isDown: boolean = false;
 
   ngAfterViewInit(): void {
@@ -40,7 +41,6 @@ export class JoinSurveyComponent implements OnInit {
     this.container = document.getElementById('bgg') as HTMLDivElement;
     this.canvas = document.getElementById('drw') as HTMLCanvasElement;
     this.context = this.canvas?.getContext('2d') as CanvasRenderingContext2D;
-    this.context.globalAlpha = 0.1;
   }
 
   getActiveImage() {
@@ -54,7 +54,8 @@ export class JoinSurveyComponent implements OnInit {
       this.container.style.width = background.width + 'px';
       this.container.style.height = background.height + 'px';
       this.container.setAttribute("style", `background-image: url('${path.replace(/\\/g, "/")}')`);
-      console.log(this.container.style.backgroundImage);
+      this.context.lineWidth = 2;
+      this.context.fillStyle = "transparent";
       this.context.canvas.width = background.width;
       this.context.canvas.height = background.height;
     };
@@ -74,29 +75,30 @@ export class JoinSurveyComponent implements OnInit {
       this.surveyid = Number(survey);
 
       this.surveyHttp.get(this.surveyid)
-        .subscribe(e => {
-          this.survey = e;
-          this.nextBackground();
+        .subscribe((survey: Survey) => {
+          this.survey = survey;
+          this.otherBackground(true);
           this.activateClassByIndex(0);
+          this.answer = Answer.prepare(survey.images.map(s => s.id));
         });
     }
   }
 
-  nextBackground() {
-    if (this.survey.images.length > this.sequence) {
-      this.sequence++;
-      const next = this.survey.images[this.sequence];
-      this.changeBackgroundImage(next.fileName);
+  otherBackground(forwar: boolean) {
+    if (forwar) {
+      if (this.sequence + 1 < this.survey.images.length) {
+        this.sequence++;
+      }
+    } else {
+      if (this.sequence > 0) {
+        this.sequence--;
+      }
     }
+    const next = this.survey.images[this.sequence];
+    this.changeBackgroundImage(next.fileName);
   }
 
-  previousBackground() {
-    if (this.sequence > 0) {
-      this.sequence--;
-      const next = this.survey.images[this.sequence];
-      this.changeBackgroundImage(next.fileName);
-    }
-  }
+
 
   zoomIn() { }
   zoomOut() { }
@@ -105,14 +107,28 @@ export class JoinSurveyComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     this.isDown = false;
+
+    if (this.temponary.length > 0) {
+      const box: Box = this.temponary.pop()!;
+      const image = this.survey.images[this.sequence];
+      const answerChoice = this.answer.getAnswerChoice(image.id);
+      answerChoice.addBox(box);
+    }
   }
 
   mouseDown(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
 
-    this.startX = Number(event.clientX - this.offsetX);
-    this.startY = Number(event.clientY - this.offsetY);
+    var top = this.canvas.getBoundingClientRect().top;
+    var left = this.canvas.getBoundingClientRect().left;
+
+    var y = window.pageYOffset + top;
+    var x = window.pageXOffset + left;
+
+    this.temponary = [];
+    this.startX = Number(event.clientX - x);
+    this.startY = Number(event.clientY - y);
     this.isDown = true;
   }
 
@@ -124,17 +140,29 @@ export class JoinSurveyComponent implements OnInit {
       return;
     }
 
-    const mouseX = Number(event.clientX - this.offsetX);
-    const mouseY = Number(event.clientY - this.offsetY);
+    const top = this.canvas.getBoundingClientRect().top;
+    const left = this.canvas.getBoundingClientRect().left;
+
+    const y = window.pageYOffset + top;
+    const x = window.pageXOffset + left;
+
+    const mouseX = Number(event.clientX - x);
+    const mouseY = Number(event.clientY - y);
 
     const width = mouseX - this.startX;
     const height = mouseY - this.startY;
 
     this.context.clearRect(this.startX, this.startY, width, height);
-    this.context.lineWidth = 3;
-    this.context.fillStyle = "transparent";
     this.context.strokeStyle = this.activatedChoice.color;
     this.context.strokeRect(this.startX, this.startY, width, height);
+
+    const box: Box = new Box();
+    box.width = width;
+    box.height = height;
+    box.startX = this.startX;
+    box.startY = this.startY;
+    box.choiceId = this.activatedChoice.id;
+    this.temponary.push(box);
   }
 
   activateClassByIndex(sequence: number) {
@@ -154,7 +182,6 @@ export class JoinSurveyComponent implements OnInit {
   }
 
   touchEnd(event: TouchEvent) {
-    const touch = event.touches[0];
     const mouseEvent = new MouseEvent("mouseup", {});
     this.canvas.dispatchEvent(mouseEvent);
   }
@@ -175,5 +202,34 @@ export class JoinSurveyComponent implements OnInit {
       clientY: touch.clientY
     });
     this.canvas.dispatchEvent(mouseEvent);
+  }
+
+  save() {
+    const to = this.survey.images[this.sequence];
+    const answer = this.answer.getAnswerChoice(to.id);
+
+    const iterator: IIterator<Box> = answer.createIterator();
+    while (!iterator.finished()) {
+      const next: Box = iterator.next();
+      console.log(next);
+    }
+  }
+
+  undo() {
+    const to = this.survey.images[this.sequence];
+    const answer = this.answer.getAnswerChoice(to.id);
+
+    if (answer.canUndo()) {
+      answer.undo();
+    }
+  }
+
+  redo() {
+    const to = this.survey.images[this.sequence];
+    const answer = this.answer.getAnswerChoice(to.id);
+
+    if (answer.canRedo()) {
+      answer.redo();
+    }
   }
 }

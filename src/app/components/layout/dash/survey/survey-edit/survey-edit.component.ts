@@ -19,6 +19,7 @@ export class SurveyEditComponent implements OnInit {
     private router: Router
   ) { }
 
+  confirmToDelete: boolean = false;
   surveyStatus: number = 0;
   choices: Array<ChoiceGroup> = [];
   @Input() survey!: Survey;
@@ -83,6 +84,10 @@ export class SurveyEditComponent implements OnInit {
   }
 
   remove() {
+    if (!this.confirmToDelete) {
+      return;
+    }
+
     const id = this.survey.id;
     Dependency.get(SurveyHttp)
       .remove(id).subscribe(() => {

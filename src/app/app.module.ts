@@ -42,6 +42,7 @@ import { DoctorLayoutComponent } from './components/layout/doctor/doctor-layout/
 import { SettingsComponent } from './components/layout/dash/settings/settings.component';
 import { SettingsHttp } from './components/layout/dash/settings/settings-http';
 import { SurveyEditComponent } from './components/layout/dash/survey/survey-edit/survey-edit.component';
+import { OverviewComponent } from './components/layout/dash/overview/overview.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { SurveyEditComponent } from './components/layout/dash/survey/survey-edit
     DoctorLayoutComponent,
     SettingsComponent,
     SurveyEditComponent,
+    OverviewComponent,
   ],
 
   imports: [

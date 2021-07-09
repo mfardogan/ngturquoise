@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Survey from 'src/app/@core/models/survey';
-import { Dependency } from 'src/app/app.module';
 import SurveyHttp from '../survey-http';
 
 @Component({
@@ -25,11 +24,9 @@ export class SurveyItemComponent implements OnInit {
     if (!(survey == undefined || survey == '')) {
       this.survey = Number(survey);
 
-      this.surveyHttp
-        .get(this.survey)
+      this.surveyHttp.get(this.survey)
         .subscribe(e => {
           this.data = e;
-          console.log(this.data);
         });
     }
   }

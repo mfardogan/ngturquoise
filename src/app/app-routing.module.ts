@@ -10,6 +10,7 @@ import { ContentComponent } from './components/layout/dash/content/content.compo
 import { DoctorProfileComponent } from './components/layout/dash/doctor/doctor-profile/doctor-profile.component';
 import { DoctorsComponent } from './components/layout/dash/doctor/doctors/doctors.component';
 import { EditDoctorProfileComponent } from './components/layout/dash/doctor/edit-doctor-profile/edit-doctor-profile.component';
+import { OverviewComponent } from './components/layout/dash/overview/overview.component';
 import { SettingsComponent } from './components/layout/dash/settings/settings.component';
 import { CreateSurveyComponent } from './components/layout/dash/survey/create-survey/create-survey.component';
 import { SurveyItemComponent } from './components/layout/dash/survey/survey-item/survey-item.component';
@@ -46,13 +47,14 @@ const routes: Routes = [
   },
 
   {
-    path: 'dashboard',
-    canActivate: [AuthGuardService], //CanDiactivate
+    path: 'dash',
+    canActivate: [AuthGuardService],
     component: ContentComponent,
     children: [
-      { path: '', redirectTo: 'settings', pathMatch: 'full' },
+      { path: '', redirectTo: 'overview', pathMatch: 'full' },
+      { path: 'overview', component: OverviewComponent },
       { path: 'settings', component: SettingsComponent },
-      { path: 'dashboard', component: ContentComponent },
+      { path: 'dash', component: ContentComponent },
       { path: 'survey/:id', component: SurveyItemComponent },
       { path: 'surveys', component: SurveysComponent },
       { path: 'add-survey', component: CreateSurveyComponent },

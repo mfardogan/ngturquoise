@@ -29,7 +29,7 @@ export class SignInAdminComponent implements OnInit {
     this.authHttp.admin(this.loginViewModel)
       .subscribe((e) => {
         this.tokenService.saveOnLocalStorage(e);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dash']);
       });
   }
 }

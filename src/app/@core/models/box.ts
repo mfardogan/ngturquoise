@@ -1,7 +1,7 @@
 import Choice from "./choice";
 import Concurrency from "./concurrency";
 
-class Box extends Concurrency{
+class Box extends Concurrency {
     choiceId: number = 0;
     choice!: Choice;
     startX: number = 0;

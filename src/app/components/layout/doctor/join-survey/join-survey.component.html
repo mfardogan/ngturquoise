@@ -2,87 +2,93 @@
     <div class="media mb-3">
         <!-- Avatar -->
         <div class="avatar avatar-xl avatar-4by3 mr-2">
-            <img class="avatar-img" src="./assets/svg/brands/guideline.svg" alt="Image Description">
+            <img *ngIf="survey.smallImages" class="avatar-img" src="{{survey.smallImages[0].fileName}}">
         </div>
         <!-- End Avatar -->
 
         <div class="media-body">
             <div class="row">
                 <div class="col-lg mb-3 mb-lg-0">
-                    <h1 class="page-header-title">Cloud computing web service</h1>
+                    <h1 class="page-header-title">{{survey.title}}</h1>
 
                     <div class="row align-items-center">
                         <div class="col-auto">
-                            <span>Client:</span>
-                            <a href="#">Htmlstream</a>
+                            <span *ngFor="let choice of survey.choiceGroup.choices.slice(0,5)"
+                                style="border: 1px solid rgb(153, 153, 153); " [style.background-color]="choice.color"
+                                class="legend-indicator">
+                            </span>
+                            <span style="font-size: 11px; font-weight: bold;"
+                                *ngIf="survey.choiceGroup.choices.length - 5 > 0">
+                                +{{survey.choiceGroup.choices.length - 5}}
+                            </span>
+                            <span> |</span>
+
                         </div>
 
                         <div class="col-auto">
                             <div class="row align-items-center g-0">
-                                <div class="col-auto">Due date:</div>
-
-                                <!-- Flatpickr -->
-                                <div id="projectDeadlineFlatpickr"
-                                    class="js-flatpickr flatpickr-custom flatpickr-custom-borderless col input-group input-group-sm"
-                                    data-hs-flatpickr-options="{
-                          &quot;appendTo&quot;: &quot;#projectDeadlineFlatpickr&quot;,
-                          &quot;dateFormat&quot;: &quot;d/m/Y&quot;,
-                          &quot;wrap&quot;: true
-                        }" style="width: 0px;">
-                                    <input type="text"
-                                        class="flatpickr-custom-form-control form-control flatpickr-input"
-                                        placeholder="Select dates" data-input="" value="29/06/2020" readonly="readonly">
-                                    <div class="input-group-append" data-toggle="">
-                                        <div class="input-group-text">
-                                            <i class="tio-chevron-down"></i>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- End Flatpickr -->
+                                <div class="col-auto">{{survey.creationAt | date: 'dd/MM/yy hh:MM:ss'}} |</div>
                             </div>
                         </div>
 
                         <div class="col-auto">
-                            <!-- Select -->
-                            <div class="select2-custom">
-                                <span class="select2 select2-container select2-container--default" dir="ltr"
-                                    data-select2-id="1"><span class="selection"><span
-                                            class="select2-selection custom-select custom-select-sm custom-select-borderless pl-0"
-                                            role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0"
-                                            aria-disabled="false" aria-labelledby="select2-ownerLabel-container"><span
-                                                class="select2-selection__rendered" id="select2-ownerLabel-container"
-                                                role="textbox" aria-readonly="true" title="Mark Williams"><span
-                                                    class="media align-items-center"><img
-                                                        class="avatar avatar-xss avatar-circle mr-2"
-                                                        src="./assets/img/160x160/img6.jpg" alt="Avatar"><span
-                                                        class="media-body">Mark Williams</span></span></span><span
-                                                class="select2-selection__arrow" role="presentation"><b
-                                                    role="presentation"></b></span></span></span><span
-                                        class="dropdown-wrapper" aria-hidden="true"></span></span>
-                            </div>
-                            <!-- End Select -->
+                            <a [routerLink]="[ '../admin', survey.administrator.id ]">
+                                <span class="media align-items-center">
+                                    <img *ngIf="survey.administrator.image != null"
+                                        class="avatar avatar-xs avatar-circle mr-2"
+                                        src="{{survey.administrator.image.fileName}}">
+
+                                    <div *ngIf="survey.administrator.image == null"
+                                        class="avatar avatar-xs avatar-soft-info avatar-circle avatar-circle avatar-border-lg profile-cover-avatar">
+                                        <span class="avatar-initials">{{survey.administrator.name[0]}}</span>
+                                    </div>
+                                    <span class="media-body">
+                                        {{survey.administrator.title}}
+                                        {{survey.administrator.name}}
+                                        {{survey.administrator.surname}}
+                                    </span>
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-auto">
-                    <div class="text-center mb-5">
+                    <small class="text-cap mb-2">Başlıca resimler:</small>
 
+                    <div class="d-flex">
+                        <!-- Avatar Group -->
+                        <div class="avatar-group mr-3">
+                            <a *ngFor="let item of survey.smallImages.slice(0,3)" class="avatar" href="javascript:;"
+                                data-toggle="tooltip" data-placement="top" title=""
+                                [attr.data-original-title]="item.hash">
+                                <img class="avatar-img" src="{{item.fileName}}" alt="Image Description">
+                            </a>
+
+                            <a *ngIf="survey.smallImages.length > 3" class="avatar avatar-light" href="javascript:;">
+                                <span class="avatar-initials">+{{survey.smallImages.length - 3}}</span>
+                            </a>
+                        </div>
+                        <!-- End Avatar Group -->
+
+                        <a class="btn btn-icon btn-primary rounded" href="javascript:;" data-toggle="modal"
+                            data-target="#shareWithPeopleModal">
+                            <i class="tio-share"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End Media -->
     </div>
+    <!-- End Media -->
 </div>
 
 <div class="col-12">
     <div id="#style-1" class="custom-scrollbar">
         <div id="bgg">
-            <canvas style="border: 1px solid blue; background-color: transparent;" (mouseup)="mouseUp($event)"
-                (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)" (touchmove)="touchMove($event)"
-                (touchstart)="touchStart($event)" (touchend)="touchEnd($event)" id="drw">
+            <canvas style="background-color: transparent;" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)"
+                (mousemove)="mouseMove($event)" (touchmove)="touchMove($event)" (touchstart)="touchStart($event)"
+                (touchend)="touchEnd($event)" id="drw">
             </canvas>
         </div>
     </div>
@@ -97,10 +103,10 @@
                 <div class="col">
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                         <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-secondary">
+                            <button (click)="undo()" type="button" class="btn btn-secondary">
                                 <i class="tio-undo"></i>
                             </button>
-                            <button type="button" class="btn btn-secondary">
+                            <button (click)="redo()" type="button" class="btn btn-secondary">
                                 <i class="tio-redo"></i>
                             </button>
                             <button (click)="zoomIn()" type="button" class="btn btn-secondary">
@@ -111,9 +117,9 @@
                             </button>
                         </div>
                         <div class="btn-group mr-2" role="group" aria-label="Second group">
-                            <button (click)="previousBackground()" type="button" class="btn btn-secondary">
+                            <button (click)="otherBackground(false)" type="button" class="btn btn-secondary">
                                 g</button>
-                            <button (click)="nextBackground()" type="button" class="btn btn-secondary">i</button>
+                            <button (click)="otherBackground(true)" type="button" class="btn btn-secondary">i</button>
                         </div>
                         <div class="btn-group mr-2" role="group" aria-label="Third group">
                             <!-- Dropup -->
@@ -163,7 +169,7 @@
                         </div>
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button (click)="clearCanvas()" type="button" class="btn btn-danger">Temizle</button>
-                            <button type="button" class="btn btn-success">Kaydet</button>
+                            <button (click)="save()" type="button" class="btn btn-success">Kaydet</button>
                         </div>
 
                     </div>

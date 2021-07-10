@@ -8,6 +8,7 @@ import { EditAdminProfileComponent } from './components/layout/dash/admin/edit-a
 import { ChoiceGroupItemComponent } from './components/layout/dash/choice/choice-group-item/choice-group-item.component';
 import { ChoiceGroupsComponent } from './components/layout/dash/choice/choice-groups/choice-groups.component';
 import { ContentComponent } from './components/layout/dash/content/content.component';
+import { DoctorItemComponent } from './components/layout/dash/doctor/doctor-item/doctor-item.component';
 import { DoctorProfileComponent } from './components/layout/dash/doctor/doctor-profile/doctor-profile.component';
 import { DoctorsComponent } from './components/layout/dash/doctor/doctors/doctors.component';
 import { EditDoctorProfileComponent } from './components/layout/dash/doctor/edit-doctor-profile/edit-doctor-profile.component';
@@ -56,6 +57,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'overview', pathMatch: 'full' },
       { path: 'update-admin/:id', component: AdminItemComponent },
       { path: 'new-admin', component: AdminItemComponent },
+      { path: 'update-doctor/:id', component: DoctorItemComponent },
+      { path: 'new-doctor', component: DoctorItemComponent },
       { path: 'overview', component: OverviewComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'dash', component: ContentComponent },

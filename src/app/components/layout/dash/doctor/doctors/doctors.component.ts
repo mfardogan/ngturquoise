@@ -66,14 +66,6 @@ export class DoctorsComponent implements OnInit {
       'avatar avatar-soft-danger avatar-circle';
   }
 
-  changeDoctorType(id: number, type: string) {
-    const to = Number(type);
-    this.doctorHttp.changeType(id, to)
-      .subscribe(e => {
-        this.getSummary();
-      });
-  }
-
   getActivityPercentClass(id: number): string {
     const doctor: Doctor = this.data.filter(e => e.id === id)[0];
     const activity = doctor.activityPercent;

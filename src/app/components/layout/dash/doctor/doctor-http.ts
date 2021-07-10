@@ -3,6 +3,7 @@ import ChangePassword from "src/app/@core/models/change-password";
 import Doctor from "src/app/@core/models/doctor";
 import DoctorSearch from "src/app/@core/models/doctor-search";
 import DoctorSummary from "src/app/@core/models/doctor-summary";
+import ModifyAdminPassword from "src/app/@core/models/modify-admin-pass";
 import Search from "src/app/@core/models/search";
 import BaseHttp from "src/app/base-http";
 
@@ -52,6 +53,16 @@ class DoctorHttp extends BaseHttp<Doctor>{
     removeMyAvatar(): Observable<any> {
         const path: string = this.prefix + '/removemyavatar';
         return this.http.delete(path);
+    }
+
+    clearDoctorAvatarById(id: number): Observable<any> {
+        const path: string = this.prefix + '/cleardoctoravatar/' + id;
+        return this.http.delete(path);
+    }
+
+    modifyPasswordByAdmin(password: ModifyAdminPassword): Observable<any> {
+        const path: string = this.prefix + '/modifypasswordbyadmin';
+        return this.http.put(path, password);
     }
 }
 

@@ -44,6 +44,7 @@ import { SettingsHttp } from './components/layout/dash/settings/settings-http';
 import { SurveyEditComponent } from './components/layout/dash/survey/survey-edit/survey-edit.component';
 import { OverviewComponent } from './components/layout/dash/overview/overview.component';
 import { AdminItemComponent } from './components/layout/dash/admin/admin-item/admin-item.component';
+import { DoctorItemComponent } from './components/layout/dash/doctor/doctor-item/doctor-item.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { AdminItemComponent } from './components/layout/dash/admin/admin-item/ad
     SurveyEditComponent,
     OverviewComponent,
     AdminItemComponent,
+    DoctorItemComponent,
   ],
 
   imports: [

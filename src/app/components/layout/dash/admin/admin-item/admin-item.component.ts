@@ -78,6 +78,11 @@ export class AdminItemComponent implements OnInit {
   }
 
   remove() {
+    if (!this.confirmToDelete) {
+      console.log("Silme işlemini onaylayın!");
+      return;
+    }
+
     Dependency.get(AdminHttp)
       .remove(this.id)
       .subscribe(() => {

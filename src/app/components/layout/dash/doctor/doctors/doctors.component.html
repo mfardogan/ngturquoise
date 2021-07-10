@@ -13,8 +13,8 @@
         </div>
 
         <div class="col-sm-auto">
-            <a class="btn btn-primary" href="#">
-                <i class="tio-user-add mr-1"></i> Doktor Oluştur
+            <a routerLink="/dash/new-doctor" class="btn btn-primary" href="#">
+                <i class="tio-user-add mr-1"></i>Yeni Doktor Oluştur
             </a>
         </div>
 
@@ -338,9 +338,7 @@
                         <th class="table-column-pl-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1"
                             colspan="1" aria-label="Name: activate to sort column ascending" style="width: 150.2px;">
                             Ad</th>
-                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                            aria-label="Position: activate to sort column ascending" style="width: 127.2px;">Tip
-                        </th>
+                        
                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                             aria-label="Country: activate to sort column ascending" style="width: 100.4px;">Email</th>
                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
@@ -388,14 +386,7 @@
                                 </div>
                             </a>
                         </td>
-                        <td>
-                            <select #typeof (change)="changeDoctorType(item.id,typeof.value)" style=" font-size: 13px;"
-                                class="form-select form-select-sm mb-1" aria-label="Default select example">
-                                <option [selected]="item.type === 0" value="0">Katılımcı</option>
-                                <option [selected]="item.type === 1" value="1">Denetimci</option>
-                                <option [selected]="item.type === 2" value="2">Her ikisi</option>
-                            </select>
-                        </td>
+                        
                         <td>
                             <i class="tio-online nav-icon"></i> {{item.email}}
                         </td>
@@ -433,12 +424,13 @@
                             <div class="btn-group">
                                 <button class="btn btn-sm btn-white" type="button" id="dropdownMenuButtonSm{{i}}"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="tio-edit"></i> İşlem
+                                    <i class="tio-cut"></i> İşlem
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonSm">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a routerLink="/dash/update-doctor/{{item.id}}" class="dropdown-item" href="#">
+                                        <i class="tio-edit dropdown-item-icon"></i> Düzenle</a>
+                                    <a *ngIf="!item.isConfirmed" class="dropdown-item" href="#">
+                                        <i class="tio-voice-line"></i> Doğrula</a>
                                 </div>
                             </div>
                             <!-- End Dropdown -->

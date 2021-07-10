@@ -42,9 +42,15 @@
                         <input (change)="onFileChange($event)" type="file" accept="image/*"
                             class="js-file-attach custom-file-boxed-input" id="logoUploader" multiple>
                         <br>
-                        <span style="margin-bottom: 5px;" class="btn btn-sm btn-primary">
+                        <span style="margin-bottom: 5px; margin-right: 5px;" class="btn btn-sm btn-primary">
                             <i class="tio-visible-outlined"></i>
                             Dizine Gözat</span>
+
+                        <!-- Button trigger modal -->
+                        <button style="margin-bottom: 5px;" type="button" class="btn btn-sm btn-success"
+                            data-toggle="modal" data-target="#staticBackdrop">
+                            <i class="tio-visible-outlined"></i> Kameradan Al
+                        </button>
 
                         <div class="card-body">
                             <label *ngIf="uploading.length > 0" class="input-label">
@@ -301,3 +307,78 @@
         </div>
     </div>
 </div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn btn-xs btn-icon btn-ghost-secondary" data-dismiss="modal"
+                    aria-label="Close">
+                    <i class="tio-clear tio-lg"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="col-md-12">
+                            <label class="custom-file-boxed custom-file-boxed-sm" for="logoUploader">
+
+                                <div style="height: 15rem;">
+                                </div>
+
+                                <button style="  position: absolute; bottom: 5px; right: 5px;" type="button"
+                                    class="btn btn-sm btn-secondary">
+                                    <i class="tio-add"></i>
+                                </button>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <!--Browse-->
+                        <div class="col-md-12">
+                            <!-- Logo -->
+                            <label class="custom-file-boxed custom-file-boxed-sm" for="logoUploader">
+                                <img id="logoImg" class="avatar avatar-xl avatar-4by3 avatar-centered h-100 mb-2"
+                                    src="./assets/svg/illustrations/browse.svg" alt="Image Description">
+
+                                <span class="d-block">Ankete uygulamak için kameradan çekim yapın.
+                                </span>
+
+                            </label>
+                            <!-- End Logo -->
+                        </div>
+                        <!--Browse end-->
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success">
+                    <i class="tio-add"></i> Aktar</button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">
+                    <i class="tio-delete"></i> İptal</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->

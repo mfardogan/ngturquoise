@@ -19,93 +19,7 @@
         </div>
 
 
-        <div class="row">
-            <div class="col-lg-4">
-                <!-- Card -->
-                <div class="text-center">
-                    <img class="avatar avatar-xl avatar-4by3 mb-4" src="./assets/svg/illustrations/click.svg"
-                        alt="Image Description">
-                    <small class="text-cap">Katılımcılar</small>
-                    <span class="d-block display-4 text-dark mb-2">{{summary.participants}}</span>
 
-                    <div class="row">
-                        <div class="col text-right">
-                            <span class="d-block font-weight-bold text-success">
-                                <i class="tio-trending-up"></i> 12%
-                            </span>
-                            <span class="d-block">change</span>
-                        </div>
-
-                        <div class="col column-divider text-left">
-                            <span class="d-block font-weight-bold text-dark">25</span>
-                            <span class="d-block">last week</span>
-                        </div>
-                    </div>
-                    <!-- End Row -->
-                </div>
-                <!-- End Card -->
-            </div>
-
-            <div class="col-lg-4 column-divider-lg">
-                <div class="d-lg-none">
-                    <hr class="my-5">
-                </div>
-
-                <!-- Card -->
-                <div class="text-center">
-                    <img class="avatar avatar-xl avatar-4by3 mb-4" src="./assets/svg/illustrations/presenting.svg"
-                        alt="Image Description">
-                    <small class="text-cap">Denetimciler</small>
-                    <span class="d-block display-4 text-dark mb-2">{{summary.controllers}}</span>
-
-                    <div class="row">
-                        <div class="col text-right">
-                            <span class="d-block font-weight-bold text-success">
-                                <i class="tio-trending-up"></i> 5.6%
-                            </span>
-                            <span class="d-block">change</span>
-                        </div>
-
-                        <div class="col column-divider text-left">
-                            <span class="d-block font-weight-bold text-dark">$582.00</span>
-                            <span class="d-block">last week</span>
-                        </div>
-                    </div>
-                    <!-- End Row -->
-                </div>
-                <!-- End Card -->
-            </div>
-
-            <div class="col-lg-4 column-divider-lg">
-                <div class="d-lg-none">
-                    <hr class="my-5">
-                </div>
-
-                <!-- Card -->
-                <div class="text-center">
-                    <img class="avatar avatar-xl avatar-4by3 mb-4" src="./assets/svg/illustrations/hi-five.svg"
-                        alt="Image Description">
-                    <small class="text-cap">Katılımcı & Denetimciler</small>
-                    <span class="d-block display-4 text-dark mb-2">{{summary.participantAndControllers}}</span>
-
-                    <div class="row">
-                        <div class="col text-right">
-                            <span class="d-block font-weight-bold text-danger">
-                                <i class="tio-trending-down"></i> 2.3%
-                            </span>
-                            <span class="d-block">change</span>
-                        </div>
-
-                        <div class="col column-divider text-left">
-                            <span class="d-block font-weight-bold text-dark">7</span>
-                            <span class="d-block">last week</span>
-                        </div>
-                    </div>
-                    <!-- End Row -->
-                </div>
-                <!-- End Card -->
-            </div>
-        </div>
     </div>
     <!-- End Row -->
 </div>
@@ -450,7 +364,7 @@
                             </div>
                         </td>
                         <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" [routerLink]="['/doctor',item.id]">
+                            <a class="d-flex align-items-center" [routerLink]="['/dash/doctor',item.id]">
 
                                 <ng-template #hasimage>
                                     <div class="avatar avatar-circle">

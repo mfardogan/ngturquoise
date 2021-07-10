@@ -27,6 +27,7 @@ export class SurveyItemComponent implements OnInit {
       this.surveyHttp.get(this.survey)
         .subscribe(e => {
           this.data = e;
+          console.log(this.data);
         });
     }
   }

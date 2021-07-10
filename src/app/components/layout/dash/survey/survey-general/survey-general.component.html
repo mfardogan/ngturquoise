@@ -1,96 +1,55 @@
-<div class="card card-body mb-3 mb-lg-5">
-    <div class="row gx-lg-4">
-        <div class="col-sm-6 col-lg-3">
-            <div class="media">
-                <div class="media-body">
-                    <h6 class="card-subtitle">In-store Sales</h6>
-                    <span class="card-title h3">$7,820.75</span>
+<div class="card mb-3 mb-lg-5">
+    <!-- Body -->
+    <div class="card-body">
+        <div class="media align-items-md-center">
+            <span class="display-3 text-dark mr-3">{{survey.answerCount}}</span>
 
-                    <div class="d-flex align-items-center">
-                        <span class="d-block font-size-sm">5k orders</span>
-                        <span class="badge badge-soft-success ml-2">
-                            <i class="tio-trending-up"></i> 4.3%
+            <div class="media-body">
+                <div class="row mx-md-n3">
+                    <div class="col-md px-md-4">
+                        <span class="d-block">Katılımlar</span>
+                        <span class="badge badge-soft-danger badge-pill p-1">
+                            <i class="tio-trending-down"></i> -2 late in due
                         </span>
                     </div>
-                </div>
 
-                <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
-                    <i class="tio-shop"></i>
-                </span>
-            </div>
+                    <div class="col-md-9 col-lg-10 column-divider-md px-md-4">
+                        <!-- Legend Indicators -->
+                        <div class="row justify-content-start mb-2">
+                            <div *ngIf="survey.status == 0" class="col-auto">
+                                <span class="legend-indicator bg-primary"></span>
+                                Devam eden
+                            </div>
+                            <div *ngIf="survey.status == 1" class="col-auto">
+                                <span class="legend-indicator bg-warning"></span>
+                                Kontrolde
+                            </div>
+                            <div *ngIf="survey.status == 2" class="col-auto">
+                                <span class="legend-indicator bg-success"></span>
+                                Tamamlandı
+                            </div>
+                        </div>
+                        <!-- End Legend Indicators -->
 
-            <div class="d-lg-none">
-                <hr>
-            </div>
-        </div>
+                        <!-- Progress -->
+                        <div class="progress rounded-pill">
+                            <div *ngIf="survey.status == 0" class="progress-bar" role="progressbar" style="width: 40%"
+                                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
 
-        <div class="col-sm-6 col-lg-3 column-divider-sm">
-            <div class="media">
-                <div class="media-body">
-                    <h6 class="card-subtitle">Website Sales</h6>
-                    <span class="card-title h3">$985,937.45</span>
+                            <div *ngIf="survey.status == 1" class="progress-bar bg-warning" role="progressbar"
+                                style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
 
-                    <div class="d-flex align-items-center">
-                        <span class="d-block font-size-sm">21k orders</span>
-                        <span class="badge badge-soft-success ml-2">
-                            <i class="tio-trending-up"></i> 12.5%
-                        </span>
+                            <div *ngIf="survey.status == 2" class="progress-bar bg-success" role="progressbar"
+                                style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <!-- End Progress -->
                     </div>
                 </div>
-
-                <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
-                    <i class="tio-website"></i>
-                </span>
-            </div>
-
-            <div class="d-lg-none">
-                <hr>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-lg-3 column-divider-lg">
-            <div class="media">
-                <div class="media-body">
-                    <h6 class="card-subtitle">Discount</h6>
-                    <span class="card-title h3">$15,503.00</span>
-
-                    <div class="d-flex align-items-center">
-                        <span class="d-block font-size-sm">6k orders</span>
-                    </div>
-                </div>
-
-                <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
-                    <i class="tio-label-off"></i>
-                </span>
-            </div>
-
-            <div class="d-sm-none">
-                <hr>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-lg-3 column-divider-sm">
-            <div class="media">
-                <div class="media-body">
-                    <h6 class="card-subtitle">Affiliate</h6>
-                    <span class="card-title h3">$3,982.53</span>
-
-                    <div class="d-flex align-items-center">
-                        <span class="d-block font-size-sm">150 orders</span>
-                        <span class="badge badge-soft-danger ml-2">
-                            <i class="tio-trending-down"></i> 4.4%
-                        </span>
-                    </div>
-                </div>
-
-                <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
-                    <i class="tio-users-switch"></i>
-                </span>
             </div>
         </div>
     </div>
+    <!-- End Body -->
 </div>
-
 
 
 <div class="row">
@@ -217,90 +176,14 @@
             <!-- Header -->
             <div class="card-header">
                 <h5 class="card-header-title">Aktivite Durumu</h5>
-
-                <!-- Unfold -->
-                <div class="hs-unfold">
-                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                        href="javascript:;" data-hs-unfold-options="{
-                 &quot;target&quot;: &quot;#reportsOverviewDropdown1&quot;,
-                 &quot;type&quot;: &quot;css-animation&quot;
-               }" data-hs-unfold-target="#reportsOverviewDropdown1" data-hs-unfold-invoker="">
-                        <i class="tio-more-vertical"></i>
-                    </a>
-
-                    <div id="reportsOverviewDropdown1"
-                        class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1 hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                        data-hs-target-height="247.4" data-hs-unfold-content=""
-                        data-hs-unfold-content-animation-in="slideInUp" data-hs-unfold-content-animation-out="fadeOut"
-                        style="animation-duration: 300ms;">
-                        <span class="dropdown-header">Settings</span>
-
-                        <a class="dropdown-item" href="#">
-                            <i class="tio-share dropdown-item-icon"></i> Share reports
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="tio-download-to dropdown-item-icon"></i> Download
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="tio-alt dropdown-item-icon"></i> Connect other apps
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <span class="dropdown-header">Feedback</span>
-
-                        <a class="dropdown-item" href="#">
-                            <i class="tio-chat-outlined dropdown-item-icon"></i> Report
-                        </a>
-                    </div>
-                </div>
-                <!-- End Unfold -->
             </div>
             <!-- End Header -->
 
             <!-- Body -->
             <div class="card-body">
-                <span class="h1 d-block mb-3">{{survey.answerCount}} <span class="h4 text-body"> katılım</span></span>
-
-                <!-- Progress -->
-                <div class="progress rounded-pill">
-                    <div class="progress-bar" role="progressbar" style="width: 76%" aria-valuenow="76" aria-valuemin="0"
-                        aria-valuemax="100"></div>
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 8%" aria-valuenow="8"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 2%" aria-valuenow="2"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <!-- End Progress -->
-            </div>
-            <!-- End Body -->
-
-            <hr class="my-0">
-
-            <!-- Body -->
-            <div class="card-body">
-                <!-- Nav -->
-                <ul class="nav nav-segment nav-fill nav-sm-down-break" id="invoicesStatusTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="paid-tab" data-toggle="tab" href="#paid" role="tab"
-                            aria-controls="paid" aria-selected="true">
-                            <span class="legend-indicator bg-primary"></span>Katılım (162)
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pending-tab" data-toggle="tab" href="#pending" role="tab"
-                            aria-controls="pending" aria-selected="true">
-                            <span class="legend-indicator bg-warning"></span>Kontrol (10)
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="declined-tab" data-toggle="tab" href="#declined" role="tab"
-                            aria-controls="declined" aria-selected="true">
-                            <span class="legend-indicator bg-danger"></span>İptal (3)
-                        </a>
-                    </li>
-                </ul>
-                <!-- End Nav -->
+                <span class="h1 d-block mb-3">{{survey.answerCount}} <span class="h4 text-body">
+                        toplam katılım</span>
+                </span>
             </div>
             <!-- End Body -->
 
@@ -308,201 +191,51 @@
 
             <!-- Body -->
             <div class="card-body card-body-height">
-                <!-- Tab Content -->
-                <div class="tab-content" id="invoicesStatusTabContent">
-                    <div class="tab-pane fade show active" id="paid" role="tabpanel" aria-labelledby="paid-tab">
-                        <!-- List Group -->
-                        <ul class="list-group list-group-flush list-group-no-gutters">
-                            <!-- List Item -->
-                            <li class="list-group-item">
-                                <div class="mb-1">
-                                    <h5 class="mb-0">Update subscription method</h5>
-                                    <span class="font-size-sm">Rocket Science Group</span>
-                                </div>
 
-                                <div class="d-flex justify-content-between">
-                                    <span class="h4 text-primary">$530.00 USD</span>
-                                    <span class="font-size-sm">25 May, 2020</span>
-                                </div>
-                            </li>
-                            <!-- End List Item -->
-
-                            <!-- List Item -->
-                            <li class="list-group-item">
-                                <div class="mb-1">
-                                    <h5 class="mb-0">Develop Slack mobile app</h5>
-                                    <span class="font-size-sm">Slack Technologies</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <span class="h4 text-primary">$2500.00 USD</span>
-                                    <span class="font-size-sm">25 May, 2020</span>
-                                </div>
-                            </li>
-                            <!-- End List Item -->
-
-                            <!-- List Item -->
-                            <li class="list-group-item">
-                                <div class="mb-1">
-                                    <h5 class="mb-0">Create a new database for Webdev</h5>
-                                    <span class="font-size-sm">Google LLC</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <span class="h4 text-primary">$7000.00 USD</span>
-                                    <span class="font-size-sm">10 May, 2020</span>
-                                </div>
-                            </li>
-                            <!-- End List Item -->
-
-                            <!-- List Item -->
-                            <li class="list-group-item">
-                                <div class="mb-1">
-                                    <h5 class="mb-0">The Hub project</h5>
-                                    <span class="font-size-sm">HubSpot</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <span class="h4 text-primary">$55000.00 USD</span>
-                                    <span class="font-size-sm">12 June, 2020</span>
-                                </div>
-                            </li>
-                            <!-- End List Item -->
-
-                            <!-- List Item -->
-                            <li class="list-group-item">
-                                <div class="mb-1">
-                                    <h5 class="mb-0">Binance-chain</h5>
-                                    <span class="font-size-sm">FrontApp</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <span class="h4 text-primary">$400.00 USD</span>
-                                    <span class="font-size-sm">01 June, 2020</span>
-                                </div>
-                            </li>
-                            <!-- End List Item -->
-                        </ul>
-                        <!-- End List Group -->
-                    </div>
-
-                    <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                        <!-- List Group -->
-                        <ul class="list-group list-group-flush list-group-no-gutters">
-                            <!-- List Item -->
-                            <li class="list-group-item">
-                                <div class="mb-1">
-                                    <h5 class="mb-0">Marketing campaign for Slack</h5>
-                                    <span class="font-size-sm">Slack Technologies</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <span class="h4 text-primary">$2500.00 USD</span>
-                                    <span class="font-size-sm">15 May, 2020</span>
-                                </div>
-                            </li>
-                            <!-- End List Item -->
-
-                            <!-- List Item -->
-                            <li class="list-group-item">
-                                <div class="mb-1">
-                                    <h5 class="mb-0">Android app</h5>
-                                    <span class="font-size-sm">Htmlstream Ltd.</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <span class="h4 text-primary">$7000.00 USD</span>
-                                    <span class="font-size-sm">14 May, 2020</span>
-                                </div>
-                            </li>
-                            <!-- End List Item -->
-
-                            <!-- List Item -->
-                            <li class="list-group-item">
-                                <div class="mb-1">
-                                    <h5 class="mb-0">Building startup for brand</h5>
-                                    <span class="font-size-sm">Htmlstream Ltd.</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <span class="h4 text-primary">$530.00 USD</span>
-                                    <span class="font-size-sm">15 May, 2020</span>
-                                </div>
-                            </li>
-                            <!-- End List Item -->
-
-                            <!-- List Item -->
-                            <li class="list-group-item">
-                                <div class="mb-1">
-                                    <h5 class="mb-0">Massive dynamic project</h5>
-                                    <span class="font-size-sm">Microsoft Corporation</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <span class="h4 text-primary">$55000.00 USD</span>
-                                    <span class="font-size-sm">14 Apr, 2020</span>
-                                </div>
-                            </li>
-                            <!-- End List Item -->
-                        </ul>
-                        <!-- End List Group -->
-                    </div>
-
-                    <div class="tab-pane fade" id="declined" role="tabpanel" aria-labelledby="declined-tab">
-                        <!-- List Group -->
-                        <ul class="list-group list-group-flush list-group-no-gutters">
-                            <!-- List Item -->
-                            <li class="list-group-item">
-                                <div class="mb-1">
-                                    <h5 class="mb-0">Set up a datatable for Booking.com</h5>
-                                    <span class="font-size-sm">United States-based Booking Holdings</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <span class="h4 text-primary">$7000.00 USD</span>
-                                    <span class="font-size-sm">05 May, 2020</span>
-                                </div>
-                            </li>
-                            <!-- End List Item -->
-
-                            <!-- List Item -->
-                            <li class="list-group-item">
-                                <div class="mb-1">
-                                    <h5 class="mb-0">Redesigning the Spotify main page</h5>
-                                    <span class="font-size-sm">Spotify Technology S.A.</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <span class="h4 text-primary">$530.00 USD</span>
-                                    <span class="font-size-sm">04 May, 2020</span>
-                                </div>
-                            </li>
-                            <!-- End List Item -->
-
-                            <!-- List Item -->
-                            <li class="list-group-item">
-                                <div class="mb-1">
-                                    <h5 class="mb-0">Prosperops</h5>
-                                    <span class="font-size-sm">Prosperops</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
-                                    <span class="h4 text-primary">$2500.00 USD</span>
-                                    <span class="font-size-sm">15 Apr, 2020</span>
-                                </div>
-                            </li>
-                            <!-- End List Item -->
-                        </ul>
-                        <!-- End List Group -->
-                    </div>
+                <div *ngIf="answers.length == 0" class="card-body card-body-height card-body-centered">
+                    <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/sorry.svg"
+                        alt="Image Description">
+                    <p class="card-text">Henüz katılım yok!</p>
                 </div>
-                <!-- End Tab Content -->
+
+                <!-- List Group -->
+                <ul *ngIf="answers.length > 0" class="list-group list-group-flush">
+                    <!-- Item -->
+                    <li *ngFor="let item of answers" class="list-group-item custom-checkbox-list-wrapper">
+                        <div class="d-flex align-items-start flex-grow-1">
+                            <div class="d-flex align-items-center mr-3">
+
+                                <div class="avatar avatar-sm avatar-circle">
+                                    <img *ngIf="item.doctor.image" class="avatar-img"
+                                        src="../assets/img/160x160/img3.jpg" alt="Image Description">
+
+                                    <span *ngIf="!item.doctor.image"
+                                        class="avatar avatar-sm avatar-primary avatar-circle">
+                                        <span class="avatar-initials">{{item.doctor.name[0]}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 mr-2">
+                                <span class="card-title h5">{{item.doctor.title}} {{item.doctor.name}}
+                                    {{item.doctor.surname}}</span>
+                                <p class="card-text font-size-sm">{{item.creationAt |date: 'dd.MM.yyy hh:mm:ss'}}
+                                    tarihinde katıldı
+                                </p>
+                            </div>
+
+                        </div>
+                        <a class="stretched-link" href="#"></a>
+                    </li>
+                    <!-- End Item -->
+                </ul>
+                <!-- End List Group -->
             </div>
             <!-- End Body -->
 
             <!-- Card Footer -->
-            <a class="card-footer text-center" href="#">
-                View all invoices <i class="tio-chevron-right"></i>
+            <a *ngIf="answers.length > 0" (click)="getLastAnswers()" class="card-footer text-center"
+                href="javascript:;">
+                Daha Fala <i class="tio-chevron-down"></i>
             </a>
             <!-- End Card Footer -->
         </div>

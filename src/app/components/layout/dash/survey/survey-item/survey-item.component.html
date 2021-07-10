@@ -12,7 +12,7 @@
                     <h1 class="page-header-title">{{data.title}}</h1>
 
                     <div class="row align-items-center">
-                        <div class="col-auto">
+                        <div *ngIf="data.choiceGroup" class="col-auto">
                             <span *ngFor="let choice of data.choiceGroup.choices.slice(0,5)"
                                 style="border: 1px solid rgb(153, 153, 153); " [style.background-color]="choice.color"
                                 class="legend-indicator">
@@ -32,13 +32,12 @@
                         </div>
 
                         <div class="col-auto">
-                            <a [routerLink]="[ '../admin', data.administrator.id ]">
+                            <a [routerLink]="[ '/dash/admin', data.createdBy]">
                                 <span class="media align-items-center">
-                                    <img *ngIf="data.administrator.image != null"
-                                        class="avatar avatar-xs avatar-circle mr-2"
+                                    <img *ngIf="data.administrator.image" class="avatar avatar-xs avatar-circle mr-2"
                                         src="{{data.administrator.image.fileName}}">
 
-                                    <div *ngIf="data.administrator.image == null"
+                                    <div *ngIf="!data.administrator.image"
                                         class="avatar avatar-xs avatar-soft-info avatar-circle avatar-circle avatar-border-lg profile-cover-avatar">
                                         <span class="avatar-initials">{{data.administrator.name[0]}}</span>
                                     </div>

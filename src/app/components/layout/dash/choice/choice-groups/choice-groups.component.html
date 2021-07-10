@@ -15,7 +15,7 @@
 
 
         <div class="col-sm-auto">
-            <a routerLink="/choice" class="btn btn-primary" data-toggle="modal" data-target="#createAKIKeyModal">
+            <a routerLink="/dash/choice" class="btn btn-primary" data-toggle="modal" data-target="#createAKIKeyModal">
                 <i class="tio-add mr-1"></i> Yeni Seçenek Grubu
             </a>
         </div>
@@ -23,65 +23,6 @@
     <!-- End Row -->
 </div>
 <!-- End Page Header -->
-
-<div class="card mb-3 mb-lg-5">
-    <!-- Body -->
-    <div class="card-body">
-        <div class="row align-items-md-center gx-md-5">
-            <div class="col-md-auto mb-3 mb-md-0">
-                <div class="d-flex align-items-center">
-                    <img class="avatar avatar-xxl avatar-4by3 mr-4" src="./assets/svg/illustrations/think.svg"
-                        alt="Image Description">
-
-                    <div class="d-block">
-                        <h4 class="display-2 text-dark mb-0">4.84</h4>
-                        <p>— of 7 reviews <span class="badge badge-soft-dark badge-pill ml-1">+1 this week</span></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md">
-                <ul class="list-unstyled list-unstyled-py-2 mb-0">
-
-
-                    <!-- Review Ratings -->
-                    <li class="d-flex align-items-center font-size-sm">
-                        <span class="mr-3">3 star</span>
-                        <div class="progress flex-grow-1">
-                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <span class="ml-3">0</span>
-                    </li>
-                    <!-- End Review Ratings -->
-
-                    <!-- Review Ratings -->
-                    <li class="d-flex align-items-center font-size-sm">
-                        <span class="mr-3">2 star</span>
-                        <div class="progress flex-grow-1">
-                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <span class="ml-3">0</span>
-                    </li>
-                    <!-- End Review Ratings -->
-
-                    <!-- Review Ratings -->
-                    <li class="d-flex align-items-center font-size-sm">
-                        <span class="mr-3">1 star</span>
-                        <div class="progress flex-grow-1">
-                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <span class="ml-3">0</span>
-                    </li>
-                    <!-- End Review Ratings -->
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- End Body -->
-</div>
 
 <div class="card">
     <!-- Header -->
@@ -240,7 +181,7 @@
                     <tr role="row" class="{{i%2 == 0 ? 'odd' : 'even'}}" *ngFor="let item of data;let i = index;">
                         <td>{{i+1}}</td>
                         <td>
-                            <a class="d-flex align-items-center" [routerLink]="['/choice', item.id]">
+                            <a class="d-flex align-items-center" [routerLink]="['/dash/choice', item.id]">
                                 <div class="avatar avatar-soft-dark avatar-circle">
                                     <span class="avatar-initials">{{item.name.slice(0,2)}}</span>
                                 </div>

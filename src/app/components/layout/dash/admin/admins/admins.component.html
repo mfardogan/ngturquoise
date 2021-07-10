@@ -12,7 +12,7 @@
         </div>
 
         <div class="col-sm-auto">
-            <a class="btn btn-primary" href="#">
+            <a routerLink="/dash/new-admin" class="btn btn-primary" href="#">
                 <i class="tio-user-add mr-1"></i> Yeni Yönetici Oluştur
             </a>
         </div>
@@ -347,7 +347,6 @@
                             <i class="tio-online nav-icon"></i> {{item.email}}
                         </td>
                         <td>
-
                             <i class="tio-android-phone-vs nav-icon"></i>+90 {{item.phone}}
                         </td>
 
@@ -359,9 +358,9 @@
 
                         <td>
                             <div id="editUserPopover">
-                                <a class="btn btn-xs btn-white" href="javascript:;" data-toggle="modal"
-                                    data-target="#editUserModal">
-                                    <i class="tio-edit"></i> İşlem
+                                <a routerLink="/dash/update-admin/{{item.id}}" class="btn btn-sm btn-white"
+                                    href="javascript:;" data-toggle="modal" data-target="#editUserModal">
+                                    <i class="tio-cut"></i> Düzenle
                                 </a>
                             </div>
                         </td>

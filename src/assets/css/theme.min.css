@@ -20631,9 +20631,10 @@ label.btn {
 }
 
 .input-label {
+    font-weight: bold;
+    color: rgb(88, 88, 88);
     display: block;
-    color: #1e2022;
-    font-size: .875rem
+    font-size: .750rem
 }
 
 .input-label-secondary {

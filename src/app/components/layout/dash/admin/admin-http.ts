@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import Administrator from "src/app/@core/models/administrator";
 import ChangePassword from "src/app/@core/models/change-password";
+import ModifyAdminPassword from "src/app/@core/models/modify-admin-pass";
 import Search from "src/app/@core/models/search";
 import SearchAdmin from "src/app/@core/models/search-admin";
 import BaseHttp from "src/app/base-http";
@@ -40,5 +41,15 @@ export default class AdminHttp extends BaseHttp<Administrator> {
     clearAvatar(): Observable<any> {
         const path: string = this.prefix + '/clearavatar';
         return this.http.put(path, null);
+    }
+
+    clearAvatarById(id: number) {
+        const path: string = this.prefix + '/clearavatarbyid/' + id;
+        return this.http.put(path, null);
+    }
+
+    modifyadminPassword(password: ModifyAdminPassword) {
+        const path: string = this.prefix + '/modifyadminpassword';
+        return this.http.put(path, password);
     }
 }

@@ -43,6 +43,7 @@ import { SettingsComponent } from './components/layout/dash/settings/settings.co
 import { SettingsHttp } from './components/layout/dash/settings/settings-http';
 import { SurveyEditComponent } from './components/layout/dash/survey/survey-edit/survey-edit.component';
 import { OverviewComponent } from './components/layout/dash/overview/overview.component';
+import { AdminItemComponent } from './components/layout/dash/admin/admin-item/admin-item.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { OverviewComponent } from './components/layout/dash/overview/overview.co
     SettingsComponent,
     SurveyEditComponent,
     OverviewComponent,
+    AdminItemComponent,
   ],
 
   imports: [

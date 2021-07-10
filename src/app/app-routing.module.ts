@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './@core/services/auth-guard.service';
+import { AdminItemComponent } from './components/layout/dash/admin/admin-item/admin-item.component';
 import { AdminProfileComponent } from './components/layout/dash/admin/admin-profile/admin-profile.component';
 import { AdminsComponent } from './components/layout/dash/admin/admins/admins.component';
 import { EditAdminProfileComponent } from './components/layout/dash/admin/edit-admin-profile/edit-admin-profile.component';
@@ -53,6 +54,8 @@ const routes: Routes = [
     component: ContentComponent,
     children: [
       { path: '', redirectTo: 'overview', pathMatch: 'full' },
+      { path: 'update-admin/:id', component: AdminItemComponent },
+      { path: 'new-admin', component: AdminItemComponent },
       { path: 'overview', component: OverviewComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'dash', component: ContentComponent },

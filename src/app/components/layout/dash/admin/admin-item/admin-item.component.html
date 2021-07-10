@@ -1,0 +1,428 @@
+<!-- Page Header -->
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col-sm mb-2 mb-sm-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-no-gutter">
+                    <li class="breadcrumb-item"><a class="breadcrumb-link"
+                            href="./ecommerce-customers.html">Yöneticiler</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Yeni Yönetici</li>
+                </ol>
+            </nav>
+
+            <h1 class="page-header-title">Yönetici</h1>
+        </div>
+    </div>
+</div>
+<!-- End Page Header -->
+
+<div class="row">
+    <div class="col-lg-3 mb-2 mb-lg-0">
+        <h4>Kullanıcı Bilgileri</h4>
+    </div>
+
+    <div class="col-lg-9">
+        <!-- Card -->
+        <div class="card">
+            <!-- Body -->
+            <div class="card-body">
+                <div class="row">
+                    <!-- Form -->
+                    <form>
+
+                        <div *ngIf="hasImage() && !clearedAvatar" class="row form-group">
+                            <label class="col-sm-3 col-form-label input-label">Avatar</label>
+
+                            <div class="col-sm-9">
+                                <div class="d-flex align-items-center">
+                                    <!-- Avatar -->
+                                    <label class="avatar avatar-xl avatar-circle avatar-uploader mr-5"
+                                        for="avatarUploader">
+                                        <img id="avatarImg" class="avatar-img" src="{{data.image.fileName}}"
+                                            alt="Image Description">
+                                    </label>
+                                    <!-- End Avatar -->
+
+                                    <button (click)="clearAvatar()" type="button"
+                                        class="js-file-attach-reset-img btn btn-white">
+                                        <i class="tio-delete"></i> Kaldır</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Group -->
+                        <div class="row form-group">
+                            <label for="firstNameLabel" class="col-sm-3 col-form-label input-label">İsim <i
+                                    class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top"
+                                    title=""
+                                    data-original-title="Displayed on public forums, such as Front."></i></label>
+
+                            <div class="col-sm-9">
+                                <div class="input-group input-group-sm-down-break">
+                                    <input [(ngModel)]="data.name" type="text" class="form-control" name="name"
+                                        id="firstNameLabel" placeholder="Ad" aria-label="Your first name">
+                                    <input [(ngModel)]="data.surname" type="text" class="form-control" name="lastName"
+                                        id="lastNameLabel" placeholder="Soyad" aria-label="Your last name">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+
+                        <!-- Form Group -->
+                        <div class="row form-group">
+                            <label for="organizationLabel" class="col-sm-3 col-form-label input-label">Ünvan
+                                <span class="input-label-secondary">(Opsiyonel)</span>
+                            </label>
+
+                            <div class="col-sm-9">
+                                <input [(ngModel)]="data.title" type="text" class="form-control" name="organization"
+                                    id="organizationLabel" placeholder="Ünvanınız" aria-label="Ünvanınız"
+                                    value="Prof. Dr.">
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+
+                        <!-- Form Group -->
+                        <div class="row form-group">
+                            <label for="emailLabel" class="col-sm-3 col-form-label input-label">Email</label>
+
+                            <div class="col-sm-9">
+                                <input [(ngModel)]="data.email" type="email" class="form-control" name="email"
+                                    id="emailLabel" placeholder="Email" aria-label="Email" value="birisi@birisi.com">
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+
+                        <!-- Form Group -->
+                        <div class="row form-group">
+                            <label for="phoneLabel" class="col-sm-3 col-form-label input-label">Telefon <span
+                                    class="input-label-secondary">(Opsiyonel)</span></label>
+
+                            <div class="col-sm-9">
+                                <input [(ngModel)]="data.phone" type="text" class="js-masked-input form-control"
+                                    name="phone" id="phoneLabel" placeholder="0(5xx) xxx-xx-xx"
+                                    aria-label="+x(xxx)xxx-xx-xx" value="+1 (609) 972-22-22" data-hs-mask-options="{
+                     &quot;template&quot;: &quot;+0(000)000-00-00&quot;
+                   }" maxlength="16">
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+
+                        <!-- Form Group -->
+                        <div id="accountType" class="row form-group">
+                            <label class="col-sm-3 col-form-label input-label">Cinsiyet</label>
+
+                            <div class="col-sm-9">
+                                <div class="input-group input-group-sm-down-break">
+                                    <!-- Custom Radio -->
+                                    <div class="form-control">
+                                        <div class="custom-control custom-radio">
+                                            <input (change)="setGender(1, $event)" type="radio"
+                                                class="custom-control-input" name="userAccountTypeRadio"
+                                                id="userAccountTypeRadio1" [checked]="data.gender == 1">
+                                            <label class="custom-control-label" for="userAccountTypeRadio1">Bay</label>
+                                        </div>
+                                    </div>
+                                    <!-- End Custom Radio -->
+
+                                    <!-- Custom Radio -->
+                                    <div class="form-control">
+                                        <div class="custom-control custom-radio">
+                                            <input (change)="setGender(2, $event)" type="radio"
+                                                class="custom-control-input" name="userAccountTypeRadio"
+                                                id="userAccountTypeRadio2" [checked]="data.gender == 2">
+                                            <label class="custom-control-label"
+                                                for="userAccountTypeRadio2">Bayan</label>
+                                        </div>
+                                    </div>
+                                    <!-- End Custom Radio -->
+
+                                    <!-- Custom Radio -->
+                                    <div class="form-control">
+                                        <div class="custom-control custom-radio">
+                                            <input (change)="setGender(0, $event)" type="radio"
+                                                class="custom-control-input" name="userAccountTypeRadio"
+                                                id="userAccountTypeRadio3" [checked]="data.gender == 0">
+                                            <label class="custom-control-label"
+                                                for="userAccountTypeRadio3">Diğer</label>
+                                        </div>
+                                    </div>
+                                    <!-- End Custom Radio -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+
+                        <!-- Form Group -->
+                        <div class="row form-group">
+                            <label for="phoneLabel" class="col-sm-3 col-form-label input-label">Hakkında <span
+                                    class="input-label-secondary">(Opsiyonel)</span></label>
+
+                            <div class="col-sm-9">
+                                <textarea [(ngModel)]="data.about" name="projectName"
+                                    id="projectNameProjectSettingsLabel" placeholder="Hakkında" aria-label="" value=""
+                                    class="form-control ng-pristine ng-valid ng-touched"
+                                    ng-reflect-name="projectName"></textarea>
+                            </div>
+                        </div>
+                        <!-- End Form Group -->
+
+                        <div *ngIf="id == 0">
+                            <!-- Form Group -->
+                            <div class="row form-group">
+                                <label for="newPassword" class="col-sm-3 col-form-label input-label">Yeni
+                                    şifre</label>
+
+                                <div class="col-sm-9">
+                                    <input [(ngModel)]="data.password" (keypress)="passstrenth()" type="password"
+                                        class="js-pwstrength form-control" name="newPassword" id="newPassword"
+                                        placeholder="Yeni şifreniz" aria-label="Enter new password"
+                                        data-hs-pwstrength-options="{
+                 &quot;ui&quot;: {
+                   &quot;container&quot;: &quot;#changePasswordForm&quot;,
+                   &quot;viewports&quot;: {
+                     &quot;progress&quot;: &quot;#passwordStrengthProgress&quot;,
+                     &quot;verdict&quot;: &quot;#passwordStrengthVerdict&quot;
+                   }
+                 }
+               }">
+
+                                    <p id="passwordStrengthVerdict" class="form-text mb-2"><span
+                                            class="password-verdict"></span></p>
+
+                                    <div id="passwordStrengthProgress">
+                                        <div *ngIf="passwordScore <= 50" class="progress false">
+                                            <div class="progress-bar bg-danger" [style.width.px]="passwordScore">
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="passwordScore > 50 && passwordScore < 75" class="progress false">
+                                            <div class="progress-bar bg-warning" [style.width.%]="passwordScore">
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="passwordScore >= 75" class="progress false">
+                                            <div class="progress-bar bg-success" [style.width.px]="passwordScore">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Form Group -->
+
+                            <!-- Form Group -->
+                            <div class="row form-group">
+                                <label for="confirmNewPasswordLabel" class="col-sm-3 col-form-label input-label">Yeni
+                                    şifre
+                                    onayı</label>
+
+                                <div class="col-sm-9">
+                                    <div class="mb-3">
+                                        <input [(ngModel)]="passwordChangeConfirm" type="password" class="form-control"
+                                            name="passwordChangeConfirm" id="passwordChangeConfirm"
+                                            placeholder="Yeni şifrenizi onaylayın">
+                                    </div>
+
+                                    <h5>Bunları biliyor muydunuz?</h5>
+
+                                    <p class="font-size-sm mb-2">Güçlü bir şifre aşağıdaki özelliklere sahiptir:</p>
+
+                                    <ul class="font-size-sm">
+                                        <li>Minimum 5 maksimum 10 hanelidir.</li>
+                                        <li>En az bir küçük harfli karakter içerir.</li>
+                                        <li>En az bir büyük harfli karakter içerir.</li>
+                                        <li>En az bir sembol veya rakam içerir.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- End Form Group -->
+                        </div>
+
+                        <div class="card-footer d-flex justify-content-end align-items-center">
+                            <div class="d-flex justify-content-end">
+                                <button (click)="save()" type="submit" class="btn btn-primary">
+                                    <i class="tio-add"></i>
+                                    Yöneticiyi Bilgilerini Kaydet</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End Form -->
+                </div>
+                <!-- End Row -->
+            </div>
+            <!-- Body -->
+        </div>
+        <!-- End Card -->
+    </div>
+</div>
+<!-- End Row -->
+
+<div *ngIf="id > 0">
+    <hr class="my-5">
+
+    <div class="row">
+        <div class="col-lg-3 mb-2 mb-lg-0">
+            <h4>Şifre değişikliği</h4>
+        </div>
+
+        <div class="col-lg-9">
+            <!-- Card -->
+            <div class="card">
+                <!-- Body -->
+                <div class="card-body">
+
+                    <!-- Form Group -->
+                    <div class="row form-group">
+                        <label for="newPassword" class="col-sm-3 col-form-label input-label">Yeni
+                            şifre</label>
+
+                        <div class="col-sm-9">
+                            <input [(ngModel)]="password.newPassword" (keypress)="passstrenth()" type="password"
+                                class="js-pwstrength form-control" name="newPassword" id="newPassword"
+                                placeholder="Yeni şifreniz" aria-label="Enter new password" data-hs-pwstrength-options="{
+             &quot;ui&quot;: {
+               &quot;container&quot;: &quot;#changePasswordForm&quot;,
+               &quot;viewports&quot;: {
+                 &quot;progress&quot;: &quot;#passwordStrengthProgress&quot;,
+                 &quot;verdict&quot;: &quot;#passwordStrengthVerdict&quot;
+               }
+             }
+           }">
+
+                            <p id="passwordStrengthVerdict" class="form-text mb-2"><span
+                                    class="password-verdict"></span></p>
+
+                            <div id="passwordStrengthProgress">
+                                <div *ngIf="passwordScore <= 50" class="progress false">
+                                    <div class="progress-bar bg-danger" [style.width.px]="passwordScore">
+                                    </div>
+                                </div>
+
+                                <div *ngIf="passwordScore > 50 && passwordScore < 75" class="progress false">
+                                    <div class="progress-bar bg-warning" [style.width.%]="passwordScore">
+                                    </div>
+                                </div>
+
+                                <div *ngIf="passwordScore >= 75" class="progress false">
+                                    <div class="progress-bar bg-success" [style.width.px]="passwordScore">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Form Group -->
+
+                    <!-- Form Group -->
+                    <div class="row form-group">
+                        <label for="confirmNewPasswordLabel" class="col-sm-3 col-form-label input-label">Yeni
+                            şifre
+                            onayı</label>
+
+                        <div class="col-sm-9">
+                            <div class="mb-3">
+                                <input [(ngModel)]="passwordChangeConfirm" type="password" class="form-control"
+                                    name="passwordChangeConfirm" id="passwordChangeConfirm"
+                                    placeholder="Yeni şifrenizi onaylayın">
+                            </div>
+
+                            <h5>Bunları biliyor muydunuz?</h5>
+
+                            <p class="font-size-sm mb-2">Güçlü bir şifre aşağıdaki özelliklere sahiptir:</p>
+
+                            <ul class="font-size-sm">
+                                <li>Minimum 5 maksimum 10 hanelidir.</li>
+                                <li>En az bir küçük harfli karakter içerir.</li>
+                                <li>En az bir büyük harfli karakter içerir.</li>
+                                <li>En az bir sembol veya rakam içerir.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Form Group -->
+
+                    <div class="card-footer d-flex justify-content-end align-items-center">
+                        <div class="d-flex justify-content-end">
+
+
+                            <button (click)="changePassword()" type="submit" class="btn btn-primary">
+                                <i class="tio-cut"></i>
+                                Şifreyi Değiştir
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Body -->
+            </div>
+            <!-- End Card -->
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="id > 0">
+    <hr class="my-5">
+
+    <div class="row">
+        <div class="col-lg-3 mb-2 mb-lg-0">
+            <h4>Hesap Silme</h4>
+        </div>
+
+        <div class="col-lg-9">
+            <!-- Card -->
+            <div class="card">
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="alert alert-soft-white mb-5 mb-lg-7" role="alert">
+                                <div class="media align-items-center">
+                                    <img class="avatar avatar-xl mr-3"
+                                        src="./assets/svg/illustrations/yelling-reverse.svg" alt="Image Description">
+
+                                    <div class="media-body">
+                                        <h3 class="alert-heading mb-1">Dikkat!</h3>
+                                        <p class="mb-0">Kullanıcı kaydı silindiğinde kullanıcıya dair tüm veriler <span
+                                                style="font-weight: bold;">kalıcı </span> olarak
+                                            silinecektir. Bu işlem geri döndürelemez!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Custom Checkbox -->
+                        <div class="custom-control custom-checkbox">
+                            <input [(ngModel)]="confirmToDelete" type="checkbox" class="custom-control-input"
+                                id="deleteAccountCheckbox">
+                            <label class="custom-control-label" for="deleteAccountCheckbox">
+                                <span
+                                    style="font-weight: bold; font-size: 15px; text-decoration: underline;">"{{data.name}}
+                                    {{data.surname}}"</span>
+                                isimli
+                                yönetici kaydını silmeyi gerçekten
+                                istiyorum.
+                            </label>
+                        </div>
+                        <!-- End Custom Checkbox -->
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-end align-items-center">
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-white mr-2" href="#">Daha Fazla <i class="tio-open-in-new ml-1"></i></a>
+
+                            <button (click)="remove()" type="submit" class="btn btn-danger">
+                                <i class="tio-delete"></i>
+                                Hesabı Sil
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Body -->
+            </div>
+            <!-- End Card -->
+        </div>
+    </div>
+</div>

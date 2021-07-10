@@ -338,7 +338,7 @@
                         <th class="table-column-pl-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1"
                             colspan="1" aria-label="Name: activate to sort column ascending" style="width: 150.2px;">
                             Ad</th>
-                        
+
                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                             aria-label="Country: activate to sort column ascending" style="width: 100.4px;">Email</th>
                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
@@ -386,7 +386,7 @@
                                 </div>
                             </a>
                         </td>
-                        
+
                         <td>
                             <i class="tio-online nav-icon"></i> {{item.email}}
                         </td>
@@ -427,9 +427,11 @@
                                     <i class="tio-cut"></i> İşlem
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonSm">
-                                    <a routerLink="/dash/update-doctor/{{item.id}}" class="dropdown-item" href="#">
+                                    <a routerLink="/dash/update-doctor/{{item.id}}" class="dropdown-item"
+                                        href="javascript:;">
                                         <i class="tio-edit dropdown-item-icon"></i> Düzenle</a>
-                                    <a *ngIf="!item.isConfirmed" class="dropdown-item" href="#">
+                                    <a *ngIf="!item.isConfirmed" (click)="confirm(item.id)" class="dropdown-item"
+                                        href="javascript:;">
                                         <i class="tio-voice-line"></i> Doğrula</a>
                                 </div>
                             </div>

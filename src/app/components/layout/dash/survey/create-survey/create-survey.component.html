@@ -31,18 +31,18 @@
             <!-- Body -->
             <div class="card-body">
 
-                <div class="row justify-content-center">
-                    <div class="col-10">
-                        <div class="alert alert-soft-success mb-5 mb-lg-7" role="alert">
+                <div class="row">
+                    <div class="col-11">
+                        <div class="alert alert-white mb-5 mb-lg-7" role="alert">
                             <div class="media align-items-center">
-                                <img class="avatar avatar-xl mr-3" src="./assets/svg/illustrations/yelling-reverse.svg"
+                                <img class="avatar avatar-xl mr-3" src="./assets/svg/illustrations/unlock.svg"
                                     alt="Image Description">
 
                                 <div class="media-body">
                                     <h3 class="alert-heading mb-1">Dikkat!</h3>
-                                    <p class="mb-0"> Anket resimlerini kameradan alabilmek için bu sayfada <span
+                                    <p class="mb-0"> Anket resimlerini kameradan alabilmek için uygulamaya <span
                                             style="font-weight: bold; text-decoration: underline;">kamera iznini</span>
-                                        vermiş olmalısınız!
+                                        vermiş olmanız gerekir!
                                     </p>
                                 </div>
                             </div>
@@ -67,9 +67,9 @@
                             Dizine Gözat</span>
 
                         <!-- Button trigger modal -->
-                        <button style="margin-bottom: 5px;" type="button" class="btn btn-sm btn-success"
-                            data-toggle="modal" data-target="#staticBackdrop">
-                            <i class="tio-incognito"></i> Kameradan Al
+                        <button (click)="showCamera()" style="margin-bottom: 5px;" type="button"
+                            class="btn btn-sm btn-success">
+                            <i class="tio-incognito"></i> Kamerayı Aç
                         </button>
 
                         <div class="card-body">
@@ -86,15 +86,6 @@
                                         <img style="max-height: 120px;" class="card-img-top" src="{{item}}" alt="">
                                         <div class="card-body">
                                             <div class="row text-center">
-                                                <div class="col">
-                                                    <a class="js-fancybox-item text-body" href="javascript:;"
-                                                        data-toggle="tooltip" data-placement="top" title=""
-                                                        data-src="./assets/img/725x1080/img1.jpg"
-                                                        data-caption="Image #01" data-original-title="View">
-                                                        <i class="tio-visible-outlined"></i>
-                                                    </a>
-                                                </div>
-
                                                 <div class="col column-divider">
                                                     <a (click)="removeFile(i)" class="text-danger" href="javascript:;"
                                                         data-toggle="tooltip" data-placement="top" title=""
@@ -133,7 +124,7 @@
                     <div class="col-12">
                         <div class="alert alert-white mb-5 mb-lg-7" role="alert">
                             <div class="media align-items-center">
-                                <img class="avatar avatar-xl mr-3" src="./assets/svg/illustrations/yelling-reverse.svg"
+                                <img class="avatar avatar-xl mr-3" src="./assets/svg/illustrations/think.svg"
                                     alt="Image Description">
 
                                 <div class="media-body">
@@ -337,15 +328,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="btn btn-xs btn-icon btn-ghost-secondary" data-dismiss="modal"
-                    aria-label="Close">
-                    <i class="tio-clear tio-lg"></i>
-                </button>
+                <h5 class="modal-title" id="staticBackdropLabel">Fotoğraf Çek</h5>
+
             </div>
             <div class="modal-body">
-
-
                 <div class="row">
                     <div class="col-12">
                         <div class="col-md-12">
@@ -366,13 +352,14 @@
                                 <img id="logoImg2" class="avatar avatar-xl avatar-4by3 avatar-centered h-100 mb-2"
                                     src="./assets/svg/illustrations/browse.svg">
 
-                                <span class="d-block">Ankete uygulamak için kameradan çekim yapın.
+                                <span class="d-block">Fotoğraf çekmek için <span style="font-weight: bold;">"Görüntü
+                                        Al"</span> düğmesine dokunun.
                                 </span>
 
                                 <span (click)="takePhoto()" style="margin-bottom: 5px; margin-right: 5px;"
                                     class="btn btn-sm btn-secondary">
                                     <i class="tio-done "></i>
-                                    Görünyü Al</span>
+                                    Görüntü Al</span>
 
 
                                 <!-- Gallery -->
@@ -384,15 +371,6 @@
                                             <img style="max-height: 120px;" class="card-img-top" src="{{item}}" alt="">
                                             <div class="card-body">
                                                 <div class="row text-center">
-                                                    <div class="col">
-                                                        <a class="js-fancybox-item text-body" href="javascript:;"
-                                                            data-toggle="tooltip" data-placement="top" title=""
-                                                            data-src="./assets/img/725x1080/img1.jpg"
-                                                            data-caption="Image #01" data-original-title="View">
-                                                            <i class="tio-visible-outlined"></i>
-                                                        </a>
-                                                    </div>
-
                                                     <div class="col column-divider">
                                                         <a (click)="removeCameraFile(i)" class="text-danger"
                                                             href="javascript:;" data-toggle="tooltip"

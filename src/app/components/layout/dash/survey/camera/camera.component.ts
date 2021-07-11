@@ -13,14 +13,12 @@ export class CameraComponent implements OnInit {
 
   @Output()
   public pictureTaken = new EventEmitter<WebcamImage>();
-  // toggle webcam on/off
-  public showWebcam = true;
+  public showWebcam = false;
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
   public deviceId: string = '';
   public videoOptions: MediaTrackConstraints = {
-    // width: {ideal: 1024},
-    // height: {ideal: 576}
+    width: { min: 1280, ideal: 1920 }, height: { min: 720, ideal: 2048 }
   };
   public errors: WebcamInitError[] = [];
   // webcam snapshot trigger
@@ -39,6 +37,15 @@ export class CameraComponent implements OnInit {
   public toggleWebcam(): void {
     this.showWebcam = !this.showWebcam;
   }
+
+  public open() {
+    this.showWebcam = true;
+  }
+
+  public close() {
+    this.showWebcam = false;
+  }
+
   public handleInitError(error: WebcamInitError): void {
     this.errors.push(error);
   }

@@ -72,6 +72,7 @@ export class CreateSurveyComponent implements OnInit {
     this.data = new Survey();
     this.uploading = [];
     this.files = [];
+    this.uploadingCameraFiles = [];
   }
 
   createForm(): FormData {
@@ -124,6 +125,11 @@ export class CreateSurveyComponent implements OnInit {
     this.camera.triggerSnapshot();
   }
 
+  showCamera() {
+    this.camera.open();
+    $("#staticBackdrop").modal("show");
+  }
+
   removeCameraFile(sequence: number) {
     this.uploadingCameraFiles.splice(sequence, 1);
   }
@@ -131,14 +137,40 @@ export class CreateSurveyComponent implements OnInit {
   moveToFiles() {
     this.uploadingCameraFiles.forEach(element => {
       this.uploading.push(element);
-      this.files.push(element);
+      const name: string = Math.random().toString(36).substring(7);
+      const binary: File = this.dataURItoBlob(element, name + ".jpg");
+      this.files.push(binary);
     });
 
     this.uploadingCameraFiles = [];
     $("#staticBackdrop").modal("hide");
+    this.camera.close();
+
+  }
+
+  dataURItoBlob(dataURI: any, fileName: string): File {
+
+    // convert base64/URLEncoded data component to a file
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+      byteString = atob(dataURI.split(',')[1]);
+    else
+      byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new File([ia], fileName, { type: mimeString });
   }
 
   cancelCamera() {
     this.uploadingCameraFiles = [];
+    this.camera.close();
   }
 }

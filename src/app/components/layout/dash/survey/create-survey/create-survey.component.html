@@ -183,6 +183,14 @@
                 <!-- End Row -->
             </div>
             <!-- Body -->
+
+            <div class="card-footer d-flex justify-content-end align-items-center">
+                <button (click)="discard()" type="button" class="btn btn-white mr-2"><i class="tio-delete"></i> İptal
+                </button>
+                <button (click)="save()" type="button" class="btn btn-primary"><i class="tio-add"></i> Anketi Kaydet
+                </button>
+            </div>
+
         </div>
         <!-- End Card -->
     </div>
@@ -261,25 +269,6 @@
 </div>
 <!-- End Row -->
 
-<div class="position-fixed bottom-0 content-centered-x w-100 z-index-99 mb-3" style="max-width: 40rem;">
-    <!-- Card -->
-    <div class="card card-sm bg-dark border-dark mx-2">
-        <div class="card-body">
-            <div class="row justify-content-center justify-content-sm-between">
-                <div class="col">
-                    <button type="button" class="btn btn-ghost-danger">Sil</button>
-                </div>
-                <div class="col-auto">
-                    <button (click)="discard()" type="button" class="btn btn-ghost-light mr-2">İptal</button>
-                    <button (click)="save()" type="button" class="btn btn-primary">Kaydet</button>
-                </div>
-            </div>
-            <!-- End Row -->
-        </div>
-    </div>
-    <!-- End Card -->
-</div>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -303,7 +292,7 @@
 
                     <div class="row justify-content-center gy-1 gx-2">
                         <div class="col-auto">
-                            <a class="btn btn-white" routerLink="/surveys">
+                            <a (click)="gotoSurveys()" class="btn btn-white" href="javascript:;">
                                 <i class="tio-chevron-left ml-1"></i> Anketlere Git
                             </a>
                         </div>
@@ -396,10 +385,12 @@
 
             </div>
             <div class="modal-footer">
-                <button (click)="moveToFiles()" type="button" class="btn btn-success">
-                    <i class="tio-add"></i> Aktar</button>
+
                 <button (click)="cancelCamera()" type="button" class="btn btn-white" data-dismiss="modal">
                     <i class="tio-delete"></i> İptal</button>
+
+                <button (click)="moveToFiles()" type="button" class="btn btn-success">
+                    <i class="tio-add"></i> Fotoğrafları Aktar</button>
             </div>
         </div>
     </div>

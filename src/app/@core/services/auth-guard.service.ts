@@ -18,7 +18,7 @@ export class AuthGuardService implements CanActivate {
     if (this.isValidForAdministrator()) {
       return true;
     } else {
-      this.router.navigate(['/signin/admin'], {
+      this.router.navigate(['/signin'], {
         queryParams: {
           return: state.url
         }

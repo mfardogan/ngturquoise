@@ -8,6 +8,7 @@ import Pagination from 'src/app/@core/models/pagination';
 import ChoiceGroup from 'src/app/@core/models/choice-group';
 import ChoiceGroupHttp from '../../choice/choice-group-http';
 import { WebcamImage } from 'ngx-webcam';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,9 @@ import { WebcamImage } from 'ngx-webcam';
 export class CreateSurveyComponent implements OnInit {
 
   @ViewChild('cam') camera: any;
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   files: any[] = [];
   uploadingCameraFiles: string[] = [];
@@ -172,5 +175,10 @@ export class CreateSurveyComponent implements OnInit {
   cancelCamera() {
     this.uploadingCameraFiles = [];
     this.camera.close();
+  }
+
+  gotoSurveys() {
+    $("#exampleModal").modal("hide");
+    this.router.navigate(['/dash/surveys']);
   }
 }

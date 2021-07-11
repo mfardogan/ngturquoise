@@ -1,23 +1,21 @@
 .custom-scrollbar{
-    border:.1rem dashed #a8a8a8; overflow-y: scroll;  height: 90vh;
+    border:.2rem dashed #267cdf9c; overflow-y: scroll;  height: 90vh;
     border-radius: 5px;
     margin-bottom: 3rem;
   }
-
 
   *::-webkit-scrollbar {
     width: 8px;
   }
   
   *::-webkit-scrollbar-thumb {
-    background-color: rgb(180, 180, 180);
+    background-color: rgb(109, 109, 109);
   }
   
   /* Firefox */
   .selector {
       scrollbar-width: none;
     }
-
 
     #style-1::-webkit-scrollbar-track
 {
@@ -29,7 +27,7 @@
 #style-1::-webkit-scrollbar
 {
 	width: 12px;
-	background-color: #F5F5F5;
+	background-color: #3b3b3b;
 }
 
 #style-1::-webkit-scrollbar-thumb

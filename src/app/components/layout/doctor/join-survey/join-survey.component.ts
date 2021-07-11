@@ -121,13 +121,15 @@ export class JoinSurveyComponent implements OnInit {
 
     const top = this.canvas.getBoundingClientRect().top;
     const left = this.canvas.getBoundingClientRect().left;
+    const doc = document.documentElement;
+    const scroll = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 
     const y = window.pageYOffset + top;
     const x = window.pageXOffset + left;
 
     this.temponary = [];
     this.startX = Number(event.clientX - x);
-    this.startY = Number(event.clientY - y);
+    this.startY = Number(event.clientY - y + scroll);
     this.isDown = true;
   }
 
@@ -144,15 +146,18 @@ export class JoinSurveyComponent implements OnInit {
     const mouseX = Number(event.clientX - x);
     const mouseY = Number(event.clientY - y);
 
+    const doc = document.documentElement;
+    const scroll = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+
     this.positionX = mouseX;
-    this.positionY = mouseY;
+    this.positionY = mouseY - scroll;
 
     if (!this.isDown) {
       return;
     }
 
     const width = mouseX - this.startX;
-    const height = mouseY - this.startY;
+    const height = mouseY - this.startY + scroll;
 
     this.context.clearRect(this.startX, this.startY, width, height);
     this.context.lineWidth = 3;

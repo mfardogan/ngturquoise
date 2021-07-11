@@ -1,98 +1,244 @@
-<div class="page-header">
-    <div class="media mb-3">
-        <!-- Avatar -->
-        <div class="avatar avatar-xl avatar-4by3 mr-2">
-            <img *ngIf="survey.smallImages" class="avatar-img" src="{{survey.smallImages[0].fileName}}">
-        </div>
-        <!-- End Avatar -->
-
-        <div class="media-body">
-            <div class="row">
-                <div class="col-lg mb-3 mb-lg-0">
-                    <h1 class="page-header-title">{{survey.title}}</h1>
-
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <span *ngFor="let choice of survey.choiceGroup.choices.slice(0,5)"
-                                style="border: 1px solid rgb(153, 153, 153); " [style.background-color]="choice.color"
-                                class="legend-indicator">
-                            </span>
-                            <span style="font-size: 11px; font-weight: bold;"
-                                *ngIf="survey.choiceGroup.choices.length - 5 > 0">
-                                +{{survey.choiceGroup.choices.length - 5}}
-                            </span>
-                            <span> |</span>
-
+<div class="row">
+    <div class="col-lg-10 mb-5 mb-lg-0">
+        <!-- Card -->
+        <div class="card card-lg">
+            <!-- Body -->
+            <div class="card-body">
+                <div class="page-header">
+                    <div class="media mb-3">
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xl avatar-4by3 mr-2">
+                            <img *ngIf="survey.smallImages" class="avatar-img" src="{{survey.smallImages[0].fileName}}">
                         </div>
+                        <!-- End Avatar -->
 
-                        <div class="col-auto">
-                            <div class="row align-items-center g-0">
-                                <div class="col-auto">{{survey.creationAt | date: 'dd/MM/yy hh:MM:ss'}} |</div>
+                        <div class="media-body">
+                            <div class="row">
+                                <div class="col-lg mb-3 mb-lg-0">
+                                    <h1 class="page-header-title">{{survey.title}}</h1>
+
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <span *ngFor="let choice of survey.choiceGroup.choices.slice(0,5)"
+                                                style="border: 1px solid rgb(153, 153, 153); "
+                                                [style.background-color]="choice.color" class="legend-indicator">
+                                            </span>
+                                            <span style="font-size: 11px; font-weight: bold;"
+                                                *ngIf="survey.choiceGroup.choices.length - 5 > 0">
+                                                +{{survey.choiceGroup.choices.length - 5}}
+                                            </span>
+                                            <span> |</span>
+
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <div class="row align-items-center g-0">
+                                                <div class="col-auto">{{survey.creationAt | date: 'dd/MM/yy hh:MM:ss'}}
+                                                    |</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <a [routerLink]="[ '../admin', survey.administrator.id ]">
+                                                <span class="media align-items-center">
+                                                    <img *ngIf="survey.administrator.image != null"
+                                                        class="avatar avatar-xs avatar-circle mr-2"
+                                                        src="{{survey.administrator.image.fileName}}">
+
+                                                    <div *ngIf="survey.administrator.image == null"
+                                                        class="avatar avatar-xs avatar-soft-info avatar-circle avatar-circle avatar-border-lg profile-cover-avatar">
+                                                        <span
+                                                            class="avatar-initials">{{survey.administrator.name[0]}}</span>
+                                                    </div>
+                                                    <span class="media-body">
+                                                        {{survey.administrator.title}}
+                                                        {{survey.administrator.name}}
+                                                        {{survey.administrator.surname}}
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-auto">
+                                    <small class="text-cap mb-2">Başlıca resimler:</small>
+
+                                    <div class="d-flex">
+                                        <!-- Avatar Group -->
+                                        <div class="avatar-group mr-3">
+                                            <a *ngFor="let item of survey.smallImages.slice(0,3)" class="avatar"
+                                                href="javascript:;" data-toggle="tooltip" data-placement="top" title=""
+                                                [attr.data-original-title]="item.hash">
+                                                <img class="avatar-img" src="{{item.fileName}}" alt="Image Description">
+                                            </a>
+
+                                            <a *ngIf="survey.smallImages.length > 3" class="avatar avatar-light"
+                                                href="javascript:;">
+                                                <span class="avatar-initials">+{{survey.smallImages.length - 3}}</span>
+                                            </a>
+                                        </div>
+                                        <!-- End Avatar Group -->
+
+                                        <a class="btn btn-icon btn-primary rounded" href="javascript:;"
+                                            data-toggle="modal" data-target="#shareWithPeopleModal">
+                                            <i class="tio-share"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+
+                                <div class="row justify-content-md-between mb-3 mt-4">
+                                    <div class="col-md">
+                                        <h4>Açıklamalar:</h4>
+
+                                        <address>
+                                            {{survey.body}}
+                                        </address>
+                                    </div>
+
+                                    
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <!-- End Media -->
+                </div>
 
-                        <div class="col-auto">
-                            <a [routerLink]="[ '../admin', survey.administrator.id ]">
-                                <span class="media align-items-center">
-                                    <img *ngIf="survey.administrator.image != null"
-                                        class="avatar avatar-xs avatar-circle mr-2"
-                                        src="{{survey.administrator.image.fileName}}">
+                <hr class="my-5">
 
-                                    <div *ngIf="survey.administrator.image == null"
-                                        class="avatar avatar-xs avatar-soft-info avatar-circle avatar-circle avatar-border-lg profile-cover-avatar">
-                                        <span class="avatar-initials">{{survey.administrator.name[0]}}</span>
-                                    </div>
-                                    <span class="media-body">
-                                        {{survey.administrator.title}}
-                                        {{survey.administrator.name}}
-                                        {{survey.administrator.surname}}
-                                    </span>
-                                </span>
-                            </a>
+
+                <div class="col-12">
+                    <div id="#style-1" class="custom-scrollbar">
+                        <div id="bgg">
+                            <canvas style="background-color: transparent;" (mouseup)="mouseUp($event)"
+                                (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)"
+                                (touchmove)="touchMove($event)" (touchstart)="touchStart($event)"
+                                (touchend)="touchEnd($event)" (click)="handleBox()" id="drw">
+                            </canvas>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-auto">
-                    <small class="text-cap mb-2">Başlıca resimler:</small>
+            </div>
+            <!-- End Body -->
+        </div>
+        <!-- End Card -->
 
-                    <div class="d-flex">
-                        <!-- Avatar Group -->
-                        <div class="avatar-group mr-3">
-                            <a *ngFor="let item of survey.smallImages.slice(0,3)" class="avatar" href="javascript:;"
-                                data-toggle="tooltip" data-placement="top" title=""
-                                [attr.data-original-title]="item.hash">
-                                <img class="avatar-img" src="{{item.fileName}}" alt="Image Description">
-                            </a>
+        <!-- Sticky Block End Point -->
+        <div id="stickyBlockEndPoint"></div>
+    </div>
 
-                            <a *ngIf="survey.smallImages.length > 3" class="avatar avatar-light" href="javascript:;">
-                                <span class="avatar-initials">+{{survey.smallImages.length - 3}}</span>
-                            </a>
-                        </div>
-                        <!-- End Avatar Group -->
+    <div id="stickyBlockStartPoint" class="col-lg-2">
+        <div class="js-sticky-block hs-kill-sticky" data-hs-sticky-block-options="{
+             &quot;parentSelector&quot;: &quot;#stickyBlockStartPoint&quot;,
+             &quot;breakpoint&quot;: &quot;lg&quot;,
+             &quot;startPoint&quot;: &quot;#stickyBlockStartPoint&quot;,
+             &quot;endPoint&quot;: &quot;#stickyBlockEndPoint&quot;,
+             &quot;stickyOffsetTop&quot;: 20
+           }">
+            <a class="btn btn-block btn-primary mb-3" href="javascript:;">
+                <i class="tio-send mr-1"></i> Send invoice
+            </a>
 
-                        <a class="btn btn-icon btn-primary rounded" href="javascript:;" data-toggle="modal"
-                            data-target="#shareWithPeopleModal">
-                            <i class="tio-share"></i>
-                        </a>
-                    </div>
+            <a class="btn btn-block btn-white mb-3" href="javascript:;">
+                <i class="tio-download-to mr-1"></i> Download
+            </a>
+
+            <div class="form-row">
+                <div class="col-sm mb-3 mb-sm-0">
+                    <a class="btn btn-block btn-white" href="javascript:;">Preview</a>
+                </div>
+                <div class="col-sm">
+                    <a class="btn btn-block btn-white" href="javascript:;">Save</a>
                 </div>
             </div>
+            <!-- End Row -->
+
+            <hr class="my-4">
+
+            <!-- Form Group -->
+            <div class="form-group">
+                <label for="currencyLabel" class="input-label">Currency</label>
+
+                <!-- Select -->
+                <select class="js-select2-custom custom-select select2-hidden-accessible" size="1" style="opacity: 0;"
+                    id="currencyLabel" data-hs-select2-options="{
+                    &quot;minimumResultsForSearch&quot;: &quot;Infinity&quot;,
+                    &quot;placeholder&quot;: &quot;Select currency&quot;
+                  }" data-select2-id="currencyLabel" tabindex="-1" aria-hidden="true">
+                    <option label="empty" data-select2-id="6"></option>
+                    <option value="currency1" selected=""
+                        data-option-template="<span class=&quot;d-flex align-items-center text-truncate&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/vendor/flag-icon-css/flags/1x1/us.svg&quot; alt=&quot;Image description&quot; width=&quot;16&quot;/><span>USD (United States Dollar)</span></span>"
+                        data-select2-id="7">USD (United States Dollar)</option>
+                    <option value="currency2"
+                        data-option-template="<span class=&quot;d-flex align-items-center text-truncate&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/vendor/flag-icon-css/flags/1x1/gb.svg&quot; alt=&quot;Image description&quot; width=&quot;16&quot;/><span>GBP (United Kingdom Pound)</span></span>"
+                        data-select2-id="8">GBP (United Kingdom Pound)</option>
+                    <option value="currency3"
+                        data-option-template="<span class=&quot;d-flex align-items-center text-truncate&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/vendor/flag-icon-css/flags/1x1/eu.svg&quot; alt=&quot;Image description&quot; width=&quot;16&quot;/><span>Euro (Euro Member Countries)</span></span>"
+                        data-select2-id="9">Euro (Euro Member Countries)</option>
+                </select><span class="select2 select2-container select2-container--default" dir="ltr"
+                    data-select2-id="5" style="width: 100%;"><span class="selection"><span
+                            class="select2-selection custom-select" role="combobox" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0" aria-disabled="false"
+                            aria-labelledby="select2-currencyLabel-container"><span class="select2-selection__rendered"
+                                id="select2-currencyLabel-container" role="textbox" aria-readonly="true"
+                                title="USD (United States Dollar)"><span
+                                    class="d-flex align-items-center text-truncate"><img
+                                        class="avatar avatar-xss avatar-circle mr-2"
+                                        src="./assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description"
+                                        width="16"><span>USD (United States Dollar)</span></span></span><span
+                                class="select2-selection__arrow" role="presentation"><b
+                                    role="presentation"></b></span></span></span><span class="dropdown-wrapper"
+                        aria-hidden="true"></span></span>
+                <!-- End Select -->
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Toggle Switch -->
+            <label class="row form-group toggle-switch" for="invoicePaymentTermsSwitch">
+                <span class="col-8 col-sm-9 toggle-switch-content ml-0">Payment terms</span>
+                <span class="col-4 col-sm-3">
+                    <input type="checkbox" class="toggle-switch-input" id="invoicePaymentTermsSwitch" checked="">
+                    <span class="toggle-switch-label ml-auto">
+                        <span class="toggle-switch-indicator"></span>
+                    </span>
+                </span>
+            </label>
+            <!-- End Toggle Switch -->
+
+            <!-- Toggle Switch -->
+            <label class="row form-group toggle-switch" for="invoiceClientNotesSwitch">
+                <span class="col-8 col-sm-9 toggle-switch-content ml-0">Client notes</span>
+                <span class="col-4 col-sm-3">
+                    <input type="checkbox" class="toggle-switch-input" id="invoiceClientNotesSwitch" checked="">
+                    <span class="toggle-switch-label ml-auto">
+                        <span class="toggle-switch-indicator"></span>
+                    </span>
+                </span>
+            </label>
+            <!-- End Toggle Switch -->
+
+            <!-- Toggle Switch -->
+            <label class="row form-group toggle-switch" for="invoiceAttachPDFSwitch">
+                <span class="col-8 col-sm-9 toggle-switch-content ml-0">Attach PDF in mail</span>
+                <span class="col-4 col-sm-3">
+                    <input type="checkbox" class="toggle-switch-input" id="invoiceAttachPDFSwitch">
+                    <span class="toggle-switch-label ml-auto">
+                        <span class="toggle-switch-indicator"></span>
+                    </span>
+                </span>
+            </label>
+            <!-- End Toggle Switch -->
         </div>
     </div>
-    <!-- End Media -->
 </div>
 
-<div class="col-12">
-    <div id="#style-1" class="custom-scrollbar">
-        <div id="bgg">
-            <canvas style="background-color: transparent;" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)"
-                (mousemove)="mouseMove($event)" (touchmove)="touchMove($event)" (touchstart)="touchStart($event)"
-                (touchend)="touchEnd($event)" (click)="handleBox()" id="drw">
-            </canvas>
-        </div>
-    </div>
-</div>
+
+
+
+
+
 
 
 <div class="position-fixed bottom-0 content-centered-x w-100 z-index-99 mb-3" style="max-width: 40rem;">

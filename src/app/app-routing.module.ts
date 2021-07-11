@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardDoctorService } from './@core/services/auth-guard-doctor.service';
 import { AuthGuardService } from './@core/services/auth-guard.service';
 import { AdminItemComponent } from './components/layout/dash/admin/admin-item/admin-item.component';
 import { AdminProfileComponent } from './components/layout/dash/admin/admin-profile/admin-profile.component';
@@ -30,8 +31,9 @@ import { SignUpComponent } from './components/layout/noauth/sign-up/sign-up.comp
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: ContentComponent, canActivate: [AuthGuardService] },
   {
-    path: '',
+    path: 'user',
     component: DoctorLayoutComponent,
+    canActivate: [AuthGuardDoctorService],
     children: [
       { path: 'join/:id', component: JoinSurveyComponent, pathMatch: 'full' },
     ]

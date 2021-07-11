@@ -1,5 +1,4 @@
 import { Location } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Choice from 'src/app/@core/models/choice';
@@ -25,7 +24,6 @@ export class ChoiceGroupItemComponent implements OnInit {
   private counter: number = 0;
   data: ChoiceGroup = new ChoiceGroup();
 
-
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -33,14 +31,12 @@ export class ChoiceGroupItemComponent implements OnInit {
     const id = this.router.snapshot.paramMap.get('id');
     if (!(id == undefined || id == '')) {
       this.id = Number(id);
-      Dependency.get(ChoiceGroupHttp).get(this.id).subscribe(
-        (data: ChoiceGroup) => {
-          this.data = data;
-        }, (error: HttpErrorResponse) => {
-          if (error.status == 404) {
-            this.route.navigate(['/404'], { skipLocationChange: true });
-          }
-        }); //HttpInterceptor
+      Dependency.get(ChoiceGroupHttp)
+        .get(this.id)
+        .subscribe(
+          (data: ChoiceGroup) => {
+            this.data = data;
+          });
     }
   }
 
@@ -50,15 +46,14 @@ export class ChoiceGroupItemComponent implements OnInit {
     const http: ChoiceGroupHttp = Dependency.get(ChoiceGroupHttp);
     if (this.id != null || this.id != undefined) {
       http.update(this.data).subscribe((x: any) => {
-        this.route.navigate(['/choices'], { skipLocationChange: true });
+        this.route.navigate(['/dash/choices'], { skipLocationChange: true });
       });
 
     } else {
       http.add(this.data).subscribe((x: any) => {
-        this.route.navigate(['/choices'], { skipLocationChange: true });
+        this.route.navigate(['/dash/choices'], { skipLocationChange: true });
       });
     }
-
   }
 
   cancel(): void {

@@ -339,6 +339,10 @@
                             colspan="1" aria-label="Name: activate to sort column ascending" style="width: 150.2px;">
                             Ad</th>
 
+                        <th class="table-column-pl-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1"
+                            colspan="1" style="width: 150.2px;">
+                            Tip</th>
+
                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                             aria-label="Country: activate to sort column ascending" style="width: 100.4px;">Email</th>
                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
@@ -387,6 +391,19 @@
                             </a>
                         </td>
 
+                        <td>
+                            <span *ngIf="item.type==0" class="badge badge-soft-primary">
+                                <span class="legend-indicator bg-primary"></span>Katılımcı
+                            </span>
+
+                            <span *ngIf="item.type==1" class="badge badge-soft-warning">
+                                <span class="legend-indicator bg-warning"></span>Kontrolcü
+                            </span>
+
+                            <span *ngIf="item.type==2" class="badge badge-soft-success">
+                                <span class="legend-indicator bg-success"></span>Her İkisi
+                            </span>
+                        </td>
                         <td>
                             <i class="tio-online nav-icon"></i> {{item.email}}
                         </td>
@@ -450,7 +467,7 @@
     <div *ngIf="data.length == 0" class="card-body card-body-height card-body-centered">
         <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/sorry.svg" alt="Image Description">
         <p class="card-text">Kayıt bulunamadı!</p>
-        <a class="btn btn-sm btn-primary" routerLink="/choice">Yeni Doktor Oluştur</a>
+        <a class="btn btn-sm btn-primary" routerLink="/dash/new-doctor">Yeni Doktor Oluştur</a>
     </div>
 
     <!-- Footer -->

@@ -27,7 +27,7 @@ export class SignInComponent implements OnInit {
     api.doctor(this.loginViewModel)
       .subscribe((e) => {
         token.saveOnLocalStorage(e);
-        this.router.navigate(['']);
+        this.router.navigate(['/user']);
       });
   }
 }

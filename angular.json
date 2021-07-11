@@ -31,7 +31,8 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/vendor/icon-set/style.css",
               "src/assets/css/theme.min.css",
-              "src/assets/css/docs.min.css"
+              "src/assets/css/docs.min.css",
+              "src/style.css"
             ],
             "scripts": [
               "src/assets/vendor/select2/dist/js/select2.full.min.js"

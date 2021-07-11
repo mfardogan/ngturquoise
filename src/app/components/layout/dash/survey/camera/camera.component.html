@@ -1,0 +1,4 @@
+<webcam class="test" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+    [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"
+    (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
+</webcam>

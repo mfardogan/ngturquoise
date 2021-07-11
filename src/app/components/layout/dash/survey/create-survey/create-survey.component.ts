@@ -2,12 +2,13 @@ declare var $: any;
 import SurveyHttp from '../survey-http';
 import { Dependency } from 'src/app/app.module';
 import Survey from 'src/app/@core/models/survey';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import Search from 'src/app/@core/models/search';
 import Pagination from 'src/app/@core/models/pagination';
 import ChoiceGroup from 'src/app/@core/models/choice-group';
 import ChoiceGroupHttp from '../../choice/choice-group-http';
-import DoctorGroup from 'src/app/@core/models/doctor-group';
+import { WebcamImage } from 'ngx-webcam';
+
 
 @Component({
   selector: 'create-survey',
@@ -20,9 +21,11 @@ import DoctorGroup from 'src/app/@core/models/doctor-group';
 })
 export class CreateSurveyComponent implements OnInit {
 
+  @ViewChild('cam') camera: any;
   constructor() { }
 
   files: any[] = [];
+  uploadingCameraFiles: string[] = [];
   uploading: string[] = [];
   choices: ChoiceGroup[] = [];
   data: Survey = new Survey();
@@ -109,5 +112,33 @@ export class CreateSurveyComponent implements OnInit {
   closeSuccessDialog() {
     $("#exampleModal").modal("hide");
     this.discard();
+  }
+
+  handleImage(image: WebcamImage) {
+    console.log(image);
+    const data: string = image.imageAsDataUrl;
+    this.uploadingCameraFiles.push(data);
+  }
+
+  takePhoto() {
+    this.camera.triggerSnapshot();
+  }
+
+  removeCameraFile(sequence: number) {
+    this.uploadingCameraFiles.splice(sequence, 1);
+  }
+
+  moveToFiles() {
+    this.uploadingCameraFiles.forEach(element => {
+      this.uploading.push(element);
+      this.files.push(element);
+    });
+
+    this.uploadingCameraFiles = [];
+    $("#staticBackdrop").modal("hide");
+  }
+
+  cancelCamera() {
+    this.uploadingCameraFiles = [];
   }
 }

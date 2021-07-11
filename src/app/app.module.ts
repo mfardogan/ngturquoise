@@ -45,6 +45,8 @@ import { SurveyEditComponent } from './components/layout/dash/survey/survey-edit
 import { OverviewComponent } from './components/layout/dash/overview/overview.component';
 import { AdminItemComponent } from './components/layout/dash/admin/admin-item/admin-item.component';
 import { DoctorItemComponent } from './components/layout/dash/doctor/doctor-item/doctor-item.component';
+import { WebcamModule } from 'ngx-webcam';
+import { CameraComponent } from './components/layout/dash/survey/camera/camera.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,7 @@ import { DoctorItemComponent } from './components/layout/dash/doctor/doctor-item
     OverviewComponent,
     AdminItemComponent,
     DoctorItemComponent,
+    CameraComponent,
   ],
 
   imports: [
@@ -88,7 +91,8 @@ import { DoctorItemComponent } from './components/layout/dash/doctor/doctor-item
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    WebcamModule
   ],
   providers: [
     ChoiceGroupHttp,

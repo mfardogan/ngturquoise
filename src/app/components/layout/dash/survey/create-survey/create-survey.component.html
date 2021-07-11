@@ -30,6 +30,26 @@
 
             <!-- Body -->
             <div class="card-body">
+
+                <div class="row justify-content-center">
+                    <div class="col-10">
+                        <div class="alert alert-soft-success mb-5 mb-lg-7" role="alert">
+                            <div class="media align-items-center">
+                                <img class="avatar avatar-xl mr-3" src="./assets/svg/illustrations/yelling-reverse.svg"
+                                    alt="Image Description">
+
+                                <div class="media-body">
+                                    <h3 class="alert-heading mb-1">Dikkat!</h3>
+                                    <p class="mb-0"> Anket resimlerini kameradan alabilmek için bu sayfada <span
+                                            style="font-weight: bold; text-decoration: underline;">kamera iznini</span>
+                                        vermiş olmalısınız!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-12">
                     <!-- Logo -->
                     <label class="custom-file-boxed custom-file-boxed-sm" for="logoUploader">
@@ -49,7 +69,7 @@
                         <!-- Button trigger modal -->
                         <button style="margin-bottom: 5px;" type="button" class="btn btn-sm btn-success"
                             data-toggle="modal" data-target="#staticBackdrop">
-                            <i class="tio-visible-outlined"></i> Kameradan Al
+                            <i class="tio-incognito"></i> Kameradan Al
                         </button>
 
                         <div class="card-body">
@@ -329,16 +349,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="col-md-12">
-                            <label class="custom-file-boxed custom-file-boxed-sm" for="logoUploader">
-
-                                <div style="height: 15rem;">
-                                </div>
-
-                                <button style="  position: absolute; bottom: 5px; right: 5px;" type="button"
-                                    class="btn btn-sm btn-secondary">
-                                    <i class="tio-add"></i>
-                                </button>
-                            </label>
+                            <div
+                                style="width: 100; height: 100%; margin-bottom: 10px; border-radius: 5px; border: 2px dashed rgb(173, 173, 173);">
+                                <camera #cam (pictureTaken)="handleImage($event)"></camera>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -348,34 +362,65 @@
                         <!--Browse-->
                         <div class="col-md-12">
                             <!-- Logo -->
-                            <label class="custom-file-boxed custom-file-boxed-sm" for="logoUploader">
-                                <img id="logoImg" class="avatar avatar-xl avatar-4by3 avatar-centered h-100 mb-2"
-                                    src="./assets/svg/illustrations/browse.svg" alt="Image Description">
+                            <label class="custom-file-boxed custom-file-boxed-sm" for="logoUploader2">
+                                <img id="logoImg2" class="avatar avatar-xl avatar-4by3 avatar-centered h-100 mb-2"
+                                    src="./assets/svg/illustrations/browse.svg">
 
                                 <span class="d-block">Ankete uygulamak için kameradan çekim yapın.
                                 </span>
 
+                                <span (click)="takePhoto()" style="margin-bottom: 5px; margin-right: 5px;"
+                                    class="btn btn-sm btn-secondary">
+                                    <i class="tio-done "></i>
+                                    Görünyü Al</span>
+
+
+                                <!-- Gallery -->
+                                <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-2">
+                                    <div *ngFor="let item of uploadingCameraFiles;let i=index;"
+                                        class="col-4 col-sm-3 col-md-2 mb-2 mb-lg-4">
+                                        <!-- Card -->
+                                        <div class="card card-sm">
+                                            <img style="max-height: 120px;" class="card-img-top" src="{{item}}" alt="">
+                                            <div class="card-body">
+                                                <div class="row text-center">
+                                                    <div class="col">
+                                                        <a class="js-fancybox-item text-body" href="javascript:;"
+                                                            data-toggle="tooltip" data-placement="top" title=""
+                                                            data-src="./assets/img/725x1080/img1.jpg"
+                                                            data-caption="Image #01" data-original-title="View">
+                                                            <i class="tio-visible-outlined"></i>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="col column-divider">
+                                                        <a (click)="removeCameraFile(i)" class="text-danger"
+                                                            href="javascript:;" data-toggle="tooltip"
+                                                            data-placement="top" title="" data-original-title="Delete">
+                                                            <i class="tio-delete-outlined"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!-- End Row -->
+                                            </div>
+                                        </div>
+                                        <!-- End Card -->
+                                    </div>
+                                </div>
+                                <!-- End Gallery -->
                             </label>
                             <!-- End Logo -->
                         </div>
                         <!--Browse end-->
+
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success">
+                <button (click)="moveToFiles()" type="button" class="btn btn-success">
                     <i class="tio-add"></i> Aktar</button>
-                <button type="button" class="btn btn-white" data-dismiss="modal">
+                <button (click)="cancelCamera()" type="button" class="btn btn-white" data-dismiss="modal">
                     <i class="tio-delete"></i> İptal</button>
             </div>
         </div>

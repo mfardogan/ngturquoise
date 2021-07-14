@@ -6,7 +6,6 @@ import Survey from 'src/app/@core/models/survey';
 import { Component, OnInit } from '@angular/core';
 import SurveyHttp from '../../dash/survey/survey-http';
 import { IIterator } from 'src/app/IIterator';
-import { Dependency } from 'src/app/app.module';
 import AnswerHttp from '../../dash/answer/answer-http';
 
 @Component({
@@ -62,6 +61,7 @@ export class JoinSurveyComponent implements OnInit {
       this.context.fillStyle = "transparent";
       this.context.canvas.width = background.width;
       this.context.canvas.height = background.height;
+      this.drawStack(this.sequence);
     };
 
     background.src = path;
@@ -81,7 +81,7 @@ export class JoinSurveyComponent implements OnInit {
       this.surveyHttp.get(this.surveyid)
         .subscribe((survey: Survey) => {
           this.survey = survey;
-          this.otherBackground(true);
+          this.refreshBackground();
           this.activateClassByIndex(0);
           this.answer = Answer.prepare(survey.images.map(s => s.id));
           this.answer.surveyId = this.surveyid;
@@ -95,12 +95,11 @@ export class JoinSurveyComponent implements OnInit {
     } else {
       if (this.sequence > 0) { this.sequence--; }
     }
+
     const next = this.survey.images[this.sequence];
     this.changeBackgroundImage(next.fileName);
-  }
 
-  zoomIn() { }
-  zoomOut() { }
+  }
 
   mouseUp(event: MouseEvent) {
     event.preventDefault();
@@ -192,15 +191,16 @@ export class JoinSurveyComponent implements OnInit {
     this.context.clearRect(0, 0, width, height);
   }
 
-  drawStack() {
-    const to = this.survey.images[this.sequence];
-    const answer = this.answer.getAnswerByImage(to.id);
+  drawStack(sequence: number) {
+
+    const answer = this.getAnswersBySequence(sequence);
     const iterator: IIterator<Box> = answer.createIterator();
 
     while (!iterator.finished()) {
       const next: Box = iterator.next();
       const choice = this.survey.choiceGroup.choices.filter(e => e.id == next.choiceId)[0];
       this.context.strokeStyle = choice.color;
+      this.context.lineWidth = 2;
       this.context.strokeRect(next.startX, next.startY, next.width, next.height);
     }
   }
@@ -228,25 +228,29 @@ export class JoinSurveyComponent implements OnInit {
     this.canvas.dispatchEvent(mouseEvent);
   }
 
-  undo() {
-    const to = this.survey.images[this.sequence];
+  getAnswersBySequence(sequence: number) {
+    const to = this.survey.images[sequence];
     const answer = this.answer.getAnswerByImage(to.id);
+    return answer;
+  }
+
+  undo() {
+    const answer = this.getAnswersBySequence(this.sequence);
 
     if (answer.canUndo()) {
       answer.undo();
       this.clearCanvas();
-      this.drawStack();
+      this.drawStack(this.sequence);
     }
   }
 
   redo() {
-    const to = this.survey.images[this.sequence];
-    const answer = this.answer.getAnswerByImage(to.id);
+    const answer = this.getAnswersBySequence(this.sequence);
 
     if (answer.canRedo()) {
       answer.redo();
       this.clearCanvas();
-      this.drawStack();
+      this.drawStack(this.sequence);
     }
   }
 

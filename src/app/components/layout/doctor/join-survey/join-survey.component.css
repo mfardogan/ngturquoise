@@ -1,5 +1,5 @@
 .custom-scrollbar{
-    border:.2rem dashed #267cdf9c; overflow-y: scroll;  height: 90vh;
+    border:4px dashed #267cdf9c; overflow-y: scroll;  height: 90vh;
     border-radius: 5px;
     margin-bottom: 3rem;
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AbstractType, Component, InjectFlags, InjectionToken, Injector, OnInit, Type } from '@angular/core';
 import { Router } from '@angular/router';
 import Administrator from 'src/app/@core/models/administrator';
 import { TokenServiceService } from 'src/app/@core/services/token-service.service';
@@ -15,7 +15,7 @@ export class NavBarComponent implements OnInit {
   constructor(
     private router: Router,
     private httpService: AdminHttp,
-    private tokenService: TokenServiceService
+    private tokenService: TokenServiceService,private injector:Injector
   ) { }
 
   administrator: Administrator = new Administrator();

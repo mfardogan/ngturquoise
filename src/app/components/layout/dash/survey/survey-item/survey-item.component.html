@@ -27,24 +27,24 @@
 
                         <div class="col-auto">
                             <div class="row align-items-center g-0">
-                                <div class="col-auto">{{data.creationAt | date: 'dd/MM/yy hh:MM:ss'}} |</div>
+                                <div class="col-auto">{{data?.creationAt | date: 'dd/MM/yy hh:MM:ss'}} |</div>
                             </div>
                         </div>
 
                         <div class="col-auto">
                             <a [routerLink]="[ '/dash/admin', data.createdBy]">
                                 <span class="media align-items-center">
-                                    <img *ngIf="data.administrator.image" class="avatar avatar-xs avatar-circle mr-2"
-                                        src="{{data.administrator.image.fileName}}">
+                                    <img *ngIf="data?.administrator?.image" class="avatar avatar-xs avatar-circle mr-2"
+                                        src="{{data?.administrator?.image?.fileName}}">
 
-                                    <div *ngIf="!data.administrator.image"
+                                    <div *ngIf="!data?.administrator?.image"
                                         class="avatar avatar-xs avatar-soft-info avatar-circle avatar-circle avatar-border-lg profile-cover-avatar">
                                         <span class="avatar-initials">{{data.administrator.name[0]}}</span>
                                     </div>
                                     <span class="media-body">
-                                        {{data.administrator.title}}
-                                        {{data.administrator.name}}
-                                        {{data.administrator.surname}}
+                                        {{data?.administrator?.title}}
+                                        {{data.administrator?.name}}
+                                        {{data?.administrator?.surname}}
                                     </span>
                                 </span>
                             </a>

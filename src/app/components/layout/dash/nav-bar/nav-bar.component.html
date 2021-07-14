@@ -3,7 +3,7 @@
     <div class="navbar-nav-wrap">
         <div class="navbar-brand-wrapper">
             <!-- Logo -->
-            <a class="navbar-brand" href="./index.html" aria-label="Front">
+            <a class="navbar-brand" routerLink="/dash" aria-label="Front">
                 <img class="navbar-brand-logo" src="./assets/svg/logos/logo.svg" alt="Logo">
                 <img class="navbar-brand-logo-mini" src="./assets/svg/logos/logo-short.svg" alt="Logo">
             </a>
@@ -14,10 +14,10 @@
             <!-- Navbar Vertical Toggle -->
             <button type="button" class="js-navbar-vertical-aside-toggle-invoker close mr-3">
                 <i class="tio-first-page navbar-vertical-aside-toggle-short-align" data-toggle="tooltip"
-                    data-placement="right" title="" data-original-title="Collapse"></i>
+                    data-placement="right" title="Collapse"></i>
                 <i class="tio-last-page navbar-vertical-aside-toggle-full-align"
-                    data-template="<div class=&quot;tooltip d-none d-sm-block&quot; role=&quot;tooltip&quot;><div class=&quot;arrow&quot;></div><div class=&quot;tooltip-inner&quot;></div></div>"
-                    data-toggle="tooltip" data-placement="right" title="" data-original-title="Expand"></i>
+                    data-template='<div class="tooltip d-none d-sm-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+                    data-toggle="tooltip" data-placement="right" title="Expand"></i>
             </button>
             <!-- End Navbar Vertical Toggle -->
 
@@ -32,14 +32,14 @@
                                 <i class="tio-search"></i>
                             </div>
                         </div>
-                        <input type="search" class="js-form-search form-control" placeholder="Uygulamada Arayın"
-                            aria-label="Search in front" data-hs-form-search-options="{
-                       &quot;clearIcon&quot;: &quot;#clearSearchResultsIcon&quot;,
-                       &quot;dropMenuElement&quot;: &quot;#searchDropdownMenu&quot;,
-                       &quot;dropMenuOffset&quot;: 20,
-                       &quot;toggleIconOnFocus&quot;: true,
-                       &quot;activeClass&quot;: &quot;focus&quot;
-                     }">
+                        <input type="search" class="js-form-search form-control" placeholder="Uygulamada ara"
+                            aria-label="Search in front" data-hs-form-search-options='{
+                       "clearIcon": "#clearSearchResultsIcon",
+                       "dropMenuElement": "#searchDropdownMenu",
+                       "dropMenuOffset": 20,
+                       "toggleIconOnFocus": true,
+                       "activeClass": "focus"
+                     }'>
                         <a class="input-group-append" href="javascript:;">
                             <span class="input-group-text">
                                 <i id="clearSearchResultsIcon" class="tio-clear" style="display: none;"></i>
@@ -50,7 +50,7 @@
 
                     <!-- Card Search Content -->
                     <div id="searchDropdownMenu"
-                        class="hs-form-search-menu-content card dropdown-menu dropdown-card overflow-hidden animated hs-form-search-menu-hidden hs-form-search-menu-initialized">
+                        class="hs-form-search-menu-content card dropdown-menu dropdown-card overflow-hidden">
                         <!-- Body -->
                         <div class="card-body-height py-3">
                             <small class="dropdown-header mb-n2">Recent searches</small>
@@ -106,8 +106,7 @@
                                         src="./assets/img/160x160/img10.jpg" alt="Image Description">
                                     <div class="media-body text-truncate">
                                         <span>Amanda Harvey <i class="tio-verified text-primary" data-toggle="tooltip"
-                                                data-placement="top" title=""
-                                                data-original-title="Top endorsed"></i></span>
+                                                data-placement="top" title="Top endorsed"></i></span>
                                     </div>
                                 </div>
                             </a>
@@ -156,13 +155,13 @@
                     <!-- Search Trigger -->
                     <div class="hs-unfold">
                         <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                            href="javascript:;" data-hs-unfold-options="{
-                   &quot;target&quot;: &quot;#searchDropdown&quot;,
-                   &quot;type&quot;: &quot;css-animation&quot;,
-                   &quot;animationIn&quot;: &quot;fadeIn&quot;,
-                   &quot;hasOverlay&quot;: &quot;rgba(46, 52, 81, 0.1)&quot;,
-                   &quot;closeBreakpoint&quot;: &quot;md&quot;
-                 }" data-hs-unfold-target="#searchDropdown" data-hs-unfold-invoker="">
+                            href="javascript:;" data-hs-unfold-options='{
+                   "target": "#searchDropdown",
+                   "type": "css-animation",
+                   "animationIn": "fadeIn",
+                   "hasOverlay": "rgba(46, 52, 81, 0.1)",
+                   "closeBreakpoint": "md"
+                 }'>
                             <i class="tio-search"></i>
                         </a>
                     </div>
@@ -173,19 +172,17 @@
                     <!-- Notification -->
                     <div class="hs-unfold">
                         <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                            href="javascript:;" data-hs-unfold-options="{
-                   &quot;target&quot;: &quot;#notificationDropdown&quot;,
-                   &quot;type&quot;: &quot;css-animation&quot;
-                 }" data-hs-unfold-target="#notificationDropdown" data-hs-unfold-invoker="">
+                            href="javascript:;" data-hs-unfold-options='{
+                   "target": "#notificationDropdown",
+                   "type": "css-animation"
+                 }'>
                             <i class="tio-notifications-on-outlined"></i>
                             <span class="btn-status btn-sm-status btn-status-danger"></span>
                         </a>
 
                         <div id="notificationDropdown"
-                            class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                            style="width: 25rem; animation-duration: 300ms;" data-hs-target-height="519.4"
-                            data-hs-unfold-content="" data-hs-unfold-content-animation-in="slideInUp"
-                            data-hs-unfold-content-animation-out="fadeOut">
+                            class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu"
+                            style="width: 25rem;">
                             <!-- Header -->
                             <div class="card-header">
                                 <span class="card-title h4">Notifications</span>
@@ -193,18 +190,14 @@
                                 <!-- Unfold -->
                                 <div class="hs-unfold">
                                     <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                                        href="javascript:;" data-hs-unfold-options="{
-                         &quot;target&quot;: &quot;#notificationSettingsOneDropdown&quot;,
-                         &quot;type&quot;: &quot;css-animation&quot;
-                       }" data-hs-unfold-target="#notificationSettingsOneDropdown" data-hs-unfold-invoker="">
+                                        href="javascript:;" data-hs-unfold-options='{
+                         "target": "#notificationSettingsOneDropdown",
+                         "type": "css-animation"
+                       }'>
                                         <i class="tio-more-vertical"></i>
                                     </a>
                                     <div id="notificationSettingsOneDropdown"
-                                        class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                                        data-hs-target-height="0" data-hs-unfold-content=""
-                                        data-hs-unfold-content-animation-in="slideInUp"
-                                        data-hs-unfold-content-animation-out="fadeOut"
-                                        style="animation-duration: 300ms;">
+                                        class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right">
                                         <span class="dropdown-header">Settings</span>
                                         <a class="dropdown-item" href="#">
                                             <i class="tio-archive dropdown-item-icon"></i> Archive all
@@ -259,7 +252,7 @@
                                                             <div
                                                                 class="custom-control custom-checkbox custom-checkbox-list">
                                                                 <input type="checkbox" class="custom-control-input"
-                                                                    id="notificationCheck1" checked="">
+                                                                    id="notificationCheck1" checked>
                                                                 <label class="custom-control-label"
                                                                     for="notificationCheck1"></label>
                                                                 <span class="custom-checkbox-list-stretched-bg"></span>
@@ -291,7 +284,7 @@
                                                             <div
                                                                 class="custom-control custom-checkbox custom-checkbox-list">
                                                                 <input type="checkbox" class="custom-control-input"
-                                                                    id="notificationCheck2" checked="">
+                                                                    id="notificationCheck2" checked>
                                                                 <label class="custom-control-label"
                                                                     for="notificationCheck2"></label>
                                                                 <span class="custom-checkbox-list-stretched-bg"></span>
@@ -323,7 +316,7 @@
                                                             <div
                                                                 class="custom-control custom-checkbox custom-checkbox-list">
                                                                 <input type="checkbox" class="custom-control-input"
-                                                                    id="notificationCheck4" checked="">
+                                                                    id="notificationCheck4" checked>
                                                                 <label class="custom-control-label"
                                                                     for="notificationCheck4"></label>
                                                                 <span class="custom-checkbox-list-stretched-bg"></span>
@@ -587,18 +580,16 @@
                     <!-- Apps -->
                     <div class="hs-unfold">
                         <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                            href="javascript:;" data-hs-unfold-options="{
-                   &quot;target&quot;: &quot;#appsDropdown&quot;,
-                   &quot;type&quot;: &quot;css-animation&quot;
-                 }" data-hs-unfold-target="#appsDropdown" data-hs-unfold-invoker="">
+                            href="javascript:;" data-hs-unfold-options='{
+                   "target": "#appsDropdown",
+                   "type": "css-animation"
+                 }'>
                             <i class="tio-menu-vs-outlined"></i>
                         </a>
 
                         <div id="appsDropdown"
-                            class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                            style="width: 25rem; animation-duration: 300ms;" data-hs-target-height="450"
-                            data-hs-unfold-content="" data-hs-unfold-content-animation-in="slideInUp"
-                            data-hs-unfold-content-animation-out="fadeOut">
+                            class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu"
+                            style="width: 25rem;">
                             <!-- Header -->
                             <div class="card-header">
                                 <span class="card-title h4">Web apps &amp; services</span>
@@ -708,59 +699,75 @@
                     <!-- End Apps -->
                 </li>
 
+                <li class="nav-item d-none d-sm-inline-block">
+                    <!-- Activity -->
+                    <div class="hs-unfold">
+                        <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
+                            href="javascript:;" data-hs-unfold-options='{
+                  "target": "#activitySidebar",
+                  "type": "css-animation",
+                  "animationIn": "fadeInRight",
+                  "animationOut": "fadeOutRight",
+                  "hasOverlay": true,
+                  "smartPositionOff": true
+                 }'>
+                            <i class="tio-voice-line"></i>
+                        </a>
+                    </div>
+                    <!-- Activity -->
+                </li>
+
                 <li class="nav-item">
                     <!-- Account -->
                     <div class="hs-unfold">
                         <a class="js-hs-unfold-invoker navbar-dropdown-account-wrapper" href="javascript:;"
-                            data-hs-unfold-options="{
-                   &quot;target&quot;: &quot;#accountNavbarDropdown&quot;,
-                   &quot;type&quot;: &quot;css-animation&quot;
-                 }" data-hs-unfold-target="#accountNavbarDropdown" data-hs-unfold-invoker="">
-                            <div class="avatar avatar-sm avatar-circle">
-                                <img *ngIf="administrator.image != null" class="avatar-img"
-                                    src="{{administrator.image.fileName}}" alt="Image Description">
-
-                                <span *ngIf="administrator.image == null"
-                                    class="avatar avatar-circle-mb avatar-soft-dark">
-                                    <span class="avatar-initials">{{administrator.name[0]}}</span>
-                                </span>
+                            data-hs-unfold-options='{
+                   "target": "#accountNavbarDropdown",
+                   "type": "css-animation"
+                 }'>
+                            <div *ngIf="administrator?.image" class="avatar avatar-sm avatar-circle">
+                                <img class="avatar-img" src="{{administrator?.image?.fileName}}"
+                                    alt="Image Description">
                                 <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+                            </div>
+
+                            <div *ngIf="!administrator?.image" class="avatar avatar-sm avatar-primary avatar-circle">
+                                <span class="avatar-initials">
+                                    {{administrator?.name?.slice(0,2)}}
+                                </span>
                             </div>
                         </a>
 
                         <div id="accountNavbarDropdown"
-                            class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu navbar-dropdown-account hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated"
-                            style="width: 16rem; animation-duration: 300ms;" data-hs-target-height="403.275"
-                            data-hs-unfold-content="" data-hs-unfold-content-animation-in="slideInUp"
-                            data-hs-unfold-content-animation-out="fadeOut">
+                            class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu navbar-dropdown-account"
+                            style="width: 16rem;">
                             <div class="dropdown-item-text">
                                 <div class="media align-items-center">
-                                    <div class="avatar avatar-sm avatar-circle mr-2">
-                                        <img *ngIf="administrator.image != null" class="avatar-img"
-                                            src="{{administrator.image.fileName}}" alt="Image Description">
+                                    <div *ngIf="administrator?.image" class="avatar avatar-sm avatar-circle mr-2">
+                                        <img class="avatar-img" src="{{administrator?.image?.fileName}}"
+                                            alt="Image Description">
+                                        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+                                    </div>
 
-                                        <span *ngIf="administrator.image == null"
-                                            class="avatar avatar-circle-mb avatar-soft-dark">
-                                            <span class="avatar-initials">{{administrator.name[0]}}</span>
+                                    <div *ngIf="!administrator?.image"
+                                        class="avatar avatar-sm avatar-primary avatar-circle mr-2">
+                                        <span class="avatar-initials">
+                                            {{administrator?.name?.slice(0,2)}}
                                         </span>
                                     </div>
                                     <div class="media-body">
-                                        <span class="card-title h5">{{administrator.name}}
-                                            {{administrator.surname}}</span>
-                                        <span class="card-text">{{administrator.email}}</span>
+                                        <span class="card-title h5">{{administrator?.name}}
+                                            {{administrator?.surname}}</span>
+                                        <span class="card-text">{{administrator?.email}}</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item" [routerLink]="['/dash/overview']">
-                                <span class="text-truncate pr-2" title="Profile &amp; account">Anasayfa</span>
-                            </a>
 
-                            <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item" [routerLink]="['/dash/admin',administrator.id]">
+                            <a class="dropdown-item" [routerLink]="['/dash/admin/', administrator?.id]">
                                 <span class="text-truncate pr-2" title="Profile &amp; account">Profilim</span>
                             </a>
 
@@ -770,8 +777,8 @@
 
                             <div class="dropdown-divider"></div>
 
-                            <a (click)="signout()" class="dropdown-item" href="javascript:;">
-                                <span class="text-truncate text-danger pr-2" title="Sign out">Çıkış Yap</span>
+                            <a (click)="signout()" class="dropdown-item" href="#">
+                                <span class="text-truncate pr-2" title="Sign out">Çıkış</span>
                             </a>
                         </div>
                     </div>

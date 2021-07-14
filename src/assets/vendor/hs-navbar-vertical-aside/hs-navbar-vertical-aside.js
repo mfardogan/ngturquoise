@@ -126,7 +126,7 @@
         self.setState(self)
       });
 
-      // Close when click outside (if sidebar is mini and has opened menu)
+      // Close when click outside (if sidebar is mini and has opened menu) -
       $(window).on('click', function (e) {
         if ($(self.options.mainContainer).hasClass(self.className(self.options.minClass)) && self.$sidebar.find(self.options.subMenuClass).parent().hasClass(self.className(self.options.subMenuInvokerActiveClass)) && !self.$sidebar.is(e.target) && self.$sidebar.has(e.target).length === 0) {
           self.$sidebar.find(self.options.subMenuClass).hide().parent().removeClass(self.className(self.options.subMenuInvokerActiveClass));
@@ -175,6 +175,7 @@
     }
 
     if (isClosed || $(self.options.mainContainer).hasClass(self.className(self.options.minClass))) {
+      console.log('Navbar tıklandı');
       self.items.each(function () {
         if ($(this).hasClass(self.className(self.options.subMenuInvokerActiveClass))) {
           let menu = $(this).find(self.options.subMenuClass).first();
@@ -301,8 +302,8 @@
         }, self.options.subMenuAnimationSpeed)
       }
     }
-
-    item.toggleClass(self.className(self.options.subMenuInvokerActiveClass));
+    console.log('geldi değişti');
+      item.addClass(self.className(self.options.subMenuInvokerActiveClass));
 
     if (menu.is(':visible')) {
       menu.css({

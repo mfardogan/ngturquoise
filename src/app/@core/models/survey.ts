@@ -14,9 +14,9 @@ class Survey extends Concurrency {
     progressPercent: number = 0;
     choiceGroupId: number = 0;
     choiceGroup!: ChoiceGroup;
-    images: Array<File> = [];
+    images: File[] = [];
     answerCount: number = 0;
-    smallImages: Array<SurveySmallImage> = [];
+    smallImages: SurveySmallImage[] = [];
     startAt!: Date;
     finishAt!: Date;
     startNow: boolean = false;

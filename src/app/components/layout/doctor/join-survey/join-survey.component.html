@@ -27,8 +27,6 @@
                 <span *ngIf="survey.status==2" class="badge badge-soft-success ml-sm-3">
                     <span class="legend-indicator bg-success"></span>Kontrolde
                 </span>
-
-
             </div>
 
             <div class="mt-2">
@@ -135,91 +133,77 @@
 
 
 
-
-
-
-
-
-
-<div class="position-fixed bottom-0 content-centered-x w-100 z-index-99 mb-3" style="max-width: 40rem;">
+<div class="position-fixed bottom-0 content-centered-x w-80 z-index-80 mb-3" style="max-width: 40rem;">
     <!-- Card -->
     <div class="card card-sm bg-dark border-dark mx-2">
         <div class="card-body">
             <div class="row justify-content-center justify-content-sm-between">
                 <div class="col">
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+
                         <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="tio-edit"></i>
+                            </button>
+
+                            <div class="dropdown-menu ">
+
+                                <!-- List Group -->
+                                <ul *ngFor="let item of survey.choiceGroup.choices;let i = index"
+                                    class="list-group list-group-flush">
+                                    <!-- Item -->
+                                    <li (click)="activateClass(item.id)"
+                                        class="list-group-item custom-checkbox-list-wrapper">
+                                        <div class="d-flex align-items-start flex-grow-1">
+                                            <div class="d-flex align-items-center mr-3">
+                                                <div class="custom-control custom-checkbox custom-checkbox-list">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        id="notificationCheck{{i}}">
+                                                    <label class="custom-control-label"
+                                                        for="notificationCheck{{i}}"></label>
+                                                    <span class="custom-checkbox-list-stretched-bg"></span>
+                                                </div>
+                                                <div class="avatar avatar-sm avatar-circle">
+                                                    <span class="legend-indicator legend-indicator-lg"
+                                                        style="border: 1px solid rgb(153, 153, 153); width: 30px; height: 30px;"
+                                                        [style.background-color]="item.color"></span>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 mr-2">
+                                                <span class="card-title h5">{{item.name}}</span>
+                                                <p class="card-text font-size-sm">{{item.code}}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- End Item -->
+
+                                </ul>
+                                <!-- End List Group -->
+                            </div>
+
                             <button (click)="undo()" type="button" class="btn btn-secondary">
                                 <i class="tio-undo"></i>
                             </button>
                             <button (click)="redo()" type="button" class="btn btn-secondary">
                                 <i class="tio-redo"></i>
                             </button>
-                            <button (click)="zoomIn()" type="button" class="btn btn-secondary">
-                                <i class="tio-add"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary">
-                                <i class="tio-remove"></i>
-                            </button>
-                        </div>
-                        <div class="btn-group mr-2" role="group" aria-label="Second group">
                             <button (click)="otherBackground(false)" type="button" class="btn btn-secondary">
-                                g</button>
-                            <button (click)="otherBackground(true)" type="button" class="btn btn-secondary">i</button>
-                        </div>
-                        <div class="btn-group mr-2" role="group" aria-label="Third group">
-                            <!-- Dropup -->
-                            <div class="btn-group dropup">
-                                <button type="button" class="btn btn-secondary" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    <i class="tio-edit"></i>
-                                </button>
-                                <div class="dropdown-menu ">
+                                <i class="tio-arrow-backward"></i></button>
+                            <button (click)="otherBackground(true)" type="button" class="btn btn-secondary">
+                                <i class="tio-arrow-forward"></i>
+                            </button>
+                            <button (click)="save()" type="button" class="btn btn-success">
+                                Kaydet
+                            </button>
 
-                                    <!-- List Group -->
-                                    <ul *ngFor="let item of survey.choiceGroup.choices;let i = index"
-                                        class="list-group list-group-flush">
-                                        <!-- Item -->
-                                        <li (click)="activateClass(item.id)"
-                                            class="list-group-item custom-checkbox-list-wrapper">
-                                            <div class="d-flex align-items-start flex-grow-1">
-                                                <div class="d-flex align-items-center mr-3">
-                                                    <div class="custom-control custom-checkbox custom-checkbox-list">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="notificationCheck{{i}}">
-                                                        <label class="custom-control-label"
-                                                            for="notificationCheck{{i}}"></label>
-                                                        <span class="custom-checkbox-list-stretched-bg"></span>
-                                                    </div>
-                                                    <div class="avatar avatar-sm avatar-circle">
-                                                        <span class="legend-indicator legend-indicator-lg"
-                                                            style="border: 1px solid rgb(153, 153, 153); width: 30px; height: 30px;"
-                                                            [style.background-color]="item.color"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow-1 mr-2">
-                                                    <span class="card-title h5">{{item.name}}</span>
-                                                    <p class="card-text font-size-sm">{{item.code}}</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- End Item -->
-
-                                    </ul>
-                                    <!-- End List Group -->
-
-
-                                </div>
-                            </div>
-                            <!-- End Dropup -->
-                        </div>
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button (click)="clearCanvas()" type="button" class="btn btn-danger">Temizle</button>
-                            <button (click)="save()" type="button" class="btn btn-success">Kaydet</button>
                         </div>
 
                     </div>
                 </div>
+
+
             </div>
             <!-- End Row -->
         </div>

@@ -160,7 +160,7 @@ export class JoinSurveyComponent implements OnInit {
     const height = mouseY - this.startY + scroll;
 
     this.context.clearRect(this.startX, this.startY, width, height);
-    this.context.lineWidth = 3;
+    this.context.lineWidth = 2;
 
     this.context.strokeStyle = this.activatedChoice.color;
     this.context.strokeRect(this.startX, this.startY, width, height);

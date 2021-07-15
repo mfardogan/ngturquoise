@@ -11,5 +11,16 @@ export class ContentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loadExternalScript('../../../../../assets/js/layout.js');
+  }
+
+  public loadExternalScript(url: string) {
+    const body = <HTMLDivElement>document.body;
+    const script = document.createElement('script');
+    script.innerHTML = '';
+    script.src = url;
+    script.async = true;
+    script.defer = true;
+    body.appendChild(script);
   }
 }

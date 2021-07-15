@@ -11,9 +11,9 @@
             </nav>
 
             <div class="d-sm-flex align-items-sm-center">
-                <h1 class="page-header-title">{{survey.title}} #ID: {{survey.id}}</h1>
+                <h1 class="page-header-title">{{survey?.title}} #ID: {{survey?.id}}</h1>
                 <span class="ml-2 ml-sm-3">
-                    <i class="tio-date-range"></i> {{survey.creationAt | date: 'dd.MM.yyyy hh:mm:ss'}}
+                    <i class="tio-date-range"></i> {{survey?.creationAt | date: 'dd.MM.yyyy hh:mm:ss'}}
                 </span>
 
                 <span *ngIf="survey.status==0" class="badge badge-soft-primary ml-sm-3">
@@ -65,12 +65,14 @@
         </div>
 
         <div class="col-sm-auto">
-            <a class="btn btn-icon btn-sm btn-ghost-secondary rounded-circle mr-1" href="#" data-toggle="tooltip"
-                data-placement="top" title="" data-original-title="Previous order">
+            <a (click)="otherBackground(false)" class="btn btn-icon btn-sm btn-ghost-secondary rounded-circle mr-1"
+                href="javascript:;" data-toggle="tooltip" data-placement="top" title=""
+                data-original-title="Önceki resim">
                 <i class="tio-arrow-backward"></i>
             </a>
-            <a class="btn btn-icon btn-sm btn-ghost-secondary rounded-circle" href="#" data-toggle="tooltip"
-                data-placement="top" title="" data-original-title="Next order">
+            <a (click)="otherBackground(true)" class="btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
+                href="javascript:;" data-toggle="tooltip" data-placement="top" title=""
+                data-original-title="Sonraki resim">
                 <i class="tio-arrow-forward"></i>
             </a>
         </div>
@@ -81,11 +83,13 @@
 <div class="row">
     <div class="col-lg-12 mb-2 mb-lg-0">
         <div class="col-12">
-            <div id="#style-1" class="custom-scrollbar">
+            <div id="#style-1" class="custom-scrollbar"
+                style="background-image: url('./../../../../../assets/transparent.jpg'); background-clip: padding-box;">
                 <div id="bgg">
-                    <canvas style="background-color: transparent;" (mouseup)="mouseUp($event)"
-                        (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)" (touchmove)="touchMove($event)"
-                        (touchstart)="touchStart($event)" (touchend)="touchEnd($event)" (click)="handleBox()" id="drw">
+                    <canvas style="background-color: transparent; touch-action: none;" (mouseup)="mouseUp($event)"
+                        (click)="onSelect($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)"
+                        (touchmove)="touchMove($event)" (touchstart)="touchStart($event)" (touchend)="touchEnd($event)"
+                        (click)="handleBox()" id="drw">
                     </canvas>
                 </div>
             </div>
@@ -115,7 +119,7 @@
                             <div class="dropdown-menu ">
 
                                 <!-- List Group -->
-                                <ul *ngFor="let item of survey.choiceGroup.choices;let i = index"
+                                <ul *ngFor="let item of survey?.choiceGroup?.choices;let i = index"
                                     class="list-group list-group-flush">
                                     <!-- Item -->
                                     <li (click)="activateClass(item.id)"
@@ -136,8 +140,8 @@
                                                 </div>
                                             </div>
                                             <div class="flex-grow-1 mr-2">
-                                                <span class="card-title h5">{{item.name}}</span>
-                                                <p class="card-text font-size-sm">{{item.code}}</p>
+                                                <span class="card-title h5">{{item?.name}}</span>
+                                                <p class="card-text font-size-sm">{{item?.code}}</p>
                                             </div>
                                         </div>
                                     </li>

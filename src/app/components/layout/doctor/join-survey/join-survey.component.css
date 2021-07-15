@@ -1,38 +1,38 @@
 .custom-scrollbar{
-    border:4px dashed #267cdf9c; overflow-y: scroll;  height: 90vh;
-    border-radius: 5px;
-    margin-bottom: 3rem;
+  border:4px dashed #377dffb7; overflow-y: scroll;  height: 90vh;
+  border-radius: 5px;
+  margin-bottom: 3rem;
+}
+
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(67, 111, 170);
+}
+
+/* Firefox */
+.selector {
+    scrollbar-width: none;
   }
 
-  *::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    background-color: rgb(109, 109, 109);
-  }
-  
-  /* Firefox */
-  .selector {
-      scrollbar-width: none;
-    }
-
-    #style-1::-webkit-scrollbar-track
+  #style-1::-webkit-scrollbar-track
 {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+border-radius: 10px;
+background-color: #F5F5F5;
 }
 
 #style-1::-webkit-scrollbar
 {
-	width: 12px;
-	background-color: #3b3b3b;
+width: 20px;
+background-color: #3b3b3b;
 }
 
 #style-1::-webkit-scrollbar-thumb
 {
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #555;
+border-radius: 10px;
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+background-color: #555;
 }

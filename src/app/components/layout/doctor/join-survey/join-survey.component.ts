@@ -52,12 +52,20 @@ export class JoinSurveyComponent implements OnInit {
     return next.fileName;
   }
 
+  convertPXToVW(px: number) {
+    return px * (100 / document.documentElement.clientWidth);
+  }
+
   changeBackgroundImage(path: string) {
     const background = new Image();
     const callBack = () => {
+
       this.container.style.width = background.width + 'px';
       this.container.style.height = background.height + 'px';
       this.container.setAttribute("style", `background-image: url('${path.replace(/\\/g, "/")}')`);
+      this.container.style.width = this.convertPXToVW(background.width) + "vw";
+      this.container.style.backgroundRepeat = "no-repeat";
+
       this.context.fillStyle = "transparent";
       this.context.canvas.width = background.width;
       this.context.canvas.height = background.height;
@@ -263,5 +271,9 @@ export class JoinSurveyComponent implements OnInit {
     this.answerHttp.add(this.answer)
       .subscribe((e: any) => {
       });
+  }
+
+  onSelect(event: MouseEvent) {
+
   }
 }

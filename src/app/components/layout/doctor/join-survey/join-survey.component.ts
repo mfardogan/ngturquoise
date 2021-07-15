@@ -21,6 +21,7 @@ export class JoinSurveyComponent implements OnInit {
     private surveyHttp: SurveyHttp
   ) { }
 
+  successfull: boolean = false;
   surveyid!: number;
   sequence: number = 0;
   activatedChoice!: Choice;
@@ -106,7 +107,6 @@ export class JoinSurveyComponent implements OnInit {
 
     const next = this.survey.images[this.sequence];
     this.changeBackgroundImage(next.fileName);
-
   }
 
   mouseUp(event: MouseEvent) {
@@ -270,6 +270,7 @@ export class JoinSurveyComponent implements OnInit {
   save() {
     this.answerHttp.add(this.answer)
       .subscribe((e: any) => {
+        this.successfull = true;
       });
   }
 

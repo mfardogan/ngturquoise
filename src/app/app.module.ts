@@ -47,6 +47,11 @@ import { AdminItemComponent } from './components/layout/dash/admin/admin-item/ad
 import { DoctorItemComponent } from './components/layout/dash/doctor/doctor-item/doctor-item.component';
 import { WebcamModule } from 'ngx-webcam';
 import { CameraComponent } from './components/layout/dash/survey/camera/camera.component';
+import { MyProfileComponent } from './components/layout/doctor/my-profile/my-profile.component';
+import { DoctorNavBarComponent } from './components/layout/doctor/doctor-nav-bar/doctor-nav-bar.component';
+import { DoctorSideBarComponent } from './components/layout/doctor/doctor-side-bar/doctor-side-bar.component';
+import { EditMyProfileComponent } from './components/layout/doctor/edit-my-profile/edit-my-profile.component';
+import { SurveyListComponent } from './components/layout/doctor/survey-list/survey-list.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +89,11 @@ import { CameraComponent } from './components/layout/dash/survey/camera/camera.c
     AdminItemComponent,
     DoctorItemComponent,
     CameraComponent,
+    MyProfileComponent,
+    DoctorNavBarComponent,
+    DoctorSideBarComponent,
+    EditMyProfileComponent,
+    SurveyListComponent,
   ],
 
   imports: [

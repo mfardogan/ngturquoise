@@ -1,179 +1,222 @@
-<!-- Page Header -->
-<div class="page-header d-print-none">
-    <div class="row align-items-center">
-        <div class="col-sm mb-2 mb-sm-0">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-no-gutter">
-                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="ecommerce-orders.html">Anketler</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">Ankete Katıl</li>
-                </ol>
-            </nav>
+<ng-template #join>
+    <div>
+        <!-- Page Header -->
+        <div class="page-header d-print-none">
+            <div class="row align-items-center">
+                <div class="col-sm mb-2 mb-sm-0">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-no-gutter">
+                            <li class="breadcrumb-item"><a class="breadcrumb-link"
+                                    href="ecommerce-orders.html">Anketler</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Ankete Katıl</li>
+                        </ol>
+                    </nav>
 
-            <div class="d-sm-flex align-items-sm-center">
-                <h1 class="page-header-title">{{survey?.title}} #ID: {{survey?.id}}</h1>
-                <span class="ml-2 ml-sm-3">
-                    <i class="tio-date-range"></i> {{survey?.creationAt | date: 'dd.MM.yyyy hh:mm:ss'}}
-                </span>
+                    <div class="d-sm-flex align-items-sm-center">
+                        <h1 class="page-header-title">{{survey?.title}} #ID: {{survey?.id}}</h1>
+                        <span class="ml-2 ml-sm-3">
+                            <i class="tio-date-range"></i> {{survey?.creationAt | date: 'dd.MM.yyyy hh:mm:ss'}}
+                        </span>
 
-                <span *ngIf="survey.status==0" class="badge badge-soft-primary ml-sm-3">
-                    <span class="legend-indicator bg-primary"></span>Devam eden
-                </span>
+                        <span *ngIf="survey.status==0" class="badge badge-soft-primary ml-sm-3">
+                            <span class="legend-indicator bg-primary"></span>Devam eden
+                        </span>
 
-                <span *ngIf="survey.status==1" class="badge badge-soft-warning ml-sm-3">
-                    <span class="legend-indicator bg-warning"></span>Kontrolde
-                </span>
+                        <span *ngIf="survey.status==1" class="badge badge-soft-warning ml-sm-3">
+                            <span class="legend-indicator bg-warning"></span>Kontrolde
+                        </span>
 
-                <span *ngIf="survey.status==2" class="badge badge-soft-success ml-sm-3">
-                    <span class="legend-indicator bg-success"></span>Kontrolde
-                </span>
-            </div>
+                        <span *ngIf="survey.status==2" class="badge badge-soft-success ml-sm-3">
+                            <span class="legend-indicator bg-success"></span>Kontrolde
+                        </span>
+                    </div>
 
-            <div class="mt-2">
-                <a class="text-body mr-3" href="javascript:;" onclick="window.print(); return false;">
-                    <i class="tio-print mr-1"></i> Sayfayı Yazdır
-                </a>
-
-                <!-- Unfold -->
-                <div class="hs-unfold">
-                    <a class="js-hs-unfold-invoker text-body" href="javascript:;" data-hs-unfold-options="{
-                   &quot;target&quot;: &quot;#moreOptionsDropdown&quot;,
-                   &quot;type&quot;: &quot;css-animation&quot;
-                 }" data-hs-unfold-target="#moreOptionsDropdown" data-hs-unfold-invoker="">
-                        İşlemler <i class="tio-chevron-down"></i>
-                    </a>
-
-                    <div id="moreOptionsDropdown"
-                        class="hs-unfold-content dropdown-unfold dropdown-menu mt-1 hs-unfold-content-initialized hs-unfold-css-animation animated hs-unfold-hidden"
-                        data-hs-target-height="196" data-hs-unfold-content=""
-                        data-hs-unfold-content-animation-in="slideInUp" data-hs-unfold-content-animation-out="fadeOut"
-                        style="animation-duration: 300ms;">
-                        <a class="dropdown-item" href="#">
-                            <i class="tio-copy dropdown-item-icon"></i> Bu resmi temizle
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="tio-clear dropdown-item-icon"></i> Tüm resimleri temizle
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="tio-archive dropdown-item-icon"></i> Kaydet
+                    <div class="mt-2">
+                        <a class="text-body mr-3" href="javascript:;" onclick="window.print(); return false;">
+                            <i class="tio-print mr-1"></i> Sayfayı Yazdır
                         </a>
 
+                        <!-- Unfold -->
+                        <div class="hs-unfold">
+                            <a class="js-hs-unfold-invoker text-body" href="javascript:;" data-hs-unfold-options="{
+                           &quot;target&quot;: &quot;#moreOptionsDropdown&quot;,
+                           &quot;type&quot;: &quot;css-animation&quot;
+                         }" data-hs-unfold-target="#moreOptionsDropdown" data-hs-unfold-invoker="">
+                                İşlemler <i class="tio-chevron-down"></i>
+                            </a>
+
+                            <div id="moreOptionsDropdown"
+                                class="hs-unfold-content dropdown-unfold dropdown-menu mt-1 hs-unfold-content-initialized hs-unfold-css-animation animated hs-unfold-hidden"
+                                data-hs-target-height="196" data-hs-unfold-content=""
+                                data-hs-unfold-content-animation-in="slideInUp"
+                                data-hs-unfold-content-animation-out="fadeOut" style="animation-duration: 300ms;">
+                                <a class="dropdown-item" href="#">
+                                    <i class="tio-copy dropdown-item-icon"></i> Bu resmi temizle
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="tio-clear dropdown-item-icon"></i> Tüm resimleri temizle
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="tio-archive dropdown-item-icon"></i> Kaydet
+                                </a>
+
+                            </div>
+                        </div>
+                        <!-- End Unfold -->
                     </div>
                 </div>
-                <!-- End Unfold -->
-            </div>
-        </div>
 
-        <div class="col-sm-auto">
-            <a (click)="otherBackground(false)" class="btn btn-icon btn-sm btn-ghost-secondary rounded-circle mr-1"
-                href="javascript:;" data-toggle="tooltip" data-placement="top" title=""
-                data-original-title="Önceki resim">
-                <i class="tio-arrow-backward"></i>
-            </a>
-            <a (click)="otherBackground(true)" class="btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
-                href="javascript:;" data-toggle="tooltip" data-placement="top" title=""
-                data-original-title="Sonraki resim">
-                <i class="tio-arrow-forward"></i>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- End Page Header -->
-
-<div class="row">
-    <div class="col-lg-12 mb-2 mb-lg-0">
-        <div class="col-12">
-            <div id="#style-1" class="custom-scrollbar"
-                style="cursor: no-drop; background-image: url('./../../../../../assets/transparent.jpg'); background-clip: padding-box;">
-                <div id="bgg">
-                    <canvas style="background-color: transparent; touch-action: none; cursor: crosshair;"
-                        (mouseup)="mouseUp($event)" (click)="onSelect($event)" (mousedown)="mouseDown($event)"
-                        (mousemove)="mouseMove($event)" (touchmove)="touchMove($event)"
-                        (touchstart)="touchStart($event)" (touchend)="touchEnd($event)" (click)="handleBox()" id="drw">
-                    </canvas>
+                <div class="col-sm-auto">
+                    <a (click)="otherBackground(false)"
+                        class="btn btn-icon btn-sm btn-ghost-secondary rounded-circle mr-1" href="javascript:;"
+                        data-toggle="tooltip" data-placement="top" title="" data-original-title="Önceki resim">
+                        <i class="tio-arrow-backward"></i>
+                    </a>
+                    <a (click)="otherBackground(true)" class="btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
+                        href="javascript:;" data-toggle="tooltip" data-placement="top" title=""
+                        data-original-title="Sonraki resim">
+                        <i class="tio-arrow-forward"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
+        <!-- End Page Header -->
 
-</div>
-<!-- End Row -->
+        <div class="row">
+            <div class="col-lg-12 mb-2 mb-lg-0">
+                <div class="col-12">
+                    <div id="#style-1" class="custom-scrollbar"
+                        style="cursor: no-drop; background-image: url('./../../../../../assets/transparent.jpg'); background-clip: padding-box;">
+                        <div id="bgg">
+                            <canvas style="background-color: transparent; touch-action: none; cursor: crosshair;"
+                                (mouseup)="mouseUp($event)" (click)="onSelect($event)" (mousedown)="mouseDown($event)"
+                                (mousemove)="mouseMove($event)" (touchmove)="touchMove($event)"
+                                (touchstart)="touchStart($event)" (touchend)="touchEnd($event)" (click)="handleBox()"
+                                id="drw">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End Row -->
 
 
-<div class="position-fixed bottom-0 content-centered-x w-80 z-index-80 mb-2"
-    style="bottom: 2.5rem !important; max-width: 40rem;">
-    <!-- Card -->
-    <div class="card card-sm bg-dark border-dark mx-2">
-        <div class="card-body">
-            <div class="row justify-content-center justify-content-sm-between">
-                <div class="col">
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="position-fixed bottom-0 content-centered-x w-80 z-index-80 mb-2"
+            style="bottom: 2.5rem !important; max-width: 40rem;">
+            <!-- Card -->
+            <div class="card card-sm bg-dark border-dark mx-2">
+                <div class="card-body">
+                    <div class="row justify-content-center justify-content-sm-between">
+                        <div class="col">
+                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
 
-                        <div class="btn-group mr-1" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="tio-edit"></i>
-                            </button>
+                                <div class="btn-group mr-1" role="group" aria-label="First group">
+                                    <button type="button" class="btn btn-primary" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="tio-edit"></i>
+                                    </button>
 
-                            <div class="dropdown-menu ">
+                                    <div class="dropdown-menu ">
 
-                                <!-- List Group -->
-                                <ul *ngFor="let item of survey?.choiceGroup?.choices;let i = index"
-                                    class="list-group list-group-flush">
-                                    <!-- Item -->
-                                    <li (click)="activateClass(item.id)"
-                                        class="list-group-item custom-checkbox-list-wrapper">
-                                        <div class="d-flex align-items-start flex-grow-1">
-                                            <div class="d-flex align-items-center mr-3">
-                                                <div class="custom-control custom-checkbox custom-checkbox-list">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="notificationCheck{{i}}">
-                                                    <label class="custom-control-label"
-                                                        for="notificationCheck{{i}}"></label>
-                                                    <span class="custom-checkbox-list-stretched-bg"></span>
+                                        <!-- List Group -->
+                                        <ul *ngFor="let item of survey?.choiceGroup?.choices;let i = index"
+                                            class="list-group list-group-flush">
+                                            <!-- Item -->
+                                            <li (click)="activateClass(item.id)"
+                                                class="list-group-item custom-checkbox-list-wrapper">
+                                                <div class="d-flex align-items-start flex-grow-1">
+                                                    <div class="d-flex align-items-center mr-3">
+                                                        <div
+                                                            class="custom-control custom-checkbox custom-checkbox-list">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                id="notificationCheck{{i}}">
+                                                            <label class="custom-control-label"
+                                                                for="notificationCheck{{i}}"></label>
+                                                            <span class="custom-checkbox-list-stretched-bg"></span>
+                                                        </div>
+                                                        <div class="avatar avatar-sm avatar-circle">
+                                                            <span class="legend-indicator legend-indicator-lg"
+                                                                style="border: 1px solid rgb(153, 153, 153); width: 30px; height: 30px;"
+                                                                [style.background-color]="item.color"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1 mr-2">
+                                                        <span class="card-title h5">{{item?.name}}</span>
+                                                        <p class="card-text font-size-sm">{{item?.code}}</p>
+                                                    </div>
                                                 </div>
-                                                <div class="avatar avatar-sm avatar-circle">
-                                                    <span class="legend-indicator legend-indicator-lg"
-                                                        style="border: 1px solid rgb(153, 153, 153); width: 30px; height: 30px;"
-                                                        [style.background-color]="item.color"></span>
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1 mr-2">
-                                                <span class="card-title h5">{{item?.name}}</span>
-                                                <p class="card-text font-size-sm">{{item?.code}}</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <!-- End Item -->
+                                            </li>
+                                            <!-- End Item -->
 
-                                </ul>
-                                <!-- End List Group -->
+                                        </ul>
+                                        <!-- End List Group -->
+                                    </div>
+
+                                    <button (click)="undo()" type="button" class="btn btn-secondary">
+                                        <i class="tio-undo"></i>
+                                    </button>
+                                    <button (click)="redo()" type="button" class="btn btn-secondary">
+                                        <i class="tio-redo"></i>
+                                    </button>
+                                    <button (click)="otherBackground(false)" type="button" class="btn btn-secondary">
+                                        <i class="tio-arrow-backward"></i></button>
+                                    <button (click)="otherBackground(true)" type="button" class="btn btn-secondary">
+                                        <i class="tio-arrow-forward"></i>
+                                    </button>
+                                    <button (click)="save()" type="button" class="btn btn-success">
+                                        Kaydet
+                                    </button>
+
+                                </div>
+
                             </div>
-
-                            <button (click)="undo()" type="button" class="btn btn-secondary">
-                                <i class="tio-undo"></i>
-                            </button>
-                            <button (click)="redo()" type="button" class="btn btn-secondary">
-                                <i class="tio-redo"></i>
-                            </button>
-                            <button (click)="otherBackground(false)" type="button" class="btn btn-secondary">
-                                <i class="tio-arrow-backward"></i></button>
-                            <button (click)="otherBackground(true)" type="button" class="btn btn-secondary">
-                                <i class="tio-arrow-forward"></i>
-                            </button>
-                            <button (click)="save()" type="button" class="btn btn-success">
-                                Kaydet
-                            </button>
-
                         </div>
 
+
                     </div>
+                    <!-- End Row -->
                 </div>
-
-
             </div>
-            <!-- End Row -->
+            <!-- End Card -->
+
         </div>
     </div>
-    <!-- End Card -->
+</ng-template>
+
+
+<ng-template #success>
+    <div>
+        <div class="text-center">
+            <img class="img-fluid mb-3" src="./assets/svg/illustrations/hi-five.svg" alt="Image Description"
+                style="max-width: 15rem;">
+
+            <div class="mb-4">
+                <h2>Başarılı!</h2>
+                <p>
+                    <span style="font-weight: bold;">{{survey.title}}</span> isimli
+                    ankete katılımınız başarı ile gerçekleştirilmiştir. Sonraki ankette görüşmek dileğiyle
+                </p>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-white mr-3" routerLink="/user/surveys">
+                    <i class="tio-chevron-left ml-1"></i> Anketlere Git
+                </a>
+                <a class="btn btn-primary" href="users-add-user.html">
+                    <i class="tio-user-add mr-1"></i> Sonraki Ankete Geç
+                </a>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+
+
+<div *ngIf="!successfull;then join else success">
+
+</div>

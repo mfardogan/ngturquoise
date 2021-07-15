@@ -19,7 +19,10 @@ import { CreateSurveyComponent } from './components/layout/dash/survey/create-su
 import { SurveyItemComponent } from './components/layout/dash/survey/survey-item/survey-item.component';
 import { SurveysComponent } from './components/layout/dash/survey/surveys/surveys.component';
 import { DoctorLayoutComponent } from './components/layout/doctor/doctor-layout/doctor-layout.component';
+import { EditMyProfileComponent } from './components/layout/doctor/edit-my-profile/edit-my-profile.component';
 import { JoinSurveyComponent } from './components/layout/doctor/join-survey/join-survey.component';
+import { MyProfileComponent } from './components/layout/doctor/my-profile/my-profile.component';
+import { SurveyListComponent } from './components/layout/doctor/survey-list/survey-list.component';
 import { Error401Component } from './components/layout/noauth/error401/error401.component';
 import { Error404Component } from './components/layout/noauth/error404/error404.component';
 import { Error500Component } from './components/layout/noauth/error500/error500.component';
@@ -35,7 +38,11 @@ const routes: Routes = [
     component: DoctorLayoutComponent,
     canActivate: [AuthGuardDoctorService],
     children: [
+      { path: '', redirectTo: 'account', pathMatch: 'full' },
+      { path: 'edit-account', component: EditMyProfileComponent, pathMatch: 'full' },
       { path: 'join/:id', component: JoinSurveyComponent, pathMatch: 'full' },
+      { path: 'account', component: MyProfileComponent, pathMatch: 'full' },
+      { path: 'surveys', component: SurveyListComponent, pathMatch: 'full' }
     ]
   },
   {

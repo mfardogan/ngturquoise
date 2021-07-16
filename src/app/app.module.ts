@@ -52,6 +52,7 @@ import { DoctorNavBarComponent } from './components/layout/doctor/doctor-nav-bar
 import { DoctorSideBarComponent } from './components/layout/doctor/doctor-side-bar/doctor-side-bar.component';
 import { EditMyProfileComponent } from './components/layout/doctor/edit-my-profile/edit-my-profile.component';
 import { SurveyListComponent } from './components/layout/doctor/survey-list/survey-list.component';
+import { MyAccountAdminComponent } from './components/layout/dash/admin/my-account-admin/my-account-admin.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { SurveyListComponent } from './components/layout/doctor/survey-list/surv
     DoctorSideBarComponent,
     EditMyProfileComponent,
     SurveyListComponent,
+    MyAccountAdminComponent,
   ],
 
   imports: [

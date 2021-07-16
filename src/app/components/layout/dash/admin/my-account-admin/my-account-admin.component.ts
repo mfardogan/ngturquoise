@@ -1,5 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Administrator from 'src/app/@core/models/administrator';
 import Pagination from 'src/app/@core/models/pagination';
@@ -12,11 +11,11 @@ import SurveyHttp from '../../survey/survey-http';
 import AdminHttp from '../admin-http';
 
 @Component({
-  selector: 'app-admin-profile',
-  templateUrl: './admin-profile.component.html',
-  styleUrls: ['./admin-profile.component.css']
+  selector: 'my-account-admin',
+  templateUrl: './my-account-admin.component.html',
+  styleUrls: ['./my-account-admin.component.css']
 })
-export class AdminProfileComponent implements OnInit {
+export class MyAccountAdminComponent implements OnInit {
 
   constructor(
     private rout: Router,
@@ -45,8 +44,8 @@ export class AdminProfileComponent implements OnInit {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
 
-    const id = this.router.snapshot.paramMap.get('id');
-    if (!(id == undefined || id == '')) {
+    const id = this.tokenService.getAdminId();
+    if (!(id == undefined)) {
       this.id = Number(id);
 
       this.adminHttpService.get(this.id).subscribe(

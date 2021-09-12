@@ -241,7 +241,8 @@
                                     <a class="dropdown-item" [routerLink]="['/dash/choice',item.id]">
                                         <i class="tio-edit dropdown-item-icon"></i> Düzenle
                                     </a>
-                                    <a style="color: rgb(151, 24, 24);" class="dropdown-item" href="#">
+                                    <a style="color: rgb(151, 24, 24);" class="dropdown-item" (click)="remove(item.id)"
+                                        href="javascript:;">
                                         <i style="color: rgb(151, 24, 24);"
                                             class="tio-delete-outlined dropdown-item-icon"></i> Sil
                                     </a>
@@ -330,6 +331,6 @@
     <div *ngIf="data.length == 0" class="card-body card-body-height card-body-centered">
         <img class="avatar avatar-xxl mb-3" src="./assets/svg/illustrations/sorry.svg" alt="Image Description">
         <p class="card-text">Kayıt bulunamadı!</p>
-        <a class="btn btn-sm btn-primary" routerLink="/choice">Yeni Seçenek Grubu</a>
+        <a class="btn btn-sm btn-primary" routerLink="/dash/choice">Yeni Seçenek Grubu</a>
     </div>
 </div>

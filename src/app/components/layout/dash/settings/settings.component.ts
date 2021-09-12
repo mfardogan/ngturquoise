@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import Settings from 'src/app/@core/models/settings';
 import { SettingsHttp } from './settings-http';
 
@@ -9,9 +10,10 @@ import { SettingsHttp } from './settings-http';
 })
 export class SettingsComponent implements OnInit {
 
- settings: Settings = new Settings();
+  settings: Settings = new Settings();
 
   constructor(
+    private toastr: ToastrService,
     private settingsHttp: SettingsHttp
   ) { }
 
@@ -26,7 +28,6 @@ export class SettingsComponent implements OnInit {
     this.settingsHttp.getCurrentSettings()
       .subscribe((settings: Settings) => {
         this.settings = settings;
-        console.log(this.settings);
       });
   }
 
@@ -35,6 +36,8 @@ export class SettingsComponent implements OnInit {
    */
   upsertCurrentSettings() {
     this.settingsHttp.upsertCurrentSettings(this.settings)
-      .subscribe(() => { });
+      .subscribe(() => {
+        this.toastr.success("Ayarlar kaydedildi!", "Dikkat!");
+      });
   }
 }

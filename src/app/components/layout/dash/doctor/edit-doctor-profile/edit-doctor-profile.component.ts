@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import ChangePassword from 'src/app/@core/models/change-password';
 import Doctor from 'src/app/@core/models/doctor';
 import { Dependency } from 'src/app/app.module';
@@ -14,6 +15,7 @@ import DoctorHttp from '../doctor-http';
 export class EditDoctorProfileComponent implements OnInit {
 
   constructor(
+    private toastr: ToastrService,
     private router: ActivatedRoute
   ) { }
 
@@ -64,6 +66,7 @@ export class EditDoctorProfileComponent implements OnInit {
 
   setPassword() {
     if (this.password.change == '' || this.password.change != this.password.changeConfirm) {
+      this.toastr.warning("Şifreler eşleşmedi!", "Dikkat!");
     }
 
     Dependency.get(DoctorHttp)
@@ -71,6 +74,7 @@ export class EditDoctorProfileComponent implements OnInit {
       .subscribe(e => {
         this.passwordScore = 0;
         this.password = new ChangePassword();
+        this.toastr.success("Şifre güncellendi!", "Dikkat!");
       });
   }
 
@@ -110,6 +114,7 @@ export class EditDoctorProfileComponent implements OnInit {
           .subscribe((data: Doctor) => {
             this.data.image = data.image;
             this.selectedFile = '';
+            this.toastr.success("Kullanıcı profil resmi güncellendi!", "Dikkat!");
           });
       });
   }
@@ -123,13 +128,14 @@ export class EditDoctorProfileComponent implements OnInit {
   removeMyAvatar() {
     const http: DoctorHttp = Dependency.get(DoctorHttp);
     if (this.data.image == null) { return };
-    
+
     http.removeMyAvatar()
       .subscribe(e => {
         http
           .getmyinfo()
           .subscribe((data: Doctor) => {
             this.data = data;
+            this.toastr.success("Kullanıcı profil resmi silindi!", "Dikkat!");
           });
       });
   }

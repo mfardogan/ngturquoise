@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import ChoiceGroup from 'src/app/@core/models/choice-group';
 import Pagination from 'src/app/@core/models/pagination';
 import Search from 'src/app/@core/models/search';
@@ -16,6 +17,7 @@ import SurveyHttp from '../survey-http';
 export class SurveyEditComponent implements OnInit {
 
   constructor(
+    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -37,10 +39,21 @@ export class SurveyEditComponent implements OnInit {
   }
 
   save() {
+    if (this.survey.title == '') {
+      this.toastr.error("Anket başlığını giriniz!", "Dikkat!");
+      return;
+    }
+
+    if (this.survey.choiceGroupId == 0) {
+      this.toastr.error("Anket seçenek grubunu seçiniz!", "Dikkat!");
+      return;
+    }
+
     Dependency.get(SurveyHttp)
       .modifyByForm(this.createForm())
       .subscribe((e: any) => {
         this.router.navigate(['/dashboard/surveys']);
+        this.toastr.success("Anket başarıyla güncellendi!", "Dikkat!");
       });
   }
 
@@ -85,6 +98,7 @@ export class SurveyEditComponent implements OnInit {
 
   remove() {
     if (!this.confirmToDelete) {
+      this.toastr.warning("Silme işlemini onaylayın!", "Dikkat!");
       return;
     }
 
@@ -92,6 +106,7 @@ export class SurveyEditComponent implements OnInit {
     Dependency.get(SurveyHttp)
       .remove(id).subscribe(() => {
         this.router.navigate(['/dashboard/surveys']);
+        this.toastr.success("Anket başarıyla silindi!", "Dikkat!");
       });
   }
 }

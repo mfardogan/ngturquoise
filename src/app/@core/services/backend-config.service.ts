@@ -9,6 +9,8 @@ export class BackendConfigService {
   constructor() { }
 
   public getUrl(): string {
-    return environment.apiUrl;
+    const api = environment.apiUrl;
+    console.log(api);
+    return api;
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import Administrator from 'src/app/@core/models/administrator';
 import ChangePassword from 'src/app/@core/models/change-password';
 import { Dependency } from 'src/app/app.module';
@@ -12,7 +13,9 @@ import AdminHttp from '../admin-http';
 })
 export class EditAdminProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private toastr: ToastrService,
+  ) { }
 
   title: string = '';
   name: string = '';
@@ -56,12 +59,13 @@ export class EditAdminProfileComponent implements OnInit {
         this.name = this.data.name;
         this.surname = this.data.surname;
         this.title = this.data.title;
+        this.toastr.success("Profil bilgileri güncellendi!", "Dikkat!");
       });
   }
 
   setPassword() {
     if (this.password.change == '' || this.password.change != this.password.changeConfirm) {
-
+      this.toastr.warning("Şifreler eşleşmedi!", "Dikkat!");
     }
 
     Dependency.get(AdminHttp)
@@ -69,6 +73,7 @@ export class EditAdminProfileComponent implements OnInit {
       .subscribe(e => {
         this.passwordScore = 0;
         this.password = new ChangePassword();
+        this.toastr.success("Şifreler değiştirme işlemi yapıldı!", "Dikkat!");
       });
   }
 
@@ -106,6 +111,7 @@ export class EditAdminProfileComponent implements OnInit {
           .subscribe((data: Administrator) => {
             this.data.image = data.image;
             this.selectedFile = '';
+            this.toastr.success("Profil resmi değiştirme işlemi yapıldı!", "Dikkat!");
           });
       });
   }
@@ -126,6 +132,7 @@ export class EditAdminProfileComponent implements OnInit {
           .getmyinfo()
           .subscribe((data: Administrator) => {
             this.data = data;
+            this.toastr.success("Profil resmi kaldırma işlemi yapıldı!", "Dikkat!");
           });
       });
   }

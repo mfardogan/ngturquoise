@@ -9,6 +9,7 @@ import ChoiceGroup from 'src/app/@core/models/choice-group';
 import ChoiceGroupHttp from '../../choice/choice-group-http';
 import { WebcamImage } from 'ngx-webcam';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class CreateSurveyComponent implements OnInit {
 
   @ViewChild('cam') camera: any;
   constructor(
+    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -79,6 +81,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   createForm(): FormData {
+
     const form: FormData = new FormData();
     form.append('title', this.data.title);
     form.append('body', this.data.body);
@@ -101,6 +104,22 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   save() {
+    console.log(this.data.choiceGroupId);
+    if (this.data.title == '') {
+      this.toastr.error("Anket başlığını giriniz!", "Dikkat!");
+      return;
+    }
+
+    if (this.data.choiceGroupId == 0) {
+      this.toastr.error("Anket seçenek grubunu seçiniz!", "Dikkat!");
+      return;
+    }
+
+    if (this.files.length == 0) {
+      this.toastr.error("Anket resimlerini seçiniz!", "Dikkat!");
+      return;
+    }
+
     Dependency.get(SurveyHttp)
       .createByForm(this.createForm())
       .subscribe((e: any) => {

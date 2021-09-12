@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import Doctor from 'src/app/@core/models/doctor';
 import ModifyAdminPassword from 'src/app/@core/models/modify-admin-pass';
 import { Dependency } from 'src/app/app.module';
@@ -21,6 +22,7 @@ export class DoctorItemComponent implements OnInit {
   modiftPassword: ModifyAdminPassword = new ModifyAdminPassword();
 
   constructor(
+    private toastr: ToastrService,
     private route: Router,
     private router: ActivatedRoute
   ) { }
@@ -52,6 +54,7 @@ export class DoctorItemComponent implements OnInit {
         .update(this.data)
         .subscribe(() => {
           this.route.navigate(['/dash/doctors']);
+          this.toastr.success("Doktor bilgileri güncellendi!", "Dikkat!");
         })
     } else {
       console.log(this.data);
@@ -59,6 +62,7 @@ export class DoctorItemComponent implements OnInit {
         .add(this.data)
         .subscribe(() => {
           this.route.navigate(['/dash/doctors']);
+          this.toastr.success("Doktor bilgileri kaydedildi!", "Dikkat!");
         })
     }
   }
@@ -72,6 +76,7 @@ export class DoctorItemComponent implements OnInit {
       .clearDoctorAvatarById(this.id)
       .subscribe(() => {
         this.clearedAvatar = true;
+        this.toastr.success("Doktor profil resmi kaldırıldı!", "Dikkat!");
       });
   }
 
@@ -86,12 +91,14 @@ export class DoctorItemComponent implements OnInit {
 
   remove() {
     if (!this.confirmToDelete) {
+      this.toastr.warning("Silme işlemini onaylayın!", "Dikkat!");
       return;
     }
 
     Dependency.get(DoctorHttp)
       .remove(this.id).subscribe(() => {
         this.route.navigate(['/dash/doctors']);
+        this.toastr.success("Silme işlemini tamamlandı!", "Dikkat!");
       });
   }
 
@@ -106,12 +113,13 @@ export class DoctorItemComponent implements OnInit {
       .changeType(this.id, this.data.type)
       .subscribe(e => {
         this.route.navigate(['/dash/doctors']);
+        this.toastr.success("Kullanıcı tipi güncellendi!", "Dikkat!");
       });
   }
 
   modifyPassword() {
     if (this.passwordChangeConfirm != this.modiftPassword.newPassword) {
-      console.log("Şifreler eşleşmedi!");
+      this.toastr.warning("Şifreler eşleşmedi!", "Dikkat!");
       return;
     }
 
@@ -119,6 +127,7 @@ export class DoctorItemComponent implements OnInit {
       .modifyPasswordByAdmin(this.modiftPassword)
       .subscribe(() => {
         this.route.navigate(['/dash/doctors']);
+        this.toastr.success("Şifre güncelleme işlemi tamamlandı!", "Dikkat!");
       });
   }
 }

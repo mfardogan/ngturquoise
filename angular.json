@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "bac7804c-6e74-4be4-a81e-ffec1c24c263"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -32,7 +35,8 @@
               "src/assets/vendor/icon-set/style.css",
               "src/assets/css/theme.min.css",
               "src/assets/css/docs.min.css",
-              "src/style.css"
+              "src/style.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "src/assets/vendor/select2/dist/js/select2.full.min.js"

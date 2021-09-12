@@ -3,6 +3,7 @@ import Search from 'src/app/@core/models/search';
 import { Dependency } from 'src/app/app.module';
 import ChoiceGroupHttp from '../choice-group-http';
 import ChoiceGroup from 'src/app/@core/models/choice-group';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'choice-groups',
@@ -15,6 +16,7 @@ import ChoiceGroup from 'src/app/@core/models/choice-group';
 export class ChoiceGroupsComponent implements OnInit {
 
   constructor(
+    private toastr: ToastrService,
     private choiceGroupHttp: ChoiceGroupHttp
   ) { }
 
@@ -50,6 +52,7 @@ export class ChoiceGroupsComponent implements OnInit {
       .subscribe(x => {
         const sequence: number = this.data.findIndex(e => e.id == id);
         this.data.splice(sequence, 1);
+        this.toastr.success("Silme işlemi başarıyla yapıldı!", "Dikkat!");
       });
   }
 
@@ -62,6 +65,7 @@ export class ChoiceGroupsComponent implements OnInit {
       .subscribe((e: any) => {
         this.data.forEach(element => {
           element.default = element.id == id;
+          this.toastr.success("İşlemi başarıyla yapıldı!", "Dikkat!");
         });
       });
   }

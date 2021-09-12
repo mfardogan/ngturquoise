@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import ChangePassword from 'src/app/@core/models/change-password';
 import Doctor from 'src/app/@core/models/doctor';
 import { Dependency } from 'src/app/app.module';
@@ -14,6 +15,7 @@ import DoctorHttp from '../../dash/doctor/doctor-http';
 export class EditMyProfileComponent implements OnInit {
 
   constructor(
+    private toastr: ToastrService,
     private router: ActivatedRoute
   ) { }
 
@@ -59,11 +61,14 @@ export class EditMyProfileComponent implements OnInit {
         this.name = this.data.name;
         this.surname = this.data.surname;
         this.title = this.data.title;
+        this.toastr.success("Profil bilgileri başarıyla güncellendi!", "Dikkat!");
       });
   }
 
   setPassword() {
     if (this.password.change == '' || this.password.change != this.password.changeConfirm) {
+      this.toastr.warning("Şifreler eşleşmedi!", "Dikkat!");
+      return;
     }
 
     Dependency.get(DoctorHttp)
@@ -71,6 +76,7 @@ export class EditMyProfileComponent implements OnInit {
       .subscribe(e => {
         this.passwordScore = 0;
         this.password = new ChangePassword();
+        this.toastr.success("Şifre başarıyla güncellendi!", "Dikkat!");
       });
   }
 
@@ -110,6 +116,7 @@ export class EditMyProfileComponent implements OnInit {
           .subscribe((data: Doctor) => {
             this.data.image = data.image;
             this.selectedFile = '';
+            this.toastr.success("Profil resmi başarıyla güncellendi!", "Dikkat!");
           });
       });
   }
@@ -130,6 +137,7 @@ export class EditMyProfileComponent implements OnInit {
           .getmyinfo()
           .subscribe((data: Doctor) => {
             this.data = data;
+            this.toastr.success("Profil resmi başarıyla silindi!", "Dikkat!");
           });
       });
   }

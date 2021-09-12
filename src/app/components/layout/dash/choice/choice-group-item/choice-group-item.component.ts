@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import Choice from 'src/app/@core/models/choice';
 import ChoiceGroup from 'src/app/@core/models/choice-group';
 import { Dependency } from 'src/app/app.module';
@@ -15,6 +16,7 @@ export class ChoiceGroupItemComponent implements OnInit {
 
   constructor
     (
+      private toastr: ToastrService,
       private route: Router,
       private history: Location,
       private router: ActivatedRoute
@@ -46,11 +48,13 @@ export class ChoiceGroupItemComponent implements OnInit {
     const http: ChoiceGroupHttp = Dependency.get(ChoiceGroupHttp);
     if (this.id != null || this.id != undefined) {
       http.update(this.data).subscribe((x: any) => {
+        this.toastr.success("Güncelleme işlemi yapıldı!", "Dikkat!");
         this.route.navigate(['/dash/choices'], { skipLocationChange: true });
       });
 
     } else {
       http.add(this.data).subscribe((x: any) => {
+        this.toastr.success("Ekleme işlemi yapıldı!", "Dikkat!");
         this.route.navigate(['/dash/choices'], { skipLocationChange: true });
       });
     }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import Doctor from 'src/app/@core/models/doctor';
 import DoctorSearch from 'src/app/@core/models/doctor-search';
 import DoctorSummary from 'src/app/@core/models/doctor-summary';
@@ -16,6 +17,7 @@ import DoctorHttp from '../doctor-http';
 export class DoctorsComponent implements OnInit {
 
   constructor(
+    private toastr: ToastrService,
     private doctorHttp: DoctorHttp
   ) { }
 
@@ -51,12 +53,14 @@ export class DoctorsComponent implements OnInit {
   confirm(id: number): void {
     const doctor: Doctor = this.data.filter(e => e.id === id)[0];
     if (doctor === undefined || doctor.isConfirmed) {
+      this.toastr.warning("Kullanıcı zaten doğrulandı!", "Dikkat!");
       return;
     }
 
     this.doctorHttp.confirm(id)
       .subscribe((x: any) => {
         doctor.isConfirmed = true;
+        this.toastr.warning("Kullanıcı zaten doğrulandı!", "Dikkat!");
       })
   }
 

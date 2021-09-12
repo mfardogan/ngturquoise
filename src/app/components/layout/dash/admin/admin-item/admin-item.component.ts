@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import Administrator from 'src/app/@core/models/administrator';
 import ModifyAdminPassword from 'src/app/@core/models/modify-admin-pass';
 import { Dependency } from 'src/app/app.module';
@@ -14,6 +15,7 @@ export class AdminItemComponent implements OnInit {
 
   constructor
     (
+      private toastr: ToastrService,
       private route: Router,
       private router: ActivatedRoute
     ) { }
@@ -79,7 +81,7 @@ export class AdminItemComponent implements OnInit {
 
   remove() {
     if (!this.confirmToDelete) {
-      console.log("Silme işlemini onaylayın!");
+      this.toastr.warning("Silme işlemini onaylayın!", "Dikkat!");
       return;
     }
 
@@ -87,6 +89,7 @@ export class AdminItemComponent implements OnInit {
       .remove(this.id)
       .subscribe(() => {
         this.route.navigate(['/dash/admins']);
+        this.toastr.success("Silme işlemini tamamlandı!", "Dikkat!");
       });
   }
 
@@ -95,16 +98,17 @@ export class AdminItemComponent implements OnInit {
       .clearAvatarById(this.id)
       .subscribe(() => {
         this.clearedAvatar = true;
+        this.toastr.success("Avatar silme işlemini tamamlandı!", "Dikkat!");
       });
   }
 
   changePassword() {
     if (this.password.newPassword == '') {
-      console.log("Şifreler boş olamaz!");
+      this.toastr.warning("Şifre alanları boş olamaz!", "Dikkat!");
       return;
     }
     if (this.password.newPassword != this.passwordChangeConfirm) {
-      console.log("Şifreler eşleşmedi!");
+      this.toastr.warning("Şifre alanları eşleşmedi!", "Dikkat!");
       return;
     }
 
@@ -112,6 +116,7 @@ export class AdminItemComponent implements OnInit {
       .modifyadminPassword(this.password)
       .subscribe(() => {
         this.route.navigate(['/dash/admins']);
+        this.toastr.success("Şifre değiştirme işlemi yapıldı!", "Dikkat!");
       });
   }
 }

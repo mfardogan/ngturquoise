@@ -49,6 +49,20 @@ export class DoctorItemComponent implements OnInit {
   }
 
   setBasicInfo() {
+
+    if (this.data.name == '') {
+      this.toastr.warning("İsim alanı zorunludur!", "Dikkat!");
+      return;
+    }
+    if (this.data.surname == '') {
+      this.toastr.warning("Soyisim alanı zorunludur!", "Dikkat!");
+      return;
+    }
+    if (this.data.email == '') {
+      this.toastr.warning("Email alanı zorunludur!", "Dikkat!");
+      return;
+    }
+
     if (this.id > 0) {
       Dependency.get(DoctorHttp)
         .update(this.data)

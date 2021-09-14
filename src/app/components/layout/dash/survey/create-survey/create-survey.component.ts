@@ -104,19 +104,18 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   save() {
-    console.log(this.data.choiceGroupId);
     if (this.data.title == '') {
-      this.toastr.error("Anket başlığını giriniz!", "Dikkat!");
+      this.toastr.warning("Anket başlığını giriniz!", "Dikkat!");
       return;
     }
 
     if (this.data.choiceGroupId == 0) {
-      this.toastr.error("Anket seçenek grubunu seçiniz!", "Dikkat!");
+      this.toastr.warning("Anket seçenek grubunu seçiniz!", "Dikkat!");
       return;
     }
 
     if (this.files.length == 0) {
-      this.toastr.error("Anket resimlerini seçiniz!", "Dikkat!");
+      this.toastr.warning("Anket resimlerini seçiniz!", "Dikkat!");
       return;
     }
 
@@ -171,18 +170,14 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   dataURItoBlob(dataURI: any, fileName: string): File {
-
-    // convert base64/URLEncoded data component to a file
     var byteString;
     if (dataURI.split(',')[0].indexOf('base64') >= 0)
       byteString = atob(dataURI.split(',')[1]);
     else
       byteString = unescape(dataURI.split(',')[1]);
 
-    // separate out the mime component
     var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
 
-    // write the bytes of the string to a typed array
     var ia = new Uint8Array(byteString.length);
     for (var i = 0; i < byteString.length; i++) {
       ia[i] = byteString.charCodeAt(i);

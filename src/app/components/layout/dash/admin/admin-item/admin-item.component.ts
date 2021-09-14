@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -45,6 +46,19 @@ export class AdminItemComponent implements OnInit {
   }
 
   save() {
+    if (this.data.name == '') {
+      this.toastr.warning("İsim alanı zorunludur!", "Dikkat!");
+      return;
+    }
+    if (this.data.surname == '') {
+      this.toastr.warning("Soyisim alanı zorunludur!", "Dikkat!");
+      return;
+    }
+    if (this.data.email == '') {
+      this.toastr.warning("Email alanı zorunludur!", "Dikkat!");
+      return;
+    }
+
     const httpService = Dependency.get(AdminHttp);
     if (this.id > 0) {
       httpService.update(this.data)

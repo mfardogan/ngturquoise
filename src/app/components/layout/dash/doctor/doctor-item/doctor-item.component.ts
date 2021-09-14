@@ -76,7 +76,7 @@ export class DoctorItemComponent implements OnInit {
       .clearDoctorAvatarById(this.id)
       .subscribe(() => {
         this.clearedAvatar = true;
-        this.toastr.success("Doktor profil resmi kaldırıldı!", "Dikkat!");
+        this.toastr.success("Profil resmi kaldırıldı!", "Dikkat!");
       });
   }
 
@@ -118,6 +118,10 @@ export class DoctorItemComponent implements OnInit {
   }
 
   modifyPassword() {
+    if (this.data.password == '') {
+      this.toastr.warning("Şifre boş bırakılamaz!", "Dikkat!");
+      return;
+    }
     if (this.passwordChangeConfirm != this.modiftPassword.newPassword) {
       this.toastr.warning("Şifreler eşleşmedi!", "Dikkat!");
       return;

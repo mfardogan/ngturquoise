@@ -65,7 +65,7 @@ export class ChoiceGroupsComponent implements OnInit {
       .subscribe((e: any) => {
         this.data.forEach(element => {
           element.default = element.id == id;
-          this.toastr.success("İşlemi başarıyla yapıldı!", "Dikkat!");
+          this.toastr.success("İşlem başarıyla yapıldı!", "Dikkat!");
         });
       });
   }

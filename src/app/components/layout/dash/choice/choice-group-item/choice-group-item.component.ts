@@ -45,6 +45,20 @@ export class ChoiceGroupItemComponent implements OnInit {
   //save changes
   save(): void {
 
+    if (this.data.name == '') {
+      this.toastr.warning("Seçenek grubu adı boş olamaz!", "Dikkat!");
+      return;
+    }
+
+    if (this.data.choices.length == 0) {
+      this.toastr.warning("Renk sınıflarını giriniz!", "Dikkat!");
+      return;
+    }
+    if (this.data.choices.filter(e => e.name == '').length > 0) {
+      this.toastr.warning("Renk sınıfları bir isme sahip olmalıdır!", "Dikkat!");
+      return;
+    }
+
     const http: ChoiceGroupHttp = Dependency.get(ChoiceGroupHttp);
     if (this.id != null || this.id != undefined) {
       http.update(this.data).subscribe((x: any) => {

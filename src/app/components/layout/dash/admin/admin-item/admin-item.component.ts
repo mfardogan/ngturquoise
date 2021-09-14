@@ -40,7 +40,6 @@ export class AdminItemComponent implements OnInit {
       Dependency.get(AdminHttp).get(this.id).subscribe(
         (data: Administrator) => {
           this.data = data;
-          console.log(this.data);
         });
     }
   }
@@ -51,11 +50,13 @@ export class AdminItemComponent implements OnInit {
       httpService.update(this.data)
         .subscribe(() => {
           this.route.navigate(['/dash/admins']);
+          this.toastr.success("Yönetici bilgileri güncellendi!", "Dikkat!");
         });
     } else {
       httpService.add(this.data)
         .subscribe(() => {
           this.route.navigate(['/dash/admins']);
+          this.toastr.success("Yönetici kaydı yapıldı!", "Dikkat!");
         });
     }
   }

@@ -29,9 +29,9 @@ export class SurveyGeneralComponent implements OnInit {
     this.getLastAnswers();
   }
 
-  downloadStatistics(): void {
+  downloadStatistics(seperated: boolean): void {
     Dependency.get(SurveyHttp)
-      .downloadStatistics(this.survey.id)
+      .downloadStatistics(this.survey.id, seperated)
       .subscribe((e: HttpResponse<Blob>) => {
         this.downLoadFile(e, "application/zip")
       });

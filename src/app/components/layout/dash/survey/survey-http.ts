@@ -51,9 +51,9 @@ export default class SurveyHttp extends BaseHttp<Survey> {
         return this.http.get<SurveySummary>(path);
     }
 
-    downloadStatistics(id: number): Observable<any> {
+    downloadStatistics(id: number, seperated: boolean = false): Observable<any> {
         //
-        const path: string = this.prefix + '/download/' + id;
+        const path: string = this.prefix + '/download/' + id + '&seperated=' + seperated ? 'true' : 'false';
         return this.http.get(path, { responseType: 'blob' });
     }
 }

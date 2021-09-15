@@ -268,6 +268,7 @@ export class JoinSurveyComponent implements OnInit {
   }
 
   save() {
+    this.answer.prettyAnswer();
     this.answerHttp.add(this.answer)
       .subscribe((e: any) => {
         this.successfull = true;

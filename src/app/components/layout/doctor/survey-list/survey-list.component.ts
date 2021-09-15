@@ -11,7 +11,10 @@ import SurveyHttp from '../../dash/survey/survey-http';
 @Component({
   selector: 'app-survey-list',
   templateUrl: './survey-list.component.html',
-  styleUrls: ['./survey-list.component.css']
+  styleUrls: [
+    './survey-list.component.css',
+    '../../../../../assets/vendor/select2/dist/css/select2.min.css'
+  ]
 })
 export class SurveyListComponent implements OnInit {
 
@@ -37,17 +40,18 @@ export class SurveyListComponent implements OnInit {
           this.summary = summary
         })
     }
-
-    const getChoiceGroups = () => {
-      const search = new Search<ChoiceGroup>()
-      search.pagination = Pagination.max()
-      this.choiceGroupsHttp.search(search)
-        .subscribe((choiceGroups: Array<ChoiceGroup>) => {
-          this.choiceGroups = choiceGroups
-        })
-    }
-
-    getChoiceGroups();
+    /*
+        const getChoiceGroups = () => {
+          const search = new Search<ChoiceGroup>()
+          search.pagination = Pagination.max()
+          this.choiceGroupsHttp.search(search)
+            .subscribe((choiceGroups: Array<ChoiceGroup>) => {
+              this.choiceGroups = choiceGroups
+            })
+        }
+    
+        getChoiceGroups();
+        */
     getSurveySummary();
   }
 

@@ -28,5 +28,11 @@ class Answer extends Concurrency {
         const choice = this.choices.find(e => e.surveyImageId === image);
         return choice!;
     }
+
+    prettyAnswer(): void {
+        this.choices.forEach(element => {
+            element.boxes = element.boxes.filter(e => e.width > 0 && e.height > 0);
+        });
+    }
 }
 export default Answer;

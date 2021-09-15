@@ -93,7 +93,9 @@ export class SurveyEditComponent implements OnInit {
 
     Dependency.get(SurveyHttp)
       .setSurveyStatus(id, status)
-      .subscribe(() => { });
+      .subscribe(() => {
+        this.toastr.success("Anket durumu güncellendi!", "Dikkat!");
+      });
   }
 
   remove() {

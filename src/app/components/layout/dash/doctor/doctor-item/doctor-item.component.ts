@@ -132,7 +132,7 @@ export class DoctorItemComponent implements OnInit {
   }
 
   modifyPassword() {
-    if (this.data.password == '') {
+    if (this.modiftPassword.newPassword == '') {
       this.toastr.warning("Şifre boş bırakılamaz!", "Dikkat!");
       return;
     }

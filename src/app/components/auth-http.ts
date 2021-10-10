@@ -10,7 +10,6 @@ import { Dependency } from "../app.module";
 export default class AuthHttp {
     constructor(private configuration: BackendConfigService) {
         this.prefix = configuration.getUrl();
-        console.log(this.prefix);
     }
 
     protected prefix: string = '';

@@ -10,7 +10,6 @@ export class BackendConfigService {
 
   public getUrl(): string {
     const api = environment.apiUrl;
-    console.log(api);
     return api;
   }
 }

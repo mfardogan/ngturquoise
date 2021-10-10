@@ -385,37 +385,7 @@
         <!-- Pagination -->
         <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
             <div class="col-sm mb-2 mb-sm-0">
-                <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
-                    <span class="mr-2">Showing:</span>
 
-                    <!-- Select -->
-                    <select id="datatableEntries" class="js-select2-custom select2-hidden-accessible"
-                        data-hs-select2-options="{
-                      &quot;minimumResultsForSearch&quot;: &quot;Infinity&quot;,
-                      &quot;customClass&quot;: &quot;custom-select custom-select-sm custom-select-borderless&quot;,
-                      &quot;dropdownAutoWidth&quot;: true,
-                      &quot;width&quot;: true
-                    }" data-select2-id="datatableEntries" tabindex="-1" aria-hidden="true">
-                        <option value="10" data-select2-id="269">10</option>
-                        <option value="15" selected="" data-select2-id="270">15</option>
-                        <option value="20" data-select2-id="271">20</option>
-                    </select><span class="select2 select2-container select2-container--default" dir="ltr"
-                        data-select2-id="268"><span class="selection"><span
-                                class="select2-selection custom-select custom-select-sm custom-select-borderless"
-                                role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0"
-                                aria-disabled="false" aria-labelledby="select2-datatableEntries-container"><span
-                                    class="select2-selection__rendered" id="select2-datatableEntries-container"
-                                    role="textbox" aria-readonly="true" title="15"><span>15</span></span><span
-                                    class="select2-selection__arrow" role="presentation"><b
-                                        role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-                            aria-hidden="true"></span></span>
-                    <!-- End Select -->
-
-                    <span class="text-secondary mr-2">of</span>
-
-                    <!-- Pagination Quantity -->
-                    <span id="datatableWithPaginationInfoTotalQty">24</span>
-                </div>
             </div>
 
             <div class="col-sm-auto">
@@ -424,17 +394,30 @@
                     <nav id="datatablePagination" aria-label="Activity pagination">
                         <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
                             <ul id="datatable_pagination" class="pagination datatable-custom-pagination">
-                                <li class="paginate_item page-item disabled"><a
-                                        class="paginate_button previous page-link" aria-controls="datatable"
+
+                                <li (click)="getPage(search.pagination.page - 1)" class="paginate_item page-item"
+                                    [ngClass]="search.pagination.page === 1 ? 'disabled' : ''">
+                                    <a class="paginate_button previous page-link" aria-controls="datatable"
                                         data-dt-idx="0" tabindex="0" id="datatable_previous"><span
-                                            aria-hidden="true">Prev</span></a></li>
-                                <li class="paginate_item page-item active"><a class="paginate_button page-link"
-                                        aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a></li>
-                                <li class="paginate_item page-item"><a class="paginate_button page-link"
-                                        aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a></li>
-                                <li class="paginate_item page-item"><a class="paginate_button next page-link"
-                                        aria-controls="datatable" data-dt-idx="3" tabindex="0" id="datatable_next"><span
-                                            aria-hidden="true">Next</span></a></li>
+                                            aria-hidden="true">Önceki</span></a>
+                                </li>
+
+
+                                <li (click)="getPage(item)" *ngFor="let item of paginations"
+                                    class="paginate_item page-item "
+                                    [ngClass]="search.pagination.page === item ? 'active' : ''">
+                                    <a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="1"
+                                        tabindex="0">
+                                        {{item > -1 ? item :'...'}}</a>
+                                </li>
+
+
+                                <li (click)="getPage(search.pagination.page + 1)" class="paginate_item page-item"
+                                    [ngClass]="search.pagination.page === totalPages ? 'disabled' : ''"><a
+                                        class="paginate_button next page-link" aria-controls="datatable" data-dt-idx="3"
+                                        tabindex="0" id="datatable_next"><span aria-hidden="true">Sonraki</span></a>
+                                </li>
+
                             </ul>
                         </div>
                     </nav>

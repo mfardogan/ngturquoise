@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import Administrator from 'src/app/@core/models/administrator';
+import CountViewModel from 'src/app/@core/models/countViewModel';
+
 import Search from 'src/app/@core/models/search';
 import SearchAdmin from 'src/app/@core/models/search-admin';
+import { PaginationService } from 'src/app/@core/services/pagination.service';
 import AdminHttp from '../admin-http';
 
 @Component({
@@ -15,9 +18,12 @@ import AdminHttp from '../admin-http';
 export class AdminsComponent implements OnInit {
 
   constructor(
-    private adminHttp: AdminHttp
+    private adminHttp: AdminHttp,
+    private paginationService: PaginationService
   ) { }
 
+  totalPages: number = 0;
+  paginations: Array<number> = [];
   data: Array<Administrator> = [];
   filterClauses: SearchAdmin = new SearchAdmin();
   search: Search<SearchAdmin> = new Search<SearchAdmin>();
@@ -25,6 +31,27 @@ export class AdminsComponent implements OnInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+
+    this.getTotalRowCount();
+    this.getNextPageOfAdministrators();
+
+
+  }
+
+  getTotalRowCount() {
+    this.adminHttp.getCount(this.search.filter)
+      .subscribe((e: CountViewModel) => {
+        this.totalPages = e.count
+
+        const activePage: number = this.search.pagination.page;
+        this.paginations = this.paginationService.getPages(activePage, this.totalPages);
+        console.log(this.paginations);
+      });
+  }
+
+  getPage(page: number) {
+    this.search.pagination.page = page;
+    this.search.filter = this.filterClauses;
     this.getNextPageOfAdministrators();
   }
 
@@ -51,6 +78,7 @@ export class AdminsComponent implements OnInit {
   apply(): void {
     this.search.pagination.page = 1;
     this.search.filter = this.filterClauses;
+    this.getTotalRowCount();
     this.getNextPageOfAdministrators();
   }
 

@@ -498,7 +498,6 @@ export class AppComponent implements OnDestroy {
   }
 
   onRemove(tags) {
-    console.log('removed a tag', tags);
   }
   clearTags() {
     this.tagifyService.removeAll();

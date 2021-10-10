@@ -1,0 +1,7 @@
+.joined{
+    background: linear-gradient(257deg, rgb(255, 255, 255) 10%, rgb(255, 255, 255) 90%);
+}
+
+.notjoined{
+    background: linear-gradient(257deg, rgb(255, 255, 255) 10%, rgba(241, 56, 56, 0.11) 90%);
+}

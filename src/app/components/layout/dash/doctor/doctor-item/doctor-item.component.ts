@@ -71,7 +71,6 @@ export class DoctorItemComponent implements OnInit {
           this.toastr.success("Doktor bilgileri güncellendi!", "Dikkat!");
         })
     } else {
-      console.log(this.data);
       Dependency.get(DoctorHttp)
         .add(this.data)
         .subscribe(() => {

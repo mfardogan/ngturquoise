@@ -58,6 +58,7 @@ export class SurveysComponent implements OnInit {
    * Get surveys by search
    */
   getSurveysBySearch(): void {
+    console.log(this.search);
     this.surveyHttp.searchSurveys(this.search)
       .subscribe((data: Survey[]) => {
         this.data = data

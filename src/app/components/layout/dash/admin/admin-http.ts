@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import Administrator from "src/app/@core/models/administrator";
 import ChangePassword from "src/app/@core/models/change-password";
+import CountViewModel from "src/app/@core/models/countViewModel";
 import ModifyAdminPassword from "src/app/@core/models/modify-admin-pass";
 import Search from "src/app/@core/models/search";
 import SearchAdmin from "src/app/@core/models/search-admin";
@@ -16,6 +17,14 @@ export default class AdminHttp extends BaseHttp<Administrator> {
 
     searchAdministrators(search: Search<SearchAdmin>): Observable<Array<Administrator>> {
         return this.http.put<Administrator[]>(this.prefix + '/search', search);
+    }
+
+    getCount(search: SearchAdmin): Observable<CountViewModel> {
+        if (search == null) {
+            search = new SearchAdmin();
+        }
+
+        return this.http.put<CountViewModel>(this.prefix + '/count', search);
     }
 
     setBasicInfo(administrator: Administrator): Observable<any> {

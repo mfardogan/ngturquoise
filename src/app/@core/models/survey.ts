@@ -10,6 +10,7 @@ class Survey extends Concurrency {
     status!: number;
     title: string = '';
     body!: string;
+    hasJoined!: boolean;
     creationAt!: Date;
     progressPercent: number = 0;
     choiceGroupId: number = 0;

@@ -1,11 +1,11 @@
 class Pagination {
     page: number = 1;
-    rows: number = 20;
+    rows: number = 10;
 
 
     constructor(page?: number, rows?: number) {
         this.page = page ?? 1;
-        this.rows = rows ?? 20;
+        this.rows = rows ?? 10;
     }
 
 

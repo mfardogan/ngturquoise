@@ -174,7 +174,7 @@
                                 <select [(ngModel)]="filterClauses.choiceGroupId"
                                     class="form-control form-control-sm form-select form-select-sm"
                                     aria-label=".form-select-sm example" name="choiceGroupId" id="choiceGroupId">
-                                    <option selected value="undefined">Tümü</option>
+                                    <option selected [ngValue]="undefined">Tümü</option>
                                     <option *ngFor="let item of choiceGroups" value="{{item.id}}">{{item.name}}</option>
                                 </select>
                             </div>
@@ -196,7 +196,7 @@
                                 <select [(ngModel)]="filterClauses.status"
                                     class="form-control form-control-sm form-select form-select-sm"
                                     aria-label=".form-select-sm example" name="status" id="status">
-                                    <option selected value="undefined">Tümü</option>
+                                    <option selected [ngValue]="undefined">Tümü</option>
                                     <option value="0">Devam eden</option>
                                     <option value="1">Kontrolde</option>
                                     <option value="2">Tamamlandı</option>

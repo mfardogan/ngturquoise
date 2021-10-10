@@ -1,6 +1,5 @@
 ; (function (factory) {
   'use strict';
-  console.log("aside test!!");
   if (typeof define === 'function' && define.amd) {
 
     define(['jquery'], factory);
@@ -17,14 +16,10 @@
 
 }(function ($) {
   'use strict';
-  console.log("aside test2!!");
   var HSSideNav = window.HSSideNav || {};
-  console.log("aside test3!!");
   HSSideNav = (function () {
-    console.log("aside test5!!");
 
     function HSSideNav(element, settings) {
-      console.log("aside test4!!");
 
       var self = this,
         dataSettings;
@@ -303,7 +298,7 @@
       }
     }
     console.log('geldi değişti');
-      item.addClass(self.className(self.options.subMenuInvokerActiveClass));
+    item.addClass(self.className(self.options.subMenuInvokerActiveClass));
 
     if (menu.is(':visible')) {
       menu.css({
@@ -340,7 +335,6 @@
   }
 
   $.fn.hsSideNav = function () {
-    console.log("hsSideNav...");
     var self = this,
       options = arguments[0],
       args = Array.prototype.slice.call(arguments, 1),

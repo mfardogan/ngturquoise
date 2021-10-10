@@ -60,7 +60,7 @@ export class DoctorsComponent implements OnInit {
     this.doctorHttp.confirm(id)
       .subscribe((x: any) => {
         doctor.isConfirmed = true;
-        this.toastr.warning("Kullanıcı zaten doğrulandı!", "Dikkat!");
+        this.toastr.success("Kullanıcı doğrulandı!", "Dikkat!");
       })
   }
 
@@ -87,7 +87,6 @@ export class DoctorsComponent implements OnInit {
    * Apply filters
    */
   apply(): void {
-    console.log(JSON.stringify(this.filterClauses))
     this.search.pagination.page = 1;
     this.search.filter = this.filterClauses;
     this.getNextPageOfDoctors();

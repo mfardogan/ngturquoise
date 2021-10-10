@@ -62,6 +62,7 @@ export class SurveyListComponent implements OnInit {
     this.surveyHttp.searchSurveys(this.search)
       .subscribe((data: Survey[]) => {
         this.data = data
+        console.log(this.data);
       })
   }
 

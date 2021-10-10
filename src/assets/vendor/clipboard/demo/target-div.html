@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>target-div</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
     <!-- 1. Define some markup -->
     <div>hello</div>
@@ -15,15 +17,14 @@
 
     <!-- 3. Instantiate clipboard -->
     <script>
-    var clipboard = new ClipboardJS('.btn');
+        var clipboard = new ClipboardJS('.btn');
 
-    clipboard.on('success', function(e) {
-        console.log(e);
-    });
+        clipboard.on('success', function (e) {
+        });
 
-    clipboard.on('error', function(e) {
-        console.log(e);
-    });
+        clipboard.on('error', function (e) {
+        });
     </script>
 </body>
+
 </html>

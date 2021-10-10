@@ -25,7 +25,6 @@ export class SurveyActivityComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNextActivityPage();
-    console.log(this.survey);
   }
 
   /**
@@ -40,7 +39,6 @@ export class SurveyActivityComponent implements OnInit {
       .getAnswersBySurvey(search)
       .subscribe((answers: Answer[]) => {
         this.answers = this.answers.concat(answers);
-        console.log(this.answers);
       });
   }
 

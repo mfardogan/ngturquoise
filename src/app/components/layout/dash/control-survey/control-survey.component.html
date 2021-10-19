@@ -1,0 +1,1445 @@
+<!-- Page Header -->
+<div class="page-header">
+    <div class="row align-items-end">
+        <div class="col-sm mb-2 mb-sm-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-no-gutter">
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Projects</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Overview</li>
+                </ol>
+            </nav>
+
+            <h1 class="page-header-title">Overview</h1>
+        </div>
+
+        <div class="col-sm-auto">
+            <div id="newProjectPopover" data-toggle="popover" data-placement="left" title=""
+                aria-describedby="popover468850">
+                <a class="btn btn-primary" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop">
+                    <i class="tio-add mr-1"></i> Yeni Kontrol Anketi
+                </a>
+
+            </div>
+            <br>
+
+        </div>
+    </div>
+    <!-- End Row -->
+
+    <!-- Nav -->
+    <ul class="nav nav-tabs page-header-tabs">
+        <li class="nav-item">
+
+        </li>
+        <li class="nav-item">
+
+        </li>
+    </ul>
+    <!-- End Nav -->
+</div>
+<!-- End Page Header -->
+
+
+
+<!-- Card -->
+<div class="card">
+    <!-- Header -->
+    <div class="card-header">
+        <div class="row justify-content-between align-items-center flex-grow-1">
+            <div class="col-sm-6 col-md-4 mb-3 mb-sm-0">
+                <form>
+                    <!-- Search -->
+                    <div class="input-group input-group-merge input-group-flush">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="tio-search"></i>
+                            </div>
+                        </div>
+                        <input id="datatableSearch" type="search" class="form-control" placeholder="Search users"
+                            aria-label="Search users">
+                    </div>
+                    <!-- End Search -->
+                </form>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="d-flex justify-content-sm-end align-items-center">
+                    <!-- Datatable Info -->
+                    <div id="datatableCounterInfo" class="mr-2" style="display: none;">
+                        <div class="d-flex align-items-center">
+                            <span class="font-size-sm mr-3">
+                                <span id="datatableCounter">0</span>
+                                Selected
+                            </span>
+                            <a class="btn btn-sm btn-outline-danger" href="javascript:;">
+                                <i class="tio-delete-outlined"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End Datatable Info -->
+
+
+
+                    <!-- Unfold -->
+                    <div class="hs-unfold">
+                        <a class="js-hs-unfold-invoker btn btn-sm btn-white" href="javascript:;" data-hs-unfold-options="{
+                     &quot;target&quot;: &quot;#usersFilterDropdown&quot;,
+                     &quot;type&quot;: &quot;css-animation&quot;,
+                     &quot;smartPositionOff&quot;: true
+                   }" data-hs-unfold-target="#usersFilterDropdown" data-hs-unfold-invoker="">
+                            <i class="tio-filter-list mr-1"></i> Filter <span
+                                class="badge badge-soft-dark rounded-circle ml-1">2</span>
+                        </a>
+
+                        <div id="usersFilterDropdown"
+                            class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm-right dropdown-card card-dropdown-filter-centered hs-unfold-content-initialized hs-unfold-css-animation animated hs-unfold-hidden"
+                            style="min-width: 22rem; animation-duration: 300ms;" data-hs-target-height="0"
+                            data-hs-unfold-content="" data-hs-unfold-content-animation-in="slideInUp"
+                            data-hs-unfold-content-animation-out="fadeOut">
+                            <!-- Card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-header-title">Filter users</h5>
+
+                                    <!-- Toggle Button -->
+                                    <a class="js-hs-unfold-invoker btn btn-icon btn-xs btn-ghost-secondary ml-2"
+                                        href="javascript:;" data-hs-unfold-options="{
+                          &quot;target&quot;: &quot;#usersFilterDropdown&quot;,
+                          &quot;type&quot;: &quot;css-animation&quot;,
+                          &quot;smartPositionOff&quot;: true
+                         }" data-hs-unfold-target="#usersFilterDropdown" data-hs-unfold-invoker="">
+                                        <i class="tio-clear tio-lg"></i>
+                                    </a>
+                                    <!-- End Toggle Button -->
+                                </div>
+
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <small class="text-cap mb-2">Role</small>
+
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <!-- Checkbox -->
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            id="usersFilerCheck1" checked="">
+                                                        <label class="custom-control-label"
+                                                            for="usersFilerCheck1">All</label>
+                                                    </div>
+                                                    <!-- End Checkbox -->
+                                                </div>
+
+                                                <div class="col">
+                                                    <!-- Checkbox -->
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            id="usersFilerCheck2">
+                                                        <label class="custom-control-label"
+                                                            for="usersFilerCheck2">Employee</label>
+                                                    </div>
+                                                    <!-- End Checkbox -->
+                                                </div>
+                                            </div>
+                                            <!-- End Row -->
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col-sm form-group">
+                                                <small class="text-cap mb-2">Due date</small>
+
+                                                <!-- Select -->
+                                                <select
+                                                    class="js-select2-custom js-datatable-filter custom-select select2-hidden-accessible"
+                                                    size="1" style="opacity: 0;" data-hs-select2-options="{
+                                      &quot;minimumResultsForSearch&quot;: &quot;Infinity&quot;
+                                    }" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                    <option value="" data-select2-id="3">Any</option>
+                                                    <option value="This week" data-select2-id="4">This week</option>
+                                                    <option value="Next week" data-select2-id="5">Next week</option>
+                                                    <option value="Next month" data-select2-id="6">Next month
+                                                    </option>
+                                                </select><span
+                                                    class="select2 select2-container select2-container--default"
+                                                    dir="ltr" data-select2-id="2" style="width: 100%;"><span
+                                                        class="selection"><span class="select2-selection custom-select"
+                                                            role="combobox" aria-haspopup="true" aria-expanded="false"
+                                                            tabindex="0" aria-disabled="false"
+                                                            aria-labelledby="select2-pt9g-container"><span
+                                                                class="select2-selection__rendered"
+                                                                id="select2-pt9g-container" role="textbox"
+                                                                aria-readonly="true"
+                                                                title="Any"><span>Any</span></span><span
+                                                                class="select2-selection__arrow" role="presentation"><b
+                                                                    role="presentation"></b></span></span></span><span
+                                                        class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                <!-- End Select -->
+                                            </div>
+
+                                            <div class="col-sm form-group">
+                                                <small class="text-cap mb-2">Status</small>
+
+                                                <!-- Select -->
+                                                <select
+                                                    class="js-select2-custom js-datatable-filter custom-select select2-hidden-accessible"
+                                                    size="1" style="opacity: 0;" data-target-column-index="4"
+                                                    data-hs-select2-options="{
+                                      &quot;minimumResultsForSearch&quot;: &quot;Infinity&quot;
+                                    }" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                                    <option value="" data-select2-id="9">Any status</option>
+                                                    <option value="Completed"
+                                                        data-option-template="<span class=&quot;legend-indicator bg-success&quot;></span>Completed"
+                                                        data-select2-id="10">Completed</option>
+                                                    <option value="In progress"
+                                                        data-option-template="<span class=&quot;legend-indicator bg-primary&quot;></span>In progress"
+                                                        data-select2-id="11">In progress</option>
+                                                    <option value="To do"
+                                                        data-option-template="<span class=&quot;legend-indicator&quot;></span>To do"
+                                                        data-select2-id="12">To do</option>
+                                                </select><span
+                                                    class="select2 select2-container select2-container--default"
+                                                    dir="ltr" data-select2-id="8" style="width: 100%;"><span
+                                                        class="selection"><span class="select2-selection custom-select"
+                                                            role="combobox" aria-haspopup="true" aria-expanded="false"
+                                                            tabindex="0" aria-disabled="false"
+                                                            aria-labelledby="select2-ypdx-container"><span
+                                                                class="select2-selection__rendered"
+                                                                id="select2-ypdx-container" role="textbox"
+                                                                aria-readonly="true" title="Any status"><span>Any
+                                                                    status</span></span><span
+                                                                class="select2-selection__arrow" role="presentation"><b
+                                                                    role="presentation"></b></span></span></span><span
+                                                        class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                <!-- End Select -->
+                                            </div>
+
+                                            <div class="col-12 form-group">
+                                                <small class="text-cap mb-2">Members</small>
+
+                                                <!-- Select -->
+                                                <select
+                                                    class="js-select2-custom custom-select select2-hidden-accessible"
+                                                    size="1" style="opacity: 0;" multiple="" data-hs-select2-options="{
+                                      &quot;singleMultiple&quot;: true,
+                                      &quot;placeholder&quot;: &quot;Select a member&quot;
+                                    }" data-select2-id="13" tabindex="-1" aria-hidden="true">
+                                                    <option label="empty" data-select2-id="15"></option>
+                                                    <option value="AH" selected=""
+                                                        data-option-template="<span class=&quot;d-flex align-items-center&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/img/160x160/img10.jpg&quot; alt=&quot;Image Description&quot; /><span class=&quot;text-truncate&quot;>Amanda Harvey</span></span>"
+                                                        data-select2-id="16">Amanda Harvey</option>
+                                                    <option value="DH" selected=""
+                                                        data-option-template="<span class=&quot;d-flex align-items-center&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/img/160x160/img3.jpg&quot; alt=&quot;Image Description&quot; /><span class=&quot;text-truncate&quot;>David Harrison</span></span>"
+                                                        data-select2-id="17">David Harrison</option>
+                                                    <option value="SK"
+                                                        data-option-template="<span class=&quot;d-flex align-items-center&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/img/160x160/img4.jpg&quot; alt=&quot;Image Description&quot; /><span class=&quot;text-truncate&quot;>Sam Kart</span></span>"
+                                                        data-select2-id="18">Sam Kart</option>
+                                                    <option value="FH"
+                                                        data-option-template="<span class=&quot;d-flex align-items-center&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/img/160x160/img5.jpg&quot; alt=&quot;Image Description&quot; /><span class=&quot;text-truncate&quot;>Finch Hoot</span></span>"
+                                                        data-select2-id="19">Finch Hoot</option>
+                                                    <option value="CQ" selected=""
+                                                        data-option-template="<span class=&quot;d-flex align-items-center&quot;><img class=&quot;avatar avatar-xss avatar-circle mr-2&quot; src=&quot;./assets/img/160x160/img6.jpg&quot; alt=&quot;Image Description&quot; /><span class=&quot;text-truncate&quot;>Costa Quinn</span></span>"
+                                                        data-select2-id="20">Costa Quinn</option>
+                                                </select><span
+                                                    class="select2 select2-container select2-container--default"
+                                                    dir="ltr" data-select2-id="14" style="width: 100%;"><span
+                                                        class="selection"><span
+                                                            class="select2-selection custom-select active"
+                                                            role="combobox" aria-haspopup="true" aria-expanded="false"
+                                                            tabindex="-1" aria-disabled="false"><span
+                                                                class="select2-selection__rendered" role="textbox"
+                                                                aria-readonly="true"><span
+                                                                    class="select2-selection__placeholder">3 item(s)
+                                                                    selected</span></span><span
+                                                                class="select2-selection__arrow" role="presentation"><b
+                                                                    role="presentation"></b></span></span></span><span
+                                                        class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                <!-- End Select -->
+                                            </div>
+                                        </div>
+                                        <!-- End Row -->
+
+                                        <a class="btn btn-block btn-primary" href="javascript:;">Apply</a>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- End Card -->
+                        </div>
+                    </div>
+                    <!-- End Unfold -->
+                </div>
+            </div>
+        </div>
+        <!-- End Row -->
+    </div>
+    <!-- End Header -->
+
+    <!-- Table -->
+    <div class="table-responsive datatable-custom">
+        <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
+            <div class="dt-buttons"> <button class="dt-button buttons-copy buttons-html5 d-none" tabindex="0"
+                    aria-controls="datatable" type="button"><span>Copy</span></button> <button
+                    class="dt-button buttons-excel buttons-html5 d-none" tabindex="0" aria-controls="datatable"
+                    type="button"><span>Excel</span></button> <button class="dt-button buttons-csv buttons-html5 d-none"
+                    tabindex="0" aria-controls="datatable" type="button"><span>CSV</span></button> <button
+                    class="dt-button buttons-pdf buttons-html5 d-none" tabindex="0" aria-controls="datatable"
+                    type="button"><span>PDF</span></button> <button class="dt-button buttons-print d-none" tabindex="0"
+                    aria-controls="datatable" type="button"><span>Print</span></button> </div>
+            <div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search" class=""
+                        placeholder="" aria-controls="datatable"></label></div>
+            <table id="datatable"
+                class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer"
+                data-hs-datatables-options="{
+                 &quot;columnDefs&quot;: [{
+                    &quot;targets&quot;: [0, 2, 3, 6, 7],
+                    &quot;orderable&quot;: false
+                  }],
+                 &quot;order&quot;: [],
+                 &quot;info&quot;: {
+                   &quot;totalQty&quot;: &quot;#datatableWithPaginationInfoTotalQty&quot;
+                 },
+                 &quot;search&quot;: &quot;#datatableSearch&quot;,
+                 &quot;entries&quot;: &quot;#datatableEntries&quot;,
+                 &quot;pageLength&quot;: 15,
+                 &quot;isResponsive&quot;: false,
+                 &quot;isShowPaging&quot;: false,
+                 &quot;pagination&quot;: &quot;datatablePagination&quot;
+               }" role="grid" aria-describedby="datatable_info">
+                <thead class="thead-light">
+                    <tr role="row">
+                        <th class="table-column-pr-0 sorting_disabled" rowspan="1" colspan="1" aria-label="
+                
+                  
+                  
+                
+              " style="width: 25.1px;">
+                            <div class="custom-control custom-checkbox">
+                                <input id="datatableCheckAll" type="checkbox" class="custom-control-input">
+                                <label class="custom-control-label" for="datatableCheckAll"></label>
+                            </div>
+                        </th>
+                        <th class="table-column-pl-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1"
+                            colspan="1" aria-label="Project: activate to sort column ascending"
+                            style="width: 321.825px;">Project</th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Tasks" style="width: 52.8px;">
+                            Tasks</th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Members"
+                            style="width: 86.363px;">Members</th>
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                            aria-label="Status: activate to sort column ascending" style="width: 91.562px;">Status
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                            aria-label="Completion: activate to sort column ascending" style="width: 125.05px;">
+                            Completion</th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 37.2875px;"><i
+                                class="tio-attachment-diagonal"></i></th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 37.2875px;"><i
+                                class="tio-chat-outlined"></i></th>
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                            aria-label="Due date: activate to sort column ascending" style="width: 79.925px;">Due
+                            date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <tr role="row" class="odd">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck1">
+                                <label class="custom-control-label" for="usersDataCheck1"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <img class="avatar" src="./assets/svg/brands/guideline.svg" alt="Image Description">
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Cloud computing web
+                                        service</span>
+                                    <span class="d-block font-size-sm text-body">Updated 2 minutes ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                120 <a class="badge badge-soft-dark ml-1" href="javascript:;" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="tasks completed today">+2</a>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- Avatar Group -->
+                            <div class="avatar-group avatar-group-xs avatar-circle">
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Ella Lauda">
+                                    <img class="avatar-img" src="./assets/img/160x160/img9.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="David Harrison">
+                                    <img class="avatar-img" src="./assets/img/160x160/img3.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-soft-dark" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Antony Taylor">
+                                    <span class="avatar-initials">A</span>
+                                </a>
+                                <a class="avatar avatar-soft-info" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Sara Iwens">
+                                    <span class="avatar-initials">S</span>
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Finch Hoot">
+                                    <img class="avatar-img" src="./assets/img/160x160/img5.jpg" alt="Image Description">
+                                </a>
+                            </div>
+                            <!-- End Avatar Group -->
+                        </td>
+                        <td>
+                            <span class="legend-indicator"></span>In progress
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm mr-2">35%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 35%"
+                                        aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-files.html">
+                                <i class="tio-attachment-diagonal"></i> 10
+                            </a>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-activity.html">
+                                <i class="tio-chat-outlined"></i> 2
+                            </a>
+                        </td>
+                        <td>05 May</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck2">
+                                <label class="custom-control-label" for="usersDataCheck2"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <div class="avatar avatar-soft-primary avatar-circle">
+                                    <span class="avatar-initials">I</span>
+                                </div>
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Improve profile UX <i
+                                            class="tio-verified text-primary" data-toggle="tooltip" data-placement="top"
+                                            title="" data-original-title="Earned extra bonus"></i></span>
+                                    <span class="d-block font-size-sm text-body">Updated 4 hours ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>28</td>
+                        <td>No assignee</td>
+                        <td>
+                            <span class="legend-indicator bg-success"></span>Completed
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm text-success mr-2">100%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>-</td>
+                        <td>
+                            <a class="text-body" href="#">
+                                <i class="tio-chat-outlined"></i> 17
+                            </a>
+                        </td>
+                        <td>01 May</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck11">
+                                <label class="custom-control-label" for="usersDataCheck11"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <img class="avatar" src="./assets/svg/brands/capsule.svg" alt="Image Description">
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Build stronger customer
+                                        relationships</span>
+                                    <span class="d-block font-size-sm text-body">Updated 1 months ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>1</td>
+                        <td>
+                            <!-- Avatar Group -->
+                            <div class="avatar-group avatar-group-xs avatar-circle">
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Costa Quinn">
+                                    <img class="avatar-img" src="./assets/img/160x160/img6.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Clarice Boone">
+                                    <img class="avatar-img" src="./assets/img/160x160/img7.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-soft-danger" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Adam Keep">
+                                    <span class="avatar-initials">A</span>
+                                </a>
+                            </div>
+                            <!-- End Avatar Group -->
+                        </td>
+                        <td>
+                            <span class="legend-indicator"></span>To do
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm mr-2">0%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-files.html">
+                                <i class="tio-attachment-diagonal"></i> 1
+                            </a>
+                        </td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck5">
+                                <label class="custom-control-label" for="usersDataCheck5"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <div class="avatar avatar-soft-info avatar-circle">
+                                    <span class="avatar-initials">U</span>
+                                </div>
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Update social banners</span>
+                                    <span class="d-block font-size-sm text-body">Updated 1 week ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>21</td>
+                        <td>
+                            <!-- Avatar Group -->
+                            <div class="avatar-group avatar-group-xs avatar-circle">
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Finch Hoot">
+                                    <img class="avatar-img" src="./assets/img/160x160/img5.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-soft-dark" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Bob Bardly">
+                                    <span class="avatar-initials">B</span>
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Linda Bates">
+                                    <img class="avatar-img" src="./assets/img/160x160/img8.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Ella Lauda">
+                                    <img class="avatar-img" src="./assets/img/160x160/img9.jpg" alt="Image Description">
+                                </a>
+                            </div>
+                            <!-- End Avatar Group -->
+                        </td>
+                        <td>
+                            <span class="legend-indicator bg-primary"></span>In progress
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm text-primary mr-2">5%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="5"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-files.html">
+                                <i class="tio-attachment-diagonal"></i> 3
+                            </a>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-activity.html">
+                                <i class="tio-chat-outlined"></i> 21
+                            </a>
+                        </td>
+                        <td>-</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck6">
+                                <label class="custom-control-label" for="usersDataCheck6"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <img class="avatar" src="./assets/svg/brands/mailchimp.svg" alt="Image Description">
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Update subscription method <i
+                                            class="tio-verified text-primary" data-toggle="tooltip" data-placement="top"
+                                            title="" data-original-title="Earned extra bonus"></i></span>
+                                    <span class="d-block font-size-sm text-body">Updated 2 hours ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>0</td>
+                        <td>
+                            <!-- Avatar Group -->
+                            <div class="avatar-group avatar-group-xs avatar-circle">
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Costa Quinn">
+                                    <img class="avatar-img" src="./assets/img/160x160/img6.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Clarice Boone">
+                                    <img class="avatar-img" src="./assets/img/160x160/img7.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-soft-danger" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Adam Keep">
+                                    <span class="avatar-initials">A</span>
+                                </a>
+                            </div>
+                            <!-- End Avatar Group -->
+                        </td>
+                        <td>
+                            <span class="legend-indicator bg-primary"></span>In progress
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm text-success mr-2">100%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>-</td>
+                        <td>
+                            <a class="text-body" href="#">
+                                <i class="tio-chat-outlined"></i> 9
+                            </a>
+                        </td>
+                        <td>25 May</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck12">
+                                <label class="custom-control-label" for="usersDataCheck12"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <div class="avatar avatar-soft-primary avatar-circle">
+                                    <span class="avatar-initials">E</span>
+                                </div>
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Extend Spotify mobile app
+                                        features</span>
+                                    <span class="d-block font-size-sm text-body">Updated 1 day ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                27 <a class="badge badge-soft-dark ml-1" href="javascript:;" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="tasks completed today">+2</a>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- Avatar Group -->
+                            <div class="avatar-group avatar-group-xs avatar-circle">
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Costa Quinn">
+                                    <img class="avatar-img" src="./assets/img/160x160/img6.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-soft-info" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Bob Bardly">
+                                    <span class="avatar-initials">B</span>
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Clarice Boone">
+                                    <img class="avatar-img" src="./assets/img/160x160/img7.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Sam Kart">
+                                    <img class="avatar-img" src="./assets/img/160x160/img4.jpg" alt="Image Description">
+                                </a>
+                            </div>
+                            <!-- End Avatar Group -->
+                        </td>
+                        <td>
+                            <span class="legend-indicator bg-primary"></span>In progress
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm text-primary mr-2">71%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 71%" aria-valuenow="71"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-files.html">
+                                <i class="tio-attachment-diagonal"></i> 2
+                            </a>
+                        </td>
+                        <td>-</td>
+                        <td>19 May</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck9">
+                                <label class="custom-control-label" for="usersDataCheck9"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <img class="avatar" src="./assets/svg/brands/spec.svg" alt="Image Description">
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Install Front pay</span>
+                                    <span class="d-block font-size-sm text-body">Updated 23 hours ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>7</td>
+                        <td>No assignee</td>
+                        <td>
+                            <span class="legend-indicator bg-success"></span>Completed
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm text-primary mr-2">83%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 83%" aria-valuenow="83"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-files.html">
+                                <i class="tio-attachment-diagonal"></i> 1
+                            </a>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-activity.html">
+                                <i class="tio-chat-outlined"></i> 1
+                            </a>
+                        </td>
+                        <td>30 May</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck7">
+                                <label class="custom-control-label" for="usersDataCheck7"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <div class="avatar avatar-soft-dark avatar-circle">
+                                    <span class="avatar-initials">B</span>
+                                </div>
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Binance-chain <i
+                                            class="tio-verified text-primary" data-toggle="tooltip" data-placement="top"
+                                            title="" data-original-title="Earned extra bonus"></i></span>
+                                    <span class="d-block font-size-sm text-body">Updated 14 hours ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                19 <a class="badge badge-soft-dark ml-1" href="javascript:;" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="tasks completed today">+1</a>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- Avatar Group -->
+                            <div class="avatar-group avatar-group-xs avatar-circle">
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Amanda Harvey">
+                                    <img class="avatar-img" src="./assets/img/160x160/img10.jpg"
+                                        alt="Image Description">
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="David Harrison">
+                                    <img class="avatar-img" src="./assets/img/160x160/img3.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-soft-info" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Lisa Iston">
+                                    <span class="avatar-initials">L</span>
+                                </a>
+                                <a class="avatar avatar-light avatar-circle" href="user-profile.html"
+                                    data-toggle="tooltip" data-placement="top" title=""
+                                    data-original-title="Lewis Clarke, Chris Mathew and 3 more">
+                                    <span class="avatar-initials">+5</span>
+                                </a>
+                            </div>
+                            <!-- End Avatar Group -->
+                        </td>
+                        <td>
+                            <span class="legend-indicator bg-success"></span>Completed
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm text-success mr-2">100%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck3">
+                                <label class="custom-control-label" for="usersDataCheck3"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <img class="avatar" src="./assets/svg/brands/jira.svg" alt="Image Description">
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Develop Slack mobile app</span>
+                                    <span class="d-block font-size-sm text-body">Updated 18 minutes ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                32 <a class="badge badge-soft-dark ml-1" href="javascript:;" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="tasks completed today">+5</a>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- Avatar Group -->
+                            <div class="avatar-group avatar-group-xs avatar-circle">
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Ella Lauda">
+                                    <img class="avatar-img" src="./assets/img/160x160/img9.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="David Harrison">
+                                    <img class="avatar-img" src="./assets/img/160x160/img3.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-soft-dark" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Antony Taylor">
+                                    <span class="avatar-initials">A</span>
+                                </a>
+                                <a class="avatar avatar-light avatar-circle" href="user-profile.html"
+                                    data-toggle="tooltip" data-placement="top" title=""
+                                    data-original-title="Sam Kart, Amanda Harvey and 1 more">
+                                    <span class="avatar-initials">+3</span>
+                                </a>
+                            </div>
+                            <!-- End Avatar Group -->
+                        </td>
+                        <td>
+                            <span class="legend-indicator bg-primary"></span>In progress
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm text-success mr-2">100%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>25 May</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck10">
+                                <label class="custom-control-label" for="usersDataCheck10"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <div class="avatar avatar-soft-info avatar-circle">
+                                    <span class="avatar-initials">G</span>
+                                </div>
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Get a complete store
+                                        audit</span>
+                                    <span class="d-block font-size-sm text-body">Updated 2 weeks ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                10 <a class="badge badge-soft-dark ml-1" href="javascript:;" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="task completed today">+1</a>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- Avatar Group -->
+                            <div class="avatar-group avatar-group-xs avatar-circle">
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Finch Hoot">
+                                    <img class="avatar-img" src="./assets/img/160x160/img5.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-soft-dark" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Bob Bardly">
+                                    <span class="avatar-initials">B</span>
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Clarice Boone">
+                                    <img class="avatar-img" src="./assets/img/160x160/img7.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-soft-danger" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Adam Keep">
+                                    <span class="avatar-initials">A</span>
+                                </a>
+                            </div>
+                            <!-- End Avatar Group -->
+                        </td>
+                        <td>
+                            <span class="legend-indicator bg-primary"></span>In progress
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm text-primary mr-2">30%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-files.html">
+                                <i class="tio-attachment-diagonal"></i> 3
+                            </a>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-activity.html">
+                                <i class="tio-chat-outlined"></i> 15
+                            </a>
+                        </td>
+                        <td>01 June</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck4">
+                                <label class="custom-control-label" for="usersDataCheck4"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <img class="avatar" src="./assets/svg/brands/figma.svg" alt="Image Description">
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Create a new theme <i
+                                            class="tio-verified text-primary" data-toggle="tooltip" data-placement="top"
+                                            title="" data-original-title="Earned extra bonus"></i></span>
+                                    <span class="d-block font-size-sm text-body">Updated 5 days ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>2</td>
+                        <td>No assignee</td>
+                        <td>
+                            <span class="legend-indicator"></span>To do
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm mr-2">0%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>-</td>
+                        <td>
+                            <a class="text-body" href="#">
+                                <i class="tio-chat-outlined"></i> 33
+                            </a>
+                        </td>
+                        <td>08 May</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck15">
+                                <label class="custom-control-label" for="usersDataCheck15"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <img class="avatar" src="./assets/svg/brands/google-webdev.svg" alt="Image Description">
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Create a new database for
+                                        Webdev</span>
+                                    <span class="d-block font-size-sm text-body">Updated 2 hours ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>0</td>
+                        <td>
+                            <!-- Avatar Group -->
+                            <div class="avatar-group avatar-group-xs avatar-circle">
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Sam Kart">
+                                    <img class="avatar-img" src="./assets/img/160x160/img4.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-soft-danger" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Teresa Eyker">
+                                    <span class="avatar-initials">T</span>
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Amanda Harvey">
+                                    <img class="avatar-img" src="./assets/img/160x160/img10.jpg"
+                                        alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-light avatar-circle" href="user-profile.html"
+                                    data-toggle="tooltip" data-placement="top" title=""
+                                    data-original-title="Brian Halligan, Rachel Doe and 7 more">
+                                    <span class="avatar-initials">+9</span>
+                                </a>
+                            </div>
+                            <!-- End Avatar Group -->
+                        </td>
+                        <td>
+                            <span class="legend-indicator bg-success"></span>Completed
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm text-success mr-2">100%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-files.html">
+                                <i class="tio-attachment-diagonal"></i> 1
+                            </a>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-activity.html">
+                                <i class="tio-chat-outlined"></i> 7
+                            </a>
+                        </td>
+                        <td>-</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck14">
+                                <label class="custom-control-label" for="usersDataCheck14"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <div class="avatar avatar-soft-danger avatar-circle">
+                                    <span class="avatar-initials">M</span>
+                                </div>
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Marketing &amp;
+                                        Communications</span>
+                                    <span class="d-block font-size-sm text-body">Updated 2 months ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                44 <a class="badge badge-soft-dark ml-1" href="javascript:;" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="tasks completed today">+5</a>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- Avatar Group -->
+                            <div class="avatar-group avatar-group-xs avatar-circle">
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Sam Kart">
+                                    <img class="avatar-img" src="./assets/img/160x160/img4.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-soft-danger" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Teresa Eyker">
+                                    <span class="avatar-initials">T</span>
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Amanda Harvey">
+                                    <img class="avatar-img" src="./assets/img/160x160/img10.jpg"
+                                        alt="Image Description">
+                                </a>
+                            </div>
+                            <!-- End Avatar Group -->
+                        </td>
+                        <td>
+                            <span class="legend-indicator bg-primary"></span>In progress
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm text-primary mr-2">37%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 37%" aria-valuenow="37"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-files.html">
+                                <i class="tio-attachment-diagonal"></i> 2
+                            </a>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-activity.html">
+                                <i class="tio-chat-outlined"></i> 9
+                            </a>
+                        </td>
+                        <td>14 June</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck13">
+                                <label class="custom-control-label" for="usersDataCheck13"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <img class="avatar" src="./assets/svg/brands/bookingcom.svg" alt="Image Description">
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Set up a datatable for
+                                        Booking.com</span>
+                                    <span class="d-block font-size-sm text-body">Updated 13 days ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>0</td>
+                        <td>No assignee</td>
+                        <td>
+                            <span class="legend-indicator"></span>To do
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm mr-2">0%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="text-body" href="project-files.html">
+                                <i class="tio-attachment-diagonal"></i> 10
+                            </a>
+                        </td>
+                        <td>-</td>
+                        <td>05 May</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td class="table-column-pr-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="usersDataCheck16">
+                                <label class="custom-control-label" for="usersDataCheck16"></label>
+                            </div>
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a class="d-flex align-items-center" href="project.html">
+                                <div class="avatar avatar-soft-dark avatar-circle">
+                                    <span class="avatar-initials">C</span>
+                                </div>
+                                <div class="ml-3">
+                                    <span class="d-block h5 text-hover-primary mb-0">Create a new marketing
+                                        campaign</span>
+                                    <span class="d-block font-size-sm text-body">Updated 1 day ago</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>5</td>
+                        <td>
+                            <!-- Avatar Group -->
+                            <div class="avatar-group avatar-group-xs avatar-circle">
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Costa Quinn">
+                                    <img class="avatar-img" src="./assets/img/160x160/img6.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar" href="user-profile.html" data-toggle="tooltip" data-placement="top"
+                                    title="" data-original-title="Clarice Boone">
+                                    <img class="avatar-img" src="./assets/img/160x160/img7.jpg" alt="Image Description">
+                                </a>
+                                <a class="avatar avatar-soft-dark" href="user-profile.html" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Zack Ins">
+                                    <span class="avatar-initials">Z</span>
+                                </a>
+                            </div>
+                            <!-- End Avatar Group -->
+                        </td>
+                        <td>
+                            <span class="legend-indicator bg-primary"></span>In progress
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="font-size-sm text-primary mr-2">90%</span>
+                                <div class="progress table-progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>-</td>
+                        <td>
+                            <a class="text-body" href="#">
+                                <i class="tio-chat-outlined"></i> 1
+                            </a>
+                        </td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 15 of 24
+                entries</div>
+        </div>
+    </div>
+    <!-- End Table -->
+
+    <!-- Footer -->
+    <div class="card-footer">
+        <!-- Pagination -->
+        <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
+            <div class="col-sm mb-2 mb-sm-0">
+
+            </div>
+
+            <div class="col-sm-auto">
+                <div class="d-flex justify-content-center justify-content-sm-end">
+                    <!-- Pagination -->
+                    <nav id="datatablePagination" aria-label="Activity pagination">
+                        <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                            <ul id="datatable_pagination" class="pagination datatable-custom-pagination">
+                                <li class="paginate_item page-item disabled"><a
+                                        class="paginate_button previous page-link" aria-controls="datatable"
+                                        data-dt-idx="0" tabindex="0" id="datatable_previous"><span
+                                            aria-hidden="true">Prev</span></a></li>
+                                <li class="paginate_item page-item active"><a class="paginate_button page-link"
+                                        aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a></li>
+                                <li class="paginate_item page-item"><a class="paginate_button page-link"
+                                        aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a></li>
+                                <li class="paginate_item page-item"><a class="paginate_button next page-link"
+                                        aria-controls="datatable" data-dt-idx="3" tabindex="0" id="datatable_next"><span
+                                            aria-hidden="true">Next</span></a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- End Pagination -->
+    </div>
+    <!-- End Footer -->
+</div>
+<!-- End Card -->
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Kontrol Anketi Oluştur</h5>
+                <button type="button" class="btn btn-xs btn-icon btn-ghost-secondary" data-dismiss="modal"
+                    aria-label="Close">
+                    <i class="tio-clear tio-lg"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="card-body">
+
+                    <div class="form-group">
+
+                        <input [(ngModel)]="data.title"
+                            style="font-size: 20px; color:rgb(53, 53, 53); border-radius: 0; border-bottom: 2px solid rgb(226, 226, 226);"
+                            type="text" id="exampleFormControlTitleInput" class="form-control form-control-title"
+                            placeholder="Başlık giriniz">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-11">
+                            <div class="alert alert-white mb-5 mb-lg-7" role="alert">
+                                <div class="media align-items-center">
+                                    <img class="avatar avatar-xl mr-3" src="./assets/svg/illustrations/unlock.svg"
+                                        alt="Image Description">
+
+                                    <div class="media-body">
+                                        <h3 class="alert-heading mb-1">Dikkat!</h3>
+                                        <p class="mb-0"> Kontrol anketi oluşturmak için <span
+                                                style="font-weight: bold; text-decoration: underline;">resim ve text
+                                                dosyası
+                                            </span>
+                                            seçiniz...
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <!-- Logo -->
+                        <label class="custom-file-boxed custom-file-boxed-sm" for="imageUploader">
+                            <img id="logoImg" class="avatar avatar-xl avatar-4by3 avatar-centered h-100 mb-2"
+                                src="./assets/svg/illustrations/browse.svg" alt="Image Description">
+
+                            <span class="d-block">Resmi seçiniz...
+                            </span>
+
+                            <input (change)="onFileChange($event)" type="file" accept="image/*"
+                                class="js-file-attach custom-file-boxed-input" id="imageUploader">
+                            <br>
+                            <span style="margin-bottom: 5px; margin-right: 5px;" class="btn btn-sm btn-primary">
+                                <i class="tio-visible-outlined"></i>
+                                Dizine Gözat</span>
+
+                            <div class="card-body">
+                                <label *ngIf="uploading.length > 0" class="input-label">
+                                    <span style="font-weight: bold; font-size: 14px;">{{uploading.length}}</span>
+                                    dosya(lar):
+                                </label>
+                                <!-- Gallery -->
+                                <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-2">
+                                    <div *ngFor="let item of uploading;let i=index;"
+                                        class="col-5 col-sm-4 col-md-3 mb-3 mb-lg-5">
+                                        <!-- Card -->
+                                        <div class="card card-sm">
+                                            <img style="max-height: 120px;" class="card-img-top" src="{{item}}" alt="">
+                                            <div class="card-body">
+                                                <div class="row text-center">
+                                                    <div class="col column-divider">
+                                                        <a (click)="removeFile(i)" class="text-danger"
+                                                            href="javascript:;" data-toggle="tooltip"
+                                                            data-placement="top" title="" data-original-title="Delete">
+                                                            <i class="tio-delete-outlined"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!-- End Row -->
+                                            </div>
+                                        </div>
+                                        <!-- End Card -->
+                                    </div>
+                                </div>
+                                <!-- End Gallery -->
+                            </div>
+                        </label>
+                        <!-- End Logo -->
+                    </div>
+
+                    <div class="col-md-12">
+                        <!-- Logo -->
+                        <label class="custom-file-boxed custom-file-boxed-sm" for="textUploader">
+                            <img id="logoImg" class="avatar avatar-xl avatar-4by3 avatar-centered h-100 mb-2"
+                                src="./assets/svg/illustrations/browse.svg" alt="Image Description">
+
+                            <span class="d-block">Text dosyası seçiniz...
+                            </span>
+
+                            <input (change)="onFileChangeText($event)" type="file" accept=".txt"
+                                class="js-file-attach custom-file-boxed-input" id="textUploader">
+                            <br>
+                            <span style="margin-bottom: 5px; margin-right: 5px;" class="btn btn-sm btn-primary">
+                                <i class="tio-visible-outlined"></i>
+                                Dizine Gözat</span>
+
+                            <div class="card-body">
+                                <label *ngIf="uploadingText.length > 0" class="input-label">
+                                    <span style="font-weight: bold; font-size: 12px;">Seçildi: <u>{{textFileName}}</u>
+                                    </span>
+                                </label>
+                            </div>
+                        </label>
+                        <!-- End Logo -->
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="discard()" class="btn btn-danger" data-dismiss="modal">İptal</button>
+                <button type="button" (click)="save()" class="btn btn-success">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->

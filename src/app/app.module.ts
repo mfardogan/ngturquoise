@@ -56,6 +56,8 @@ import { DoctorSideBarComponent } from './components/layout/doctor/doctor-side-b
 import { EditMyProfileComponent } from './components/layout/doctor/edit-my-profile/edit-my-profile.component';
 import { SurveyListComponent } from './components/layout/doctor/survey-list/survey-list.component';
 import { MyAccountAdminComponent } from './components/layout/dash/admin/my-account-admin/my-account-admin.component';
+import { ControlSurveyComponent } from './components/layout/dash/control-survey/control-survey.component';
+import ControlSurveyHttp from './components/layout/dash/control-survey/control-survey-http';
 
 @NgModule({
   declarations: [
@@ -99,6 +101,7 @@ import { MyAccountAdminComponent } from './components/layout/dash/admin/my-accou
     EditMyProfileComponent,
     SurveyListComponent,
     MyAccountAdminComponent,
+    ControlSurveyComponent,
   ],
 
   imports: [
@@ -109,8 +112,8 @@ import { MyAccountAdminComponent } from './components/layout/dash/admin/my-accou
     HttpClientModule,
     ReactiveFormsModule,
     WebcamModule,
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     ChoiceGroupHttp,
@@ -119,6 +122,7 @@ import { MyAccountAdminComponent } from './components/layout/dash/admin/my-accou
     SurveyHttp,
     AuthHttp,
     AnswerHttp,
+    ControlSurveyHttp,
     SettingsHttp,
     BackendConfigService,
     {

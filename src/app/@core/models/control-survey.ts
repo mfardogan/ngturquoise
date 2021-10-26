@@ -6,7 +6,6 @@ import ControlSurveySmallImage from "./control-survey-small-image";
 
 export default class ControlSurvey extends Concurrency {
     title: string = '';
-    body: string = '';
     createdBy: number = 0;
     administrator!: Administrator;
     creationAt!: Date;

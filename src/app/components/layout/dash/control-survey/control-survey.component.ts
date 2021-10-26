@@ -3,6 +3,7 @@ declare var $: any;
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import ControlSurvey from 'src/app/@core/models/control-survey';
+import Search from 'src/app/@core/models/search';
 import { Dependency } from 'src/app/app.module';
 import ControlSurveyHttp from './control-survey-http';
 
@@ -17,6 +18,11 @@ export class ControlSurveyComponent implements OnInit {
     private toastr: ToastrService
   ) { }
 
+  totalPages: number = 0;
+  paginations: Array<number> = [];
+  datas: Array<ControlSurvey> = [];
+  search: Search<ControlSurvey> = new Search<ControlSurvey>();
+
   data: ControlSurvey = new ControlSurvey();
   uploading: string[] = [];
   files: any[] = [];
@@ -25,7 +31,26 @@ export class ControlSurveyComponent implements OnInit {
   uploadingText: string[] = [];
   filesText: any[] = [];
 
+  more() {
+    this.search.pagination.page = this.search.pagination.page + 1;
+    Dependency.get(ControlSurveyHttp).search(this.search)
+      .subscribe((data: Array<ControlSurvey>) => {
+        this.datas.concat(data);
+      })
+  }
+
   ngOnInit(): void {
+    this.getNextPageOfControlSurveys();
+  }
+
+  /**
+  * Get next page
+  */
+  getNextPageOfControlSurveys(): void {
+    Dependency.get(ControlSurveyHttp).search(this.search)
+      .subscribe((data: Array<ControlSurvey>) => {
+        this.datas = data;
+      })
   }
 
   onFileChange(event: any) {
@@ -125,10 +150,21 @@ export class ControlSurveyComponent implements OnInit {
         this.discard();
         this.hideModal();
         this.toastr.success("Kayıt başarıyla yapıldı!", "Dikkat!");
+        this.getNextPageOfControlSurveys();
       });
   }
 
   hideModal() {
     $("#staticBackdrop").modal("hide");
+  }
+
+  remove(id: number) {
+    Dependency.get(ControlSurveyHttp).remove(id).subscribe(e => {
+      const target = this.datas.filter(e => e.id === id)[0];
+      const index = this.datas.indexOf(target);
+      if (index !== -1) {
+        this.datas.splice(index, 1);
+      }
+    });
   }
 }

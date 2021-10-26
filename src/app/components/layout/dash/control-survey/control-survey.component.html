@@ -89,18 +89,26 @@
 
                         <div class="d-flex justify-content-center mb-2">
                             <!-- Avatar -->
-                            <img class="avatar avatar-lg" src="{{item.smallImage.fileName}}" alt="Image Description">
+
+                            <a [routerLink]="['/dash/control-survey',item.id]">
+                                <img class="avatar avatar-lg" src="{{item.smallImage.fileName}}"
+                                    alt="Image Description">
+                            </a>
                         </div>
 
                         <div class="mb-4">
-                            <h2 class="mb-1">{{item.title}}</h2>
+
+                            <a [routerLink]="['/dash/control-survey',item.id]">
+                                <h2 class="mb-1">{{item.title}}</h2>
+
+                            </a>
+
 
                             <span class="font-size-sm">Oluşturuldu: {{item.creationAt | date: 'dd/MM/yyyy'}}</span>
                         </div>
 
                         <small class="card-subtitle">{{item.administrator.name}} {{item.administrator.surname}}</small>
 
-                        <a class="stretched-link" href="#"></a>
                     </div>
                     <!-- End Body -->
 

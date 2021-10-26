@@ -58,6 +58,7 @@ import { SurveyListComponent } from './components/layout/doctor/survey-list/surv
 import { MyAccountAdminComponent } from './components/layout/dash/admin/my-account-admin/my-account-admin.component';
 import { ControlSurveyComponent } from './components/layout/dash/control-survey/control-survey.component';
 import ControlSurveyHttp from './components/layout/dash/control-survey/control-survey-http';
+import { ConstrolSurveyViewComponent } from './components/layout/dash/constrol-survey-view/constrol-survey-view.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import ControlSurveyHttp from './components/layout/dash/control-survey/control-s
     SurveyListComponent,
     MyAccountAdminComponent,
     ControlSurveyComponent,
+    ConstrolSurveyViewComponent,
   ],
 
   imports: [

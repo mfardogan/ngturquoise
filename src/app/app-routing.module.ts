@@ -8,6 +8,7 @@ import { AdminsComponent } from './components/layout/dash/admin/admins/admins.co
 import { EditAdminProfileComponent } from './components/layout/dash/admin/edit-admin-profile/edit-admin-profile.component';
 import { ChoiceGroupItemComponent } from './components/layout/dash/choice/choice-group-item/choice-group-item.component';
 import { ChoiceGroupsComponent } from './components/layout/dash/choice/choice-groups/choice-groups.component';
+import { ConstrolSurveyViewComponent } from './components/layout/dash/constrol-survey-view/constrol-survey-view.component';
 import { ContentComponent } from './components/layout/dash/content/content.component';
 import { ControlSurveyComponent } from './components/layout/dash/control-survey/control-survey.component';
 import { DoctorItemComponent } from './components/layout/dash/doctor/doctor-item/doctor-item.component';
@@ -75,6 +76,7 @@ const routes: Routes = [
       { path: 'survey/:id', component: SurveyItemComponent },
       { path: 'surveys', component: SurveysComponent },
       { path: 'control-surveys', component: ControlSurveyComponent },
+      { path: 'control-survey/:id', component: ConstrolSurveyViewComponent },
       { path: 'add-survey', component: CreateSurveyComponent },
       { path: 'edit-doctor', component: EditDoctorProfileComponent },
       { path: 'edit-admin', component: EditAdminProfileComponent },

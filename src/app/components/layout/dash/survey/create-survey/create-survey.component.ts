@@ -137,7 +137,6 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   handleImage(image: WebcamImage) {
-    console.log(image);
     const data: string = image.imageAsDataUrl;
     this.uploadingCameraFiles.push(data);
   }

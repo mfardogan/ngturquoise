@@ -7,7 +7,6 @@ import SurveySearch from "src/app/@core/models/surve-search";
 import Survey from "src/app/@core/models/survey";
 import SurveyByCreator from "src/app/@core/models/survey-by-creator";
 import SurveySummary from "src/app/@core/models/survey-summary";
-import { BackendConfigService } from "src/app/@core/services/backend-config.service";
 import BaseHttp from "src/app/base-http";
 
 @Injectable()
@@ -53,7 +52,8 @@ export default class SurveyHttp extends BaseHttp<Survey> {
 
     downloadStatistics(id: number, seperated: boolean = false): Observable<any> {
         //
-        const path: string = this.prefix + '/download/' + id + '&seperated=' + seperated ? 'true' : 'false';
+        const path: string = this.prefix + '/download/' + id + '/' + seperated;
+        console.log(path);
         return this.http.get(path, { responseType: 'blob' });
     }
 }

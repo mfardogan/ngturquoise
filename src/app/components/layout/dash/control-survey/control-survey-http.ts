@@ -15,6 +15,10 @@ export default class ControlSurveyHttp extends BaseHttp<ControlSurvey> {
         return this.http.put<ControlSurvey[]>(this.prefix + '/search', search);
     }
 
+    getToJoin(search: Search<ControlSurvey>): Observable<Array<ControlSurvey>> {
+        return this.http.put<ControlSurvey[]>(this.prefix + '/gettojoin', search);
+    }
+
     createByForm(form: FormData): Observable<any> {
         const path: string = this.prefix;
         return this.http.post<any>(path, form);

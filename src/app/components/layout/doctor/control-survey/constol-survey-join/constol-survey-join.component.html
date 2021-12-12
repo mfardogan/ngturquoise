@@ -167,7 +167,8 @@
                     <div class="dropdown-menu pre-scrollable" style="max-height: 150px;"
                         aria-labelledby="dropdownMenuButton">
 
-                        <a *ngFor="let item of choices;let i = index" class="dropdown-item" href="javascript:;">
+                        <a (click)="change(item.id)" *ngFor="let item of choices;let i = index" class="dropdown-item"
+                            href="javascript:;">
                             {{item?.code}} <span [style.backgroundColor]="item.color"
                                 class="badge badge-primary">{{item?.name}}</span>
                         </a>

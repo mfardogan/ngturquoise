@@ -24,7 +24,7 @@ export class ConstolSurveyListComponent implements OnInit {
   getPageData(page: number = 1): void {
     this.page = this.search.pagination.page = page;
     Dependency.get(ControlSurveyHttp)
-      .search(this.search)
+      .getToJoin(this.search)
       .subscribe(e => {
         e.forEach(x => this.data.push(x));
       });

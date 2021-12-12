@@ -337,4 +337,36 @@ export class ConstolSurveyJoinComponent implements OnInit {
 
     console.log(this.data.boxes);
   }
+
+  change(id: number) {
+    if (this.selection == null || this.selection == undefined) {
+      return;
+    }
+
+    this.context.clearRect(
+      this.selection.startX - 1,
+      this.selection.startY - 1,
+      this.selection.width + 3,
+      this.selection.height + 3);
+
+    var target = this.data.boxes.filter(e => e.startX == this.selection.startX && e.startY == this.selection.startY)[0];
+    var index = this.data.boxes.indexOf(target);
+
+    if (index < -1) {
+      return;
+    }
+
+    var newChoice = this.choices.filter(e => e.id == id)[0];
+    this.data.boxes[index].choiceId = id;
+    this.data.boxes[index].choice = newChoice;
+
+    this.context.lineWidth = 2;
+
+    this.context.strokeStyle = newChoice.color;
+    this.context.strokeRect(this.selection.startX, this.selection.startY, this.selection.width, this.selection.height);
+
+    this.context.font = "normal 12px Arial";
+    this.context.fillStyle = newChoice.color;
+    this.context.fillText(this.activatedChoice.code, this.selection.startX + 3, this.selection.startY + 13);
+  }
 }

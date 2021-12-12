@@ -59,6 +59,8 @@ import { MyAccountAdminComponent } from './components/layout/dash/admin/my-accou
 import { ControlSurveyComponent } from './components/layout/dash/control-survey/control-survey.component';
 import ControlSurveyHttp from './components/layout/dash/control-survey/control-survey-http';
 import { ConstrolSurveyViewComponent } from './components/layout/dash/constrol-survey-view/constrol-survey-view.component';
+import { ConstolSurveyListComponent } from './components/layout/doctor/control-survey/constol-survey-list/constol-survey-list.component';
+import { ConstolSurveyJoinComponent } from './components/layout/doctor/control-survey/constol-survey-join/constol-survey-join.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +106,8 @@ import { ConstrolSurveyViewComponent } from './components/layout/dash/constrol-s
     MyAccountAdminComponent,
     ControlSurveyComponent,
     ConstrolSurveyViewComponent,
+    ConstolSurveyListComponent,
+    ConstolSurveyJoinComponent,
   ],
 
   imports: [

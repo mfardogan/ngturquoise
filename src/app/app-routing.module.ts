@@ -20,6 +20,8 @@ import { SettingsComponent } from './components/layout/dash/settings/settings.co
 import { CreateSurveyComponent } from './components/layout/dash/survey/create-survey/create-survey.component';
 import { SurveyItemComponent } from './components/layout/dash/survey/survey-item/survey-item.component';
 import { SurveysComponent } from './components/layout/dash/survey/surveys/surveys.component';
+import { ConstolSurveyJoinComponent } from './components/layout/doctor/control-survey/constol-survey-join/constol-survey-join.component';
+import { ConstolSurveyListComponent } from './components/layout/doctor/control-survey/constol-survey-list/constol-survey-list.component';
 import { DoctorLayoutComponent } from './components/layout/doctor/doctor-layout/doctor-layout.component';
 import { EditMyProfileComponent } from './components/layout/doctor/edit-my-profile/edit-my-profile.component';
 import { JoinSurveyComponent } from './components/layout/doctor/join-survey/join-survey.component';
@@ -42,6 +44,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'account', pathMatch: 'full' },
       { path: 'edit-account', component: EditMyProfileComponent, pathMatch: 'full' },
+      { path: 'control-surveys', component: ConstolSurveyListComponent, pathMatch: 'full' },
+      { path: 'control-survey/:id', component: ConstolSurveyJoinComponent, pathMatch: 'full' },
       { path: 'join/:id', component: JoinSurveyComponent, pathMatch: 'full' },
       { path: 'account', component: MyProfileComponent, pathMatch: 'full' },
       { path: 'surveys', component: SurveyListComponent, pathMatch: 'full' }

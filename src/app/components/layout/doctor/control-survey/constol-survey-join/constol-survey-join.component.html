@@ -1,0 +1,183 @@
+<div>
+    <!-- Page Header -->
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col-sm mb-2 mb-sm-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-no-gutter">
+                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="ecommerce-orders.html">Kontrol
+                                Anketleri</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Anketi Kontrol Et</li>
+                    </ol>
+                </nav>
+
+                <div class="d-sm-flex align-items-sm-center">
+                    <h1 class="page-header-title">{{data?.title}} #ID: {{data?.id}}</h1>
+                    <span class="ml-2 ml-sm-3">
+                        <i class="tio-date-range"></i> {{data?.creationAt | date: 'dd.MM.yyyy hh:mm:ss'}}
+                    </span>
+                </div>
+
+                <div class="mt-2">
+                    <a class="text-body mr-3" href="javascript:;" onclick="window.print(); return false;">
+                        <i class="tio-print mr-1"></i> Sayfayı Yazdır
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Header -->
+
+    <div class="row">
+        <div class="col-lg-12 mb-2 mb-lg-0">
+            <div class="col-12">
+                <div id="#style-1" class="custom-scrollbar"
+                    style="cursor: no-drop; background-image: url('./../../../../../assets/transparent.jpg'); background-clip: padding-box;">
+                    <div id="bgg">
+                        <canvas style="background-color: transparent; touch-action: none;"
+                            [style.cursor]="drawMode ? 'crosshair' : 'pointer'" (mouseup)="mouseUp($event)"
+                            (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)"
+                            (touchmove)="touchMove($event)" (touchstart)="touchStart($event)"
+                            (touchend)="touchEnd($event)" (click)="handle($event)" id="drw">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End Row -->
+
+</div>
+
+<div class="position-fixed bottom-0 content-centered-x w-80 z-index-80 mb-2"
+    style="bottom: 2.5rem !important; max-width: 40rem;">
+    <!-- Card -->
+    <div class="card card-sm bg-dark border-dark mx-2">
+        <div class="card-body">
+            <div class="row justify-content-center justify-content-sm-between">
+                <div class="col">
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+
+                        <div class="btn-group mr-1" role="group" aria-label="First group">
+                            <button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="tio-edit"></i>
+                            </button>
+
+                            <div class="dropdown-menu " style="overflow: auto; max-height: 350px;">
+
+                                <!-- List Group -->
+                                <ul *ngFor="let item of choices;let i = index" class="list-group list-group-flush">
+                                    <!-- Item -->
+                                    <li (click)="activateClass(item.id)"
+                                        class="list-group-item custom-checkbox-list-wrapper">
+                                        <div class="d-flex align-items-start flex-grow-1">
+                                            <div class="d-flex align-items-center mr-3">
+                                                <div class="custom-control custom-checkbox custom-checkbox-list">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        id="notificationCheck{{i}}">
+                                                    <label class="custom-control-label"
+                                                        for="notificationCheck{{i}}"></label>
+                                                    <span class="custom-checkbox-list-stretched-bg"></span>
+                                                </div>
+                                                <div class="avatar avatar-sm avatar-circle">
+                                                    <span class="legend-indicator legend-indicator-lg"
+                                                        style="border: 1px solid rgb(153, 153, 153); width: 30px; height: 30px;"
+                                                        [style.background-color]="item.color"></span>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 mr-2">
+                                                <span class="card-title h5">{{item?.name}}</span>
+                                                <p class="card-text font-size-sm">{{item?.code}}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- End Item -->
+
+                                </ul>
+                                <!-- End List Group -->
+                            </div>
+
+                            <button (click)="toggleMode()" type="button" class="btn btn-secondary">
+                                <i [attr.class]="drawMode ?  'tio-home-outlined' :'tio-redo'"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-success">
+                                Kaydet
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- End Row -->
+        </div>
+    </div>
+    <!-- End Card -->
+
+</div>
+
+
+
+<!-- Modal -->
+<div id="exampleModalCenteredScrollable" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4" id="mySmallModalLabel">Sınıf: {{selectedBoxsChoiceCode}} #
+                    {{selectedBoxsChoiceName}}</h5>
+                <button type="button" class="btn btn-xs btn-icon btn-ghost-secondary" data-dismiss="modal"
+                    aria-label="Close">
+                    <i class="tio-clear tio-lg"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="smallContainer1" class="custom-scrollbar"
+                                style="margin-bottom: 0; width: 100%; max-height: 12rem; cursor: no-drop; background-image: url('./../../../../../assets/transparent.jpg'); background-clip: padding-box;">
+                                <div style="width: 100%;" id="smallContainer">
+                                    <canvas style="width: 100%; background-color: transparent; touch-action: none;"
+                                        id="selectionCanvas">
+                                    </canvas>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+
+                <div class="dropdown">
+                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sınıf Değiştir
+                    </button>
+                    <div class="dropdown-menu pre-scrollable" style="max-height: 150px;"
+                        aria-labelledby="dropdownMenuButton">
+
+                        <a *ngFor="let item of choices;let i = index" class="dropdown-item" href="javascript:;">
+                            {{item?.code}} <span [style.backgroundColor]="item.color"
+                                class="badge badge-primary">{{item?.name}}</span>
+                        </a>
+                    </div>
+                </div>
+
+                <button (click)="deleteSelection()" type="button" class="btn btn-danger" data-dismiss="modal">Seçimi
+                    Sil</button>
+            </div>
+        </div>
+
+    </div>
+</div>

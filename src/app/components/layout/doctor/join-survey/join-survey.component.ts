@@ -172,6 +172,7 @@ export class JoinSurveyComponent implements OnInit {
     this.context.strokeStyle = this.activatedChoice.color;
     this.context.strokeRect(this.startX, this.startY, width, height);
 
+
     const box: Box = new Box();
     box.width = width;
     box.height = height;

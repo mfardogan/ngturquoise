@@ -18,7 +18,7 @@ export class ConstrolSurveyViewComponent implements OnInit {
       private router: ActivatedRoute
     ) { }
 
-  successfull: boolean = false;
+
   id!: number;
   data!: ControlSurvey;
   container!: HTMLDivElement;

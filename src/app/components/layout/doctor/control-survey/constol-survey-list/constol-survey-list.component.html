@@ -1,0 +1,273 @@
+<div class="row justify-content-lg-center">
+    <div class="col-lg-10">
+        <!-- Profile Cover -->
+        <div class="profile-cover">
+            <div class="profile-cover-img-wrapper">
+                <img class="profile-cover-img" src="./assets/img/1920x400/img1.jpg" alt="Image Description">
+            </div>
+        </div>
+        <!-- End Profile Cover -->
+
+        <!-- Profile Header -->
+        <div class="text-center mb-5">
+            <!-- Avatar -->
+            <div class="avatar avatar-xxl avatar-circle avatar-border-lg profile-cover-avatar">
+                <img class="avatar-img" src="./assets/img/160x160/img9.jpg" alt="Image Description">
+                <span class="avatar-status avatar-status-success"></span>
+            </div>
+            <!-- End Avatar -->
+
+            <h1 class="page-header-title">Ella Lauda <i class="tio-verified tio-lg text-primary" data-toggle="tooltip"
+                    data-placement="top" title="" data-original-title="Top endorsed"></i></h1>
+
+            <!-- List -->
+            <ul class="list-inline list-inline-m-1">
+                <li class="list-inline-item">
+                    <i class="tio-city mr-1"></i>
+                    <span>Htmlstream</span>
+                </li>
+
+                <li class="list-inline-item">
+                    <i class="tio-poi-outlined mr-1"></i>
+                    <a href="#">San Francisco,</a>
+                    <a href="#">US</a>
+                </li>
+
+                <li class="list-inline-item">
+                    <i class="tio-date-range mr-1"></i>
+                    <span>Joined March 2017</span>
+                </li>
+            </ul>
+            <!-- End List -->
+        </div>
+        <!-- End Profile Header -->
+
+        <!-- Nav -->
+        <div class="js-nav-scroller hs-nav-scroller-horizontal mb-5">
+            <span class="hs-nav-scroller-arrow-prev" style="display: none;">
+                <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                    <i class="tio-chevron-left"></i>
+                </a>
+            </span>
+
+            <span class="hs-nav-scroller-arrow-next" style="">
+                <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                    <i class="tio-chevron-right"></i>
+                </a>
+            </span>
+
+            <ul class="nav nav-tabs align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link " href="user-profile.html">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="user-profile-teams.html">Teams</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="user-profile-projects.html">Projects <span
+                            class="badge badge-soft-dark rounded-circle ml-1">3</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="user-profile-connections.html">Connections</a>
+                </li>
+
+                <li class="nav-item ml-auto">
+                    <a class="btn btn-sm btn-white mr-2" href="#">
+                        <i class="tio-user-add mr-1"></i> Connect
+                    </a>
+
+                    <a class="btn btn-icon btn-sm btn-white mr-2" href="#">
+                        <i class="tio-format-points mr-1"></i>
+                    </a>
+
+                    <!-- Unfold -->
+                    <div class="hs-unfold hs-nav-scroller-unfold">
+                        <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-white" href="javascript:;"
+                            data-hs-unfold-options="{
+                   &quot;target&quot;: &quot;#profileDropdown&quot;,
+                   &quot;type&quot;: &quot;css-animation&quot;
+                 }" data-hs-unfold-target="#profileDropdown" data-hs-unfold-invoker="">
+                            <i class="tio-more-vertical"></i>
+                        </a>
+
+                        <div id="profileDropdown"
+                            class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1 hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated hs-unfold-reverse-y"
+                            data-hs-target-height="247.4" data-hs-unfold-content=""
+                            data-hs-unfold-content-animation-in="slideInUp"
+                            data-hs-unfold-content-animation-out="fadeOut" style="animation-duration: 300ms;">
+                            <span class="dropdown-header">Settings</span>
+
+                            <a class="dropdown-item" href="#">
+                                <i class="tio-share dropdown-item-icon"></i> Share profile
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="tio-blocked dropdown-item-icon"></i> Block page and profile
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="tio-info-outined dropdown-item-icon"></i> Suggest edits
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <span class="dropdown-header">Feedback</span>
+
+                            <a class="dropdown-item" href="#">
+                                <i class="tio-report-outlined dropdown-item-icon"></i> Report
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End Unfold -->
+                </li>
+            </ul>
+        </div>
+        <!-- End Nav -->
+
+        <!-- Filter -->
+        <div class="row align-items-center mb-5">
+            <div class="col">
+                <h3 class="mb-0">8 projects</h3>
+            </div>
+
+            <div class="col-auto">
+                <!-- Nav -->
+                <ul class="nav nav-segment" id="projectsTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="grid-tab" data-toggle="tab" href="#grid" role="tab" aria-controls="grid"
+                            aria-selected="false" title="Column view">
+                            <i class="tio-column-view-outlined"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab"
+                            aria-controls="list" aria-selected="true" title="List view">
+                            <i class="tio-agenda-view-outlined"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- End Nav -->
+            </div>
+        </div>
+        <!-- End Filter -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="projectsTabContent">
+
+            <div class="tab-pane fade active show" id="list" role="tabpanel" aria-labelledby="list-tab">
+                <div class="row row-cols-1">
+                    <div class="col mb-3 mb-lg-5" *ngFor="let item of data">
+                        <!-- Card -->
+                        <div class="card card-body">
+                            <div class="media">
+                                <!-- Avatar -->
+                                <img class="avatar mr-3 mr-lg-4" src="{{item.smallImage.fileName}}"
+                                    alt="Image Description">
+
+                                <div class="media-body">
+                                    <div class="row align-items-sm-center">
+                                        <div class="col">
+                                            <span class="badge badge-soft-secondary p-2 mb-2">To do</span>
+
+                                            <h3 class="mb-1">{{item.title}}</h3>
+                                        </div>
+
+                                        <div class="col-md-3 d-none d-md-flex justify-content-md-end ml-n3">
+                                            <!-- Avatar Group -->
+                                            <div class="avatar-group avatar-group-sm avatar-circle">
+                                                <a class="avatar" href="#" data-toggle="tooltip" data-placement="top"
+                                                    title="" data-original-title="Finch Hoot">
+                                                    <img class="avatar-img" src="./assets/img/160x160/img5.jpg"
+                                                        alt="Image Description">
+                                                </a>
+                                                <a class="avatar avatar-soft-dark" href="#" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Bob Bardly">
+                                                    <span class="avatar-initials">B</span>
+                                                </a>
+                                                <a class="avatar" href="#" data-toggle="tooltip" data-placement="top"
+                                                    title="" data-original-title="Clarice Boone">
+                                                    <img class="avatar-img" src="./assets/img/160x160/img7.jpg"
+                                                        alt="Image Description">
+                                                </a>
+                                                <a class="avatar avatar-soft-dark" href="#" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Adam Keep">
+                                                    <span class="avatar-initials">A</span>
+                                                </a>
+                                            </div>
+                                            <!-- End Avatar Group -->
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <!-- Unfold -->
+                                            <div class="hs-unfold card-unfold">
+                                                <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle"
+                                                    href="javascript:;" data-hs-unfold-options="{
+                               &quot;target&quot;: &quot;#projectsListDropdown1&quot;,
+                               &quot;type&quot;: &quot;css-animation&quot;
+                             }" data-hs-unfold-target="#projectsListDropdown1" data-hs-unfold-invoker="">
+                                                    <i class="tio-more-vertical"></i>
+                                                </a>
+
+                                                <div id="projectsListDropdown1"
+                                                    class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated hs-unfold-reverse-y"
+                                                    data-hs-target-height="0" data-hs-unfold-content=""
+                                                    data-hs-unfold-content-animation-in="slideInUp"
+                                                    data-hs-unfold-content-animation-out="fadeOut"
+                                                    style="animation-duration: 300ms;">
+                                                    <a class="dropdown-item" href="#">Rename project </a>
+                                                    <a class="dropdown-item" href="#">Add to favorites</a>
+                                                    <a class="dropdown-item" href="#">Archive project</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                </div>
+                                            </div>
+                                            <!-- End Unfold -->
+                                        </div>
+                                    </div>
+                                    <!-- End Row -->
+
+                                    <!-- Stats -->
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <span class="font-size-sm">Updated:</span>
+                                            <span class="font-weight-bold text-dark">2 hours ago</span>
+                                        </li>
+
+                                        <li class="list-inline-item">
+                                            <span class="font-size-sm">Tasks:</span>
+                                            <span class="font-weight-bold text-dark">19</span>
+                                        </li>
+
+                                        <li class="list-inline-item">
+                                            <span class="font-size-sm">Completed:</span>
+                                            <span class="font-weight-bold text-dark">33</span>
+                                        </li>
+
+                                        <li class="list-inline-item">
+                                            <span class="font-size-sm">Days left:</span>
+                                            <span class="font-weight-bold text-dark">10</span>
+                                        </li>
+                                    </ul>
+                                    <!-- End Stats -->
+
+                                    <!-- Progress -->
+                                    <div class="progress card-progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <!-- End Progress -->
+
+                                    <a class="stretched-link" [routerLink]="['/user/control-survey',item.id]"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                    </div>
+
+
+
+                </div>
+                <!-- End Row -->
+            </div>
+        </div>
+        <!-- End Tab Content -->
+    </div>
+</div>

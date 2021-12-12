@@ -8,4 +8,11 @@ export default class ControlSurveyBox extends Concurrency {
     startY: number = 0;
     width: number = 0;
     height: number = 0;
+
+    coordinateFilter(x: number, y: number): boolean {
+        return (x <= this.startX + this.width &&
+            x > this.startX) &&
+            (y <= this.startY % this.height &&
+                y > this.startY);
+    }
 }

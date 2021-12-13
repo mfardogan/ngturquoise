@@ -1,11 +1,15 @@
 declare var $: any;
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import Choice from 'src/app/@core/models/choice';
 import ControlSurvey from 'src/app/@core/models/control-survey';
+import { ControlSurveyAnswer } from 'src/app/@core/models/control-survey-answer';
+import { ControlSurveyAnswerBox } from 'src/app/@core/models/control-survey-answer-box';
 import ControlSurveyBox from 'src/app/@core/models/control-survey-box';
 import { Dependency } from 'src/app/app.module';
 import ChoiceGroupHttp from '../../../dash/choice/choice-group-http';
+import { ControlSurveyAnswerHttpService } from '../../../dash/control-survey/control-survey-answer-http.service';
 import ControlSurveyHttp from '../../../dash/control-survey/control-survey-http';
 
 @Component({
@@ -17,7 +21,8 @@ export class ConstolSurveyJoinComponent implements OnInit {
 
   constructor
     (
-      private router: ActivatedRoute
+      private router: ActivatedRoute,
+      private toastr: ToastrService
     ) { }
 
 
@@ -368,5 +373,26 @@ export class ConstolSurveyJoinComponent implements OnInit {
     this.context.font = "normal 12px Arial";
     this.context.fillStyle = newChoice.color;
     this.context.fillText(this.activatedChoice.code, this.selection.startX + 3, this.selection.startY + 13);
+  }
+
+  join() {
+    const answer = new ControlSurveyAnswer();
+    answer.controlSurveyId = this.data.id;
+
+    for (var i = 0; i < this.data.boxes.length; i++) {
+      const e = this.data.boxes[i];
+      const box = new ControlSurveyAnswerBox();
+      box.choiceId = e.choiceId;
+      box.height = e.height;
+      box.startX = e.startX;
+      box.startY = e.startY;
+      box.width = e.width;
+      answer.boxes.push(box);
+    }
+
+    Dependency.get(ControlSurveyAnswerHttpService)
+      .join(answer).subscribe(e => {
+        this.toastr.success("İşlem başarıyla yapıldı!", "Dikkat!");
+      });
   }
 }
